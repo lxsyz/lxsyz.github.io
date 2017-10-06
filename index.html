@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title></title>
+  <title>Amanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title">
+<meta property="og:title" content="Amanda">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name">
+<meta property="og:site_name" content="Amanda">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
+<meta name="twitter:title" content="Amanda">
   
-    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -33,7 +33,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo"></a>
+        <a href="/" id="logo">Amanda</a>
       </h1>
       
     </div>
@@ -50,7 +50,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -60,6 +60,54 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-概率论" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/26/概率论/" class="article-date">
+  <time datetime="2017-09-26T11:56:12.000Z" itemprop="datePublished">2017-09-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/26/概率论/">python实现概率分布</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">n = <span class="number">10</span></div><div class="line">p = <span class="number">0.3</span></div><div class="line">k = np.arange(<span class="number">0</span>,<span class="number">21</span>)</div><div class="line">binomial = stats.binom.pmf(k,n,p)</div><div class="line"></div><div class="line">plt.plot(k,binomial,<span class="string">"o-"</span>)</div><div class="line">plt.title(<span class="string">"Binomial n=%d,p=%.2f"</span> % (n,p))</div><div class="line">plt.xlabel(<span class="string">"Number of success"</span>)</div><div class="line">plt.ylabel(<span class="string">"Probablity of success"</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="images/binomial.png" alt=""></p>
+<h2 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h2><p>泊松分布用于描述某段时间内，事件具体的发生概率。公式为：<br>$ P(N(t)=n) = \frac {(\lambda t)^n}e^{- \lambda t}{n!} $<br>其中$\lambda$表示事件的频率，在频率附近，事件发生的概率越高。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">rate = <span class="number">2</span></div><div class="line">n = np.arange(<span class="number">0</span>,<span class="number">10</span>)</div><div class="line">y = stats.poisson.pmf(n,rate)</div><div class="line">plt.plot(n,y,<span class="string">"o-"</span>)</div><div class="line">plt.title(<span class="string">"rate=%.2f"</span> % (rate))</div><div class="line">plt.xlabel(<span class="string">"Number of success"</span>)</div><div class="line">plt.ylabel(<span class="string">"Probablity of success"</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="images/poisson.png" alt=""></p>
+<h2 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mean = <span class="number">0</span></div><div class="line">sigma = <span class="number">1</span></div><div class="line">n = np.arange(<span class="number">-5</span>,<span class="number">5</span>,<span class="number">0.1</span>)</div><div class="line">y = stats.norm.pdf(n,mean,sigma)</div><div class="line">plt.plot(n,y)</div><div class="line">plt.title(<span class="string">"mean=%.2f,sigma=%.2f"</span> % (mean,sigma))</div><div class="line">plt.xlabel(<span class="string">"Number of success"</span>)</div><div class="line">plt.ylabel(<span class="string">"Probablity of success"</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="images/normal.png" alt=""></p>
+<h2 id="beta分布"><a href="#beta分布" class="headerlink" title="beta分布"></a>beta分布</h2><p>表示先验信息的比较好的方法，可以使用beta分布，它与二项分布都是共轭先验（先验分布是beta分布，后验分布也是beta分布）的<br>beta分布的均值为 $\frac\alpha {\alpha + \beta}$<br>方差为 $\frac{\alpha \beta} {(\alpha + \beta) ^ 2 (\alpha + \beta + 1)}$<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">alpha = <span class="number">1</span></div><div class="line">beta = <span class="number">1</span></div><div class="line">x = np.arange(<span class="number">0.01</span>,<span class="number">1</span>,<span class="number">0.01</span>)</div><div class="line">y = stats.beta.pdf(x,alpha,beta)</div><div class="line"></div><div class="line">plt.plot(x,y, label=<span class="string">"alpha=%.2f,beta=%.2f"</span> % (alpha,beta))</div><div class="line"></div><div class="line">alpha = <span class="number">1</span></div><div class="line">beta = <span class="number">2</span></div><div class="line">y = stats.beta.pdf(x,alpha,beta)</div><div class="line">plt.plot(x,y,label=<span class="string">"alpha=%.2f,beta=%.2f"</span> % (alpha,beta))</div><div class="line"></div><div class="line">alpha = <span class="number">0.5</span></div><div class="line">beta = <span class="number">0.5</span></div><div class="line">y = stats.beta.pdf(x,alpha,beta)</div><div class="line">plt.plot(x,y,label=<span class="string">"alpha=%.2f,beta=%.2f"</span> % (alpha,beta))</div><div class="line"></div><div class="line">alpha = <span class="number">2</span></div><div class="line">beta = <span class="number">5</span></div><div class="line">y = stats.beta.pdf(x,alpha,beta)</div><div class="line">plt.plot(x,y,label=<span class="string">"alpha=%.2f,beta=%.2f"</span> % (alpha,beta))</div><div class="line"></div><div class="line">plt.legend(loc=<span class="string">"upper left"</span>)</div><div class="line">plt.xlabel(<span class="string">"Number of success"</span>)</div><div class="line">plt.ylabel(<span class="string">"Probablity of success"</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="images/beta.png" alt=""><br><br><br>参考文章：<a href="http://www.datalearner.com/blog/1051505532393058" target="_blank" rel="external">http://www.datalearner.com/blog/1051505532393058</a></p>
+<h2 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h2><p>$ P(x;\lambda) = \lambda e^ {-\lambda x} $<br>指数分布用于表示事件发生的时间间隔的概率，$\lambda$表示事件发生的频率，越大则事件发生的概率越小，即隔了很久事件发生的概率会越小<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">lamda = <span class="number">0.2</span></div><div class="line">x = np.arange(<span class="number">0</span>,<span class="number">20</span>,<span class="number">0.1</span>)</div><div class="line">y = lamda * np.exp(-lamda * x)</div><div class="line"></div><div class="line">plt.plot(x,y)</div><div class="line"></div><div class="line">plt.title(<span class="string">"rate=%.2f"</span> % (rate))</div><div class="line">plt.xlabel(<span class="string">"Number of success"</span>)</div><div class="line">plt.ylabel(<span class="string">"Probablity of success"</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="images/exponential.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/26/概率论/" data-id="cj8fjqimm0000f87xy95igx5o" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-近期学习" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -102,14 +150,15 @@
 <li>Relu的缺点：<br>输出不是zero-centered<br>某些神经元可能永远不会被激活，相应参数不会被修改，使用Xavier初始化方法可以解决因learning rate太高引起的无法激活的现象。<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2>  主要起到分类器的作用，可由卷积操作实现，目前更多是使用全局平均池化的方式来替代全连接层。<br>  使用卷积层实现全连接层的好处：可以让卷积网络在输入图片上滑动，得到每个区域的输出，突破尺寸限制。<h2 id="滤波器总结"><a href="#滤波器总结" class="headerlink" title="滤波器总结"></a>滤波器总结</h2></li>
 <li>滤波器所有元素之和等于1时，图像处理后亮度保持不变，大于1时图像更亮，小于1图像变暗</li>
 <li>把数值尽力控制在0-255之间，负数取绝对值处理</li>
-<li>滤波器的大小应该是一个奇数<br>使用滤波器我们可以实现很多的图像处理操作，例如锐化，边缘检测，浮雕，模糊等<br>例如锐化和边缘检测： 将卷积核周边值取负，中心取正，突出中心，可以完成</li>
+<li>滤波器的大小应该是一个奇数<br>使用滤波器我们可以实现很多的图像处理操作，例如锐化，边缘检测，浮雕，模糊等<br>例如锐化和边缘检测： 将卷积核周边值取负，中心取正，突出中心，可以完成<h2 id="Tensorflow简单调试"><a href="#Tensorflow简单调试" class="headerlink" title="Tensorflow简单调试"></a>Tensorflow简单调试</h2>使用tfdbg进行调试<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -m tensorflow.python.debug.examples.debug_minist --debug</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p><br><br>学习过程中，接触了很多经典的图像处理神经网路，例如AlexNet,GoogleNet,Overfeat等<br>有几篇写的不错的博客如下：<br><a href="http://blog.csdn.net/hjimce/article/details/50187881" target="_blank" rel="external">Overfeat</a><br><a href="http://blog.csdn.net/liumaolincycle/article/details/50496499" target="_blank" rel="external">AlexNet论文</a><br><a href="http://blog.csdn.net/u014088052/article/details/50898842" target="_blank" rel="external">AlexNet算法体系</a></p>
+<p>进入调试状态。常用指令：<br>run 运行代码<br>li 显示变量的shape和值<br>pt 输出变量值<br>run -f has_inf_or_nan 发现nan值变量<br><br><br>学习过程中，接触了很多经典的图像处理神经网路，例如AlexNet,GoogleNet,Overfeat等<br>有几篇写的不错的博客如下：<br><a href="http://blog.csdn.net/hjimce/article/details/50187881" target="_blank" rel="external">Overfeat</a><br><a href="http://blog.csdn.net/liumaolincycle/article/details/50496499" target="_blank" rel="external">AlexNet论文</a><br><a href="http://blog.csdn.net/u014088052/article/details/50898842" target="_blank" rel="external">AlexNet算法体系</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/24/近期学习/" data-id="cj7yie8pu0006a07xmgnu21g9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/24/近期学习/" data-id="cj8fivzsq0007i07xw74cx3hd" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -160,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/09/String介绍/" data-id="cj7yie8oq0001a07x3d1fr8ws" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/09/String介绍/" data-id="cj8fivzrd0000i07xg43rhjej" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -196,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/21/重建二叉树/" data-id="cj7yie8px0007a07xya9s3q6k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/21/重建二叉树/" data-id="cj8fivzt4000bi07x61ln6bqc" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二叉树/">二叉树</a></li></ul>
@@ -235,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/10/滑雪/" data-id="cj7yie8p30002a07xbsx9mi0c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/09/10/滑雪/" data-id="cj8fivzsh0005i07x7eqptdtd" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度搜索/">深度搜索</a></li></ul>
@@ -273,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/21/栈的操作/" data-id="cj7yie8p70003a07xu8wpvrm4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/21/栈的操作/" data-id="cj8fivzrz0002i07xcnrjv7v5" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/栈/">栈</a></li></ul>
@@ -311,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/20/矩阵逆序/" data-id="cj7yie8pm0005a07xwa0i1wm6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/20/矩阵逆序/" data-id="cj8fivzso0006i07xa939zloq" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/递归/">递归</a></li></ul>
@@ -349,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/18/链表/" data-id="cj7yie8q1000aa07xudypewmy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/18/链表/" data-id="cj8fivzsz000ai07xdkfy9s0q" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链表/">链表</a></li></ul>
@@ -388,7 +437,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/15/链表基本操作/" data-id="cj7yie8q5000ba07xs1px9d18" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/15/链表基本操作/" data-id="cj8fivzt9000di07xt28lazug" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/链表/">链表</a></li></ul>
@@ -435,7 +484,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/12/Hello/" data-id="cj7yie8o80000a07xysvl663l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/12/Hello/" data-id="cj8fivzrp0001i07x0xclz9ij" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -455,9 +504,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Labels</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度搜索/">深度搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/递归/">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表/">链表</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数学/">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度搜索/">深度搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/递归/">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表/">链表</a></li></ul>
     </div>
   </div>
 
@@ -467,14 +516,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/栈/" style="font-size: 10px;">栈</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/深度搜索/" style="font-size: 10px;">深度搜索</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/链表/" style="font-size: 20px;">链表</a>
+      <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/数学/" style="font-size: 10px;">数学</a> <a href="/tags/栈/" style="font-size: 10px;">栈</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/深度搜索/" style="font-size: 10px;">深度搜索</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/链表/" style="font-size: 20px;">链表</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
     </div>
@@ -484,9 +533,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/09/26/概率论/">python实现概率分布</a>
+          </li>
         
           <li>
             <a href="/2017/09/24/近期学习/">近期学习</a>
@@ -504,10 +557,6 @@
             <a href="/2016/09/10/滑雪/">滑雪</a>
           </li>
         
-          <li>
-            <a href="/2016/08/21/栈的操作/">栈的操作</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -520,7 +569,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 DeathRunner<br>
+      &copy; 2017 syz<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

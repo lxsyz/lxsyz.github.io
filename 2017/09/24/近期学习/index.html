@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>近期学习 | </title>
+  <title>近期学习 | Amanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。 Numpy操作这里主要说说可能用的比较少的操作：Numpy.flipud() 上下方向旋转数组12345678import numpy as np&amp;gt;&amp;gt;&amp;gt;np.flipud([[1,2,3],[4,5,6],[7,8,9]])array([[7, 8, 9],        [4, 5, 6],        [1, 2">
 <meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="近期学习">
 <meta property="og:url" content="http://yoursite.com/2017/09/24/近期学习/index.html">
-<meta property="og:site_name">
+<meta property="og:site_name" content="Amanda">
 <meta property="og:description" content="这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。 Numpy操作这里主要说说可能用的比较少的操作：Numpy.flipud() 上下方向旋转数组12345678import numpy as np&amp;gt;&amp;gt;&amp;gt;np.flipud([[1,2,3],[4,5,6],[7,8,9]])array([[7, 8, 9],        [4, 5, 6],        [1, 2">
-<meta property="og:updated_time" content="2017-09-24T08:55:32.493Z">
+<meta property="og:updated_time" content="2017-10-06T06:04:23.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="近期学习">
 <meta name="twitter:description" content="这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。 Numpy操作这里主要说说可能用的比较少的操作：Numpy.flipud() 上下方向旋转数组12345678import numpy as np&amp;gt;&amp;gt;&amp;gt;np.flipud([[1,2,3],[4,5,6],[7,8,9]])array([[7, 8, 9],        [4, 5, 6],        [1, 2">
   
-    <link rel="alternate" href="/atom.xml" title="" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -38,7 +38,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo"></a>
+        <a href="/" id="logo">Amanda</a>
       </h1>
       
     </div>
@@ -55,7 +55,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -105,14 +105,15 @@
 <li>Relu的缺点：<br>输出不是zero-centered<br>某些神经元可能永远不会被激活，相应参数不会被修改，使用Xavier初始化方法可以解决因learning rate太高引起的无法激活的现象。<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2>  主要起到分类器的作用，可由卷积操作实现，目前更多是使用全局平均池化的方式来替代全连接层。<br>  使用卷积层实现全连接层的好处：可以让卷积网络在输入图片上滑动，得到每个区域的输出，突破尺寸限制。<h2 id="滤波器总结"><a href="#滤波器总结" class="headerlink" title="滤波器总结"></a>滤波器总结</h2></li>
 <li>滤波器所有元素之和等于1时，图像处理后亮度保持不变，大于1时图像更亮，小于1图像变暗</li>
 <li>把数值尽力控制在0-255之间，负数取绝对值处理</li>
-<li>滤波器的大小应该是一个奇数<br>使用滤波器我们可以实现很多的图像处理操作，例如锐化，边缘检测，浮雕，模糊等<br>例如锐化和边缘检测： 将卷积核周边值取负，中心取正，突出中心，可以完成</li>
+<li>滤波器的大小应该是一个奇数<br>使用滤波器我们可以实现很多的图像处理操作，例如锐化，边缘检测，浮雕，模糊等<br>例如锐化和边缘检测： 将卷积核周边值取负，中心取正，突出中心，可以完成<h2 id="Tensorflow简单调试"><a href="#Tensorflow简单调试" class="headerlink" title="Tensorflow简单调试"></a>Tensorflow简单调试</h2>使用tfdbg进行调试<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -m tensorflow.python.debug.examples.debug_minist --debug</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p><br><br>学习过程中，接触了很多经典的图像处理神经网路，例如AlexNet,GoogleNet,Overfeat等<br>有几篇写的不错的博客如下：<br><a href="http://blog.csdn.net/hjimce/article/details/50187881" target="_blank" rel="external">Overfeat</a><br><a href="http://blog.csdn.net/liumaolincycle/article/details/50496499" target="_blank" rel="external">AlexNet论文</a><br><a href="http://blog.csdn.net/u014088052/article/details/50898842" target="_blank" rel="external">AlexNet算法体系</a></p>
+<p>进入调试状态。常用指令：<br>run 运行代码<br>li 显示变量的shape和值<br>pt 输出变量值<br>run -f has_inf_or_nan 发现nan值变量<br><br><br>学习过程中，接触了很多经典的图像处理神经网路，例如AlexNet,GoogleNet,Overfeat等<br>有几篇写的不错的博客如下：<br><a href="http://blog.csdn.net/hjimce/article/details/50187881" target="_blank" rel="external">Overfeat</a><br><a href="http://blog.csdn.net/liumaolincycle/article/details/50496499" target="_blank" rel="external">AlexNet论文</a><br><a href="http://blog.csdn.net/u014088052/article/details/50898842" target="_blank" rel="external">AlexNet算法体系</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/09/24/近期学习/" data-id="cj7yie8pu0006a07xmgnu21g9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/09/24/近期学习/" data-id="cj8fivzsq0007i07xw74cx3hd" class="article-share-link">Delen</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -123,9 +124,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2017/09/26/概率论/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nieuwer</strong>
+      <div class="article-nav-title">
+        
+          python实现概率分布
+        
+      </div>
+    </a>
+  
   
     <a href="/2017/05/09/String介绍/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">String介绍</div>
     </a>
   
@@ -143,9 +153,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Labels</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度搜索/">深度搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/递归/">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表/">链表</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数学/">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/栈/">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度搜索/">深度搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/递归/">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链表/">链表</a></li></ul>
     </div>
   </div>
 
@@ -155,14 +165,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/栈/" style="font-size: 10px;">栈</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/深度搜索/" style="font-size: 10px;">深度搜索</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/链表/" style="font-size: 20px;">链表</a>
+      <a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a> <a href="/tags/数学/" style="font-size: 10px;">数学</a> <a href="/tags/栈/" style="font-size: 10px;">栈</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/深度搜索/" style="font-size: 10px;">深度搜索</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/链表/" style="font-size: 20px;">链表</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
     </div>
@@ -172,9 +182,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/09/26/概率论/">python实现概率分布</a>
+          </li>
         
           <li>
             <a href="/2017/09/24/近期学习/">近期学习</a>
@@ -192,10 +206,6 @@
             <a href="/2016/09/10/滑雪/">滑雪</a>
           </li>
         
-          <li>
-            <a href="/2016/08/21/栈的操作/">栈的操作</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -208,7 +218,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 DeathRunner<br>
+      &copy; 2017 syz<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
