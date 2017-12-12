@@ -4,18 +4,14 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>String介绍 | Amanda</title>
+  <title>Archives: 2017/12 | Amanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="String特性String类是final的，不可被继承，本质是字符数组，其值不可变String x = “abc” , “abc”表示字符串对象，x表示对象的引用String通过+串联得到的是一个新的字符串String pool 用来存放运行中产生的字符串，内容不重复，存在与方法的堆栈区 String创建原理 当 s=X 创建String对象时，java会拿着这个X去pool中找有没有相同内容的">
-<meta property="og:type" content="article">
-<meta property="og:title" content="String介绍">
-<meta property="og:url" content="http://lxsyz.github.io/2017/05/09/String介绍/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Amanda">
+<meta property="og:url" content="http://lxsyz.github.io/archives/2017/12/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="String特性String类是final的，不可被继承，本质是字符数组，其值不可变String x = “abc” , “abc”表示字符串对象，x表示对象的引用String通过+串联得到的是一个新的字符串String pool 用来存放运行中产生的字符串，内容不重复，存在与方法的堆栈区 String创建原理 当 s=X 创建String对象时，java会拿着这个X去pool中找有没有相同内容的">
-<meta property="og:updated_time" content="2017-05-09T06:34:46.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="String介绍">
-<meta name="twitter:description" content="String特性String类是final的，不可被继承，本质是字符数组，其值不可变String x = “abc” , “abc”表示字符串对象，x表示对象的引用String通过+串联得到的是一个新的字符串String pool 用来存放运行中产生的字符串，内容不重复，存在与方法的堆栈区 String创建原理 当 s=X 创建String对象时，java会拿着这个X去pool中找有没有相同内容的">
+<meta name="twitter:title" content="Amanda">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -192,107 +188,49 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-String介绍" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2017/05/09/String介绍/" class="article-date">
-  	<time datetime="2017-05-09T06:05:46.000Z" itemprop="datePublished">2017-05-09</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/12/09/11月学习/" class="archive-article-date">
+  	<time datetime="2017-12-09T04:19:49.000Z" itemprop="datePublished">Dec 9</time>
 </a>
-    </div>
+        </div>
+    	 
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      String介绍
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/12/09/11月学习/">11月学习</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-        
+        <div class="article-info info-on-right">
+          
+          
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="String特性"><a href="#String特性" class="headerlink" title="String特性"></a>String特性</h1><p>String类是final的，不可被继承，本质是字符数组，其值不可变<br>String x = “abc” , “abc”表示字符串对象，x表示对象的引用<br>String通过+串联得到的是一个新的字符串<br>String pool 用来存放运行中产生的字符串，内容不重复，存在与方法的堆栈区</p>
-<h1 id="String创建原理"><a href="#String创建原理" class="headerlink" title="String创建原理"></a>String创建原理</h1><ol>
-<li>当 s=X 创建String对象时，java会拿着这个X去pool中找有没有相同内容的对象，有则s直接指向它，无则创建</li>
-<li>使用new创建的对象，一定会在堆区创建新对象</li>
-<li>使用+ 号串联方式创建新对象，只会检查池中对象</li>
-<li>使用包含变量的表达式来创建一个String对象，会检查pool，也会在堆栈区创建一个String对象</li>
-</ol>
-<h1 id="过程分析"><a href="#过程分析" class="headerlink" title="过程分析"></a>过程分析</h1><p>String str = “abc”;<br>System.out.println(str == “abc”);</p>
-<p>栈中开辟一块空间存放引用str<br>pool中存放”abc”，str指向pool中的abc<br>结果返回true，地址相等</p>
-<p>String str = new String(“abc”);<br>str == “abc”<br>返回false<br>str指向堆中对象，而abc地址在池中</p>
-<p>String str2 = new String(“abc”)<br>str == str2<br>返回false<br>str2指向堆中开辟的新空间</p>
-<p>String str3 = “s” + “y”;<br>str3 == “sy”<br>pool中存放sy  常量sy也指向pool中的sy  返回true</p>
-<p>String s1 = “aa”<br>String s2 = “bb”<br>String s = s1 + s2<br>s == “aabb”<br>返回false<br>两个变量连接  调用的是toString()方法，在堆中开辟一个新的空间存放对象</p>
-
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/09/24/近期学习/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          近期学习
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/01/21/重建二叉树/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">重建二叉树</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="String介绍" data-title="String介绍" data-url="http://lxsyz.github.io/2017/05/09/String介绍/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
 
 </div>
       <footer id="footer">
@@ -316,8 +254,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
