@@ -84,8 +84,6 @@
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
-		        
 					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
@@ -126,8 +124,6 @@
 						<a class="github" target="_blank" href="https://github.com/lxsyz" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
 			        
 						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
@@ -500,31 +496,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。</p>
-<h2 id="Numpy操作"><a href="#Numpy操作" class="headerlink" title="Numpy操作"></a>Numpy操作</h2><p>这里主要说说可能用的比较少的操作：<br><br><code>Numpy.flipud() 上下方向旋转数组</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</div><div class="line">array([[<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</div><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line">array([[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</div></pre></td></tr></table></figure></p>
-<p><code>Numpy.fliplr() 左右方向旋转数组</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line">array([[<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>],</div><div class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div></pre></td></tr></table></figure></p>
-<p><code>Numpy.cumsum()累加求和,可以传入相应的唯度</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.cumsum(x)</div><div class="line">array([ <span class="number">1</span>,  <span class="number">3</span>,  <span class="number">6</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">21</span>, <span class="number">28</span>, <span class="number">36</span>, <span class="number">45</span>], dtype=int32)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.cumsum(x,axis=<span class="number">1</span>)</div><div class="line">array([[ <span class="number">1</span>,  <span class="number">3</span>,  <span class="number">6</span>],</div><div class="line">       [ <span class="number">4</span>,  <span class="number">9</span>, <span class="number">15</span>],</div><div class="line">       [ <span class="number">7</span>, <span class="number">15</span>, <span class="number">24</span>]], dtype=int32)</div></pre></td></tr></table></figure></p>
-<p><code>Numpy.meshgrid(x,y) 生成二维网格型数据，行数为x中元素总数，列数为y中元素总数</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = [[<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>],[<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[XX,YY] = np.meshgrid(x,y)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>XX</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>YY</div><div class="line">array([[<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>],</div><div class="line">       [<span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>],</div><div class="line">       [<span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>],</div><div class="line">       [<span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>],</div><div class="line">       [<span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>],</div><div class="line">       [<span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>]])</div></pre></td></tr></table></figure></p>
-<p><code>Numpy.conj 求共轭值</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.conj(<span class="number">1</span>+<span class="number">2j</span>)</div><div class="line">    <span class="number">1</span><span class="number">-2j</span></div></pre></td></tr></table></figure></p>
-<p><code>Numpy.linalg.norm 求范数</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=<span class="number">1</span>)</div><div class="line"><span class="number">7.0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=<span class="number">2</span>)</div><div class="line"><span class="number">5.0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=np.inf)</div><div class="line"><span class="number">4.0</span></div></pre></td></tr></table></figure></p>
-<h2 id="Malplotlib-绘图"><a href="#Malplotlib-绘图" class="headerlink" title="Malplotlib 绘图"></a>Malplotlib 绘图</h2><p>可以参考画廊地址，结合里面的例子进行自己的修改：<br><a href="http://matplotlib.org/gallery.html" target="_blank" rel="external">画廊</a></p>
-<h2 id="Xavier初始化"><a href="#Xavier初始化" class="headerlink" title="Xavier初始化"></a>Xavier初始化</h2><p>目的：让每一层输出的方差尽量相等，保证信息的流动<br><a href="http://blog.csdn.net/shuzfan/article/details/51338178" target="_blank" rel="external">可参考这一篇博文</a></p>
-<h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><ul>
-<li>引入非线性激活函数的好处：<br>如果使用线性，那么输出都是输入的线性组合，这种情况无法逼近任意函数，与没有隐藏层的效果相当</li>
-<li>引入Relu的好处：<ol>
-<li>sigmoid函数用的指数运算，求导涉及除法会增加计算量</li>
-<li>在sigmoid函数接近饱和区时，梯度下降会非常缓慢，导数趋于0。</li>
-<li>relu使一部分神经元输出为0，这样可以缓解过拟合的问题</li>
-</ol>
-</li>
-<li>sigmoid函数缺点：<br>梯度消失： 计算输出层loss，以导数形式向上一层传递，修正参数，sigmoid函数常会导致导数为0，从而无法更新参数，优化神经网络。<br>输出不是zero-centered: 收敛速度减慢（待续）<br>运算耗时</li>
-<li>Relu的缺点：<br>输出不是zero-centered<br>某些神经元可能永远不会被激活，相应参数不会被修改，使用Xavier初始化方法可以解决因learning rate太高引起的无法激活的现象。<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2>  主要起到分类器的作用，可由卷积操作实现，目前更多是使用全局平均池化的方式来替代全连接层。<br>  使用卷积层实现全连接层的好处：可以让卷积网络在输入图片上滑动，得到每个区域的输出，突破尺寸限制。<h2 id="滤波器总结"><a href="#滤波器总结" class="headerlink" title="滤波器总结"></a>滤波器总结</h2></li>
-<li>滤波器所有元素之和等于1时，图像处理后亮度保持不变，大于1时图像更亮，小于1图像变暗</li>
-<li>把数值尽力控制在0-255之间，负数取绝对值处理</li>
-<li>滤波器的大小应该是一个奇数<br>使用滤波器我们可以实现很多的图像处理操作，例如锐化，边缘检测，浮雕，模糊等<br>例如锐化和边缘检测： 将卷积核周边值取负，中心取正，突出中心，可以完成<h2 id="Tensorflow简单调试"><a href="#Tensorflow简单调试" class="headerlink" title="Tensorflow简单调试"></a>Tensorflow简单调试</h2>使用tfdbg进行调试<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -m tensorflow.python.debug.examples.debug_minist --debug</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>进入调试状态。常用指令：<br>run 运行代码<br>li 显示变量的shape和值<br>pt 输出变量值<br>run -f has_inf_or_nan 发现nan值变量<br><br><br>学习过程中，接触了很多经典的图像处理神经网路，例如AlexNet,GoogleNet,Overfeat等<br>有几篇写的不错的博客如下：<br><a href="http://blog.csdn.net/hjimce/article/details/50187881" target="_blank" rel="external">Overfeat</a><br><a href="http://blog.csdn.net/liumaolincycle/article/details/50496499" target="_blank" rel="external">AlexNet论文</a><br><a href="http://blog.csdn.net/u014088052/article/details/50898842" target="_blank" rel="external">AlexNet算法体系</a></p>
-
+<h2 id="Numpy操作"><a href="#Numpy操作" class="headerlink" title="Numpy操作"></a>Numpy操作</h2><p>这里主要说说可能用的比较少的操作：<br><br>Numpy.flipud() 上下方向旋转数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</div><div class="line">array([[<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</div><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line">array([[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</div></pre></td></tr></table></figure></p>
+<p>Numpy.fliplr() 左右方向旋转数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line">array([[<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>],</div><div class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2017/09/24/近期学习/#more">more >></a>
+        
       
 
       
@@ -799,10 +775,370 @@
 
 
   
+    <article id="post-栈的操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/21/栈的操作/">栈的操作</a>
+    </h1>
+  
+
+        
+        <a href="/2016/08/21/栈的操作/" class="archive-article-date">
+  	<time datetime="2016-08-21T14:38:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="栈的操作"><a href="#栈的操作" class="headerlink" title="栈的操作"></a>栈的操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">import java.util.Stack;</div><div class="line"></div><div class="line">public class TestStack &#123;</div><div class="line">	</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	/**</div><div class="line">	 * 输入两个整数序列，第一个序列表示栈的压入顺序，请判断二个序列是否为该栈的弹出顺序。</div><div class="line">	 * 假设压入栈的所有数字均不相等。例如序列1 、2、3 、4、5 是某栈压栈序列，</div><div class="line">	 * 序列4、5、3、2、1是该压栈序列对应的一个弹出序列，</div><div class="line">	 * 但4、3、5、1、2就不可能是该压棋序列的弹出序列。</div><div class="line">	 *</div><div class="line">	 * @param push 入栈序列</div><div class="line">	 * @param pop  出栈序列</div><div class="line">	 * @<span class="built_in">return</span> <span class="literal">true</span>：出栈序列是入栈序列的一个弹出顺序</div><div class="line">	 */</div><div class="line">	public static boolean isPopOrder(int[] push,int[] pop) &#123;</div><div class="line">		<span class="keyword">if</span> (push.length == 0 || pop.length == 0 || pop.length != push.length) &#123;</div><div class="line">			<span class="built_in">return</span> <span class="literal">false</span>;</div><div class="line">		&#125;</div><div class="line">		Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();</div><div class="line">		int j = 0;</div><div class="line">		//检查出栈元素</div><div class="line">		<span class="keyword">for</span> (int i = 0;i &lt; pop.length;i++) &#123;</div><div class="line">			//放入入栈元素</div><div class="line">			stack.push(push[i]);</div><div class="line">			//与出栈元素比较</div><div class="line">			<span class="keyword">while</span> (j &lt; pop.length &amp;&amp; stack.peek() == pop[j]) &#123;</div><div class="line">				stack.pop();</div><div class="line">				j++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="built_in">return</span> stack.empty() ? <span class="literal">true</span> : <span class="literal">false</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">栈</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/21/栈的操作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-矩阵逆序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/20/矩阵逆序/">矩阵逆序</a>
+    </h1>
+  
+
+        
+        <a href="/2016/08/20/矩阵逆序/" class="archive-article-date">
+  	<time datetime="2016-08-20T09:52:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="顺时针输出矩阵"><a href="#顺时针输出矩阵" class="headerlink" title="顺时针输出矩阵"></a>顺时针输出矩阵</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">import java.util.*;</div><div class="line">/**</div><div class="line"> * 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下矩阵：</div><div class="line"> * 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 </div><div class="line"> * 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.</div><div class="line"> *</div><div class="line"> */</div><div class="line">public class Solution &#123;</div><div class="line">     </div><div class="line">    public ArrayList&lt;Integer&gt; printMatrix(int[][] matrix) &#123;</div><div class="line">        ArrayList&lt;Integer&gt; result = new ArrayList&lt;Integer&gt;() ;</div><div class="line">        <span class="keyword">if</span>(matrix==null || matrix.length==0) &#123; <span class="built_in">return</span> result ; &#125;</div><div class="line"> </div><div class="line">        printMatrixClockWisely(matrix, 0, 0, matrix.length - 1, matrix[0].length - 1, result);</div><div class="line"> </div><div class="line">        <span class="built_in">return</span> result ;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    public void printMatrixClockWisely(int[][] matrix, int startRow, int startCol, int endRow, int endCol, ArrayList&lt;Integer&gt; result) &#123;</div><div class="line">        <span class="keyword">if</span>(startRow&lt;endRow &amp;&amp; startCol&lt;endCol) &#123;</div><div class="line">            <span class="keyword">for</span>(int j=startCol; j&lt;=endCol; j++) &#123; result.add(matrix[startRow][j]) ; &#125;   //Right</div><div class="line">            <span class="keyword">for</span>(int i=startRow+1; i&lt;=endRow-1; i++) &#123; result.add(matrix[i][endCol]) ; &#125;     //Down</div><div class="line">            <span class="keyword">for</span>(int j=endCol; j&gt;=startCol; j--) &#123; result.add(matrix[endRow][j]) ; &#125;     //Left</div><div class="line">            <span class="keyword">for</span>(int i=endRow-1; i&gt;=startRow+1; i--) &#123; result.add(matrix[i][startCol]) ; &#125;   //Up</div><div class="line">            printMatrixClockWisely(matrix, startRow + 1, startCol + 1, endRow - 1, endCol - 1, result) ;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(startRow==endRow &amp;&amp; startCol&lt;endCol) &#123;</div><div class="line">            <span class="keyword">for</span>(int j=startCol; j&lt;=endCol; j++) &#123; result.add(matrix[startRow][j]) ; &#125;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(startRow&lt;endRow &amp;&amp; startCol==endCol) &#123;</div><div class="line">            <span class="keyword">for</span>(int i=startRow; i&lt;=endRow; i++) &#123; result.add(matrix[i][endCol]) ; &#125;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(startRow==endRow &amp;&amp; startCol==endCol) &#123;</div><div class="line">            result.add(matrix[startRow][startCol]) ;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">return</span> ;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">递归</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/20/矩阵逆序/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/18/链表/">链表</a>
+    </h1>
+  
+
+        
+        <a href="/2016/08/18/链表/" class="archive-article-date">
+  	<time datetime="2016-08-18T06:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> public class ListNode &#123;</div><div class="line">    int val;</div><div class="line">    ListNode next = null;</div><div class="line"></div><div class="line">    ListNode(int val) &#123;</div><div class="line">        this.val = val;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">*/</div><div class="line">/**</div><div class="line"> *在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5</div><div class="line"> */</div><div class="line">public class Solution &#123;</div><div class="line">    public ListNode deleteDuplication(ListNode pHead)</div><div class="line">    &#123;</div><div class="line">        ListNode head = new ListNode(0);</div><div class="line">        head.next = pHead;</div><div class="line">        ListNode p = pHead;</div><div class="line">        ListNode q = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span> (q != null &amp;&amp; q.next != null) &#123;</div><div class="line">            <span class="keyword">if</span> (q.val == q.next.val) &#123;</div><div class="line">            	int value = q.val;</div><div class="line">                <span class="keyword">while</span> (q != null &amp;&amp; q.val == value) &#123;</div><div class="line">                    q = q.next;</div><div class="line">                &#125;</div><div class="line">                p.next = q;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                p = q;</div><div class="line">                q = q.next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">return</span> head.next;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/18/链表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-链表基本操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/15/链表基本操作/">链表基本操作</a>
+    </h1>
+  
+
+        
+        <a href="/2016/08/15/链表基本操作/" class="archive-article-date">
+  	<time datetime="2016-08-15T00:56:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Java链表的常用操作"><a href="#Java链表的常用操作" class="headerlink" title="Java链表的常用操作"></a>Java链表的常用操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div></pre></td><td class="code"><pre><div class="line">package SingleList;</div><div class="line"></div><div class="line">import java.util.HashMap;</div><div class="line"></div><div class="line">import org.w3c.dom.ls.LSInput;</div><div class="line"></div><div class="line">public class TestList &#123;</div><div class="line">	//头结点</div><div class="line">	public Node first;</div><div class="line">	</div><div class="line">	</div><div class="line">	public <span class="function"><span class="title">TestList</span></span>()&#123;</div><div class="line">		first = null;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	</div><div class="line">	/**</div><div class="line">	 * 插入一个头结点</div><div class="line">	 */</div><div class="line">	public void addFirstNode (int data) &#123;</div><div class="line">		Node node = new Node(data);</div><div class="line">		node.next = first;</div><div class="line">		first = node;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	/**</div><div class="line">	 * 删除头结点</div><div class="line">	 */</div><div class="line">	public Node <span class="function"><span class="title">deleteFirstNode</span></span> () &#123;</div><div class="line">		Node node = first;</div><div class="line">		first = node.next;</div><div class="line">		<span class="built_in">return</span> node;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	/**</div><div class="line">	 * 在任意位置插入节点  </div><div class="line">	 */</div><div class="line">	 public void add(int index,int data) &#123;</div><div class="line">		 Node node = new Node(data);</div><div class="line">		 Node current = first;</div><div class="line">		 Node previous = first;</div><div class="line">		 int pos = 0;</div><div class="line">		 <span class="keyword">while</span> (pos != index) &#123;</div><div class="line">			 </div><div class="line">			 previous = current;</div><div class="line">			 current = current.next;</div><div class="line">			 pos++;</div><div class="line">		 &#125;</div><div class="line">		 previous.next = node;</div><div class="line">		 node.next = current;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 在链表末尾添加</div><div class="line">	  * @param data</div><div class="line">	  */</div><div class="line">	 public void add(int data) &#123;</div><div class="line">		 <span class="keyword">if</span> (first == null) &#123;</div><div class="line">			 addFirstNode(data);</div><div class="line">			 <span class="built_in">return</span>;</div><div class="line">		 &#125;</div><div class="line">	 </div><div class="line">		 Node node = new Node(data);</div><div class="line">		 Node current = first;</div><div class="line">		 <span class="keyword">while</span> (current.next != null ) &#123;</div><div class="line">			 current = current.next;</div><div class="line">		 &#125;</div><div class="line">		 current.next = node;</div><div class="line">		 </div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 删除任意位置的节点</div><div class="line">	  * @param index</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 public Node deleteByPosition(int index) &#123;</div><div class="line">		Node current = first;</div><div class="line">		Node previout = first;</div><div class="line">		int pos = 0;</div><div class="line">		<span class="keyword">while</span> (pos != index) &#123;</div><div class="line">			<span class="keyword">if</span> (current.next == null)</div><div class="line">				<span class="built_in">return</span> null;</div><div class="line">			previout = current;</div><div class="line">			current = current.next;</div><div class="line">			pos++;</div><div class="line">		&#125; </div><div class="line">		//删除头时</div><div class="line">		<span class="keyword">if</span> (current == first) &#123;</div><div class="line">			first = first.next;</div><div class="line">		&#125; <span class="keyword">else</span> </div><div class="line">			previout.next = current.next;</div><div class="line">		</div><div class="line">		<span class="built_in">return</span> current;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 public Node deleteByData(int data) &#123;</div><div class="line">		 Node current = first;</div><div class="line">		 Node previous = first;</div><div class="line">		 int pos = 0;</div><div class="line">		 <span class="keyword">while</span> (current.data != data) &#123;</div><div class="line">			 <span class="keyword">if</span> (current.next == null)</div><div class="line">				 <span class="built_in">return</span> null;</div><div class="line">		 </div><div class="line">			 previous = current;</div><div class="line">			 current = current.next;</div><div class="line">			 pos++;</div><div class="line">		 &#125;</div><div class="line">		 </div><div class="line">		 <span class="keyword">if</span> (current == first) &#123;</div><div class="line">			 first = first.next;</div><div class="line">		 &#125; <span class="keyword">else</span></div><div class="line">			 previous.next = current.next;</div><div class="line">		 <span class="built_in">return</span> current;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 打印所有节点信息</div><div class="line">	  */</div><div class="line">	 public void printAllNodes (Node head) &#123;</div><div class="line">		 <span class="keyword">while</span> (head != null) &#123;</div><div class="line">			 head.display();</div><div class="line">			 head = head.next;</div><div class="line">		 &#125;</div><div class="line">		 System.out.println();</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 根据位置找节点信息</div><div class="line">	  * @param index</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 public Node findByPos(int index) &#123;</div><div class="line">		 Node current = first;</div><div class="line">		 int pos = 0;</div><div class="line">		 <span class="keyword">if</span> (pos != index) &#123;</div><div class="line">			 current = current.next;</div><div class="line">			 pos++;</div><div class="line">		 &#125;</div><div class="line">		 <span class="built_in">return</span> current;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 获取节点个数</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 public int getLength(Node head) &#123;</div><div class="line">		 int len = 0;</div><div class="line">		 </div><div class="line">		 <span class="keyword">while</span> (head != null) &#123;</div><div class="line">			 len++;</div><div class="line">			 head = head.next;</div><div class="line">		 &#125;</div><div class="line">		 <span class="built_in">return</span> len;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 反向输出链表</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 public Node <span class="function"><span class="title">reverseList</span></span>() &#123;</div><div class="line">		 Node head = first;</div><div class="line">		 Node current = first;</div><div class="line">		 Node previous = first;</div><div class="line">		 Node nextNode = first;</div><div class="line">		 <span class="keyword">if</span> (current == null || current.next == null) &#123;</div><div class="line">			 <span class="built_in">return</span> current;</div><div class="line">		 &#125;</div><div class="line">		 <span class="keyword">while</span> (current != null) &#123;</div><div class="line">			 nextNode = current.next;</div><div class="line">			 current.next = previous;</div><div class="line">			 previous = current;</div><div class="line">			 current = nextNode;</div><div class="line">		 &#125;</div><div class="line">		 </div><div class="line">		 <span class="built_in">return</span> previous;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 递归倒序输出链表</div><div class="line">	  * @param head</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">//	 public Node reverseListRec(Node head) &#123;</div><div class="line">//		 <span class="keyword">if</span> (head == null || head.next == null)</div><div class="line">//			 <span class="built_in">return</span> head;</div><div class="line">//		 Node newHead = reverseListRec(head.next);</div><div class="line">//		 head.next.next = head;</div><div class="line">//		 head.next = null;</div><div class="line">//	 &#125;</div><div class="line"></div><div class="line">	 /**</div><div class="line">	  * 查找链表倒数第K个结点</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 public Node getKthNode (int k) &#123;</div><div class="line">		 <span class="keyword">if</span> (first == null) <span class="built_in">return</span> first;</div><div class="line">		 int len = getLength(first);</div><div class="line">		 </div><div class="line">		 <span class="keyword">if</span> (k &gt; len) <span class="built_in">return</span> null;</div><div class="line">		 Node target = first;</div><div class="line">		 Node nextNode = first;</div><div class="line">		 <span class="keyword">for</span> (int i =0;i &lt; k;i++) &#123;</div><div class="line">			 nextNode = nextNode.next;</div><div class="line">		 &#125;</div><div class="line">		 <span class="keyword">while</span> (nextNode.next != null) &#123;</div><div class="line">			 target = target.next;</div><div class="line">			 nextNode = nextNode.next;</div><div class="line">		 &#125;</div><div class="line">		 </div><div class="line">		 <span class="built_in">return</span> target;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 获取中间位置的节点</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 public Node <span class="function"><span class="title">getMidNode</span></span> () &#123;</div><div class="line">		 <span class="keyword">if</span> (first == null || first.next == null) <span class="built_in">return</span> first;</div><div class="line">		 Node target = first;</div><div class="line">		 Node current = first;</div><div class="line">		 </div><div class="line">		 <span class="keyword">while</span> (current != null &amp;&amp; current.next != null) &#123;</div><div class="line">			 target = target.next;</div><div class="line">			 current = current.next.next;</div><div class="line">		 &#125;</div><div class="line">		 <span class="built_in">return</span> target;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 倒序打印结点  递归</div><div class="line">	  * </div><div class="line">	  * 用栈也可以</div><div class="line">	  */</div><div class="line">	 public void reverseNode (Node node) &#123;</div><div class="line">		 <span class="keyword">if</span> (node == null) <span class="built_in">return</span>;</div><div class="line">		 <span class="keyword">else</span> &#123;</div><div class="line">			 reverseNode(node.next);</div><div class="line">			 node.display();</div><div class="line">		 &#125;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 合并两个已经排好序的链表</div><div class="line">	  * @param head1</div><div class="line">	  * @param head2</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 public Node mergeSortedList(Node head1,Node head2) &#123;</div><div class="line">		 <span class="keyword">if</span> (head1 == null)	<span class="built_in">return</span> head2;</div><div class="line">		 <span class="keyword">if</span> (head2 == null) <span class="built_in">return</span> head1;</div><div class="line">		 Node target = null;</div><div class="line">		 </div><div class="line">		 <span class="keyword">if</span> (head1.data &gt; head2.data) &#123;</div><div class="line">			 target = head2;</div><div class="line">			 head2 = head2.next;</div><div class="line">		 &#125; <span class="keyword">else</span> &#123;</div><div class="line">			 target = head1;</div><div class="line">			 head1 = head1.next;</div><div class="line">		 &#125;</div><div class="line">		 target.next = null;</div><div class="line">		 Node res = target;</div><div class="line">		 <span class="keyword">while</span> (head1 != null &amp;&amp; head2 != null) &#123;</div><div class="line">			 <span class="keyword">if</span> (head1.data &gt; head2.data) &#123;</div><div class="line">				 target.next = head2;</div><div class="line">				 head2 = head2.next;</div><div class="line">			 &#125; <span class="keyword">else</span> &#123;</div><div class="line">				 target.next = head1;</div><div class="line">				 head1 = head1.next;</div><div class="line">			 &#125;</div><div class="line">			 target = target.next;</div><div class="line">			 target.next = null;</div><div class="line">		 &#125;</div><div class="line">		 </div><div class="line">		 <span class="keyword">if</span> (head1 == null) target.next = head2;</div><div class="line">		 <span class="keyword">else</span> target.next = head1;</div><div class="line">		 </div><div class="line">		 <span class="built_in">return</span> res;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 链表的插入排序</div><div class="line">	  * @param head</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 public Node insertSort(Node head) &#123;</div><div class="line">		 <span class="keyword">if</span> (head == null || head.next == null) <span class="built_in">return</span> head;</div><div class="line">		 Node pre = head.next;</div><div class="line">		 Node nextNode = null;</div><div class="line">		 </div><div class="line">		 head.next = null;</div><div class="line">		 </div><div class="line">		 <span class="keyword">while</span> (pre != null) &#123;</div><div class="line">			 nextNode = pre.next;</div><div class="line">			 Node temp = head;</div><div class="line">			 </div><div class="line">			 Node temp_pre = null;</div><div class="line">			 </div><div class="line">			 <span class="keyword">while</span> (temp != null) &#123;</div><div class="line">				 <span class="keyword">if</span> (temp.data &gt; pre.data) <span class="built_in">break</span>;</div><div class="line">				 temp_pre = temp;</div><div class="line">				 temp = temp.next;</div><div class="line">			 &#125;</div><div class="line">			 </div><div class="line">			 <span class="keyword">if</span> (temp_pre == null) &#123;</div><div class="line">				 head = pre;</div><div class="line">				 pre.next = temp;</div><div class="line">			 &#125; <span class="keyword">else</span> &#123;</div><div class="line">				 temp_pre.next = pre;</div><div class="line">				 pre.next = temp;</div><div class="line">			 &#125;</div><div class="line">			 pre = nextNode;</div><div class="line">		 &#125;</div><div class="line">		 <span class="built_in">return</span> head;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 判断是否有环</div><div class="line">	  * @param head</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 static boolean hasCycle(Node head) &#123;</div><div class="line">		 boolean flag = <span class="literal">false</span>;</div><div class="line">		 Node p = head;</div><div class="line">		 Node qNode = head;</div><div class="line">		 <span class="keyword">while</span> (p != null &amp;&amp; qNode != null) &#123;</div><div class="line">			 p = p.next;</div><div class="line">			 qNode = qNode.next.next;</div><div class="line">			 <span class="keyword">if</span> (p == qNode) &#123;</div><div class="line">				 flag = <span class="literal">true</span>;</div><div class="line">				 <span class="built_in">break</span>;</div><div class="line">			 &#125;</div><div class="line">		 &#125;</div><div class="line">		 <span class="built_in">return</span> flag;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 /**</div><div class="line">	  * 判断两个链表是否相交</div><div class="line">	  * 返回相交节点</div><div class="line">	  * @param head1</div><div class="line">	  * @param head2</div><div class="line">	  * @<span class="built_in">return</span></div><div class="line">	  */</div><div class="line">	 public Node isIntersect (Node head1,Node head2) &#123;</div><div class="line">		 Node target = null;</div><div class="line">		 <span class="keyword">if</span> (head1 == null || head2 == null) <span class="built_in">return</span> target;</div><div class="line">		 </div><div class="line">		 int len1 = getLength(head1);</div><div class="line">		 int len2 = getLength(head2);</div><div class="line">		 </div><div class="line">		 <span class="keyword">if</span> (len1 &gt;= len2) &#123;</div><div class="line">			 <span class="keyword">for</span> (int i = 0;i &lt; len1 - len2;i++) &#123;</div><div class="line">				 head1 = head1.next;</div><div class="line">			 &#125;</div><div class="line">		 &#125; <span class="keyword">else</span> &#123;</div><div class="line">			 <span class="keyword">for</span> (int i = 0;i &lt; len2 - len1;i++) &#123;</div><div class="line">				 head2 = head2.next;</div><div class="line">			 &#125;</div><div class="line">		 &#125;</div><div class="line">		 </div><div class="line">		 <span class="keyword">while</span> (head1 != null &amp;&amp; head2 != null) &#123;</div><div class="line">			 <span class="keyword">if</span> (head1 == head2) &#123;</div><div class="line">				 target = head1;</div><div class="line">				 <span class="built_in">break</span>;</div><div class="line">			 &#125; <span class="keyword">else</span> &#123;</div><div class="line">				 head1 = head1.next;</div><div class="line">				 head2 = head2.next;</div><div class="line">			 &#125;</div><div class="line">		 &#125;</div><div class="line">		 <span class="built_in">return</span> target;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 public Node getFirstNodeInCycle (Node head) &#123;</div><div class="line">		 Node target = null;</div><div class="line">		 HashMap&lt;Node, Boolean&gt; map = new HashMap&lt;&gt;();</div><div class="line">		 <span class="keyword">while</span> (head != null) &#123;</div><div class="line">			 <span class="keyword">if</span> (map.containsKey(head)) target = head;</div><div class="line">			 <span class="keyword">else</span> &#123;</div><div class="line">				 map.put(head, <span class="literal">true</span>);</div><div class="line">			 &#125;</div><div class="line">			 head = head.next;</div><div class="line">		 &#125;</div><div class="line">		 <span class="built_in">return</span> target;</div><div class="line">	 &#125;</div><div class="line">	 </div><div class="line">	 public static void main(String[] args) &#123;</div><div class="line">		 TestList list = new TestList();</div><div class="line">		 //添加到头部</div><div class="line">		 list.addFirstNode(21);</div><div class="line">		 list.addFirstNode(19);		//21  19</div><div class="line">		 </div><div class="line">		 list.add(2, 22);		 	//21 22 19</div><div class="line">		 list.add(26);</div><div class="line">		 list.add(28);</div><div class="line">//		 list.add(6, 25);</div><div class="line">		 list.printAllNodes(list.first);</div><div class="line">		 System.out.println(<span class="string">"------------------------------"</span>);</div><div class="line">		 Node node = list.findByPos(0);</div><div class="line">		 node.display();</div><div class="line">		 </div><div class="line">		 Node node2 = list.getKthNode(1);</div><div class="line">		 node2.display();</div><div class="line">		 </div><div class="line">		 Node node3 = list.getMidNode();</div><div class="line">		 node3.display();</div><div class="line">		 </div><div class="line">		 System.out.println(<span class="string">"------------------------------"</span>);</div><div class="line">		 </div><div class="line">		 list.reverseNode(list.first);</div><div class="line">		 </div><div class="line">		 System.out.println(<span class="string">"------------------------------"</span>);</div><div class="line">		 </div><div class="line">		 TestList list2 = new TestList();</div><div class="line">		 list2.add(10); </div><div class="line">		 list2.add(15);</div><div class="line">		 list2.add(40);</div><div class="line">		 </div><div class="line">		 Node node4 = list.mergeSortedList(list.first, list2.first);</div><div class="line">		 list2.printAllNodes(node4);</div><div class="line">		 </div><div class="line">		 System.out.println(<span class="string">"------------------------------"</span>);</div><div class="line">		 </div><div class="line">		 </div><div class="line">	 &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">链表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/15/链表基本操作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hello" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/12/Hello/">Hello</a>
+    </h1>
+  
+
+        
+        <a href="/2016/08/12/Hello/" class="archive-article-date">
+  	<time datetime="2016-08-12T11:07:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h1><p>树叶的一生，只是为了归根吗?<br>断剑重铸之日，骑士归来之时。<br>小学僧，托儿索，喜之郎，提款姬<br>人生如梦，开心就好。</p>
+<h1 id="一些常用命令："><a href="#一些常用命令：" class="headerlink" title="一些常用命令："></a>一些常用命令：</h1><p>hexo new”postName” #新建文章</p>
+<p>hexo new page”pageName” #新建页面</p>
+<p>hexo generate #生成静态页面至public目录</p>
+<p>hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）</p>
+<p>hexo deploy #将.deploy目录部署到GitHub</p>
+<p>hexo help #查看帮助</p>
+<p>hexo version #查看Hexo的版本</p>
+<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><p><a href="http://www.dilidili.com" target="_blank" rel="external">嘀哩嘀哩</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/12/Hello/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
 
 
