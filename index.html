@@ -60,16 +60,12 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/photos">相册</a></li>
+				<li><a href="/archives">所有文章</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
-    			
-    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-    			
-            
     			
             
     			
@@ -136,7 +132,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/photos">相册</a></li>
+					<li style="width: 50%"><a href="/archives">所有文章</a></li>
 		        
 				</ul>
 			</nav>
@@ -174,7 +170,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="JVM深入理解"><a href="#JVM深入理解" class="headerlink" title="JVM深入理解"></a>JVM深入理解</h2><p>java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结：</p>
-<h4 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h4><p>JVM的基本结构一般如下图所示：<br><img src="images/jvm.png" alt=""><br>每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，成为执行引擎</p>
+<h3 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h3><p>JVM的基本结构一般如下图所示：</p>
+<p><img src="images/jvm.png" alt=""></p>
+<p>每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈()、程序计数器和本地方法栈这五个部分:<br><strong>方法区</strong>：用于存储类结构信息的地方，包括常量池、静态变量、构造函数等。<br>方法区存放装载的类数据信息包括：</p>
+<ol>
+<li>基本信息：</li>
+<li>每个类的全限定名。</li>
+<li>每个类的直接超类的全限定名(可约束类型转换)。</li>
+<li>该类是类还是接口。</li>
+<li>该类型的访问修饰符。</li>
+<li>直接超接口的全限定名的有序列表。<br>每个已装载类的详细信息：<br>运行时常量池：存放该类型所用的一切常量，它们以数组形式通过索引被访问，是外部调用与类联系及类型对象化的桥梁。它是类文件(字节码)常量池的运行时表示。<br>字段信息：类中声明的每一个字段的信息(名，类型，修饰符)。<br>方法信息：类中声明的每一个方法的信息<br>静态变量<br>到类classloader的引用：即到该类的类装载器的引用。<br>到类class的引用：虚拟机为每一个被装载的类型创建一个class实例，用来代表这个被装载的类。<br>方法表：虚拟机对每个装载的非抽象类，都生成一个方法表，把它作为类信息的一部分保存在方法区。方法表是一个数组，它的元素是所有它的实例可能被调用的实例方法的直接引用，包括那些从超类继承过来的实例方法。</li>
+</ol>
+<p><strong>堆(Heap)</strong>：存储java实例或者对象的地方。从存储的内容我们可以很容易知道，方法区和堆是被所有java线程共享的。</p>
+<p><strong>虚拟机栈</strong>：每当创建一个线程时，JVM就会为这个线程创建一个对应的虚拟机栈。每运行一个方法就会创建一个栈帧，用于存储局部变量表、操作栈、方法返回值等。每一个方法从调用直至执行完成，就对应一个栈帧在虚拟机栈中入栈到出栈的过程。所以虚拟机栈是线程私有的。</p>
+<p><strong>程序计数器</strong>：用于保存当前线程执行的内存地址，记录线程中断的地方，线程私有。</p>
+<p><strong>本地方法栈</strong>：和虚拟机栈的作用差不多，只不过是为JVM的native方法服务，线程私有</p>
+<h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><p>java内存分配一般有两种：静态内存和动态内存。很容易理解，编译时就能够确定的内存就是静态内存，即内存是固定的，系统一次性分配，比如int类型变量；动态内存分配就是在程序执行时才知道要分配的存储空间大小，比如java对象的内存空间。根据上面我们知道，java栈、程序计数器、本地方法栈都是线程私有的，栈中的栈帧随着方法的结束会撤销，内存自然就跟着回收了。所以这几个区域的内存分配与回收是确定的。但是堆和方法区则不一样，我们只有在程序运行期间才知道会创建哪些对象，所以这部分内存的分配和回收都是动态的。一般我们所说的垃圾回收也是针对的这一部分。</p>
+<h3 id="垃圾检测、回收算法"><a href="#垃圾检测、回收算法" class="headerlink" title="垃圾检测、回收算法"></a>垃圾检测、回收算法</h3><p>检测垃圾：引用计数法（无法回收循环指向的内存），可达性分析算法（精度高效率低）<br>回收算法：<br>标记-清除（mark-sweep）:效率低，会产生大量碎片<br>复制（Copying）：不会出现内存问题，需要两倍内存空间<br>标记-整理（mark-compact）:第一步标记被引用的对象，第二步清除未被引用的对象，并把存活的对象压缩到一块<br>增量收集：基础仍是传统的标记－清除和复制算法。增量收集算法通过对进程间冲突的妥善处理，允许垃圾收集进程以分阶段的方式完成标记、清理或复制工作。实时垃圾收集的梦想变成了现实，再也不用为垃圾收集打断程序的运行而烦恼了。增量收集算法比较典型的是火车算法，它是为了在成熟对象空间提供限度时间的增量收集。<br>分代收集：年轻的和年老的，垃圾收集器使用不同的收集算法来处理这两类内存块。</p>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p>主要有serial,ParNew,Parallel Scavenge,Serial Old,Parallel Old, CMS,G1这些。<br>详细可以参考这篇博文<a href="http://blog.csdn.net/java2000_wl/article/details/8030172" target="_blank" rel="external">http://blog.csdn.net/java2000_wl/article/details/8030172</a><br>G1收集器目前已在jdk1.9中默认使用了，将堆分成多个region，基于标记-整理收集垃圾，标记过程分五个阶段，大部分都是并发执行，大大提高了的速度。</p>
 
       
 
@@ -250,24 +263,10 @@
       
         <p>静下心来，沉淀知识。这一个月学的东西又是十分杂乱,也没什么时间静下心来，天文学的项目果然还是太难弄了，唉。</p>
 <h1 id="高级数据库"><a href="#高级数据库" class="headerlink" title="高级数据库"></a>高级数据库</h1><p>数据库作业并没有让我们去写个项目，而是去写篇论文了解现在数据库的发展。</p>
-<h3 id="传统RDBMS"><a href="#传统RDBMS" class="headerlink" title="传统RDBMS"></a>传统RDBMS</h3><p>传统的RDBMS目前面临着诸多挑战。我们都知道，RDBMS技术经历了很多年的发展，技术已经非常成熟，应用广泛。但是它也有一些限制，使其很难适应当今的大数据时代：<br>首先它的扩展性非常困难，由于存在很多各种各样的多表查询操作，使得RDBMS在扩展方面很艰难，需要非常复杂的技术才能实现扩展，而在数据量很多的情况下因而无法面对那些非结构化或半结构化的数据；<br>其次，RDBMS为了保证数据的一致性，牺牲了数据的读写性能，这样在数据量很大的情况下响应会非常慢，同时它具有有限的数据存储容量，无法存储海量的数据；<br>最后随着系统的规模增大，它的成本也会非常高。</p>
-<h3 id="NoSQL和NewSQL"><a href="#NoSQL和NewSQL" class="headerlink" title="NoSQL和NewSQL"></a>NoSQL和NewSQL</h3><p>NoSQL是基于键值对存储数据的，数据之间没有耦合性，所以NoSQL具有良好的扩展性，高效地读写能力以及低廉的成本，同时具有灵活的数据模型，可以处理非结构化或半结构化的大数据。主流NoSQL可以分为键值存储数据库、列存储数据库、文档型数据库、图形数据库四类，有很多著名的数据库以及相关的管理工具，例如redis、MongoDB、HBase等等，都具有高效地读写能力和良好的扩展性。<br>redis我们知道是使用内存存储的，如果因为某些原因无法将大量数据存储到内存中，就要考虑不能使用redis了。它的性能非常强劲，现实生活中的问题也都可以映射到它提供的数据结构上，更方便的帮助用户解决问题，同时基于它的复制、持久化和客户端分片等特性，我们可以很方便的扩展redis，大大提高响应速度。附加特性：发布与订阅，主从复制，持久化等<br>而NewSQL是一类现代关系型的DBMS，旨在为NoSQL的OLTP读写负载提供相同的可扩展性能，同时仍然提供事务的ACID保证,可参考论文《What’s really new in newsql》。如此一来，相对于传统的关系型数据库，NewSQL强调可扩展性，实现架构采用的是分布式shared-nothing集群，并且可以透明分片。而相对于NoSQL，NewSQL提供了关系模型、SQL支持、以及ACID事务，这样应用既可以执行大规模的并发事务，也可以使用SQL来修改数据库的状态，开发者也不用去查特定的API，也能很轻松的处理一致性的问题。Google在2012年发表了Spanner的论文[4]，让业界第一次看到了关系模型性和NoSQL的扩展性在超庞大集群规模上融合的可能性，之后也有很多社区的追随者开始实现，逐渐开发了一些著名的NewSQL产品，例如CockroachDB、TiDB、NuoDB等等，不过未来仍然有一段很长的路要走。<br></p>
-<h1 id="python总结"><a href="#python总结" class="headerlink" title="python总结"></a>python总结</h1><p>抽了点时间，总结了一下最近这段时间常用到的一些功能demo，大致功能有如下这些：</p>
-<pre><code>1. 保存文件
-2. 下载图片
-3. 在图片上绘制矩形，文本等
-4. 读取文件指定行，批量复制文件
-5. 读取mat文件
-6. 批量重命名文件
-7. resize图片
-</code></pre><p>之后还会不断扩展。<br></p>
-<h1 id="多线程爬虫"><a href="#多线程爬虫" class="headerlink" title="多线程爬虫"></a>多线程爬虫</h1><p>由于天文项目需要，我写了个爬虫去抓取了20000多张图片，一开始没有考虑到各种乱七八糟的exception，例如断网呀，url上的image已经没了呀之类的，导致爬虫会中途停掉，程序健壮性差。于是我except了requests.exceptions.ConnectionError和HTTPError，之后再判断一下status_code==200。不过奇怪的是，这样下载的图片有的还是会打不开或损坏，猜测是天文网站本身的问题，所以最后我又添加一个判断，尝试性的使用PIL的Image打开它，没有抛出IOError就可以认为图片是完好的了。<br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_star</span><span class="params">(url, params, filename)</span>:</span></div><div class="line">    <span class="string">""" 下载星系图片</span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        response = requests.get(url, params=params, headers=header, stream=<span class="keyword">True</span>)</div><div class="line">    <span class="keyword">except</span> exceptions.ConnectionError <span class="keyword">as</span> e:</div><div class="line">        print(<span class="string">"连接失败"</span>+str(e.message))</div><div class="line">    <span class="keyword">except</span> exceptions.HTTPError <span class="keyword">as</span> e:</div><div class="line">        print(<span class="string">'http请求错误:'</span> + str(e.message))</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="comment"># 通过status_code判断请求结果是否正确</span></div><div class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</div><div class="line">            print(response.url)</div><div class="line">            <span class="keyword">with</span> open(<span class="string">"F://Test//"</span> + filename + <span class="string">".jpg"</span>, <span class="string">"wb"</span>) <span class="keyword">as</span> f:</div><div class="line">                <span class="keyword">for</span> chunk <span class="keyword">in</span> response.iter_content(<span class="number">1024</span>):</div><div class="line">                    f.write(chunk)</div></pre></td></tr></table></figure></p>
-<p>运行这个程序，着实很慢，加上一些IO操作，差不多1秒一张图片，如此一来，20000张还是要好久的，想着可不可以用多线程提高下速度。<br>一开始使用threading+Queue的方式，参考的<a href="http://www.jb51.net/article/80113.htm" target="_blank" rel="external">这里</a>：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">threadDownload</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, que)</span>:</span></div><div class="line">        threading.Thread.__init__(self)</div><div class="line">        self.que = que</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> self.que.empty():</div><div class="line">                temp_list = self.que.get()</div><div class="line">                <span class="keyword">print</span> temp_list</div><div class="line">                download(temp_list[<span class="number">0</span>], temp_list[<span class="number">1</span>], temp_list[<span class="number">2</span>], temp_list[<span class="number">3</span>], time.time())</div><div class="line">                <span class="comment"># saveImg(self.que.get(), 'os' + str(self.no) + '.jpg')</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">break</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadCrawl</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, queue, out_queue)</span>:</span></div><div class="line">        threading.Thread.__init__(self)</div><div class="line">        self.queue = queue</div><div class="line">        self.out_queue = out_queue</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            item = self.queue.get()</div><div class="line">            self.queue.task_done()</div></pre></td></tr></table></figure></p>
-<p>最后启动多个线程去运行，最后计算时间，提高了很多，后来又写了scrapy的版本,参考的<a href="http://www.jianshu.com/p/982dd9a368dd" target="_blank" rel="external">简书上的例子</a>,速度差不了太多，之后将会试试多进程的版本。</p>
-<h1 id="Selenium练手"><a href="#Selenium练手" class="headerlink" title="Selenium练手"></a>Selenium练手</h1><p>很早之前就听说了Selenium使用起来非常方便，所以花了一下午练了下手，主要用来模拟登录武大图书馆，并选择常用座位：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> random</div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line"><span class="keyword">from</span> xml <span class="keyword">import</span> etree</div><div class="line"><span class="comment"># from importlib import reload</span></div><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> NoSuchElementException</div><div class="line"></div><div class="line"><span class="comment"># reload(sys)</span></div><div class="line"><span class="comment"># sys.setdefaultencoding("utf-8")</span></div><div class="line"></div><div class="line">_username = <span class="string">''</span></div><div class="line">_password = <span class="string">''</span></div><div class="line">browser = webdriver.Chrome()</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(username_, password_, )</span>:</span></div><div class="line">    url = <span class="string">'http://seat.lib.whu.edu.cn/login'</span></div><div class="line"></div><div class="line">    browser.get(url)</div><div class="line">    time.sleep(<span class="number">5</span>)</div><div class="line"></div><div class="line">    <span class="comment"># # 输入用户名,密码</span></div><div class="line">    username = browser.find_element_by_xpath(<span class="string">'//input[@name="username"]'</span>)</div><div class="line">    password = browser.find_element_by_xpath(<span class="string">'//input[@name="password"]'</span>)</div><div class="line">    captcha = browser.find_element_by_xpath(<span class="string">'//input[@name="captcha"]'</span>)</div><div class="line">    username.clear()</div><div class="line">    username.send_keys(username_)</div><div class="line">    password.clear()</div><div class="line">    password.send_keys(password_)</div><div class="line">    captcha.clear()</div><div class="line"></div><div class="line">    verify_code_ = input(<span class="string">'verify_code &gt; '</span>)</div><div class="line">    print(verify_code_)</div><div class="line">    captcha.send_keys(verify_code_)</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment"># 提交登陆</span></div><div class="line">    sub_btn = browser.find_element_by_xpath(<span class="string">'//input[@class="btn1"]'</span>)</div><div class="line">    sub_btn.click()</div><div class="line">    time.sleep(<span class="number">5</span>)</div><div class="line">    print(<span class="string">'登陆完成'</span>)</div><div class="line">    cookies = browser.get_cookies()</div><div class="line"></div><div class="line">    cookie = [item[<span class="string">"name"</span>] + <span class="string">"="</span> + item[<span class="string">"value"</span>] <span class="keyword">for</span> item <span class="keyword">in</span> cookies]</div><div class="line">    cookiestr = <span class="string">'; '</span>.join(item <span class="keyword">for</span> item <span class="keyword">in</span> cookie)</div><div class="line">    print(cookiestr)</div><div class="line">    headers = &#123;<span class="string">'cookie'</span>: cookiestr&#125;</div><div class="line">    <span class="keyword">return</span> headers</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">choose_seat</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line"><span class="string">    选择常用座位</span></div><div class="line"><span class="string">    :return: </span></div><div class="line"><span class="string">    '''</span></div><div class="line">    <span class="comment"># 是否循环重新选座</span></div><div class="line">    looping = <span class="keyword">True</span></div><div class="line"></div><div class="line">    <span class="comment"># 获取cookie</span></div><div class="line">    headers = login(_username, _password)</div><div class="line">    <span class="comment"># 进入常用座位</span></div><div class="line">    often_seat = browser.find_element_by_xpath(<span class="string">'//a[@href="/freeBook/fav"]'</span>)</div><div class="line">    often_seat.click()</div><div class="line">    <span class="comment"># 网页源码</span></div><div class="line">    html_doc = browser.page_source</div><div class="line">    soup = BeautifulSoup(html_doc, <span class="string">'html.parser'</span>, from_encoding=<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">    <span class="comment"># 获得常用座位列表</span></div><div class="line">    all_seats = soup.find_all(<span class="string">"div"</span>, id=<span class="string">"seats"</span>)</div><div class="line">    seat_num = <span class="string">""</span></div><div class="line"></div><div class="line">    <span class="comment"># todo 这里暂时只是做了选常用的第一个座位做测试，后面应该考虑座位是否占用，选后面的座位等</span></div><div class="line">    <span class="keyword">for</span> seat <span class="keyword">in</span> all_seats:</div><div class="line">        <span class="comment"># print(seat)</span></div><div class="line">        seat_num = seat.find(<span class="string">"li"</span>).attrs[<span class="string">'id'</span>]</div><div class="line">        print(seat_num)</div><div class="line">    <span class="keyword">if</span> seat_num != <span class="string">""</span>:</div><div class="line">        string = <span class="string">'//li[@id="'</span> + seat_num + <span class="string">'"]'</span></div><div class="line">    print(<span class="string">"seat_num is "</span>, seat_num)</div><div class="line"></div><div class="line">    <span class="comment"># 前提是有常用座位</span></div><div class="line">    seat_number = browser.find_element_by_xpath(string)</div><div class="line">    seat_number.click()</div><div class="line">    time.sleep(<span class="number">5</span>)</div><div class="line">    <span class="comment"># 时间选择页面</span></div><div class="line">    time_html_doc = browser.page_source</div><div class="line">    soup = BeautifulSoup(time_html_doc, <span class="string">'html.parser'</span>, from_encoding=<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">    <span class="comment"># 开始循环抢座位, 这部分尚未测试</span></div><div class="line">    <span class="keyword">while</span> looping:</div><div class="line">        ul = soup.find_all(<span class="string">"ul"</span>)[<span class="number">4</span>]</div><div class="line">        <span class="keyword">if</span> ul <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">            print(<span class="string">"################"</span>)</div><div class="line">            li_list = ul.find_all(<span class="string">"a"</span>)</div><div class="line">            <span class="keyword">if</span> li_list <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> len(li_list) == <span class="number">0</span>:</div><div class="line">                print(<span class="string">"sorry no start time to choose"</span>)</div><div class="line">                looping = <span class="keyword">True</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                start_time = li_list[<span class="number">0</span>].attrs[<span class="string">'time'</span>]</div><div class="line"></div><div class="line">                <span class="comment"># 选择开始时间</span></div><div class="line">                temp = <span class="string">'//a[@time="'</span> + start_time + <span class="string">'"]'</span></div><div class="line">                start_btn = browser.find_element_by_xpath(temp)</div><div class="line">                start_btn.click()</div><div class="line"></div><div class="line">                <span class="comment"># print(seat_num[5:])</span></div><div class="line"></div><div class="line">                <span class="comment"># 再选择结束时间</span></div><div class="line">                endtime_html = requests.post(<span class="string">'http://seat.lib.whu.edu.cn/freeBook/ajaxGetEndTime'</span>, data=&#123;</div><div class="line">                    <span class="string">'start'</span>: start_time,</div><div class="line">                    <span class="string">'seat'</span>: seat_num[<span class="number">5</span>:]</div><div class="line">                &#125;, headers=headers)</div><div class="line"></div><div class="line">                soup = BeautifulSoup(endtime_html.content, <span class="string">'html.parser'</span>, from_encoding=<span class="string">'utf-8'</span>)</div><div class="line">                a = soup.find_all(<span class="string">"a"</span>)</div><div class="line"></div><div class="line">                <span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> len(a) == <span class="number">0</span>:</div><div class="line">                    print(<span class="string">"sorry no end time to choose"</span>)</div><div class="line">                    looping = <span class="keyword">True</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    end_time = a[len(a) - <span class="number">1</span>].attrs[<span class="string">'time'</span>]</div><div class="line"></div><div class="line"></div><div class="line">                    <span class="comment"># 选择时间处的验证码</span></div><div class="line">                    another_captcha = browser.find_element_by_xpath(<span class="string">'//input[@id="captchaValue"]'</span>)</div><div class="line">                    verify_code = input(<span class="string">"choose time captcha &gt; "</span>)</div><div class="line">                    another_captcha.send_keys(verify_code)</div><div class="line"></div><div class="line">                    response = requests.post(<span class="string">'http://seat.lib.whu.edu.cn/selfRes'</span>, data=&#123;<span class="string">'seat'</span>:seat_num[<span class="number">5</span>:],</div><div class="line">                                                <span class="string">'start'</span>:start_time,</div><div class="line">                                                <span class="string">'end'</span>:end_time,</div><div class="line">                                                <span class="string">'captcha'</span>:verify_code&#125;,</div><div class="line">                                             headers=headers)</div><div class="line">                    <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</div><div class="line">                        looping = <span class="keyword">False</span></div><div class="line">                        print(<span class="string">'预约成功'</span>)</div><div class="line"></div><div class="line">                <span class="comment"># # 点击预约按钮</span></div><div class="line">                <span class="comment"># sure_btn = browser.find_element_by_xpath('//a[@id="reserveBtn"]')</span></div><div class="line">                <span class="comment"># sure_btn.click()</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">"no start time to choose"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    choose_seat()</div></pre></td></tr></table></figure></p>
-<p>这里值得注意的几点是：选择开始时间的时候，源码中js是停顿了一会加载的，所以我们这里在点击了位置之后，需要休眠一下等待开始时间加载出来；其次，这里的结束时间是根据选择的位置和开始时间参数，通过ajax动态访问的，我原本想着直接用selenium去访问ajax访问的页面，再返回来，结果发现没什么用，效果不佳，于是在这里用requests拿到ajax访问后返回的结果，选取结束时间。<br><br>抢座位的部分一直也没有测试，因为呆在实验室，也没怎么去图书馆了….<br></p>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>还有很多想看的文章没有看，还有一些东西没有自己去实现一下，任重道远。</p>
-
+<h3 id="传统RDBMS"><a href="#传统RDBMS" class="headerlink" title="传统RDBMS"></a>传统RDBMS</h3><p>传统的RDBMS目前面临着诸多挑战。我们都知道，RDBMS技术经历了很多年的发展，技术已经非常成熟，应用广泛。但是它也有一些限制，使其很难适应当今的大数据时代：<br>首先它的扩展性非常困难，由于存在很多各种各样的多表查询操作，使得RDBMS在扩展方面很艰难，需要非常复杂的技术才能实现扩展，而在数据量很多的情况下因而无法面对那些非结构化或半结构化的数据；<br>其次，RDBMS为了保证数据的一致性，牺牲了数据的读写性能，这样在数据量很大的情况下响应会非常慢，同时它具有有限的数据存储容量，无法存储海量的数据；<br>最后随着系统的规模增大，它的成本也会非常高。<br>
+        
+          <a class="article-more-a" href="/2017/12/09/11月学习/#more">more >></a>
+        
       
 
       
@@ -275,6 +274,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1169,7 +1179,7 @@
 		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: true,
+		innerArchive: false,
 		showTags: false
 	}
 </script>
@@ -1207,10 +1217,6 @@ MathJax.Hub.Queue(function() {
     
     
       
-      
-      
-    
-      
     
       
       
@@ -1222,101 +1228,14 @@ MathJax.Hub.Queue(function() {
     
     
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
-      
         
       
-        
-      
-      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 100%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
-    
-    	<section class="tools-section tools-section-all" q-show="innerArchive">
-        <div class="search-wrap">
-          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
-          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
-          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
-        </div>
-        <div class="widget tagcloud search-tag">
-          <p class="search-tag-wording">tag:</p>
-          <label class="search-switch">
-            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
-          </label>
-          <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-            
-            <div class="clearfix"></div>
-          </ul>
-        </div>
-        <ul class="search-ul">
-          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
-            3、在根目录_config.yml里添加配置：
-<pre style="font-size: 12px;" q-show="jsonFail">
-  jsonContent:
-    meta: false
-    pages: false
-    posts:
-      title: true
-      date: true
-      path: true
-      text: false
-      raw: false
-      content: false
-      slug: false
-      updated: false
-      comments: false
-      link: false
-      permalink: false
-      excerpt: false
-      categories: false
-      tags: true
-</pre>
-          </p>
-          <li class="search-li" q-repeat="items" q-show="isShow">
-            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
-            <p class="search-time">
-              <i class="icon-calendar icon"></i>
-              <span q-text="date|dateformat"></span>
-            </p>
-            <p class="search-tag">
-              <i class="icon-price-tags icon"></i>
-              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
-            </p>
-          </li>
-        </ul>
-    	</section>
     
 
     
@@ -1324,7 +1243,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">树叶的一生，只是为了归根吗？</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">怕人询问，咽泪装欢</div>
   	  	
     	</section>
     

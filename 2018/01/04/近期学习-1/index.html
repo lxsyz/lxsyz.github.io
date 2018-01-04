@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
   <title>近期学习 | Amanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示：每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，成为执行引擎">
+  <meta name="description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示：  每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈()、程序计数器和本地方法栈这五个部分:方法区：用于存">
 <meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="近期学习">
 <meta property="og:url" content="http://lxsyz.github.io/2018/01/04/近期学习-1/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示：每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，成为执行引擎">
+<meta property="og:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示：  每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈()、程序计数器和本地方法栈这五个部分:方法区：用于存">
 <meta property="og:image" content="http://lxsyz.github.io/2018/01/04/近期学习-1/images/jvm.png">
-<meta property="og:updated_time" content="2018-01-04T06:40:37.766Z">
+<meta property="og:updated_time" content="2018-01-04T11:56:32.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="近期学习">
-<meta name="twitter:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示：每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，成为执行引擎">
+<meta name="twitter:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示：  每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈()、程序计数器和本地方法栈这五个部分:方法区：用于存">
 <meta name="twitter:image" content="http://lxsyz.github.io/2018/01/04/近期学习-1/images/jvm.png">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
@@ -63,16 +63,12 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/photos">相册</a></li>
+				<li><a href="/archives">所有文章</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
-    			
-    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-    			
-            
     			
             
     			
@@ -139,7 +135,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/photos">相册</a></li>
+					<li style="width: 50%"><a href="/archives">所有文章</a></li>
 		        
 				</ul>
 			</nav>
@@ -175,7 +171,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="JVM深入理解"><a href="#JVM深入理解" class="headerlink" title="JVM深入理解"></a>JVM深入理解</h2><p>java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结：</p>
-<h4 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h4><p>JVM的基本结构一般如下图所示：<br><img src="images/jvm.png" alt=""><br>每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，成为执行引擎</p>
+<h3 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h3><p>JVM的基本结构一般如下图所示：</p>
+<p><img src="images/jvm.png" alt=""></p>
+<p>每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈()、程序计数器和本地方法栈这五个部分:<br><strong>方法区</strong>：用于存储类结构信息的地方，包括常量池、静态变量、构造函数等。<br>方法区存放装载的类数据信息包括：</p>
+<ol>
+<li>基本信息：</li>
+<li>每个类的全限定名。</li>
+<li>每个类的直接超类的全限定名(可约束类型转换)。</li>
+<li>该类是类还是接口。</li>
+<li>该类型的访问修饰符。</li>
+<li>直接超接口的全限定名的有序列表。<br>每个已装载类的详细信息：<br>运行时常量池：存放该类型所用的一切常量，它们以数组形式通过索引被访问，是外部调用与类联系及类型对象化的桥梁。它是类文件(字节码)常量池的运行时表示。<br>字段信息：类中声明的每一个字段的信息(名，类型，修饰符)。<br>方法信息：类中声明的每一个方法的信息<br>静态变量<br>到类classloader的引用：即到该类的类装载器的引用。<br>到类class的引用：虚拟机为每一个被装载的类型创建一个class实例，用来代表这个被装载的类。<br>方法表：虚拟机对每个装载的非抽象类，都生成一个方法表，把它作为类信息的一部分保存在方法区。方法表是一个数组，它的元素是所有它的实例可能被调用的实例方法的直接引用，包括那些从超类继承过来的实例方法。</li>
+</ol>
+<p><strong>堆(Heap)</strong>：存储java实例或者对象的地方。从存储的内容我们可以很容易知道，方法区和堆是被所有java线程共享的。</p>
+<p><strong>虚拟机栈</strong>：每当创建一个线程时，JVM就会为这个线程创建一个对应的虚拟机栈。每运行一个方法就会创建一个栈帧，用于存储局部变量表、操作栈、方法返回值等。每一个方法从调用直至执行完成，就对应一个栈帧在虚拟机栈中入栈到出栈的过程。所以虚拟机栈是线程私有的。</p>
+<p><strong>程序计数器</strong>：用于保存当前线程执行的内存地址，记录线程中断的地方，线程私有。</p>
+<p><strong>本地方法栈</strong>：和虚拟机栈的作用差不多，只不过是为JVM的native方法服务，线程私有</p>
+<h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><p>java内存分配一般有两种：静态内存和动态内存。很容易理解，编译时就能够确定的内存就是静态内存，即内存是固定的，系统一次性分配，比如int类型变量；动态内存分配就是在程序执行时才知道要分配的存储空间大小，比如java对象的内存空间。根据上面我们知道，java栈、程序计数器、本地方法栈都是线程私有的，栈中的栈帧随着方法的结束会撤销，内存自然就跟着回收了。所以这几个区域的内存分配与回收是确定的。但是堆和方法区则不一样，我们只有在程序运行期间才知道会创建哪些对象，所以这部分内存的分配和回收都是动态的。一般我们所说的垃圾回收也是针对的这一部分。</p>
+<h3 id="垃圾检测、回收算法"><a href="#垃圾检测、回收算法" class="headerlink" title="垃圾检测、回收算法"></a>垃圾检测、回收算法</h3><p>检测垃圾：引用计数法（无法回收循环指向的内存），可达性分析算法（精度高效率低）<br>回收算法：<br>标记-清除（mark-sweep）:效率低，会产生大量碎片<br>复制（Copying）：不会出现内存问题，需要两倍内存空间<br>标记-整理（mark-compact）:第一步标记被引用的对象，第二步清除未被引用的对象，并把存活的对象压缩到一块<br>增量收集：基础仍是传统的标记－清除和复制算法。增量收集算法通过对进程间冲突的妥善处理，允许垃圾收集进程以分阶段的方式完成标记、清理或复制工作。实时垃圾收集的梦想变成了现实，再也不用为垃圾收集打断程序的运行而烦恼了。增量收集算法比较典型的是火车算法，它是为了在成熟对象空间提供限度时间的增量收集。<br>分代收集：年轻的和年老的，垃圾收集器使用不同的收集算法来处理这两类内存块。</p>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p>主要有serial,ParNew,Parallel Scavenge,Serial Old,Parallel Old, CMS,G1这些。<br>详细可以参考这篇博文<a href="http://blog.csdn.net/java2000_wl/article/details/8030172" target="_blank" rel="external">http://blog.csdn.net/java2000_wl/article/details/8030172</a><br>G1收集器目前已在jdk1.9中默认使用了，将堆分成多个region，基于标记-整理收集垃圾，标记过程分五个阶段，大部分都是并发执行，大大提高了的速度。</p>
 
       
 
@@ -293,7 +306,7 @@
 		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: true,
+		innerArchive: false,
 		showTags: false
 	}
 </script>
@@ -331,10 +344,6 @@ MathJax.Hub.Queue(function() {
     
     
       
-      
-      
-    
-      
     
       
       
@@ -346,101 +355,14 @@ MathJax.Hub.Queue(function() {
     
     
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
-      
         
       
-        
-      
-      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 100%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
-    
-    	<section class="tools-section tools-section-all" q-show="innerArchive">
-        <div class="search-wrap">
-          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
-          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
-          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
-        </div>
-        <div class="widget tagcloud search-tag">
-          <p class="search-tag-wording">tag:</p>
-          <label class="search-switch">
-            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
-          </label>
-          <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-            
-            <div class="clearfix"></div>
-          </ul>
-        </div>
-        <ul class="search-ul">
-          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
-            3、在根目录_config.yml里添加配置：
-<pre style="font-size: 12px;" q-show="jsonFail">
-  jsonContent:
-    meta: false
-    pages: false
-    posts:
-      title: true
-      date: true
-      path: true
-      text: false
-      raw: false
-      content: false
-      slug: false
-      updated: false
-      comments: false
-      link: false
-      permalink: false
-      excerpt: false
-      categories: false
-      tags: true
-</pre>
-          </p>
-          <li class="search-li" q-repeat="items" q-show="isShow">
-            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
-            <p class="search-time">
-              <i class="icon-calendar icon"></i>
-              <span q-text="date|dateformat"></span>
-            </p>
-            <p class="search-tag">
-              <i class="icon-price-tags icon"></i>
-              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
-            </p>
-          </li>
-        </ul>
-    	</section>
     
 
     
@@ -448,7 +370,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">树叶的一生，只是为了归根吗？</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">怕人询问，咽泪装欢</div>
   	  	
     	</section>
     

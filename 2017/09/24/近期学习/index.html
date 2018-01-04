@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://lxsyz.github.io/2017/09/24/近期学习/index.html">
 <meta property="og:site_name" content="Amanda">
 <meta property="og:description" content="这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。 Numpy操作这里主要说说可能用的比较少的操作：Numpy.flipud() 上下方向旋转数组12345678import numpy as np&amp;gt;&amp;gt;&amp;gt;np.flipud([[1,2,3],[4,5,6],[7,8,9]])array([[7, 8, 9],        [4, 5, 6],        [1, 2">
-<meta property="og:updated_time" content="2018-01-04T07:24:37.374Z">
+<meta property="og:updated_time" content="2018-01-04T07:28:32.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="近期学习">
 <meta name="twitter:description" content="这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。 Numpy操作这里主要说说可能用的比较少的操作：Numpy.flipud() 上下方向旋转数组12345678import numpy as np&amp;gt;&amp;gt;&amp;gt;np.flipud([[1,2,3],[4,5,6],[7,8,9]])array([[7, 8, 9],        [4, 5, 6],        [1, 2">
@@ -61,16 +61,12 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/photos">相册</a></li>
+				<li><a href="/archives">所有文章</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
-    			
-    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-    			
-            
     			
             
     			
@@ -137,7 +133,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/photos">相册</a></li>
+					<li style="width: 50%"><a href="/archives">所有文章</a></li>
 		        
 				</ul>
 			</nav>
@@ -176,10 +172,10 @@
 <h2 id="Numpy操作"><a href="#Numpy操作" class="headerlink" title="Numpy操作"></a>Numpy操作</h2><p>这里主要说说可能用的比较少的操作：<br><br>Numpy.flipud() 上下方向旋转数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</div><div class="line">array([[<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</div><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line">array([[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</div></pre></td></tr></table></figure></p>
 <p>Numpy.fliplr() 左右方向旋转数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line">array([[<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>],</div><div class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
-<p><code>Numpy.cumsum()累加求和,可以传入相应的唯度</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.cumsum(x)</div><div class="line">array([ <span class="number">1</span>,  <span class="number">3</span>,  <span class="number">6</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">21</span>, <span class="number">28</span>, <span class="number">36</span>, <span class="number">45</span>], dtype=int32)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.cumsum(x,axis=<span class="number">1</span>)</div><div class="line">array([[ <span class="number">1</span>,  <span class="number">3</span>,  <span class="number">6</span>],</div><div class="line">       [ <span class="number">4</span>,  <span class="number">9</span>, <span class="number">15</span>],</div><div class="line">       [ <span class="number">7</span>, <span class="number">15</span>, <span class="number">24</span>]], dtype=int32)</div></pre></td></tr></table></figure></p>
-<p><code>Numpy.meshgrid(x,y) 生成二维网格型数据，行数为x中元素总数，列数为y中元素总数</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = [[<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>],[<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[XX,YY] = np.meshgrid(x,y)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>XX</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>YY</div><div class="line">array([[<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>],</div><div class="line">       [<span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>],</div><div class="line">       [<span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>],</div><div class="line">       [<span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>],</div><div class="line">       [<span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>],</div><div class="line">       [<span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>]])</div></pre></td></tr></table></figure></p>
-<p><code>Numpy.conj 求共轭值</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.conj(<span class="number">1</span>+<span class="number">2j</span>)</div><div class="line">    <span class="number">1</span><span class="number">-2j</span></div></pre></td></tr></table></figure></p>
-<p><code>Numpy.linalg.norm 求范数</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=<span class="number">1</span>)</div><div class="line"><span class="number">7.0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=<span class="number">2</span>)</div><div class="line"><span class="number">5.0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=np.inf)</div><div class="line"><span class="number">4.0</span></div></pre></td></tr></table></figure></p>
+<p>Numpy.cumsum()累加求和,可以传入相应的唯度<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.cumsum(x)</div><div class="line">array([ <span class="number">1</span>,  <span class="number">3</span>,  <span class="number">6</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">21</span>, <span class="number">28</span>, <span class="number">36</span>, <span class="number">45</span>], dtype=int32)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.cumsum(x,axis=<span class="number">1</span>)</div><div class="line">array([[ <span class="number">1</span>,  <span class="number">3</span>,  <span class="number">6</span>],</div><div class="line">       [ <span class="number">4</span>,  <span class="number">9</span>, <span class="number">15</span>],</div><div class="line">       [ <span class="number">7</span>, <span class="number">15</span>, <span class="number">24</span>]], dtype=int32)</div></pre></td></tr></table></figure></p>
+<p>Numpy.meshgrid(x,y) 生成二维网格型数据，行数为x中元素总数，列数为y中元素总数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = [[<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>],[<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[XX,YY] = np.meshgrid(x,y)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>XX</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>YY</div><div class="line">array([[<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>],</div><div class="line">       [<span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>],</div><div class="line">       [<span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>],</div><div class="line">       [<span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>],</div><div class="line">       [<span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>],</div><div class="line">       [<span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>]])</div></pre></td></tr></table></figure></p>
+<p>Numpy.conj 求共轭值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.conj(<span class="number">1</span>+<span class="number">2j</span>)</div><div class="line">    <span class="number">1</span><span class="number">-2j</span></div></pre></td></tr></table></figure></p>
+<p>Numpy.linalg.norm 求范数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=<span class="number">1</span>)</div><div class="line"><span class="number">7.0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=<span class="number">2</span>)</div><div class="line"><span class="number">5.0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=np.inf)</div><div class="line"><span class="number">4.0</span></div></pre></td></tr></table></figure></p>
 <h2 id="Malplotlib-绘图"><a href="#Malplotlib-绘图" class="headerlink" title="Malplotlib 绘图"></a>Malplotlib 绘图</h2><p>可以参考画廊地址，结合里面的例子进行自己的修改：<br><a href="http://matplotlib.org/gallery.html" target="_blank" rel="external">画廊</a></p>
 <h2 id="Xavier初始化"><a href="#Xavier初始化" class="headerlink" title="Xavier初始化"></a>Xavier初始化</h2><p>目的：让每一层输出的方差尽量相等，保证信息的流动<br><a href="http://blog.csdn.net/shuzfan/article/details/51338178" target="_blank" rel="external">可参考这一篇博文</a></p>
 <h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><ul>
@@ -324,7 +320,7 @@
 		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: true,
+		innerArchive: false,
 		showTags: false
 	}
 </script>
@@ -362,10 +358,6 @@ MathJax.Hub.Queue(function() {
     
     
       
-      
-      
-    
-      
     
       
       
@@ -377,101 +369,14 @@ MathJax.Hub.Queue(function() {
     
     
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
-      
         
       
-        
-      
-      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 100%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
-    
-    	<section class="tools-section tools-section-all" q-show="innerArchive">
-        <div class="search-wrap">
-          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
-          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
-          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
-        </div>
-        <div class="widget tagcloud search-tag">
-          <p class="search-tag-wording">tag:</p>
-          <label class="search-switch">
-            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
-          </label>
-          <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-            
-            <div class="clearfix"></div>
-          </ul>
-        </div>
-        <ul class="search-ul">
-          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
-            3、在根目录_config.yml里添加配置：
-<pre style="font-size: 12px;" q-show="jsonFail">
-  jsonContent:
-    meta: false
-    pages: false
-    posts:
-      title: true
-      date: true
-      path: true
-      text: false
-      raw: false
-      content: false
-      slug: false
-      updated: false
-      comments: false
-      link: false
-      permalink: false
-      excerpt: false
-      categories: false
-      tags: true
-</pre>
-          </p>
-          <li class="search-li" q-repeat="items" q-show="isShow">
-            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
-            <p class="search-time">
-              <i class="icon-calendar icon"></i>
-              <span q-text="date|dateformat"></span>
-            </p>
-            <p class="search-tag">
-              <i class="icon-price-tags icon"></i>
-              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
-            </p>
-          </li>
-        </ul>
-    	</section>
     
 
     
@@ -479,7 +384,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">树叶的一生，只是为了归根吗？</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">怕人询问，咽泪装欢</div>
   	  	
     	</section>
     
