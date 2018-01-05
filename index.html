@@ -62,6 +62,8 @@
 	        
 				<li><a href="/archives">所有文章</a></li>
 	        
+				<li><a href="/photos">相册</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -112,6 +114,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -127,12 +131,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/archives">所有文章</a></li>
+					<li style="width: 33.333333333333336%"><a href="/archives">所有文章</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/photos">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -172,7 +178,7 @@
         <h2 id="JVM深入理解"><a href="#JVM深入理解" class="headerlink" title="JVM深入理解"></a>JVM深入理解</h2><p>java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结：</p>
 <h3 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h3><p>JVM的基本结构一般如下图所示：</p>
 <p><img src="images/jvm.png" alt=""></p>
-<p>每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈()、程序计数器和本地方法栈这五个部分:<br><strong>方法区</strong>：用于存储类结构信息的地方，包括常量池、静态变量、构造函数等。<br>方法区存放装载的类数据信息包括：</p>
+<p>每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register)和本地方法栈(native stack)这五个部分:<br><strong>方法区</strong>：用于存储类结构信息的地方，包括常量池、静态变量、构造函数等。方法区存放装载的类数据信息包括：</p>
 <ol>
 <li>基本信息：</li>
 <li>每个类的全限定名。</li>
