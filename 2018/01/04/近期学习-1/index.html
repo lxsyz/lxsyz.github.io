@@ -8,17 +8,19 @@
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
   <title>近期学习 | Amanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： ![](images/jvm.png) 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stac">
+  <meta name="description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
 <meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="近期学习">
 <meta property="og:url" content="http://lxsyz.github.io/2018/01/04/近期学习-1/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： ![](images/jvm.png) 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stac">
-<meta property="og:updated_time" content="2018-01-05T02:36:12.951Z">
+<meta property="og:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
+<meta property="og:image" content="http://lxsyz.github.io/images/jvm.png">
+<meta property="og:updated_time" content="2018-01-05T02:59:38.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="近期学习">
-<meta name="twitter:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： ![](images/jvm.png) 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stac">
+<meta name="twitter:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
+<meta name="twitter:image" content="http://lxsyz.github.io/images/jvm.png">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -173,10 +175,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="JVM深入理解"><a href="#JVM深入理解" class="headerlink" title="JVM深入理解"></a>JVM深入理解</h2><p>java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结：</p>
-<h3 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h3><p>JVM的基本结构一般如下图所示：</p>
-<pre><code>![](images/jvm.png)
-</code></pre><p>每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register)和本地方法栈(native stack)这五个部分:<br><strong>方法区</strong>：用于存储类结构信息的地方，包括常量池、静态变量、构造函数等。方法区存放装载的类数据信息包括：1. 基本信息：</p>
+<h3 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h3><p>JVM的基本结构一般如下图所示：<br><img src="/images/jvm.png" alt=""></p>
+<p>每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register)和本地方法栈(native stack)这五个部分:<br><strong>方法区</strong>：用于存储类结构信息的地方，包括常量池、静态变量、构造函数等。方法区存放装载的类数据信息包括：</p>
 <ol>
+<li>基本信息：</li>
 <li>每个类的全限定名。</li>
 <li>每个类的直接超类的全限定名(可约束类型转换)。</li>
 <li>该类是类还是接口。</li>
