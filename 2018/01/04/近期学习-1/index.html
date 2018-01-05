@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>近期学习 | Amanda</title>
+  <title>jvm学习和配置主机 | Amanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
-<meta name="keywords" content="深度学习">
+<meta name="keywords" content="学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="近期学习">
+<meta property="og:title" content="jvm学习和配置主机">
 <meta property="og:url" content="http://lxsyz.github.io/2018/01/04/近期学习-1/index.html">
 <meta property="og:site_name" content="Amanda">
 <meta property="og:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
 <meta property="og:image" content="http://lxsyz.github.io/images/jvm.png">
-<meta property="og:updated_time" content="2018-01-05T02:59:38.959Z">
+<meta property="og:updated_time" content="2018-01-05T13:11:43.238Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="近期学习">
+<meta name="twitter:title" content="jvm学习和配置主机">
 <meta name="twitter:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
 <meta name="twitter:image" content="http://lxsyz.github.io/images/jvm.png">
   
@@ -161,7 +161,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      近期学习
+      jvm学习和配置主机
     </h1>
   
 
@@ -192,6 +192,32 @@
 <h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><p>java内存分配一般有两种：静态内存和动态内存。很容易理解，编译时就能够确定的内存就是静态内存，即内存是固定的，系统一次性分配，比如int类型变量；动态内存分配就是在程序执行时才知道要分配的存储空间大小，比如java对象的内存空间。根据上面我们知道，java栈、程序计数器、本地方法栈都是线程私有的，栈中的栈帧随着方法的结束会撤销，内存自然就跟着回收了。所以这几个区域的内存分配与回收是确定的。但是堆和方法区则不一样，我们只有在程序运行期间才知道会创建哪些对象，所以这部分内存的分配和回收都是动态的。一般我们所说的垃圾回收也是针对的这一部分。</p>
 <h3 id="垃圾检测、回收算法"><a href="#垃圾检测、回收算法" class="headerlink" title="垃圾检测、回收算法"></a>垃圾检测、回收算法</h3><p>检测垃圾：引用计数法（无法回收循环指向的内存），可达性分析算法（精度高效率低）<br>回收算法：<br>标记-清除（mark-sweep）:效率低，会产生大量碎片<br>复制（Copying）：不会出现内存问题，需要两倍内存空间<br>标记-整理（mark-compact）:第一步标记被引用的对象，第二步清除未被引用的对象，并把存活的对象压缩到一块<br>增量收集：基础仍是传统的标记－清除和复制算法。增量收集算法通过对进程间冲突的妥善处理，允许垃圾收集进程以分阶段的方式完成标记、清理或复制工作。实时垃圾收集的梦想变成了现实，再也不用为垃圾收集打断程序的运行而烦恼了。增量收集算法比较典型的是火车算法，它是为了在成熟对象空间提供限度时间的增量收集。<br>分代收集：年轻的和年老的，垃圾收集器使用不同的收集算法来处理这两类内存块。</p>
 <h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p>主要有serial,ParNew,Parallel Scavenge,Serial Old,Parallel Old, CMS,G1这些。<br>详细可以参考这篇博文<a href="http://blog.csdn.net/java2000_wl/article/details/8030172" target="_blank" rel="external">http://blog.csdn.net/java2000_wl/article/details/8030172</a><br>G1收集器目前已在jdk1.9中默认使用了，将堆分成多个region，基于标记-整理收集垃圾，标记过程分五个阶段，大部分都是并发执行，大大提高了的速度。</p>
+<h2 id="FTP安装"><a href="#FTP安装" class="headerlink" title="FTP安装"></a>FTP安装</h2><p>最近突然想到自己的学生优惠还没有用，赶紧在京东云上购买了一个便宜的云主机，以备后用，顺便把linux上的知识复习一下，都快忘光了。<br>云主机系统为ubuntu 16.04 (命令：head -n 1 /etc/issue)<br>硬件信息 uname -a<br>之后又安装了一下nodejs,npm等要用到的软件</p>
+<blockquote>
+<p>sudo apt-get install nodejs<br>sudo apt-get install npm</p>
+</blockquote>
+<p>之后就是安装FTP服务器的过程了</p>
+<blockquote>
+<p>sudo apt-get update<br>sudo apt-get install vsftpd</p>
+</blockquote>
+<p>update是为了防止有些包安装不上，以防意外。在安装好vsftpd后，我们可以通过</p>
+<blockquote>
+<p>service vsftpd start # 启动服务<br>service vsftpd status # 查看服务状态</p>
+</blockquote>
+<p>按照网上有些资料的说法是，安装好vsftpd后会在home目录下生成一个ftp文件夹，然而我的主机上并没有，只能搜索一下再操作了：</p>
+<blockquote>
+<p>find / -name ftp -type d # 搜索名为ftp的文件夹<br>mkdir public             # 创建个public 文件夹<br>chmod 777 public</p>
+</blockquote>
+<p>准备工作完成，再修改一下vsftpd的配置文件(/etc/vsftpd.conf),这里为了能尽快上传文件，启用了如下几行：</p>
+<blockquote>
+<p>anonymous_enable=YES<br>  anon_upload_enable=YES<br>  anon_mkdir_write_enable=YES<br>  local_enable=YES<br>  write_enable=YES<br>  local_umask=022</p>
+</blockquote>
+<p>更多配置可以参考京东云的<a href="https://www.jcloud.com/help/FTPfwdazypz855.html" target="_blank" rel="external">官方文档</a></p>
+<p>本来以为这样就可以大功告成了，结果在本机windows这边连接ftp的过程中遇上了一些问题，主要是“无法访问FTP服务器，没有权限”等等。考虑到时客户端这边的问题，先检查FTP服务是否已经打开，控制面板-》程序-》启用或关闭windows功能-》Internet Information Services-》FTP服务器，全部启用，之后在去Internet选项中，在设置-》高级中禁用掉“使用被动FTP”。<br>这两项操作完成后，我的问题就解决了。随后可以正常匿名访问FTP了，于是直接复制文件过去，结果发现又报错了，500：unknown command。<br>检查服务器的文件夹发现，大部分小文件都发过去了，只有图片传不过去，所以这里我选择先在windows上压缩成zip格式文件，再复制到服务器，之后在服务器上解压即可。</p>
+<blockquote>
+<p>sudo apt-get install zip<br>unzip myfile.zip</p>
+</blockquote>
+<p>接下来就可以愉快的玩主机了，把忘掉的命令都捡起来。<br><a href="http://blog.csdn.net/stefansalvatore/article/details/54602415" target="_blank" rel="external">常用指令</a></p>
 
       
 
@@ -205,7 +231,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
         		</li>
       		
 		</ul>
@@ -254,7 +280,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="近期学习-1" data-title="近期学习" data-url="http://lxsyz.github.io/2018/01/04/近期学习-1/"></div>
+	<div class="ds-thread" data-thread-key="近期学习-1" data-title="jvm学习和配置主机" data-url="http://lxsyz.github.io/2018/01/04/近期学习-1/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -393,7 +419,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -401,11 +431,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
