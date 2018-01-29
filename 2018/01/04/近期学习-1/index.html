@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Amanda">
 <meta property="og:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
 <meta property="og:image" content="http://lxsyz.github.io/images/jvm.png">
-<meta property="og:updated_time" content="2018-01-05T13:11:43.238Z">
+<meta property="og:updated_time" content="2018-01-29T08:23:42.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm学习和配置主机">
 <meta name="twitter:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
@@ -218,6 +218,82 @@
 <p>sudo apt-get install zip<br>unzip myfile.zip</p>
 </blockquote>
 <p>接下来就可以愉快的玩主机了，把忘掉的命令都捡起来。<br><a href="http://blog.csdn.net/stefansalvatore/article/details/54602415" target="_blank" rel="external">常用指令</a></p>
+<h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><p>nginx的安装不用多言，其中要用到的PCRE库、zlib库、OpenSSL库的下载安装可以参考这篇<a href="http://blog.csdn.net/somanlee/article/details/69808788" target="_blank" rel="external">博客</a><br>在配置过程中参考了很多博文，比较杂乱无章，这里我的配置如下：</p>
+<blockquote>
+<p>user www-data;<br>worker_processes auto;<br>pid /run/nginx.pid;<br>events {<br>        worker_connections 768;</p>
+<pre><code># multi_accept on;
+</code></pre><p>}<br>http {</p>
+<pre><code>##
+# Basic Settings
+##
+sendfile on;
+tcp_nopush on;
+tcp_nodelay on;
+keepalive_timeout 65;
+types_hash_max_size 2048;
+# server_tokens off;
+# server_names_hash_bucket_size 64;
+# server_name_in_redirect off;
+include /etc/nginx/mime.types;
+default_type application/octet-stream;
+##
+# SSL Settings
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+ssl_prefer_server_ciphers on;
+##
+# Logging Settings
+##
+access_log /var/log/nginx/access.log;
+error_log /var/log/nginx/error.log;
+##
+# Gzip Settings
+##
+gzip on;
+gzip_disable &quot;msie6&quot;;
+# gzip_vary on;
+# gzip_proxied any;
+# gzip_comp_level 6;
+# gzip_buffers 16 8k;
+# gzip_http_version 1.1;
+# 添加一个服务配置，访问域名，从而跳转到服务器地址
+server {
+        listen 80;
+        server_name 域名;
+        location / {
+                root 资源文件;
+                proxy_connect_timeout 3;
+                proxy_send_timeout 30;
+                proxy_read_timeout 30;
+                proxy_pass http://localhost:3000; # 重定向的地址
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        # 图片资源访问不到，在这里添加图片资源路径
+        location ~ .*\.(gif|jpg|jpeg|png)$ {
+                expires 24h;
+                root assets; # 资源地址
+                proxy_store on;
+                proxy_store_access user:rw group:rw all:rw;
+                proxy_redirect off;
+                proxy_set_header Host localhost;
+                client_max_body_size 10m;
+                client_body_buffer_size 1280k;
+                proxy_connect_timeout 900;
+                proxy_send_timeout 900;
+                proxy_read_timeout 900;
+                proxy_buffer_size 40k;
+                proxy_buffers 40 320k;
+                proxy_temp_file_write_size 640k;
+        }
+}
+##
+# Virtual Host Configs
+##
+include /etc/nginx/conf.d/*.conf;
+include /etc/nginx/sites-enabled/*;
+</code></pre><p>}</p>
+</blockquote>
 
       
 
@@ -419,19 +495,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -439,15 +503,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
             
             <div class="clearfix"></div>
