@@ -153,6 +153,159 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-腾讯一面总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/21/腾讯一面总结/">腾讯面试总结</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/21/腾讯一面总结/" class="archive-article-date">
+  	<time datetime="2018-03-21T05:12:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="介绍项目"><a href="#介绍项目" class="headerlink" title="介绍项目"></a>介绍项目</h2><h2 id="在alphago中，使用CNN的好处"><a href="#在alphago中，使用CNN的好处" class="headerlink" title="在alphago中，使用CNN的好处"></a>在alphago中，使用CNN的好处</h2><p>个人理解：CNN可以将围棋棋盘看成是一个像素矩阵，白棋为1，黑棋为0。卷积神经网络结构上有局部连接、权值共享、次采样的特点，通过滤波器对棋盘进行特征提取，可以得到我们想要的棋面上的特征，也就是白棋黑棋的分布情况，相对于其他网络，CNN可以有效地减少参数数量，子采样层也能大大降低特征的维数，避免过拟合。（保持特征的不变性）</p>
+<h2 id="xgboost怎么调参"><a href="#xgboost怎么调参" class="headerlink" title="xgboost怎么调参"></a>xgboost怎么调参</h2><ol>
+<li>设置一个大的学习速率,其他值设定一个合适的初始值,通过gridsearchcv寻找合适的树的数目；</li>
+<li>再对树持有的参数进行调参，通过gridsearchcv寻找合适的max_depth</li>
+<li>寻找合适的min_child_weight, colsample_bytree, subsample等</li>
+<li>gamma（节点分裂的最小损失函数），越大越保守</li>
+<li>调整正则化系数，lambda</li>
+<li>逐步降低学习速率和增加树的数量</li>
+</ol>
+<h2 id="调参时遇到过拟合如何解决"><a href="#调参时遇到过拟合如何解决" class="headerlink" title="调参时遇到过拟合如何解决"></a>调参时遇到过拟合如何解决</h2><p>比赛时主要通过增大l2正则的lambda值来解决，以及调低树深度</p>
+<h2 id="进程进入内存后包括哪些信息"><a href="#进程进入内存后包括哪些信息" class="headerlink" title="进程进入内存后包括哪些信息"></a>进程进入内存后包括哪些信息</h2><p>文本段，数据，堆，栈</p>
+<h2 id="分页存储和分段存储"><a href="#分页存储和分段存储" class="headerlink" title="分页存储和分段存储"></a>分页存储和分段存储</h2><p>都采用离散分配，都通过地址映射实现地址变换<br>页面管理将程序的逻辑地址划分为固定的页，物理内存划分为固定大小的页框，优点没有外碎片，程序不必连续存放，便于改变程序占用空间的大小。<br>缺点：要求程序全部装入内存，没有足够的内存，就不能执行程序<br>段式：没有内碎片，外碎片可以通过内存紧缩来消除；便于实现内存共享，进程必须全部装入内存。</p>
+<h2 id="排序相关总结"><a href="#排序相关总结" class="headerlink" title="排序相关总结"></a>排序相关总结</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/paixu.png" alt=""></h2><h2 id="为什么做迁移学习，怎么做迁移学习"><a href="#为什么做迁移学习，怎么做迁移学习" class="headerlink" title="为什么做迁移学习，怎么做迁移学习"></a>为什么做迁移学习，怎么做迁移学习</h2><p>迁移学习：提取权重，迁移到其他的神经网络<br>预训练模型：前人为了解决类似问题所创造的模型，我们解决问题时不用从0开始训练，可以从类似问题中训练过的模型入手,从而减少所花费的时间</p>
+<h4 id="为什么做迁移学习"><a href="#为什么做迁移学习" class="headerlink" title="为什么做迁移学习"></a>为什么做迁移学习</h4><p>我们不必去花大量的时间去设计网络的结构，既然预训练的模型已经训练得很好，我们就不用在短时间内去修改大量的权重，往往只需要做微调（fine tune)就行了。</p>
+<h4 id="微调模型的方法"><a href="#微调模型的方法" class="headerlink" title="微调模型的方法"></a>微调模型的方法</h4><ol>
+<li>特征提取<br> 将输出层去掉，将剩下的网络当作一个特征提取机，从而应用到新的数据集中</li>
+<li>采用预训练模型的结构<br> 将所有权重随机化，然后依据自己的数据集去训练模型</li>
+<li>训练特定层，冻结其它层<br> 将模型起始的一些层权重保持不变，重新训练后面的层，得到新的权重。我们需要在这个过程尝试多次，找到适合的冻结层和重新训练的层的最佳搭配。<h4 id="迁移模型使用场景分析"><a href="#迁移模型使用场景分析" class="headerlink" title="迁移模型使用场景分析"></a>迁移模型使用场景分析</h4></li>
+<li>数据集小，相似度高<br> 将输出层改为符合我们问题情境的结构就好</li>
+<li>数据集小，相似度不高<br> 新数据集大小的不足，只能靠冻结预训练模型的前k层进行弥补，重新训练后面的n-k层，最后一层的输出也要改成我们想要的</li>
+<li>数据集大，相似度不高<br> 重新初始化权重，借用模型结构重新训练</li>
+<li>数据集大，数据相似度高<br> 保持模型的初始权重和结构不变，在新数据基础上训练</li>
+</ol>
+<h2 id="xgboost相对于传统gbdt的优点"><a href="#xgboost相对于传统gbdt的优点" class="headerlink" title="xgboost相对于传统gbdt的优点"></a>xgboost相对于传统gbdt的优点</h2><p><img src="/images/difference.png" alt=""></p>
+<h2 id="时序模型与非时序模型的区别"><a href="#时序模型与非时序模型的区别" class="headerlink" title="时序模型与非时序模型的区别"></a>时序模型与非时序模型的区别</h2><p>参考链接：<a href="https://www.quora.com/What-are-the-biggest-differences-between-time-series-and-non-time-series-regression" target="_blank" rel="external">https://www.quora.com/What-are-the-biggest-differences-between-time-series-and-non-time-series-regression</a><br>Short answer is time series analysis account for auto-correlation, that is next value in a time series is affected by earlier values in the time series<br>时间序列分析考虑自相关性（序列数据自身的相关性），下一个值会受到之前的值得影响<br>时序模型可以捕捉到这种隐藏的强非线性关系，并能够将它们用于预测未来</p>
+<h2 id="L1正则和L2正则"><a href="#L1正则和L2正则" class="headerlink" title="L1正则和L2正则"></a>L1正则和L2正则</h2><p>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择<br>L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合</p>
+<p>原理：为了解决过拟合问题，就要控制特征 n的数量，即让n最小化，即让W向量中的项的个数最小化。<br>所以求解结构风险最小化就是为了让经验风险和正则化都比较小，min(J+r(d))才有意义，L2范数让权重W的每个元素都很小但不等于0，参数小的模型抗扰动能力强。</p>
+<h2 id="树模型的好处"><a href="#树模型的好处" class="headerlink" title="树模型的好处"></a>树模型的好处</h2><p>数据是混合类型（类别型，连续型，二值），特征多样性，树对这样的数据并不敏感<br>大量缺失值<br>含有离群点<br>长尾分布<br>树模型对于这样的数据</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/21/腾讯一面总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-介绍SVM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/20/介绍SVM/">介绍SVM</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/20/介绍SVM/" class="archive-article-date">
+  	<time datetime="2018-03-20T11:57:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SVM基本模型是定义在特征空间上的间隔最大的线性分类器，学习策略是间隔最大化。<br>由简至繁的构建模型：线性可分支持向量机，线性支持向量机，非线性支持向量机。<br>当输入空间为欧式空间或离散集合、特征空间为希尔伯特空间，<b>核函数表示将输入从输入空间映射到特征空间得到的特征向量之间的内积</b><br>线性可分支持向量机<br>函数间隔：<br>几何间隔<br>间隔最大化：以充分大的确信度对训练数据进行分类<br>支持向量：训练数据集的样本点中与分离超平面距离最近的样本点的实例<br>引入对偶算法的好处：一是对偶问题往往更容易求解；二是自然引入核函数</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/20/介绍SVM/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-近期学习-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1262,7 +1415,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1270,15 +1423,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1287,10 +1444,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
             
             <div class="clearfix"></div>

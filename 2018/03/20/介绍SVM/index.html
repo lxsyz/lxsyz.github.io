@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>Archives: 2018/1 | Amanda</title>
+  <title>介绍SVM | Amanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="怕人询问，咽泪装欢">
+  <meta name="description" content="SVM基本模型是定义在特征空间上的间隔最大的线性分类器，学习策略是间隔最大化。由简至繁的构建模型：线性可分支持向量机，线性支持向量机，非线性支持向量机。当输入空间为欧式空间或离散集合、特征空间为希尔伯特空间，核函数表示将输入从输入空间映射到特征空间得到的特征向量之间的内积线性可分支持向量机函数间隔：几何间隔间隔最大化：以充分大的确信度对训练数据进行分类支持向量：训练数据集的样本点中与分离超平面距离">
 <meta name="keywords" content="程序猿,ML,Java,Python,Programmer,Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Amanda">
-<meta property="og:url" content="http://lxsyz.github.io/archives/2018/01/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="介绍SVM">
+<meta property="og:url" content="http://lxsyz.github.io/2018/03/20/介绍SVM/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="怕人询问，咽泪装欢">
+<meta property="og:description" content="SVM基本模型是定义在特征空间上的间隔最大的线性分类器，学习策略是间隔最大化。由简至繁的构建模型：线性可分支持向量机，线性支持向量机，非线性支持向量机。当输入空间为欧式空间或离散集合、特征空间为希尔伯特空间，核函数表示将输入从输入空间映射到特征空间得到的特征向量之间的内积线性可分支持向量机函数间隔：几何间隔间隔最大化：以充分大的确信度对训练数据进行分类支持向量：训练数据集的样本点中与分离超平面距离">
+<meta property="og:updated_time" content="2018-03-21T05:09:39.446Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Amanda">
-<meta name="twitter:description" content="怕人询问，咽泪装欢">
+<meta name="twitter:title" content="介绍SVM">
+<meta name="twitter:description" content="SVM基本模型是定义在特征空间上的间隔最大的线性分类器，学习策略是间隔最大化。由简至繁的构建模型：线性可分支持向量机，线性支持向量机，非线性支持向量机。当输入空间为欧式空间或离散集合、特征空间为希尔伯特空间，核函数表示将输入从输入空间映射到特征空间得到的特征向量之间的内积线性可分支持向量机函数间隔：几何间隔间隔最大化：以充分大的确信度对训练数据进行分类支持向量：训练数据集的样本点中与分离超平面距离">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -151,60 +152,113 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-介绍SVM" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/04/近期学习-1/" class="archive-article-date">
-  	<time datetime="2018-01-04T06:21:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/04/近期学习-1/">jvm学习和配置主机</a>
+    <h1 class="article-title" itemprop="name">
+      介绍SVM
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2018/03/20/介绍SVM/" class="archive-article-date">
+  	<time datetime="2018-03-20T11:57:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>SVM基本模型是定义在特征空间上的间隔最大的线性分类器，学习策略是间隔最大化。<br>由简至繁的构建模型：线性可分支持向量机，线性支持向量机，非线性支持向量机。<br>当输入空间为欧式空间或离散集合、特征空间为希尔伯特空间，<b>核函数表示将输入从输入空间映射到特征空间得到的特征向量之间的内积</b><br>线性可分支持向量机<br>函数间隔：<br>几何间隔<br>间隔最大化：以充分大的确信度对训练数据进行分类<br>支持向量：训练数据集的样本点中与分离超平面距离最近的样本点的实例<br>引入对偶算法的好处：一是对偶问题往往更容易求解；二是自然引入核函数</p>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/03/21/腾讯一面总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          腾讯面试总结
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/01/04/近期学习-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jvm学习和配置主机</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="介绍SVM" data-title="介绍SVM" data-url="http://lxsyz.github.io/2018/03/20/介绍SVM/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -227,8 +281,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
