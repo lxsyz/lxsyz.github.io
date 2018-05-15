@@ -153,6 +153,149 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Leetcode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/15/Leetcode/">Leetcode</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/15/Leetcode/" class="archive-article-date">
+  	<time datetime="2018-05-15T10:55:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>纸短情长。。。</p>
+<blockquote>
+<p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8<br>Explanation: 342 + 465 = 807.</p>
+</blockquote>
+<p>考虑一些其他测试用例， 例如 1 -&gt;8  + 0  = 1 ,8<br>5 + 5  =  0 1</p>
+<hr>
+<p>解题思路：</p>
+<ol>
+<li>从头到尾遍历两个链表，依次累加每个值，将进位用变量保存（进位只能是1或0）</li>
+<li>在短的链表后面的数用0填充，直到长的链表走到尽头，并且进位为0。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">simplifyAddTwoNumber</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</div><div class="line">    ListNode res = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</div><div class="line">    ListNode temp = res;</div><div class="line">    <span class="keyword">int</span> extra = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> || l2 != <span class="keyword">null</span> || extra != <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">int</span> sum = (l1 != <span class="keyword">null</span> ? l1.val:<span class="number">0</span>) + (l2 != <span class="keyword">null</span>? l2.val:<span class="number">0</span>) + extra;</div><div class="line">        extra = sum / <span class="number">10</span>;</div><div class="line">        temp.next = <span class="keyword">new</span> ListNode(sum % <span class="number">10</span>);</div><div class="line">        temp = temp.next;</div><div class="line">        l1 = l1!=<span class="keyword">null</span> ? l1.next:l1;</div><div class="line">        l2 = l2!=<span class="keyword">null</span> ? l2.next:l2;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res.next;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/15/Leetcode/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-聚类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/23/聚类/">聚类</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/23/聚类/" class="archive-article-date">
+  	<time datetime="2018-03-23T02:11:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么样的聚类效果好？"><a href="#什么样的聚类效果好？" class="headerlink" title="什么样的聚类效果好？"></a>什么样的聚类效果好？</h2><p>聚类结果的簇内相似度高，且簇间相似度低</p>
+<h2 id="聚类性能度量"><a href="#聚类性能度量" class="headerlink" title="聚类性能度量"></a>聚类性能度量</h2><p>外部指标：结果与某个参考模型作比较，如Jaccard系数，FM指数，Rand指数，<br>内部指标：直接考察聚类结果，如DB指数，DI指数</p>
+<h2 id="计算距离"><a href="#计算距离" class="headerlink" title="计算距离"></a>计算距离</h2><p>闵可夫斯基距离和VDM距离结合，可以计算有序属性和无序属性</p>
+<h1 id="原型聚类算法"><a href="#原型聚类算法" class="headerlink" title="原型聚类算法"></a>原型聚类算法</h1><h2 id="简单K-means算法"><a href="#简单K-means算法" class="headerlink" title="简单K-means算法"></a>简单K-means算法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder,OneHotEncoder</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_k_sample</span><span class="params">(data, k)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    随机选择K个样本作为初始均值向量</span></div><div class="line"><span class="string">    """</span></div><div class="line">    n = np.shape(data)[<span class="number">1</span>] <span class="comment"># n个特征</span></div><div class="line">    m = np.shape(data)[<span class="number">0</span>]</div><div class="line">    centroids = np.zeros((k, n)) <span class="comment"># k个样本</span></div><div class="line">    temp = random.sample(range(m), k)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</div><div class="line">        centroids[i] = data[temp[i]]</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> centroids</div><div class="line"><span class="comment">## 数据加载过程省略</span></div><div class="line">my_data = data.iloc[:, <span class="number">0</span>:<span class="number">-1</span>]</div><div class="line">my_data = my_data.values</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_dist</span><span class="params">(vec1, vec2)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    计算欧式距离</span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="keyword">return</span> np.sqrt(np.sum(np.power(vec1 - vec2, <span class="number">2</span>)))</div><div class="line">m = np.shape(my_data)[<span class="number">0</span>]</div><div class="line">n = np.shape(my_data)[<span class="number">1</span>]</div><div class="line">k = <span class="number">3</span></div><div class="line">centroids = random_k_sample(my_data, k)</div><div class="line"></div><div class="line"><span class="comment"># 每个样本与选出来的样本向量计算距离，距离谁近就归为哪一类</span></div><div class="line">result = np.zeros((m, <span class="number">2</span>)) <span class="comment"># 存放样本类别，和到质心的距离</span></div><div class="line"></div><div class="line"><span class="comment"># 控制均值向量是否更新</span></div><div class="line">changed = <span class="keyword">True</span></div><div class="line"><span class="keyword">while</span> (changed):</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">        min_value = np.inf <span class="comment"># 最小距离</span></div><div class="line">        min_label = <span class="number">-1</span> <span class="comment"># 类别</span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</div><div class="line">            dist = calc_dist(my_data[i], centroids[j])</div><div class="line">            <span class="keyword">if</span> dist &lt; min_value:</div><div class="line">                min_value = dist</div><div class="line">                min_label = j</div><div class="line">        </div><div class="line">        result[i, :] = min_value, min_label</div><div class="line">        print(<span class="string">'iteration %d, %s'</span> % (i, result[i, :]))</div><div class="line">    </div><div class="line">    is_update = <span class="keyword">False</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</div><div class="line">        <span class="comment"># 计算新的均值向量</span></div><div class="line">        <span class="comment"># 对每一类的特征列求平均值</span></div><div class="line">        temp = np.mean(my_data[(result[:, <span class="number">1</span>] == j)], axis=<span class="number">0</span>)</div><div class="line">        </div><div class="line"><span class="comment">#         print(temp)</span></div><div class="line"><span class="comment">#         print(centroids[j])</span></div><div class="line"></div><div class="line">        <span class="comment"># 如果均值向量更新了，重新迭代</span></div><div class="line">        <span class="keyword">if</span> (centroids[j] != temp).any():</div><div class="line">            centroids[j] = temp</div><div class="line">            print(<span class="string">'update'</span>)</div><div class="line">            is_update = <span class="keyword">True</span></div><div class="line">    </div><div class="line">    <span class="keyword">if</span> is_update:</div><div class="line">        changed = <span class="keyword">True</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        changed = <span class="keyword">False</span></div><div class="line"></div><div class="line">data[<span class="string">'label'</span>] = result[:, <span class="number">1</span>]</div></pre></td></tr></table></figure>
+<h2 id="LVQ算法"><a href="#LVQ算法" class="headerlink" title="LVQ算法"></a>LVQ算法</h2><p>学习向量量化，随机选择有标记训练样本，找出距离最近的原型向量，根据两者的类别标记是否相同来对原型向量进行相应的更新（靠拢或者远离）。</p>
+<h2 id="高斯混合聚类"><a href="#高斯混合聚类" class="headerlink" title="高斯混合聚类"></a>高斯混合聚类</h2><p>初始化模型参数，计算各混合分布的后验概率，重新计算新均值向量，新协方差矩阵，新混合系数，不断迭代。</p>
+<h1 id="密度聚类算法"><a href="#密度聚类算法" class="headerlink" title="密度聚类算法"></a>密度聚类算法</h1><h2 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h2><p>簇：由密度可达关系导出的最大的密度相连样本集合。<br>根据个样本的伶域，确定核心对象集，随机选取一个核心对象，找到它密度可达的样本，生成第一个聚类簇，并将其从核心对象集中去除，再从更新后的集合中选取核心对象，直到核心对象集为空。</p>
+<h1 id="层次聚类算法"><a href="#层次聚类算法" class="headerlink" title="层次聚类算法"></a>层次聚类算法</h1><p>层次聚类试图在不同层次对数据集进行划分，形成树的聚类结构。<br>AGNES算法在树状图上的特定层次进行分割，得到相应的簇划分结果。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/23/聚类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-腾讯一面总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -200,7 +343,7 @@
 <h2 id="时序模型与非时序模型的区别"><a href="#时序模型与非时序模型的区别" class="headerlink" title="时序模型与非时序模型的区别"></a>时序模型与非时序模型的区别</h2><p>参考链接：<a href="https://www.quora.com/What-are-the-biggest-differences-between-time-series-and-non-time-series-regression" target="_blank" rel="external">https://www.quora.com/What-are-the-biggest-differences-between-time-series-and-non-time-series-regression</a><br>Short answer is time series analysis account for auto-correlation, that is next value in a time series is affected by earlier values in the time series<br>时间序列分析考虑自相关性（序列数据自身的相关性），下一个值会受到之前的值得影响<br>时序模型可以捕捉到这种隐藏的强非线性关系，并能够将它们用于预测未来</p>
 <h2 id="L1正则和L2正则"><a href="#L1正则和L2正则" class="headerlink" title="L1正则和L2正则"></a>L1正则和L2正则</h2><p>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择<br>L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合</p>
 <p>原理：为了解决过拟合问题，就要控制特征 n的数量，即让n最小化，即让W向量中的项的个数最小化。<br>所以求解结构风险最小化就是为了让经验风险和正则化都比较小，min(J+r(d))才有意义，L2范数让权重W的每个元素都很小但不等于0，参数小的模型抗扰动能力强。</p>
-<h2 id="树模型的好处"><a href="#树模型的好处" class="headerlink" title="树模型的好处"></a>树模型的好处</h2><p>数据是混合类型（类别型，连续型，二值），特征多样性，树对这样的数据并不敏感<br>大量缺失值<br>含有离群点<br>长尾分布<br>树模型对于这样的数据</p>
+<h2 id="树模型的好处"><a href="#树模型的好处" class="headerlink" title="树模型的好处"></a>树模型的好处</h2><p>数据是混合类型（类别型，连续型，二值），特征多样性，树对这样的数据并不敏感<br>大量缺失值<br>含有离群点<br>长尾分布<br>树模型对于这样的数据效果好</p>
 
       
 
@@ -1415,19 +1558,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">栈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1440,6 +1575,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">

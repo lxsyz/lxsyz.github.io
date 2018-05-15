@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>腾讯面试总结 | Amanda</title>
+  <title>聚类 | Amanda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="介绍项目在alphago中，使用CNN的好处个人理解：CNN可以将围棋棋盘看成是一个像素矩阵，白棋为1，黑棋为0。卷积神经网络结构上有局部连接、权值共享、次采样的特点，通过滤波器对棋盘进行特征提取，可以得到我们想要的棋面上的特征，也就是白棋黑棋的分布情况，相对于其他网络，CNN可以有效地减少参数数量，子采样层也能大大降低特征的维数，避免过拟合。（保持特征的不变性） xgboost怎么调参 设置一个">
+  <meta name="description" content="什么样的聚类效果好？聚类结果的簇内相似度高，且簇间相似度低 聚类性能度量外部指标：结果与某个参考模型作比较，如Jaccard系数，FM指数，Rand指数，内部指标：直接考察聚类结果，如DB指数，DI指数 计算距离闵可夫斯基距离和VDM距离结合，可以计算有序属性和无序属性 原型聚类算法简单K-means算法12345678910111213141516171819202122232425262728">
 <meta name="keywords" content="程序猿,ML,Java,Python,Programmer,Coder">
 <meta property="og:type" content="article">
-<meta property="og:title" content="腾讯面试总结">
-<meta property="og:url" content="http://lxsyz.github.io/2018/03/21/腾讯一面总结/index.html">
+<meta property="og:title" content="聚类">
+<meta property="og:url" content="http://lxsyz.github.io/2018/03/23/聚类/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="介绍项目在alphago中，使用CNN的好处个人理解：CNN可以将围棋棋盘看成是一个像素矩阵，白棋为1，黑棋为0。卷积神经网络结构上有局部连接、权值共享、次采样的特点，通过滤波器对棋盘进行特征提取，可以得到我们想要的棋面上的特征，也就是白棋黑棋的分布情况，相对于其他网络，CNN可以有效地减少参数数量，子采样层也能大大降低特征的维数，避免过拟合。（保持特征的不变性） xgboost怎么调参 设置一个">
-<meta property="og:image" content="http://lxsyz.github.io/images/paixu.png">
-<meta property="og:image" content="http://lxsyz.github.io/images/difference.png">
-<meta property="og:updated_time" content="2018-03-23T02:12:27.502Z">
+<meta property="og:description" content="什么样的聚类效果好？聚类结果的簇内相似度高，且簇间相似度低 聚类性能度量外部指标：结果与某个参考模型作比较，如Jaccard系数，FM指数，Rand指数，内部指标：直接考察聚类结果，如DB指数，DI指数 计算距离闵可夫斯基距离和VDM距离结合，可以计算有序属性和无序属性 原型聚类算法简单K-means算法12345678910111213141516171819202122232425262728">
+<meta property="og:updated_time" content="2018-03-31T02:03:05.316Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="腾讯面试总结">
-<meta name="twitter:description" content="介绍项目在alphago中，使用CNN的好处个人理解：CNN可以将围棋棋盘看成是一个像素矩阵，白棋为1，黑棋为0。卷积神经网络结构上有局部连接、权值共享、次采样的特点，通过滤波器对棋盘进行特征提取，可以得到我们想要的棋面上的特征，也就是白棋黑棋的分布情况，相对于其他网络，CNN可以有效地减少参数数量，子采样层也能大大降低特征的维数，避免过拟合。（保持特征的不变性） xgboost怎么调参 设置一个">
-<meta name="twitter:image" content="http://lxsyz.github.io/images/paixu.png">
+<meta name="twitter:title" content="聚类">
+<meta name="twitter:description" content="什么样的聚类效果好？聚类结果的簇内相似度高，且簇间相似度低 聚类性能度量外部指标：结果与某个参考模型作比较，如Jaccard系数，FM指数，Rand指数，内部指标：直接考察聚类结果，如DB指数，DI指数 计算距离闵可夫斯基距离和VDM距离结合，可以计算有序属性和无序属性 原型聚类算法简单K-means算法12345678910111213141516171819202122232425262728">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -155,54 +152,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-腾讯一面总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-聚类" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      腾讯面试总结
+      聚类
     </h1>
   
 
         
-        <a href="/2018/03/21/腾讯一面总结/" class="archive-article-date">
-  	<time datetime="2018-03-21T05:12:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-21</time>
+        <a href="/2018/03/23/聚类/" class="archive-article-date">
+  	<time datetime="2018-03-23T02:11:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="介绍项目"><a href="#介绍项目" class="headerlink" title="介绍项目"></a>介绍项目</h2><h2 id="在alphago中，使用CNN的好处"><a href="#在alphago中，使用CNN的好处" class="headerlink" title="在alphago中，使用CNN的好处"></a>在alphago中，使用CNN的好处</h2><p>个人理解：CNN可以将围棋棋盘看成是一个像素矩阵，白棋为1，黑棋为0。卷积神经网络结构上有局部连接、权值共享、次采样的特点，通过滤波器对棋盘进行特征提取，可以得到我们想要的棋面上的特征，也就是白棋黑棋的分布情况，相对于其他网络，CNN可以有效地减少参数数量，子采样层也能大大降低特征的维数，避免过拟合。（保持特征的不变性）</p>
-<h2 id="xgboost怎么调参"><a href="#xgboost怎么调参" class="headerlink" title="xgboost怎么调参"></a>xgboost怎么调参</h2><ol>
-<li>设置一个大的学习速率,其他值设定一个合适的初始值,通过gridsearchcv寻找合适的树的数目；</li>
-<li>再对树持有的参数进行调参，通过gridsearchcv寻找合适的max_depth</li>
-<li>寻找合适的min_child_weight, colsample_bytree, subsample等</li>
-<li>gamma（节点分裂的最小损失函数），越大越保守</li>
-<li>调整正则化系数，lambda</li>
-<li>逐步降低学习速率和增加树的数量</li>
-</ol>
-<h2 id="调参时遇到过拟合如何解决"><a href="#调参时遇到过拟合如何解决" class="headerlink" title="调参时遇到过拟合如何解决"></a>调参时遇到过拟合如何解决</h2><p>比赛时主要通过增大l2正则的lambda值来解决，以及调低树深度</p>
-<h2 id="进程进入内存后包括哪些信息"><a href="#进程进入内存后包括哪些信息" class="headerlink" title="进程进入内存后包括哪些信息"></a>进程进入内存后包括哪些信息</h2><p>文本段，数据，堆，栈</p>
-<h2 id="分页存储和分段存储"><a href="#分页存储和分段存储" class="headerlink" title="分页存储和分段存储"></a>分页存储和分段存储</h2><p>都采用离散分配，都通过地址映射实现地址变换<br>页面管理将程序的逻辑地址划分为固定的页，物理内存划分为固定大小的页框，优点没有外碎片，程序不必连续存放，便于改变程序占用空间的大小。<br>缺点：要求程序全部装入内存，没有足够的内存，就不能执行程序<br>段式：没有内碎片，外碎片可以通过内存紧缩来消除；便于实现内存共享，进程必须全部装入内存。</p>
-<h2 id="排序相关总结"><a href="#排序相关总结" class="headerlink" title="排序相关总结"></a>排序相关总结</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/paixu.png" alt=""></h2><h2 id="为什么做迁移学习，怎么做迁移学习"><a href="#为什么做迁移学习，怎么做迁移学习" class="headerlink" title="为什么做迁移学习，怎么做迁移学习"></a>为什么做迁移学习，怎么做迁移学习</h2><p>迁移学习：提取权重，迁移到其他的神经网络<br>预训练模型：前人为了解决类似问题所创造的模型，我们解决问题时不用从0开始训练，可以从类似问题中训练过的模型入手,从而减少所花费的时间</p>
-<h4 id="为什么做迁移学习"><a href="#为什么做迁移学习" class="headerlink" title="为什么做迁移学习"></a>为什么做迁移学习</h4><p>我们不必去花大量的时间去设计网络的结构，既然预训练的模型已经训练得很好，我们就不用在短时间内去修改大量的权重，往往只需要做微调（fine tune)就行了。</p>
-<h4 id="微调模型的方法"><a href="#微调模型的方法" class="headerlink" title="微调模型的方法"></a>微调模型的方法</h4><ol>
-<li>特征提取<br> 将输出层去掉，将剩下的网络当作一个特征提取机，从而应用到新的数据集中</li>
-<li>采用预训练模型的结构<br> 将所有权重随机化，然后依据自己的数据集去训练模型</li>
-<li>训练特定层，冻结其它层<br> 将模型起始的一些层权重保持不变，重新训练后面的层，得到新的权重。我们需要在这个过程尝试多次，找到适合的冻结层和重新训练的层的最佳搭配。<h4 id="迁移模型使用场景分析"><a href="#迁移模型使用场景分析" class="headerlink" title="迁移模型使用场景分析"></a>迁移模型使用场景分析</h4></li>
-<li>数据集小，相似度高<br> 将输出层改为符合我们问题情境的结构就好</li>
-<li>数据集小，相似度不高<br> 新数据集大小的不足，只能靠冻结预训练模型的前k层进行弥补，重新训练后面的n-k层，最后一层的输出也要改成我们想要的</li>
-<li>数据集大，相似度不高<br> 重新初始化权重，借用模型结构重新训练</li>
-<li>数据集大，数据相似度高<br> 保持模型的初始权重和结构不变，在新数据基础上训练</li>
-</ol>
-<h2 id="xgboost相对于传统gbdt的优点"><a href="#xgboost相对于传统gbdt的优点" class="headerlink" title="xgboost相对于传统gbdt的优点"></a>xgboost相对于传统gbdt的优点</h2><p><img src="/images/difference.png" alt=""></p>
-<h2 id="时序模型与非时序模型的区别"><a href="#时序模型与非时序模型的区别" class="headerlink" title="时序模型与非时序模型的区别"></a>时序模型与非时序模型的区别</h2><p>参考链接：<a href="https://www.quora.com/What-are-the-biggest-differences-between-time-series-and-non-time-series-regression" target="_blank" rel="external">https://www.quora.com/What-are-the-biggest-differences-between-time-series-and-non-time-series-regression</a><br>Short answer is time series analysis account for auto-correlation, that is next value in a time series is affected by earlier values in the time series<br>时间序列分析考虑自相关性（序列数据自身的相关性），下一个值会受到之前的值得影响<br>时序模型可以捕捉到这种隐藏的强非线性关系，并能够将它们用于预测未来</p>
-<h2 id="L1正则和L2正则"><a href="#L1正则和L2正则" class="headerlink" title="L1正则和L2正则"></a>L1正则和L2正则</h2><p>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择<br>L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合</p>
-<p>原理：为了解决过拟合问题，就要控制特征 n的数量，即让n最小化，即让W向量中的项的个数最小化。<br>所以求解结构风险最小化就是为了让经验风险和正则化都比较小，min(J+r(d))才有意义，L2范数让权重W的每个元素都很小但不等于0，参数小的模型抗扰动能力强。</p>
-<h2 id="树模型的好处"><a href="#树模型的好处" class="headerlink" title="树模型的好处"></a>树模型的好处</h2><p>数据是混合类型（类别型，连续型，二值），特征多样性，树对这样的数据并不敏感<br>大量缺失值<br>含有离群点<br>长尾分布<br>树模型对于这样的数据效果好</p>
+        <h2 id="什么样的聚类效果好？"><a href="#什么样的聚类效果好？" class="headerlink" title="什么样的聚类效果好？"></a>什么样的聚类效果好？</h2><p>聚类结果的簇内相似度高，且簇间相似度低</p>
+<h2 id="聚类性能度量"><a href="#聚类性能度量" class="headerlink" title="聚类性能度量"></a>聚类性能度量</h2><p>外部指标：结果与某个参考模型作比较，如Jaccard系数，FM指数，Rand指数，<br>内部指标：直接考察聚类结果，如DB指数，DI指数</p>
+<h2 id="计算距离"><a href="#计算距离" class="headerlink" title="计算距离"></a>计算距离</h2><p>闵可夫斯基距离和VDM距离结合，可以计算有序属性和无序属性</p>
+<h1 id="原型聚类算法"><a href="#原型聚类算法" class="headerlink" title="原型聚类算法"></a>原型聚类算法</h1><h2 id="简单K-means算法"><a href="#简单K-means算法" class="headerlink" title="简单K-means算法"></a>简单K-means算法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder,OneHotEncoder</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_k_sample</span><span class="params">(data, k)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    随机选择K个样本作为初始均值向量</span></div><div class="line"><span class="string">    """</span></div><div class="line">    n = np.shape(data)[<span class="number">1</span>] <span class="comment"># n个特征</span></div><div class="line">    m = np.shape(data)[<span class="number">0</span>]</div><div class="line">    centroids = np.zeros((k, n)) <span class="comment"># k个样本</span></div><div class="line">    temp = random.sample(range(m), k)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</div><div class="line">        centroids[i] = data[temp[i]]</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> centroids</div><div class="line"><span class="comment">## 数据加载过程省略</span></div><div class="line">my_data = data.iloc[:, <span class="number">0</span>:<span class="number">-1</span>]</div><div class="line">my_data = my_data.values</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_dist</span><span class="params">(vec1, vec2)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    计算欧式距离</span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="keyword">return</span> np.sqrt(np.sum(np.power(vec1 - vec2, <span class="number">2</span>)))</div><div class="line">m = np.shape(my_data)[<span class="number">0</span>]</div><div class="line">n = np.shape(my_data)[<span class="number">1</span>]</div><div class="line">k = <span class="number">3</span></div><div class="line">centroids = random_k_sample(my_data, k)</div><div class="line"></div><div class="line"><span class="comment"># 每个样本与选出来的样本向量计算距离，距离谁近就归为哪一类</span></div><div class="line">result = np.zeros((m, <span class="number">2</span>)) <span class="comment"># 存放样本类别，和到质心的距离</span></div><div class="line"></div><div class="line"><span class="comment"># 控制均值向量是否更新</span></div><div class="line">changed = <span class="keyword">True</span></div><div class="line"><span class="keyword">while</span> (changed):</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">        min_value = np.inf <span class="comment"># 最小距离</span></div><div class="line">        min_label = <span class="number">-1</span> <span class="comment"># 类别</span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</div><div class="line">            dist = calc_dist(my_data[i], centroids[j])</div><div class="line">            <span class="keyword">if</span> dist &lt; min_value:</div><div class="line">                min_value = dist</div><div class="line">                min_label = j</div><div class="line">        </div><div class="line">        result[i, :] = min_value, min_label</div><div class="line">        print(<span class="string">'iteration %d, %s'</span> % (i, result[i, :]))</div><div class="line">    </div><div class="line">    is_update = <span class="keyword">False</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</div><div class="line">        <span class="comment"># 计算新的均值向量</span></div><div class="line">        <span class="comment"># 对每一类的特征列求平均值</span></div><div class="line">        temp = np.mean(my_data[(result[:, <span class="number">1</span>] == j)], axis=<span class="number">0</span>)</div><div class="line">        </div><div class="line"><span class="comment">#         print(temp)</span></div><div class="line"><span class="comment">#         print(centroids[j])</span></div><div class="line"></div><div class="line">        <span class="comment"># 如果均值向量更新了，重新迭代</span></div><div class="line">        <span class="keyword">if</span> (centroids[j] != temp).any():</div><div class="line">            centroids[j] = temp</div><div class="line">            print(<span class="string">'update'</span>)</div><div class="line">            is_update = <span class="keyword">True</span></div><div class="line">    </div><div class="line">    <span class="keyword">if</span> is_update:</div><div class="line">        changed = <span class="keyword">True</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        changed = <span class="keyword">False</span></div><div class="line"></div><div class="line">data[<span class="string">'label'</span>] = result[:, <span class="number">1</span>]</div></pre></td></tr></table></figure>
+<h2 id="LVQ算法"><a href="#LVQ算法" class="headerlink" title="LVQ算法"></a>LVQ算法</h2><p>学习向量量化，随机选择有标记训练样本，找出距离最近的原型向量，根据两者的类别标记是否相同来对原型向量进行相应的更新（靠拢或者远离）。</p>
+<h2 id="高斯混合聚类"><a href="#高斯混合聚类" class="headerlink" title="高斯混合聚类"></a>高斯混合聚类</h2><p>初始化模型参数，计算各混合分布的后验概率，重新计算新均值向量，新协方差矩阵，新混合系数，不断迭代。</p>
+<h1 id="密度聚类算法"><a href="#密度聚类算法" class="headerlink" title="密度聚类算法"></a>密度聚类算法</h1><h2 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h2><p>簇：由密度可达关系导出的最大的密度相连样本集合。<br>根据个样本的伶域，确定核心对象集，随机选取一个核心对象，找到它密度可达的样本，生成第一个聚类簇，并将其从核心对象集中去除，再从更新后的集合中选取核心对象，直到核心对象集为空。</p>
+<h1 id="层次聚类算法"><a href="#层次聚类算法" class="headerlink" title="层次聚类算法"></a>层次聚类算法</h1><p>层次聚类试图在不同层次对数据集进行划分，形成树的聚类结构。<br>AGNES算法在树状图上的特定层次进行分割，得到相应的簇划分结果。</p>
 
       
 
@@ -224,18 +201,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/03/23/聚类/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/15/Leetcode/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          聚类
+          Leetcode
         
       </div>
     </a>
   
   
-    <a href="/2018/03/20/介绍SVM/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">介绍SVM</div>
+    <a href="/2018/03/21/腾讯一面总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">腾讯面试总结</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -263,7 +240,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="腾讯一面总结" data-title="腾讯面试总结" data-url="http://lxsyz.github.io/2018/03/21/腾讯一面总结/"></div>
+	<div class="ds-thread" data-thread-key="聚类" data-title="聚类" data-url="http://lxsyz.github.io/2018/03/23/聚类/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
