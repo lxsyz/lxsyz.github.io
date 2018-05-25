@@ -153,6 +153,176 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ubuntu上配置python踩的坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/25/ubuntu上配置python踩的坑/">ubuntu上配置python踩的坑</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/25/ubuntu上配置python踩的坑/" class="archive-article-date">
+  	<time datetime="2018-05-25T05:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。</p>
+<hr>
+<ol>
+<li>安装成功了numpy，却无法调用，ImportError<br> 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy就会报错，我的解决方法如下：<ul>
+<li>find / -name numpy 找到numpy所在的位置，结果发现我安装的numpy出现在了/usr/local/python2.7/lib/dist-packages路径下。</li>
+<li>rm -rf numpy 删除那个路径下的numpy相关文件</li>
+<li>sudo pip install numpy -t ../site-packages/ 重新安装numpy到site-packages路径下</li>
+<li>这样再import numpy就不会报importError了</li>
+</ul>
+</li>
+<li>numpy调用后提示undefined symbol: PyUnicodeUCS2_FromUnicode<ul>
+<li>这种情况只能重新编译python成4个unicode字节，切换至下载解压好的python目录</li>
+<li>sudo ./configure –enable-shared –enable-unicode=ucs4</li>
+<li>接着 sudo make install 安装</li>
+<li>安装成功后，再次调用numpy就不会有问题了。</li>
+</ul>
+</li>
+<li>python安装matplotlib错误<ul>
+<li>一开始遇到的错误是 matplotlib fatal error:Python.h:没有那个文件或目录。解决方法是需要先安装好Python的静态库和头文件，使用apt-get即可：sudo apt-get install python-dev</li>
+<li>之后在import时遇到了错误是 No module named bz2，详细情况可以参考<br><a href="https://stackoverflow.com/questions/8115280/importerror-no-module-named-bz2-for-python-2-7-2" target="_blank" rel="external">here</a>,我采用了其中的先安装libbz2-dev， sudo apt-get install libbz2-dev，再重新编译python，就可以了。</li>
+</ul>
+</li>
+</ol>
+<p>待续。。。。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/25/ubuntu上配置python踩的坑/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode-pro4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/16/leetcode-pro4/">leetcode_pro4</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/16/leetcode-pro4/" class="archive-article-date">
+  	<time datetime="2018-05-16T13:04:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/16/leetcode-pro4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Leetcode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1575,11 +1745,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1587,7 +1761,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1599,7 +1773,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1607,7 +1785,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
             
             <div class="clearfix"></div>
