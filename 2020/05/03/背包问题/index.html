@@ -6,20 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>Archives: 2016/9 | Amanda</title>
+  <title>背包问题 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="怕人询问，咽泪装欢">
-<meta name="keywords" content="程序猿,ML,Java,Python,Programmer,Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Amanda">
-<meta property="og:url" content="http://lxsyz.github.io/archives/2016/09/index.html">
+  <meta name="description" content="参考博客：https://www.cnblogs.com/jbelial/articles/2116074.html 01背包问题 01背包问题 有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。  用子问题定义状态：即$f[i][v]$表示前i件物品恰放入一个容量为v的背包可以获得的最大价值。则">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="背包问题">
+<meta property="og:url" content="http://lxsyz.github.io/2020/05/03/背包问题/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="怕人询问，咽泪装欢">
+<meta property="og:description" content="参考博客：https://www.cnblogs.com/jbelial/articles/2116074.html 01背包问题 01背包问题 有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。  用子问题定义状态：即$f[i][v]$表示前i件物品恰放入一个容量为v的背包可以获得的最大价值。则">
+<meta property="og:updated_time" content="2020-05-03T15:29:18.106Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Amanda">
-<meta name="twitter:description" content="怕人询问，咽泪装欢">
+<meta name="twitter:title" content="背包问题">
+<meta name="twitter:description" content="参考博客：https://www.cnblogs.com/jbelial/articles/2116074.html 01背包问题 01背包问题 有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。  用子问题定义状态：即$f[i][v]$表示前i件物品恰放入一个容量为v的背包可以获得的最大价值。则">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -172,65 +173,169 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-背包问题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2016/09/10/滑雪/" class="archive-article-date">
-        <time datetime="2016-09-10T13:52:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-10</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2016/09/10/滑雪/" target="_blank">滑雪</a>
   
+    <h1 class="article-title" itemprop="name">
+      背包问题
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/05/03/背包问题/" class="archive-article-date">
+        <time datetime="2020-05-03T15:16:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>参考博客：<a href="https://www.cnblogs.com/jbelial/articles/2116074.html" target="_blank" rel="external">https://www.cnblogs.com/jbelial/articles/2116074.html</a></p>
+<h4 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h4><blockquote>
+<p>01背包问题</p>
+<p>有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。</p>
+<p> 用子问题定义状态：即$f[i][v]$表示前i件物品恰放入一个容量为v的背包可以获得的最大价值。则其状态转移方程便是：$f[i][v]=max(f[i-1][v],f[i-1][v-c[i]]+w[i])$。</p>
+<p> “将前i件物品放入容量为v的背包中”这个子问题，若只考虑第i件物品的策略（放或不放），那么就可以转化为一个只牵扯前i-1件物品的问题。</p>
+<p> 如果不放第i件物品，那么问题就转化为“前i-1件物品放入容量为v的背包中”；如果放第i件物品，那么问题就转化为“前i-1件物品放入剩下的容量为v-c[i]的背包中”，此时能获得的最大价值就是$f [i-1][v-c[i]]$再加上通过放入第i件物品获得的价值w[i]。  </p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 根据公式得到的解法</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func1</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m; j++) &#123;</div><div class="line">            f[i][j] = f[i - <span class="number">1</span>][j]; <span class="comment">// 不选第i个商品</span></div><div class="line">            <span class="comment">// 选了第i个商品，体积小于当前总体积</span></div><div class="line">            <span class="keyword">if</span> (j &gt;= v[i]) f[i][j] = max(f[i][j], f[i - <span class="number">1</span>][j - v[i]] + w[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++) res=max(res, f[n][i]);</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</div><div class="line">    <span class="comment">// 优化空间复杂度</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = m; j &gt;= v[i]; j--) &#123;</div><div class="line">            <span class="comment">// if (j &gt;= v[i]) f[i][j] = max(f[i][j], f[i - 1][j - v[i]] + w[i]);</span></div><div class="line">            <span class="comment">// 计算f[i] 的时候，需要用到f[i-1]的状态</span></div><div class="line">            <span class="comment">// 顺序遍历时，f[j-v[i]]已经在之前计算过了，后续都是多次使用同一商品计算；</span></div><div class="line">            <span class="comment">// 逆序遍历时，f[j-v[i]]的状态绝对没有被计算过,一定是f[i-1]的状态</span></div><div class="line">            f[j] = max(f[j], f[j - v[i]] + w[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 如果要计算恰好V为m的价值，则在初始化时 f[0]=0。其余f[i]=-INF</span></div><div class="line">    <span class="comment">// 保证所有状态都是从f[0]转移过来</span></div><div class="line">    <span class="keyword">int</span> res = f[m];</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h4><blockquote>
+<p>完全背包问题</p>
+<p>有N种物品和一个容量为V的背包，每种物品都有无限件可用。第i种物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。</p>
+<p>用子问题定义状态：即$f[i][v]$表示前i件物品恰放入一个容量为v的背包可以获得的最大价值。则其状态转移方程便是：$f[i][v]=max(f[i-1][v-k<em>c[i]]+k</em>w[i]|0&lt;=k*c[i]&lt;= v)$。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">completePack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</div><div class="line">    <span class="comment">// f[i] 表示总体积为i的情况下，最大价值是多少</span></div><div class="line">    <span class="comment">// res = max(f[0...m])</span></div><div class="line">    <span class="comment">/*</span></div><div class="line"><span class="comment">     for (int j = m; j &gt;= v[i]; j--) &#123;</span></div><div class="line"><span class="comment">        for (int k = 0; k*v[i]&lt;=j;k++) &#123;</span></div><div class="line"><span class="comment">            // 此时计算的都不包含第i个物品，枚举选择k个,更新每一种的状态</span></div><div class="line"><span class="comment">            f[j] = max(f[j], f[j - k*v[i]] + k*w[i]);</span></div><div class="line"><span class="comment">        &#125;</span></div><div class="line"><span class="comment">    &#125;</span></div><div class="line"><span class="comment">     */</span></div><div class="line"></div><div class="line">    <span class="comment">// 优化空间复杂度</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++) &#123;</div><div class="line">        <span class="comment">// 逆序遍历，每个物品只使用一次</span></div><div class="line">        <span class="comment">// 顺序遍历，在计算f[v[i]...m]时，f已经更新了，使用多个v[i]时的价值状态</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = v[i]; j &lt;= m; j++) &#123;</div><div class="line">            f[j] = max(f[j], f[j - v[i]] + w[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> res = f[m];</div><div class="line">    <span class="keyword">return</span> res;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="多重背包问题-I"><a href="#多重背包问题-I" class="headerlink" title="多重背包问题 I"></a>多重背包问题 I</h4><blockquote>
+<p>多重背包问题</p>
+<p>有N种物品和一个容量为V的背包。第i种物品最多有n[i]件可用，每件费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。</p>
+<p>用子问题定义状态：即$f[i][v]$表示前i件物品恰放入一个容量为v的背包可以获得的最大价值。则其状态转移方程便是：$f[i][v]=max(f[i-1][v-k<em>c[i]]+ k</em>w[i]|0&lt;=k&lt;=n[i])$。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">MultiPack</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</div><div class="line">    <span class="comment">// 多重背包问题</span></div><div class="line">    <span class="comment">// 每个商品可以选s[i]个</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = m;j &gt;= v[i];j--) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>;k&lt;=s[i] &amp;&amp; k*v[i]&lt;=j;k++) &#123;</div><div class="line">                f[j] = max(f[j], f[j-k*v[i]] + k*w[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度搜索</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/02/逆序对/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">逆序对</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+<div id="SOHUCS" sid="背包问题" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -271,8 +376,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
