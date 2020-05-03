@@ -179,6 +179,191 @@
             
 
   
+    <article id="post-逆序对" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/02/逆序对/" target="_blank">逆序对</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/02/逆序对/" class="archive-article-date">
+        <time datetime="2020-05-02T09:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof" target="_blank" rel="external">https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof</a></p>
+<p>示例 1:</p>
+<blockquote>
+<p>输入: [7,5,6,4]<br>输出: 5</p>
+</blockquote>
+    
+    <a class="article-more-a" href="/2020/05/02/逆序对/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/02/逆序对/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode-硬币问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/04/23/leetcode-硬币问题/" target="_blank">leetcode-硬币问题</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/04/23/leetcode-硬币问题/" class="archive-article-date">
+        <time datetime="2020-04-23T12:44:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-23</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>链接：<a href="https://leetcode-cn.com/problems/coin-lcci" target="_blank" rel="external">https://leetcode-cn.com/problems/coin-lcci</a></p>
+<p>硬币。给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)</p>
+<p>示例1:</p>
+<blockquote>
+<p> 输入: n = 5<br> 输出：2<br> 解释: 有两种方式可以凑成总金额:<br>5=5<br>5=1+1+1+1+1</p>
+</blockquote>
+<p>示例2:</p>
+<blockquote>
+<p> 输入: n = 10<br> 输出：4<br> 解释: 有四种方式可以凑成总金额:<br>10=10<br>10=5+5<br>10=5+1+1+1+1+1<br>10=1+1+1+1+1+1+1+1+1+1</p>
+</blockquote>
+<h4 id="解决思路："><a href="#解决思路：" class="headerlink" title="解决思路："></a>解决思路：</h4><h5 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h5><p>定义 f(i, v) 表示前 i 种硬币构成面值为 v 的方案数，用 c[i] 表示第 i 种硬币面值</p>
+<p>则<br>$$<br>f(i,v) = f(i-1, v-0 <em> c[i]) + f(i-1, v-1</em>c[i]) + … + f(i-1, v-k<em>c[i])<br>$$<br>其中<br>$$<br>k&lt;= v/c[i]<br>$$<br> 举例说明：  c={1,5,10,25}, 当i=4时，c[i]=25, 如果我们求前4种硬币构成50的方案数，则<br>$$<br>f(4, 50) = f(3, 50) + f(3, 50-1</em>25) + f(3, 50-2<em>25)<br>$$<br>优化<br>$$<br>f(i, v-c[i]) = f(i-1, v-c[i]) + f(i-1, v-2</em>c[i]) + … + f(i-1, v-k*c[i])<br>$$<br>得到化简后的方程：<br>$$<br>f(i,v) = f(i-1, v) + f(i, v-c[i])<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">waysToChange</span><span class="params">(self, n)</span>:</span></div><div class="line">		mod = <span class="number">10</span> ** <span class="number">9</span> + <span class="number">7</span></div><div class="line">		coins = [<span class="number">25</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">1</span>]</div><div class="line">		</div><div class="line">		f = [<span class="number">1</span>] + [<span class="number">0</span>] * n</div><div class="line">		<span class="keyword">for</span> coin <span class="keyword">in</span> coins:</div><div class="line">			<span class="keyword">for</span> i <span class="keyword">in</span> range(coin, n+<span class="number">1</span>):</div><div class="line">				f[i] += f[i - coin]</div><div class="line">		<span class="keyword">return</span> f[n] % mod</div></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/04/23/leetcode-硬币问题/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode-优美子数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2318,7 +2503,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+                <a href="javascript:void(0)" class="js-tag color1">hobby</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2326,7 +2511,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hobby</a>
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2342,19 +2527,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2414,7 +2599,7 @@
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">怕人询问，眼泪装欢</div>
+  	  		<div class="aboutme-wrap" id="aboutme">怕人询问，咽泪装欢</div>
   	  	
     	</section>
     
