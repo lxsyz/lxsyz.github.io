@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>近期学习 | Amanda</title>
+  <title>数组 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。 Numpy操作这里主要说说可能用的比较少的操作：Numpy.flipud() 上下方向旋转数组12345678import numpy as np&amp;gt;&amp;gt;&amp;gt;np.flipud([[1,2,3],[4,5,6],[7,8,9]])array([[7, 8, 9],        [4, 5, 6],        [1, 2">
-<meta name="keywords" content="深度学习">
+  <meta name="description" content="下一个排列 实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。 如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。 必须原地修改，只允许使用额外常数空间。 以下是一些例子，输入位于左侧列，其相应输出位于右侧列。1,2,3 → 1,3,23,2,1 → 1,2,31,1,5 → 1,5,1  12345678910111213141516171">
+<meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="近期学习">
-<meta property="og:url" content="http://lxsyz.github.io/2017/09/24/近期学习/index.html">
+<meta property="og:title" content="数组">
+<meta property="og:url" content="http://lxsyz.github.io/2020/05/11/数组/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。 Numpy操作这里主要说说可能用的比较少的操作：Numpy.flipud() 上下方向旋转数组12345678import numpy as np&amp;gt;&amp;gt;&amp;gt;np.flipud([[1,2,3],[4,5,6],[7,8,9]])array([[7, 8, 9],        [4, 5, 6],        [1, 2">
-<meta property="og:updated_time" content="2018-01-04T07:28:32.237Z">
+<meta property="og:description" content="下一个排列 实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。 如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。 必须原地修改，只允许使用额外常数空间。 以下是一些例子，输入位于左侧列，其相应输出位于右侧列。1,2,3 → 1,3,23,2,1 → 1,2,31,1,5 → 1,5,1  12345678910111213141516171">
+<meta property="og:updated_time" content="2020-05-11T14:08:50.001Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="近期学习">
-<meta name="twitter:description" content="这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。 Numpy操作这里主要说说可能用的比较少的操作：Numpy.flipud() 上下方向旋转数组12345678import numpy as np&amp;gt;&amp;gt;&amp;gt;np.flipud([[1,2,3],[4,5,6],[7,8,9]])array([[7, 8, 9],        [4, 5, 6],        [1, 2">
+<meta name="twitter:title" content="数组">
+<meta name="twitter:description" content="下一个排列 实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。 如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。 必须原地修改，只允许使用额外常数空间。 以下是一些例子，输入位于左侧列，其相应输出位于右侧列。1,2,3 → 1,3,23,2,1 → 1,2,31,1,5 → 1,5,1  12345678910111213141516171">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -173,14 +173,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-近期学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-数组" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      近期学习
+      数组
     </h1>
   
 
@@ -192,8 +192,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2017/09/24/近期学习/" class="archive-article-date">
-        <time datetime="2017-09-24T01:14:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
+<a href="/2020/05/11/数组/" class="archive-article-date">
+        <time datetime="2020-05-11T14:07:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
 </a>
 
   
@@ -202,32 +202,13 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>这段时间学习了很多有关图像识别和分类的知识，在此做一下总结。</p>
-<h2 id="Numpy操作"><a href="#Numpy操作" class="headerlink" title="Numpy操作"></a>Numpy操作</h2><p>这里主要说说可能用的比较少的操作：<br><br>Numpy.flipud() 上下方向旋转数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]])</div><div class="line">array([[<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</div><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line">array([[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</div><div class="line">        [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</div></pre></td></tr></table></figure></p>
-<p>Numpy.fliplr() 左右方向旋转数组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;np.flipud([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line">array([[<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>],</div><div class="line">        [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>Numpy.cumsum()累加求和,可以传入相应的唯度<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>x = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.cumsum(x)</div><div class="line">array([ <span class="number">1</span>,  <span class="number">3</span>,  <span class="number">6</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">21</span>, <span class="number">28</span>, <span class="number">36</span>, <span class="number">45</span>], dtype=int32)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.cumsum(x,axis=<span class="number">1</span>)</div><div class="line">array([[ <span class="number">1</span>,  <span class="number">3</span>,  <span class="number">6</span>],</div><div class="line">       [ <span class="number">4</span>,  <span class="number">9</span>, <span class="number">15</span>],</div><div class="line">       [ <span class="number">7</span>, <span class="number">15</span>, <span class="number">24</span>]], dtype=int32)</div></pre></td></tr></table></figure></p>
-<p>Numpy.meshgrid(x,y) 生成二维网格型数据，行数为x中元素总数，列数为y中元素总数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = [[<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>],[<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>]]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>[XX,YY] = np.meshgrid(x,y)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>XX</div><div class="line">array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>],</div><div class="line">       [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>YY</div><div class="line">array([[<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>],</div><div class="line">       [<span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>, <span class="number">11</span>],</div><div class="line">       [<span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">12</span>],</div><div class="line">       [<span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">13</span>],</div><div class="line">       [<span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">14</span>],</div><div class="line">       [<span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>, <span class="number">15</span>]])</div></pre></td></tr></table></figure></p>
-<p>Numpy.conj 求共轭值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.conj(<span class="number">1</span>+<span class="number">2j</span>)</div><div class="line">    <span class="number">1</span><span class="number">-2j</span></div></pre></td></tr></table></figure></p>
-<p>Numpy.linalg.norm 求范数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=<span class="number">1</span>)</div><div class="line"><span class="number">7.0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=<span class="number">2</span>)</div><div class="line"><span class="number">5.0</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linalg.norm([<span class="number">3</span>,<span class="number">4</span>],ord=np.inf)</div><div class="line"><span class="number">4.0</span></div></pre></td></tr></table></figure></p>
-<h2 id="Malplotlib-绘图"><a href="#Malplotlib-绘图" class="headerlink" title="Malplotlib 绘图"></a>Malplotlib 绘图</h2><p>可以参考画廊地址，结合里面的例子进行自己的修改：<br><a href="http://matplotlib.org/gallery.html" target="_blank" rel="external">画廊</a></p>
-<h2 id="Xavier初始化"><a href="#Xavier初始化" class="headerlink" title="Xavier初始化"></a>Xavier初始化</h2><p>目的：让每一层输出的方差尽量相等，保证信息的流动<br><a href="http://blog.csdn.net/shuzfan/article/details/51338178" target="_blank" rel="external">可参考这一篇博文</a></p>
-<h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><ul>
-<li>引入非线性激活函数的好处：<br>如果使用线性，那么输出都是输入的线性组合，这种情况无法逼近任意函数，与没有隐藏层的效果相当</li>
-<li>引入Relu的好处：<ol>
-<li>sigmoid函数用的指数运算，求导涉及除法会增加计算量</li>
-<li>在sigmoid函数接近饱和区时，梯度下降会非常缓慢，导数趋于0。</li>
-<li>relu使一部分神经元输出为0，这样可以缓解过拟合的问题</li>
-</ol>
-</li>
-<li>sigmoid函数缺点：<br>梯度消失： 计算输出层loss，以导数形式向上一层传递，修正参数，sigmoid函数常会导致导数为0，从而无法更新参数，优化神经网络。<br>输出不是zero-centered: 收敛速度减慢（待续）<br>运算耗时</li>
-<li>Relu的缺点：<br>输出不是zero-centered<br>某些神经元可能永远不会被激活，相应参数不会被修改，使用Xavier初始化方法可以解决因learning rate太高引起的无法激活的现象。<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2>  主要起到分类器的作用，可由卷积操作实现，目前更多是使用全局平均池化的方式来替代全连接层。<br>  使用卷积层实现全连接层的好处：可以让卷积网络在输入图片上滑动，得到每个区域的输出，突破尺寸限制。<h2 id="滤波器总结"><a href="#滤波器总结" class="headerlink" title="滤波器总结"></a>滤波器总结</h2></li>
-<li>滤波器所有元素之和等于1时，图像处理后亮度保持不变，大于1时图像更亮，小于1图像变暗</li>
-<li>把数值尽力控制在0-255之间，负数取绝对值处理</li>
-<li>滤波器的大小应该是一个奇数<br>使用滤波器我们可以实现很多的图像处理操作，例如锐化，边缘检测，浮雕，模糊等<br>例如锐化和边缘检测： 将卷积核周边值取负，中心取正，突出中心，可以完成<h2 id="Tensorflow简单调试"><a href="#Tensorflow简单调试" class="headerlink" title="Tensorflow简单调试"></a>Tensorflow简单调试</h2>使用tfdbg进行调试<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -m tensorflow.python.debug.examples.debug_minist --debug</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>进入调试状态。常用指令：<br>run 运行代码<br>li 显示变量的shape和值<br>pt 输出变量值<br>run -f has_inf_or_nan 发现nan值变量<br><br><br>学习过程中，接触了很多经典的图像处理神经网路，例如AlexNet,GoogleNet,Overfeat等<br>有几篇写的不错的博客如下：<br><a href="http://blog.csdn.net/hjimce/article/details/50187881" target="_blank" rel="external">Overfeat</a><br><a href="http://blog.csdn.net/liumaolincycle/article/details/50496499" target="_blank" rel="external">AlexNet论文</a><br><a href="http://blog.csdn.net/u014088052/article/details/50898842" target="_blank" rel="external">AlexNet算法体系</a></p>
+    <h4 id="下一个排列"><a href="#下一个排列" class="headerlink" title="下一个排列"></a>下一个排列</h4><blockquote>
+<p>实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。</p>
+<p>如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。</p>
+<p>必须原地修改，只允许使用额外常数空间。</p>
+<p>以下是一些例子，输入位于左侧列，其相应输出位于右侧列。<br>1,2,3 → 1,3,2<br>3,2,1 → 1,2,3<br>1,1,5 → 1,5,1</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nextPermutation</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.length==<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="comment">// 从后往前扫描，相邻的如果比它大，记录下这个位置</span></div><div class="line">        <span class="keyword">int</span> i = nums.length-<span class="number">2</span>;</div><div class="line">        <span class="keyword">for</span> (;i&gt;=<span class="number">0</span>;i--) &#123;</div><div class="line">            <span class="keyword">if</span> (nums[i] &lt; nums[i+<span class="number">1</span>]) &#123;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 从后往前扫描，找到比中间小的数更大的数，交换</span></div><div class="line">        <span class="comment">// 最后，将以该数分界的后续数字升序排列</span></div><div class="line">        <span class="keyword">if</span> (i&gt;=<span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = nums.length-<span class="number">1</span>;j&gt;i;j--) &#123;</div><div class="line">                <span class="keyword">if</span> (nums[j] &gt; nums[i]) &#123;</div><div class="line">                    swap(nums, i, j);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> j = i+<span class="number">1</span>;</div><div class="line">        <span class="keyword">int</span> k = nums.length-<span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(j &lt; k) &#123;</div><div class="line">            swap(nums, j, k);</div><div class="line">            j++;</div><div class="line">            k--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> temp = nums[i];</div><div class="line">        nums[i] = nums[j];</div><div class="line">        nums[j]=temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
     
 
@@ -276,7 +257,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -295,18 +276,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/09/26/概率论/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          python实现概率分布
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/09/String介绍/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">String介绍</div>
+    <a href="/2020/05/05/回溯/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">回溯</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -333,7 +305,7 @@
 
 
 
-<div id="SOHUCS" sid="近期学习" ></div> 
+<div id="SOHUCS" sid="数组" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
