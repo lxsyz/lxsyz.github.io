@@ -179,6 +179,178 @@
             
 
   
+    <article id="post-非root用户安装tmux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/17/非root用户安装tmux/" target="_blank">非root用户安装tmux</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/17/非root用户安装tmux/" class="archive-article-date">
+        <time datetime="2020-05-17T12:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash"> Script <span class="keyword">for</span> installing tmux on systems <span class="built_in">where</span> you don<span class="string">'t have root access.</span></span></div><div class="line"><span class="meta">#</span><span class="bash"> tmux will be installed <span class="keyword">in</span> <span class="variable">$HOME</span>/<span class="built_in">local</span>/bin.</span></div><div class="line"><span class="meta">#</span><span class="bash"> It<span class="string">'s assumed that wget and a C/C++ compiler are installed.</span></span></div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">exit</span> on error</span></div><div class="line">set -e</div><div class="line"> </div><div class="line">TMUX_VERSION=2.2</div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash"> create our directories</span></div><div class="line">mkdir -p $HOME/local $HOME/tmux_tmp</div><div class="line">cd $HOME/tmux_tmp</div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash"> download <span class="built_in">source</span> files <span class="keyword">for</span> tmux, libevent, and ncurses</span></div><div class="line">wget https://github.com/tmux/tmux/releases/download/2.2/tmux-2.2.tar.gz</div><div class="line">wget https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz</div><div class="line">wget http://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz</div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash"> extract files, configure, and compile</span></div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></div><div class="line"><span class="meta">#</span><span class="bash"> libevent <span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></div><div class="line">tar xvzf libevent-2.0.22-stable.tar.gz</div><div class="line">cd libevent-2.0.22-stable</div><div class="line">./configure --prefix=$HOME/local --disable-shared</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></div><div class="line"><span class="meta">#</span><span class="bash"> ncurses <span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></div><div class="line">tar xvzf ncurses-6.0.tar.gz</div><div class="line">cd ncurses-6.0</div><div class="line">./configure --prefix=$HOME/local</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></div><div class="line"><span class="meta">#</span><span class="bash"> tmux <span class="comment">#</span></span></div><div class="line"><span class="meta">#</span><span class="bash"><span class="comment">###########</span></span></div><div class="line">tar xvzf tmux-$&#123;TMUX_VERSION&#125;.tar.gz</div><div class="line">cd tmux-$&#123;TMUX_VERSION&#125;</div><div class="line">./configure CFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-L$HOME/local/lib -L$HOME/local/include/ncurses -L$HOME/local/include"</div><div class="line">CPPFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-static -L$HOME/local/include -L$HOME/local/include/ncurses -L$HOME/local/lib" make</div><div class="line">cp tmux $HOME/local/bin</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash"> cleanup</span></div><div class="line">rm -rf $HOME/tmux_tmp</div><div class="line"> </div><div class="line">echo "$HOME/local/bin/tmux is now available. You can optionally add $HOME/local/bin to your PATH."</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash">环境变量设置</span></div><div class="line"><span class="meta">#</span><span class="bash">将下面的语句添加到.bashrc中</span></div><div class="line">export PATH=$PATH:$HOME/local/bin</div><div class="line"> </div><div class="line"><span class="meta">#</span><span class="bash">重载环境</span></div><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/17/非root用户安装tmux/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-data2document" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/13/data2document/" target="_blank">data2document</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/13/data2document/" class="archive-article-date">
+        <time datetime="2020-05-13T02:14:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h4><p>每个记录包含四个特征，$r_{j,1}$ 表示type;</p>
+<p>输出是一篇文档，包含$y$ 个单词</p>
+<p><img src="https://pic2.zhimg.com/80/v2-bf3bb5b880a21f0ae6157b9d348bc7bd_720w.jpg" alt="img"></p>
+<p>整体过程包括两步，1：做内容选择得到content_plan,  2：输入content_plan, 输出文本</p>
+<h4 id="Record-Encoder"><a href="#Record-Encoder" class="headerlink" title="Record Encoder"></a>Record Encoder</h4><p>MLP+relu获取每个记录的向量表示</p>
+<p><img src="C:\Users\SYZ\AppData\Roaming\Typora\typora-user-images\image-20200513201437468.png" alt="image-20200513201437468"></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/13/data2document/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2781,6 +2953,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hobby</a>
               </li>
              
@@ -2793,7 +2969,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2801,11 +2977,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2813,15 +2985,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
             
             <div class="clearfix"></div>

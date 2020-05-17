@@ -6,21 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>滑雪 | Amanda</title>
+  <title>data2document | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &amp;lt;iostream&amp;gt;#include &amp;lt;stdlib.h&amp;gt;using namespace std;int m,n;	//矩阵行列int matrix[100][100];int skiing (int">
-<meta name="keywords" content="深度搜索">
+  <meta name="description" content="数据格式每个记录包含四个特征，$r_{j,1}$ 表示type; 输出是一篇文档，包含$y$ 个单词  整体过程包括两步，1：做内容选择得到content_plan,  2：输入content_plan, 输出文本 Record EncoderMLP+relu获取每个记录的向量表示">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="滑雪">
-<meta property="og:url" content="http://lxsyz.github.io/2016/09/10/滑雪/index.html">
+<meta property="og:title" content="data2document">
+<meta property="og:url" content="http://lxsyz.github.io/2020/05/13/data2document/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &amp;lt;iostream&amp;gt;#include &amp;lt;stdlib.h&amp;gt;using namespace std;int m,n;	//矩阵行列int matrix[100][100];int skiing (int">
-<meta property="og:updated_time" content="2016-09-12T15:19:52.751Z">
+<meta property="og:description" content="数据格式每个记录包含四个特征，$r_{j,1}$ 表示type; 输出是一篇文档，包含$y$ 个单词  整体过程包括两步，1：做内容选择得到content_plan,  2：输入content_plan, 输出文本 Record EncoderMLP+relu获取每个记录的向量表示">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-bf3bb5b880a21f0ae6157b9d348bc7bd_720w.jpg">
+<meta property="og:image" content="c:/Users/SYZ/AppData/Roaming/Typora/typora-user-images/image-20200513201437468.png">
+<meta property="og:updated_time" content="2020-05-14T03:56:54.972Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="滑雪">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &amp;lt;iostream&amp;gt;#include &amp;lt;stdlib.h&amp;gt;using namespace std;int m,n;	//矩阵行列int matrix[100][100];int skiing (int">
+<meta name="twitter:title" content="data2document">
+<meta name="twitter:description" content="数据格式每个记录包含四个特征，$r_{j,1}$ 表示type; 输出是一篇文档，包含$y$ 个单词  整体过程包括两步，1：做内容选择得到content_plan,  2：输入content_plan, 输出文本 Record EncoderMLP+relu获取每个记录的向量表示">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-bf3bb5b880a21f0ae6157b9d348bc7bd_720w.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -173,14 +176,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-滑雪" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-data2document" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      滑雪
+      data2document
     </h1>
   
 
@@ -192,8 +195,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2016/09/10/滑雪/" class="archive-article-date">
-        <time datetime="2016-09-10T13:52:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-10</time>
+<a href="/2020/05/13/data2document/" class="archive-article-date">
+        <time datetime="2020-05-13T02:14:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
 </a>
 
   
@@ -202,7 +205,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> m,n;	<span class="comment">//矩阵行列</span></div><div class="line"><span class="keyword">int</span> matrix[<span class="number">100</span>][<span class="number">100</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">skiing</span> <span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">	<span class="comment">//方向搜索</span></div><div class="line">	<span class="keyword">int</span> forward_x[<span class="number">4</span>] = &#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</div><div class="line">	<span class="keyword">int</span> forward_y[<span class="number">4</span>] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">1</span>&#125;;</div><div class="line">	<span class="keyword">int</span> max = <span class="number">0</span>,xx,yy;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">4</span>;i++) &#123;</div><div class="line">		xx = x + forward_x[i];</div><div class="line">		yy = y + forward_y[i];</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (xx &gt;= <span class="number">0</span> &amp;&amp; xx &lt;= n &amp;&amp; yy &gt;= <span class="number">0</span> &amp;&amp; yy &lt;= m) &#123;</div><div class="line">			<span class="keyword">if</span> (matrix[x][y] &gt; matrix[xx][yy]) &#123;</div><div class="line">				<span class="keyword">int</span> temp = skiing(xx,yy) + <span class="number">1</span>;</div><div class="line">				<span class="keyword">if</span> (temp &gt; max) max = temp;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> max;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; m;i++) &#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; n;j++) &#123;</div><div class="line">			<span class="built_in">cin</span> &gt;&gt; matrix[i][j];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> mm = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; m;i++) &#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; n;j++) &#123;</div><div class="line">			mm = max(skiing(i,j),mm);</div><div class="line">		&#125; </div><div class="line">	&#125;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; mm &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line"></div><div class="line">	system(<span class="string">"pause"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+    <h4 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h4><p>每个记录包含四个特征，$r_{j,1}$ 表示type;</p>
+<p>输出是一篇文档，包含$y$ 个单词</p>
+<p><img src="https://pic2.zhimg.com/80/v2-bf3bb5b880a21f0ae6157b9d348bc7bd_720w.jpg" alt="img"></p>
+<p>整体过程包括两步，1：做内容选择得到content_plan,  2：输入content_plan, 输出文本</p>
+<h4 id="Record-Encoder"><a href="#Record-Encoder" class="headerlink" title="Record Encoder"></a>Record Encoder</h4><p>MLP+relu获取每个记录的向量表示</p>
+<p><img src="C:\Users\SYZ\AppData\Roaming\Typora\typora-user-images\image-20200513201437468.png" alt="image-20200513201437468"></p>
 
     
 
@@ -251,7 +259,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度搜索</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
         		</li>
       		
 		</ul>
@@ -270,18 +278,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/01/21/重建二叉树/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/05/17/非root用户安装tmux/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          重建二叉树
+          非root用户安装tmux
         
       </div>
     </a>
   
   
-    <a href="/2016/08/21/栈的操作/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">栈的操作</div>
+    <a href="/2020/05/11/数组/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数组</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -308,7 +316,7 @@
 
 
 
-<div id="SOHUCS" sid="滑雪" ></div> 
+<div id="SOHUCS" sid="data2document" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
