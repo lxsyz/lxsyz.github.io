@@ -6,21 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>回溯 | Amanda</title>
+  <title>Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="回溯系列回溯算法问题的解决方案大都类似。从下面三个方面入手：  路径：已经做出的选择 选择列表 终止条件  回溯算法的框架大致如下： 12345678910res = list()def backtrack(路径， 选择列表):	if 满足终止条件:		res.append(路径)		return		for 选择 in 选择列表:		选择		backtrack(路径，选择列表)		撤销选择 下面看">
-<meta name="keywords" content="leetcode">
+  <meta name="description" content="Mac 安装应用踩坑1. 图床配置图床可以使用PicGo加Github的方式，不过这种方式生成的图片链接可能无法直接访问，可以通过修改hosts解决，先通过DNS工具获取到指定域名的ip，再将ip和域名添加到hosts中就可以了。 PicGo+Github配置的方式可以参考下面链接： https://www.jianshu.com/p/d51258ef5484 2. rzsz安装参考这个链接可以通">
+<meta name="keywords" content="程序猿,ML,Java,Python,Programmer,Coder">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回溯">
-<meta property="og:url" content="http://lxsyz.github.io/2020/05/05/回溯/index.html">
+<meta property="og:title" content="Amanda">
+<meta property="og:url" content="http://lxsyz.github.io/2020/05/31/Mac 安装应用踩坑/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="回溯系列回溯算法问题的解决方案大都类似。从下面三个方面入手：  路径：已经做出的选择 选择列表 终止条件  回溯算法的框架大致如下： 12345678910res = list()def backtrack(路径， 选择列表):	if 满足终止条件:		res.append(路径)		return		for 选择 in 选择列表:		选择		backtrack(路径，选择列表)		撤销选择 下面看">
-<meta property="og:updated_time" content="2020-05-11T01:13:38.198Z">
+<meta property="og:description" content="Mac 安装应用踩坑1. 图床配置图床可以使用PicGo加Github的方式，不过这种方式生成的图片链接可能无法直接访问，可以通过修改hosts解决，先通过DNS工具获取到指定域名的ip，再将ip和域名添加到hosts中就可以了。 PicGo+Github配置的方式可以参考下面链接： https://www.jianshu.com/p/d51258ef5484 2. rzsz安装参考这个链接可以通">
+<meta property="og:image" content="https://raw.githubusercontent.com/lxsyz/picture/master/img/20200531223115.png">
+<meta property="og:updated_time" content="2020-05-31T14:59:42.374Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="回溯">
-<meta name="twitter:description" content="回溯系列回溯算法问题的解决方案大都类似。从下面三个方面入手：  路径：已经做出的选择 选择列表 终止条件  回溯算法的框架大致如下： 12345678910res = list()def backtrack(路径， 选择列表):	if 满足终止条件:		res.append(路径)		return		for 选择 in 选择列表:		选择		backtrack(路径，选择列表)		撤销选择 下面看">
+<meta name="twitter:title" content="Amanda">
+<meta name="twitter:description" content="Mac 安装应用踩坑1. 图床配置图床可以使用PicGo加Github的方式，不过这种方式生成的图片链接可能无法直接访问，可以通过修改hosts解决，先通过DNS工具获取到指定域名的ip，再将ip和域名添加到hosts中就可以了。 PicGo+Github配置的方式可以参考下面链接： https://www.jianshu.com/p/d51258ef5484 2. rzsz安装参考这个链接可以通">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/lxsyz/picture/master/img/20200531223115.png">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -173,76 +175,28 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-回溯" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Mac 安装应用踩坑" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-  
-  
-    <h1 class="article-title" itemprop="name">
-      回溯
-    </h1>
-  
-
-
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2020/05/05/回溯/" class="archive-article-date">
-        <time datetime="2020-05-05T02:15:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
-
-  
-  
-  </header>
-  
   <div class="article-entry" itemprop="articleBody">
     
-    <h5 id="回溯系列"><a href="#回溯系列" class="headerlink" title="回溯系列"></a>回溯系列</h5><p>回溯算法问题的解决方案大都类似。从下面三个方面入手：</p>
-<ol>
-<li>路径：已经做出的选择</li>
-<li>选择列表</li>
-<li>终止条件</li>
-</ol>
-<p>回溯算法的框架大致如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">res = list()</div><div class="line">def backtrack(路径， 选择列表):</div><div class="line">	if 满足终止条件:</div><div class="line">		res.append(路径)</div><div class="line">		return</div><div class="line">	</div><div class="line">	for 选择 in 选择列表:</div><div class="line">		选择</div><div class="line">		backtrack(路径，选择列表)</div><div class="line">		撤销选择</div></pre></td></tr></table></figure>
-<p>下面看一系列题目</p>
-<a id="more"></a>
-<p>[TOC]</p>
-<h4 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h4><blockquote>
-<p>给定一个 <strong>没有重复</strong> 数字的序列，返回其所有可能的全排列。</p>
-</blockquote>
-<ol>
-<li>路径：逐个选择数字</li>
-<li>选择列表：所有的数字</li>
-<li>终止条件：每个数字都选到了</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">	List&lt;List&lt;Integer&gt;&gt; res = new ArrayList&lt;&gt;();</div><div class="line">    public List&lt;List&lt;Integer&gt;&gt; permute(int[] nums) &#123;</div><div class="line">        int n = nums.length;</div><div class="line">        if (n == 0) return res;</div><div class="line"></div><div class="line">        // path队列</div><div class="line">        LinkedList&lt;Integer&gt; path = new LinkedList&lt;&gt;();</div><div class="line">        boolean[] used = new boolean[n];</div><div class="line">        backtrack(nums, 0, path, used);</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void backtrack(int[] nums, int depth, LinkedList&lt;Integer&gt; path, boolean[] used) &#123;</div><div class="line">        // 终止条件</div><div class="line">        if (depth == nums.length) &#123;</div><div class="line">            res.add(new ArrayList&lt;Integer&gt;(path));</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        // 遍历可选的数字列表</div><div class="line">        for (int i = 0;i &lt; nums.length;i++) &#123;</div><div class="line">            if (used[i]) &#123;</div><div class="line">                continue;</div><div class="line">            &#125;</div><div class="line">            // 做出选择</div><div class="line">            path.add(nums[i]);</div><div class="line">            used[i] = true;</div><div class="line">            backtrack(nums, depth+1, path, used);</div><div class="line">            // 撤销选择</div><div class="line">            path.removeLast();</div><div class="line">            used[i] = false;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="全排列-II"><a href="#全排列-II" class="headerlink" title="全排列 II"></a>全排列 II</h4><blockquote>
-<p>给定一个可包含重复数字的序列，返回所有不重复的全排列。</p>
-</blockquote>
-<p>回溯+剪枝</p>
-<p>参考图片：<a href="https://pic.leetcode-cn.com/0f1c183ceb7b634f8a527028afd4893e26dfe3796afce35cbb177b125939179b-LeetCode%20%E7%AC%AC%2047%20%E9%A2%98%EF%BC%9A%E2%80%9C%E5%85%A8%E6%8E%92%E5%88%97%20II%E2%80%9D%E9%A2%98%E8%A7%A3%E9%85%8D%E5%9B%BE.png" target="_blank" rel="external">https://pic.leetcode-cn.com/0f1c183ceb7b634f8a527028afd4893e26dfe3796afce35cbb177b125939179b-LeetCode%20%E7%AC%AC%2047%20%E9%A2%98%EF%BC%9A%E2%80%9C%E5%85%A8%E6%8E%92%E5%88%97%20II%E2%80%9D%E9%A2%98%E8%A7%A3%E9%85%8D%E5%9B%BE.png</a></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">	List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</div><div class="line">        <span class="keyword">int</span> n = nums.length;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> res;</div><div class="line">		<span class="comment">// 先进行排序，剪枝前提</span></div><div class="line">        Arrays.sort(nums);</div><div class="line">        </div><div class="line">        <span class="comment">// path队列</span></div><div class="line">        LinkedList&lt;Integer&gt; path = <span class="keyword">new</span> LinkedList&lt;&gt;();</div><div class="line">        <span class="keyword">boolean</span>[] used = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</div><div class="line">        backtrack(nums, <span class="number">0</span>, path, used);</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> depth, LinkedList&lt;Integer&gt; path, <span class="keyword">boolean</span>[] used)</span> </span>&#123;</div><div class="line">        <span class="comment">// 终止条件</span></div><div class="line">        <span class="keyword">if</span> (depth == nums.length) &#123;</div><div class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(path));</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 遍历可选的数字列表</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++) &#123;</div><div class="line">            <span class="keyword">if</span> (used[i]) &#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="comment">// 剪枝操作</span></div><div class="line">            <span class="comment">// !used[i-1] 在深度优先遍历时刚被撤销选择</span></div><div class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i-<span class="number">1</span>] &amp;&amp; !used[i-<span class="number">1</span>]) &#123;</div><div class="line">            	<span class="keyword">continue</span>;  </div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="comment">// 做出选择</span></div><div class="line">            path.add(nums[i]);</div><div class="line">            used[i] = <span class="keyword">true</span>;</div><div class="line">            backtrack(nums, depth+<span class="number">1</span>, path, used);</div><div class="line">            <span class="comment">// 撤销选择</span></div><div class="line">            path.removeLast();</div><div class="line">            used[i] = <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="电话字母的组合-17"><a href="#电话字母的组合-17" class="headerlink" title="电话字母的组合 17"></a>电话字母的组合 17</h4><blockquote>
-<p>给定一个仅包含数字 <code>2-9</code> 的字符串，返回所有它能表示的字母组合。数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; 输入：&quot;23&quot;</div><div class="line">&gt; 输出：[&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    HashMap&lt;String, String&gt; phone = <span class="keyword">new</span> HashMap&lt;String, String&gt;() &#123;&#123;</div><div class="line">        put(<span class="string">"2"</span>, <span class="string">"abc"</span>);</div><div class="line">        put(<span class="string">"3"</span>, <span class="string">"def"</span>);</div><div class="line">        put(<span class="string">"4"</span>, <span class="string">"ghi"</span>);</div><div class="line">        put(<span class="string">"5"</span>, <span class="string">"jkl"</span>);</div><div class="line">        put(<span class="string">"6"</span>, <span class="string">"mno"</span>);</div><div class="line">        put(<span class="string">"7"</span>, <span class="string">"pqrs"</span>);</div><div class="line">        put(<span class="string">"8"</span>, <span class="string">"tuv"</span>);</div><div class="line">        put(<span class="string">"9"</span>, <span class="string">"wxyz"</span>);</div><div class="line">    &#125;&#125;;</div><div class="line"></div><div class="line">    List&lt;String&gt; output = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">letterCombinations</span><span class="params">(String digits)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (digits.length() != <span class="number">0</span>) &#123;</div><div class="line">            getLetter(<span class="string">""</span>, digits);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> output;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getLetter</span><span class="params">(String combination, String digits)</span> </span>&#123;</div><div class="line">        <span class="comment">// 终止条件</span></div><div class="line">        <span class="keyword">if</span> (digits.length() == <span class="number">0</span>) &#123;</div><div class="line">        	output.add(combination);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 获取第一个数字的字母集合</span></div><div class="line">        String letters = phone.get(digits.substring(<span class="number">0</span>,<span class="number">1</span>));</div><div class="line">        <span class="comment">// 遍历每个字母（选择列表）</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; letters.length();i++) &#123;</div><div class="line">            <span class="comment">// 选择第 i 个字母</span></div><div class="line">            String letter = letters.substring(i,i+<span class="number">1</span>);</div><div class="line">            <span class="comment">// 处理下一个数字</span></div><div class="line">            getLetter(combination+letter, digits.substring(<span class="number">1</span>));</div><div class="line">            </div><div class="line">            <span class="comment">// 函数做完了，相当于撤销了上面的选择</span></div><div class="line">        &#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="括号生成-22"><a href="#括号生成-22" class="headerlink" title="括号生成 22"></a>括号生成 22</h4><blockquote>
-<p>数字 <em>n</em> 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 <strong>有效的</strong> 括号组合。</p>
-<p>输入：n = 3<br>输出：[<br>​       “((()))”,<br>​       “(()())”,<br>​       “(())()”,<br>​       “()(())”,<br>​       “()()()”<br>​     ]</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line"></div><div class="line">    List&lt;String&gt; res = new ArrayList&lt;&gt;();</div><div class="line">    public List&lt;String&gt; generateParenthesis(int n) &#123;</div><div class="line">        generate(&quot;&quot;, n, 0, n);</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void generate(String str, int left, int right, int n) &#123;</div><div class="line">    	//终止条件</div><div class="line">        if (str.length() == 2*n) &#123;</div><div class="line">            res.add(str);</div><div class="line">            return;</div><div class="line">        &#125;</div><div class="line">        // 左括号个数大于0，做出选择</div><div class="line">        if (left &gt; 0) &#123;</div><div class="line">            String temp = str + &apos;(&apos;;</div><div class="line">            // 右括号可用个数加 1</div><div class="line">            generate(temp, left-1, right+1, n);</div><div class="line">            // 函数结束相当于撤销选择</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if (right &gt; 0) &#123;</div><div class="line">            String temp = str + &apos;)&apos;;</div><div class="line">            generate(temp, left, right-1, n);</div><div class="line">            // 函数结束相当于撤销选择</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="上下翻转树"><a href="#上下翻转树" class="headerlink" title="上下翻转树"></a>上下翻转树</h4><p>Given a binary tree where all the right nodes are either leaf nodes with a sibling (a left node that shares the same parent node) or empty, flip it upside down and turn it into a tree where the original right nodes turned into left leaf nodes. Return the new root.</p>
-<p>Example:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Input: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"></div><div class="line">    <span class="number">1</span></div><div class="line">   / \</div><div class="line">  <span class="number">2</span>   <span class="number">3</span></div><div class="line"> / \</div><div class="line"><span class="number">4</span>   <span class="number">5</span></div><div class="line"></div><div class="line">Output: return the root of the binary tree [4,5,2,#,#,3,1]</div><div class="line"></div><div class="line">   <span class="number">4</span></div><div class="line">  / \</div><div class="line"> <span class="number">5</span>   <span class="number">2</span></div><div class="line">    / \</div><div class="line">   <span class="number">3</span>   <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>这道题限制了右节点要么为空要么一定有对应的左节点，原来的二叉树最左节点变成了根节点，父节点变成了其右节点。递归处理左子节点即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+    <h2 id="Mac-安装应用踩坑"><a href="#Mac-安装应用踩坑" class="headerlink" title="Mac 安装应用踩坑"></a>Mac 安装应用踩坑</h2><h4 id="1-图床配置"><a href="#1-图床配置" class="headerlink" title="1. 图床配置"></a>1. 图床配置</h4><p>图床可以使用PicGo加Github的方式，不过这种方式生成的图片链接可能无法直接访问，可以通过修改hosts解决，先通过<a href="http://tool.chinaz.com/dns?type=1&amp;host=raw.githubusercontent.com&amp;ip=" target="_blank" rel="external">DNS工具</a>获取到指定域名的ip，再将ip和域名添加到hosts中就可以了。</p>
+<p>PicGo+Github配置的方式可以参考下面链接：</p>
+<p><a href="https://www.jianshu.com/p/d51258ef5484" target="_blank" rel="external">https://www.jianshu.com/p/d51258ef5484</a></p>
+<h4 id="2-rzsz安装"><a href="#2-rzsz安装" class="headerlink" title="2. rzsz安装"></a>2. rzsz安装</h4><p>参考这个<a href="https://cloud.tencent.com/developer/article/1548041" target="_blank" rel="external">链接</a>可以通过brew的方式下载多种工具，包括lrzsz</p>
+<p>但是下载后还不能直接使用，会出现终端直接卡死的现象，需要给iterm2配置相应的Triggers。</p>
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><p>在/usr/local/bin目录下新建两个文件，并添加上内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">vim iterm2-recv-zmodem.sh</div><div class="line">vim iterm2-send-zmodem.sh</div><div class="line"></div><div class="line"><span class="meta">#</span># contents in iterm2-recv-zmodem.sh</div><div class="line"></div><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"><span class="meta">#</span> Author: Matt Mastracci (matthew@mastracci.com)</div><div class="line"><span class="meta">#</span> AppleScript from http://stackoverflow.com/questions/4309087/cancel-button-on-osascript-in-a-bash-script</div><div class="line"><span class="meta">#</span> licensed under cc-wiki with attribution required </div><div class="line"><span class="meta">#</span> Remainder of script public domain</div><div class="line"> </div><div class="line">osascript -e 'tell application "iTerm2" to version' &gt; /dev/null 2&gt;&amp;1 &amp;&amp; NAME=iTerm2 || NAME=iTerm</div><div class="line">if [[ $NAME = "iTerm" ]]; then</div><div class="line">    FILE=`osascript -e 'tell application "iTerm" to activate' -e 'tell application "iTerm" to set thefile to choose folder with prompt "Choose a folder to place received files in"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">else</div><div class="line">    FILE=`osascript -e 'tell application "iTerm2" to activate' -e 'tell application "iTerm2" to set thefile to choose folder with prompt "Choose a folder to place received files in"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">fi</div><div class="line"> </div><div class="line">if [[ $FILE = "" ]]; then</div><div class="line">    echo Cancelled.</div><div class="line">    # Send ZModem cancel</div><div class="line">    echo -e \\x18\\x18\\x18\\x18\\x18</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo \# Cancelled transfer</div><div class="line">else</div><div class="line">    cd "$FILE"</div><div class="line">    /usr/local/bin/rz -E -e -b</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo</div><div class="line">    echo \# Sent \-\&gt; $FILE</div><div class="line">fi</div><div class="line"></div><div class="line"><span class="meta">#</span>------------ 分割线-----------------------</div><div class="line"></div><div class="line"><span class="meta">#</span>## contents in iterm2-send-zmodem.sh</div><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"><span class="meta">#</span> Author: Matt Mastracci (matthew@mastracci.com)</div><div class="line"><span class="meta">#</span> AppleScript from http://stackoverflow.com/questions/4309087/cancel-button-on-osascript-in-a-bash-script</div><div class="line"><span class="meta">#</span> licensed under cc-wiki with attribution required </div><div class="line"><span class="meta">#</span> Remainder of script public domain</div><div class="line"> </div><div class="line">osascript -e 'tell application "iTerm2" to version' &gt; /dev/null 2&gt;&amp;1 &amp;&amp; NAME=iTerm2 || NAME=iTerm</div><div class="line">if [[ $NAME = "iTerm" ]]; then</div><div class="line">    FILE=`osascript -e 'tell application "iTerm" to activate' -e 'tell application "iTerm" to set thefile to choose file with prompt "Choose a file to send"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">else</div><div class="line">    FILE=`osascript -e 'tell application "iTerm2" to activate' -e 'tell application "iTerm2" to set thefile to choose file with prompt "Choose a file to send"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">fi</div><div class="line">if [[ $FILE = "" ]]; then</div><div class="line">    echo Cancelled.</div><div class="line">    # Send ZModem cancel</div><div class="line">    echo -e \\x18\\x18\\x18\\x18\\x18</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo \# Cancelled transfer</div><div class="line">else</div><div class="line">    /usr/local/bin/sz "$FILE" -e -b</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo \# Received $FILE</div><div class="line">fi</div><div class="line"></div><div class="line"><span class="meta">#</span>############################</div><div class="line"><span class="meta">#</span> 写完后修改权限</div><div class="line">chmod 777 iterm2-*</div></pre></td></tr></table></figure>
+<p>接着为iterm2添加配置，Perference-&gt; Profiles -&gt; Default -&gt; Advanced -&gt; Triggers 的 Edit </p>
+<p><img src="https://raw.githubusercontent.com/lxsyz/picture/master/img/20200531223115.png" alt=""></p>
+<p>内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Regular expression: rz waiting to receive.\*\*B0100</div><div class="line">Action: Run Silent Coprocess</div><div class="line">Parameters: /usr/local/bin/iterm2-send-zmodem.sh</div><div class="line"> </div><div class="line">Regular expression: \*\*B00000000000000</div><div class="line">Action: Run Silent Coprocess</div><div class="line">Parameters: /usr/local/bin/iterm2-recv-zmodem.sh</div></pre></td></tr></table></figure>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p><strong>小tips</strong></p>
+<p>下载软件可以使用Folx</p>
+<p>sublime破解可以参考<a href="https://blog.csdn.net/donaldsy/article/details/98768527" target="_blank" rel="external">这篇</a></p>
+<p>强烈推荐Go2Shell和Easy new file, 新建文件和终端可以非常方便</p>
+<p>最后非常推荐知乎大佬的这篇文章，介绍了mac上各种提效小工具，值得一看</p>
+<p><a href="https://zhuanlan.zhihu.com/p/121798647" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/121798647</a></p>
 
     
 
@@ -286,17 +240,6 @@
   <div class="article-info article-info-index">
     
     
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
     
 
     
@@ -310,18 +253,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/05/11/数组/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          数组
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/03/背包问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">背包问题</div>
+    <a href="/2020/05/17/非root用户安装tmux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">非root用户安装tmux</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -348,7 +282,7 @@
 
 
 
-<div id="SOHUCS" sid="回溯" ></div> 
+<div id="SOHUCS" sid="Mac 安装应用踩坑" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

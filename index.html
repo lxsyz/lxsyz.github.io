@@ -102,7 +102,7 @@
 				
 					<a class="github" href="#" title="GitHub" target="_blank"><i class="icon-github"></i></a>
 				
-					<a class="weibo" href="#" title="weibo" target="_blank"><i class="icon-weibo"></i></a>
+					<a class="weibo" href="#" title="微博" target="_blank"><i class="icon-weibo"></i></a>
 				
 					<a class="google" href="#" title="Google" target="_blank"><i class="icon-google"></i></a>
 				
@@ -147,7 +147,7 @@
 					
 						<a class="github" target="_blank" href="#" title="GitHub"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="微博"><i class="icon-weibo"></i></a>
 			        
 						<a class="google" target="_blank" href="#" title="Google"><i class="icon-google"></i></a>
 			        
@@ -177,6 +177,73 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-Mac 安装应用踩坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="Mac-安装应用踩坑"><a href="#Mac-安装应用踩坑" class="headerlink" title="Mac 安装应用踩坑"></a>Mac 安装应用踩坑</h2><h4 id="1-图床配置"><a href="#1-图床配置" class="headerlink" title="1. 图床配置"></a>1. 图床配置</h4><p>图床可以使用PicGo加Github的方式，不过这种方式生成的图片链接可能无法直接访问，可以通过修改hosts解决，先通过<a href="http://tool.chinaz.com/dns?type=1&amp;host=raw.githubusercontent.com&amp;ip=" target="_blank" rel="external">DNS工具</a>获取到指定域名的ip，再将ip和域名添加到hosts中就可以了。</p>
+<p>PicGo+Github配置的方式可以参考下面链接：</p>
+<p><a href="https://www.jianshu.com/p/d51258ef5484" target="_blank" rel="external">https://www.jianshu.com/p/d51258ef5484</a></p>
+<h4 id="2-rzsz安装"><a href="#2-rzsz安装" class="headerlink" title="2. rzsz安装"></a>2. rzsz安装</h4><p>参考这个<a href="https://cloud.tencent.com/developer/article/1548041" target="_blank" rel="external">链接</a>可以通过brew的方式下载多种工具，包括lrzsz</p>
+<p>但是下载后还不能直接使用，会出现终端直接卡死的现象，需要给iterm2配置相应的Triggers。</p>
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><p>在/usr/local/bin目录下新建两个文件，并添加上内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">vim iterm2-recv-zmodem.sh</div><div class="line">vim iterm2-send-zmodem.sh</div><div class="line"></div><div class="line"><span class="meta">#</span># contents in iterm2-recv-zmodem.sh</div><div class="line"></div><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"><span class="meta">#</span> Author: Matt Mastracci (matthew@mastracci.com)</div><div class="line"><span class="meta">#</span> AppleScript from http://stackoverflow.com/questions/4309087/cancel-button-on-osascript-in-a-bash-script</div><div class="line"><span class="meta">#</span> licensed under cc-wiki with attribution required </div><div class="line"><span class="meta">#</span> Remainder of script public domain</div><div class="line"> </div><div class="line">osascript -e 'tell application "iTerm2" to version' &gt; /dev/null 2&gt;&amp;1 &amp;&amp; NAME=iTerm2 || NAME=iTerm</div><div class="line">if [[ $NAME = "iTerm" ]]; then</div><div class="line">    FILE=`osascript -e 'tell application "iTerm" to activate' -e 'tell application "iTerm" to set thefile to choose folder with prompt "Choose a folder to place received files in"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">else</div><div class="line">    FILE=`osascript -e 'tell application "iTerm2" to activate' -e 'tell application "iTerm2" to set thefile to choose folder with prompt "Choose a folder to place received files in"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">fi</div><div class="line"> </div><div class="line">if [[ $FILE = "" ]]; then</div><div class="line">    echo Cancelled.</div><div class="line">    # Send ZModem cancel</div><div class="line">    echo -e \\x18\\x18\\x18\\x18\\x18</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo \# Cancelled transfer</div><div class="line">else</div><div class="line">    cd "$FILE"</div><div class="line">    /usr/local/bin/rz -E -e -b</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo</div><div class="line">    echo \# Sent \-\&gt; $FILE</div><div class="line">fi</div><div class="line"></div><div class="line"><span class="meta">#</span>------------ 分割线-----------------------</div><div class="line"></div><div class="line"><span class="meta">#</span>## contents in iterm2-send-zmodem.sh</div><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"><span class="meta">#</span> Author: Matt Mastracci (matthew@mastracci.com)</div><div class="line"><span class="meta">#</span> AppleScript from http://stackoverflow.com/questions/4309087/cancel-button-on-osascript-in-a-bash-script</div><div class="line"><span class="meta">#</span> licensed under cc-wiki with attribution required </div><div class="line"><span class="meta">#</span> Remainder of script public domain</div><div class="line"> </div><div class="line">osascript -e 'tell application "iTerm2" to version' &gt; /dev/null 2&gt;&amp;1 &amp;&amp; NAME=iTerm2 || NAME=iTerm</div><div class="line">if [[ $NAME = "iTerm" ]]; then</div><div class="line">    FILE=`osascript -e 'tell application "iTerm" to activate' -e 'tell application "iTerm" to set thefile to choose file with prompt "Choose a file to send"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">else</div><div class="line">    FILE=`osascript -e 'tell application "iTerm2" to activate' -e 'tell application "iTerm2" to set thefile to choose file with prompt "Choose a file to send"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">fi</div><div class="line">if [[ $FILE = "" ]]; then</div><div class="line">    echo Cancelled.</div><div class="line">    # Send ZModem cancel</div><div class="line">    echo -e \\x18\\x18\\x18\\x18\\x18</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo \# Cancelled transfer</div><div class="line">else</div><div class="line">    /usr/local/bin/sz "$FILE" -e -b</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo \# Received $FILE</div><div class="line">fi</div><div class="line"></div><div class="line"><span class="meta">#</span>############################</div><div class="line"><span class="meta">#</span> 写完后修改权限</div><div class="line">chmod 777 iterm2-*</div></pre></td></tr></table></figure>
+<p>接着为iterm2添加配置，Perference-&gt; Profiles -&gt; Default -&gt; Advanced -&gt; Triggers 的 Edit </p>
+<p><img src="https://raw.githubusercontent.com/lxsyz/picture/master/img/20200531223115.png" alt=""></p>
+<p>内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Regular expression: rz waiting to receive.\*\*B0100</div><div class="line">Action: Run Silent Coprocess</div><div class="line">Parameters: /usr/local/bin/iterm2-send-zmodem.sh</div><div class="line"> </div><div class="line">Regular expression: \*\*B00000000000000</div><div class="line">Action: Run Silent Coprocess</div><div class="line">Parameters: /usr/local/bin/iterm2-recv-zmodem.sh</div></pre></td></tr></table></figure>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p><strong>小tips</strong></p>
+<p>下载软件可以使用Folx</p>
+<p>sublime破解可以参考<a href="https://blog.csdn.net/donaldsy/article/details/98768527" target="_blank" rel="external">这篇</a></p>
+<p>强烈推荐Go2Shell和Easy new file, 新建文件和终端可以非常方便</p>
+<p>最后非常推荐知乎大佬的这篇文章，介绍了mac上各种提效小工具，值得一看</p>
+<p><a href="https://zhuanlan.zhihu.com/p/121798647" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/121798647</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/31/Mac 安装应用踩坑/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
 
   
     <article id="post-非root用户安装tmux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -234,94 +301,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/05/17/非root用户安装tmux/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-data2document" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/05/13/data2document/" target="_blank">data2document</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/05/13/data2document/" class="archive-article-date">
-        <time datetime="2020-05-13T02:14:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-13</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h4><p>每个记录包含四个特征，$r_{j,1}$ 表示type;</p>
-<p>输出是一篇文档，包含$y$ 个单词</p>
-<p><img src="https://pic2.zhimg.com/80/v2-bf3bb5b880a21f0ae6157b9d348bc7bd_720w.jpg" alt="img"></p>
-<p>整体过程包括两步，1：做内容选择得到content_plan,  2：输入content_plan, 输出文本</p>
-<h4 id="Record-Encoder"><a href="#Record-Encoder" class="headerlink" title="Record Encoder"></a>Record Encoder</h4><p>MLP+relu获取每个记录的向量表示</p>
-<p><img src="C:\Users\SYZ\AppData\Roaming\Typora\typora-user-images\image-20200513201437468.png" alt="image-20200513201437468"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/05/13/data2document/">展开全文 >></a>
     </p>
     
 
@@ -2949,14 +2928,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hobby</a>
               </li>
              
@@ -2965,15 +2936,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2981,7 +2948,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">递归</a>
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2989,11 +2956,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3001,7 +2964,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">递归</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
               </li>
             
             <div class="clearfix"></div>
