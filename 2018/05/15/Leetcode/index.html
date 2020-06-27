@@ -10,17 +10,22 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="纸短情长。。。 1. Add Two Numbers2. Longest Substring Without Repeating Characters3. Longest Palindromic Substring  Add Two Numbers Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)Output: 7 -&amp;gt; 0 -&amp;gt; 8Ex">
-<meta name="keywords" content="程序猿,ML,Java,Python,Programmer,Coder">
+  <meta name="description" content="纸短情长。。。1. Add Two Numbers2. Longest Substring Without Repeating Characters3. Longest Palindromic Substring Add Two Numbers Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 0 -&gt; 8Expl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode">
 <meta property="og:url" content="http://lxsyz.github.io/2018/05/15/Leetcode/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="纸短情长。。。 1. Add Two Numbers2. Longest Substring Without Repeating Characters3. Longest Palindromic Substring  Add Two Numbers Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)Output: 7 -&amp;gt; 0 -&amp;gt; 8Ex">
-<meta property="og:updated_time" content="2018-05-15T12:57:40.605Z">
+<meta property="og:description" content="纸短情长。。。1. Add Two Numbers2. Longest Substring Without Repeating Characters3. Longest Palindromic Substring Add Two Numbers Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)Output: 7 -&gt; 0 -&gt; 8Expl">
+<meta property="article:published_time" content="2018-05-15T10:55:51.000Z">
+<meta property="article:modified_time" content="2018-05-15T12:57:40.000Z">
+<meta property="article:author" content="DeathRunner">
+<meta property="article:tag" content="程序猿">
+<meta property="article:tag" content="ML">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Programmer">
+<meta property="article:tag" content="Coder">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode">
-<meta name="twitter:description" content="纸短情长。。。 1. Add Two Numbers2. Longest Substring Without Repeating Characters3. Longest Palindromic Substring  Add Two Numbers Input: (2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4)Output: 7 -&amp;gt; 0 -&amp;gt; 8Ex">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -157,7 +162,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner">相册</a></li>
+					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner" target="_blank" rel="noopener">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -202,9 +207,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>纸短情长。。。</p>
-<font size="3px">1. Add Two Numbers<br>2. Longest Substring Without Repeating Characters<br>3. Longest Palindromic Substring</font>
-
+    <p>纸短情长。。。<br><font size=3px>1. Add Two Numbers<br>2. Longest Substring Without Repeating Characters<br>3. Longest Palindromic Substring</font></p>
 <h3 id="Add-Two-Numbers"><a href="#Add-Two-Numbers" class="headerlink" title="Add Two Numbers"></a>Add Two Numbers</h3><blockquote>
 <p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8<br>Explanation: 342 + 465 = 807.<br>考虑一些其他测试用例， 例如 1 -&gt;8  + 0  = 1 ,8<br>5 + 5  =  0 1</p>
 </blockquote>
@@ -213,7 +216,8 @@
 <li>从头到尾遍历两个链表，依次累加每个值，将进位用变量保存（进位只能是1或0）</li>
 <li>在短的链表后面的数用0填充，直到长的链表走到尽头，并且进位为0。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">simplifyAddTwoNumber</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</div><div class="line">    ListNode res = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</div><div class="line">    ListNode temp = res;</div><div class="line">    <span class="keyword">int</span> extra = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> || l2 != <span class="keyword">null</span> || extra != <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">int</span> sum = (l1 != <span class="keyword">null</span> ? l1.val:<span class="number">0</span>) + (l2 != <span class="keyword">null</span>? l2.val:<span class="number">0</span>) + extra;</div><div class="line">        extra = sum / <span class="number">10</span>;</div><div class="line">        temp.next = <span class="keyword">new</span> ListNode(sum % <span class="number">10</span>);</div><div class="line">        temp = temp.next;</div><div class="line">        l1 = l1!=<span class="keyword">null</span> ? l1.next:l1;</div><div class="line">        l2 = l2!=<span class="keyword">null</span> ? l2.next:l2;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> res.next;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">simplifyAddTwoNumber</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    ListNode res = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    ListNode temp = res;</span><br><span class="line">    <span class="keyword">int</span> extra = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> || l2 != <span class="keyword">null</span> || extra != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = (l1 != <span class="keyword">null</span> ? l1.val:<span class="number">0</span>) + (l2 != <span class="keyword">null</span>? l2.val:<span class="number">0</span>) + extra;</span><br><span class="line">        extra = sum / <span class="number">10</span>;</span><br><span class="line">        temp.next = <span class="keyword">new</span> ListNode(sum % <span class="number">10</span>);</span><br><span class="line">        temp = temp.next;</span><br><span class="line">        l1 = l1!=<span class="keyword">null</span> ? l1.next:l1;</span><br><span class="line">        l2 = l2!=<span class="keyword">null</span> ? l2.next:l2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="Longest-Substring-Without-Repeating-Characters"><a href="#Longest-Substring-Without-Repeating-Characters" class="headerlink" title="Longest Substring Without Repeating Characters"></a>Longest Substring Without Repeating Characters</h3><blockquote>
 <p>Given “abcabcbb”, the answer is “abc”, which the length is 3.<br>Given “bbbbb”, the answer is “b”, with the length of 1.<br>Given “pwwkew”, the answer is “wke”<br>最长不重复子串的长度及最长不重复子串</p>
 </blockquote>
@@ -223,8 +227,12 @@
 <li>当读取到了重复的字符的时候，取出哈希表中的值index+1，这样就可以计算新的长度，并更新字符的起始位置将其赋值为index+1</li>
 <li>计算当前长度，与历史长度进行比较，取大值</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">    <span class="keyword">char</span>[] arr = s.toCharArray();</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, maxlength = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; arr.length;i++) &#123;</div><div class="line">        <span class="keyword">if</span> (map.containsKey(arr[i])) &#123;</div><div class="line">            <span class="comment">// 更新起始位置</span></div><div class="line">            start = Math.max(map.get(arr[i]), start);</div><div class="line">        &#125;</div><div class="line">        map.put(arr[i], i+<span class="number">1</span>);</div><div class="line">        maxlength = Math.max(maxlength, i - start + <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> maxlength;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>类似题目：最长的不重复子串<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 拓展: 最长的不重复子串</span></div><div class="line"><span class="comment"> * 在求出最长子串长度的基础上，更新子串的起始位置</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> s</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LongestSub</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">    <span class="keyword">char</span>[] arr = s.toCharArray();</div><div class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span>;</div><div class="line">    <span class="comment">// 最长子串的起始位置</span></div><div class="line">    <span class="keyword">int</span> originalIndex = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> startIndex = <span class="number">0</span>, i = <span class="number">0</span>;i &lt; arr.length;i++) &#123;</div><div class="line">        <span class="keyword">if</span> (map.containsKey(arr[i])) &#123;</div><div class="line">            startIndex = Math.max(map.get(arr[i]), startIndex);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (i - startIndex + <span class="number">1</span> &gt; maxLength) &#123;</div><div class="line">            maxLength = i - startIndex + <span class="number">1</span>;</div><div class="line">            <span class="comment">// 更新起始位置的索引</span></div><div class="line">            originalIndex = startIndex;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        map.put(arr[i], i + <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    System.out.println(maxLength);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = originalIndex;i &lt; maxLength + originalIndex;i++) &#123;</div><div class="line">        System.out.print(arr[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">char</span>[] arr = s.toCharArray();</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, maxlength = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; arr.length;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(arr[i])) &#123;</span><br><span class="line">            <span class="comment">// 更新起始位置</span></span><br><span class="line">            start = Math.max(map.get(arr[i]), start);</span><br><span class="line">        &#125;</span><br><span class="line">        map.put(arr[i], i+<span class="number">1</span>);</span><br><span class="line">        maxlength = Math.max(maxlength, i - start + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxlength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似题目：最长的不重复子串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 拓展: 最长的不重复子串</span></span><br><span class="line"><span class="comment"> * 在求出最长子串长度的基础上，更新子串的起始位置</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> s</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LongestSub</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">char</span>[] arr = s.toCharArray();</span><br><span class="line">    <span class="keyword">int</span> maxLength = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 最长子串的起始位置</span></span><br><span class="line">    <span class="keyword">int</span> originalIndex = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> startIndex = <span class="number">0</span>, i = <span class="number">0</span>;i &lt; arr.length;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(arr[i])) &#123;</span><br><span class="line">            startIndex = Math.max(map.get(arr[i]), startIndex);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i - startIndex + <span class="number">1</span> &gt; maxLength) &#123;</span><br><span class="line">            maxLength = i - startIndex + <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 更新起始位置的索引</span></span><br><span class="line">            originalIndex = startIndex;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        map.put(arr[i], i + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(maxLength);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = originalIndex;i &lt; maxLength + originalIndex;i++) &#123;</span><br><span class="line">        System.out.print(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 <h3 id="Longest-Palindromic-Substring"><a href="#Longest-Palindromic-Substring" class="headerlink" title="Longest Palindromic Substring"></a>Longest Palindromic Substring</h3><blockquote>
 <p>Input: “babad”<br>Output: “bab”<br>Note: “aba” is also a valid answer.<br>最长回文子串  abbc  return bb</p>
 </blockquote>
@@ -234,7 +242,7 @@
 <li>计算回文长度时，考虑两种情况，一种是  aba,  一种是 abbc</li>
 <li>取最大的回文长度的串作为最后的结果</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">LongestPalindrome</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> len = s.length();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; len;i++) &#123;</div><div class="line">        <span class="comment">//aba这样的情况</span></div><div class="line">        <span class="keyword">int</span> len1 = calcLen(s, i, i);</div><div class="line">        <span class="comment">// 考虑abba等情况</span></div><div class="line">        <span class="keyword">int</span> len2 = calcLen(s, i, i + <span class="number">1</span>);</div><div class="line">        <span class="keyword">int</span> res = Math.max(len1, len2);</div><div class="line">        <span class="keyword">if</span> (res &gt; end - start) &#123;</div><div class="line">            start = i - (res - <span class="number">1</span>) / <span class="number">2</span>;</div><div class="line">            end = start + res - <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> s.substring(start, end + <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calcLen</span><span class="params">(String s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</div><div class="line">    <span class="keyword">while</span> (left &gt;= <span class="number">0</span> &amp;&amp; right &lt;= s.length() - <span class="number">1</span> &amp;&amp; s.charAt(left) == s.charAt(right)) &#123;</div><div class="line">        left--;</div><div class="line">        right++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> right-left-<span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">LongestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> len = s.length();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; len;i++) &#123;</span><br><span class="line">        <span class="comment">//aba这样的情况</span></span><br><span class="line">        <span class="keyword">int</span> len1 = calcLen(s, i, i);</span><br><span class="line">        <span class="comment">// 考虑abba等情况</span></span><br><span class="line">        <span class="keyword">int</span> len2 = calcLen(s, i, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> res = Math.max(len1, len2);</span><br><span class="line">        <span class="keyword">if</span> (res &gt; end - start) &#123;</span><br><span class="line">            start = i - (res - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            end = start + res - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s.substring(start, end + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calcLen</span><span class="params">(String s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (left &gt;= <span class="number">0</span> &amp;&amp; right &lt;= s.length() - <span class="number">1</span> &amp;&amp; s.charAt(left) == s.charAt(right)) &#123;</span><br><span class="line">        left--;</span><br><span class="line">        right++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> right-left-<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     
 
     
@@ -290,7 +298,7 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/05/25/ubuntu上配置python踩的坑/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/25/ubuntu%E4%B8%8A%E9%85%8D%E7%BD%AEpython%E8%B8%A9%E7%9A%84%E5%9D%91/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -300,7 +308,7 @@
     </a>
   
   
-    <a href="/2018/03/23/聚类/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/03/23/%E8%81%9A%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">聚类</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -490,6 +498,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hobby</a>
               </li>
              
@@ -498,11 +510,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,19 +530,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,7 +538,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">

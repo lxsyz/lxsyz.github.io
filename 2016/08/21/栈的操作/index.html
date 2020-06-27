@@ -10,17 +10,17 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="栈的操作12345678910111213141516171819202122232425262728293031323334353637import java.util.Stack;public class TestStack &amp;#123;		public static void main(String[] args) &amp;#123;			&amp;#125;	/**	 * 输入两个整数序列，第一个序列表">
-<meta name="keywords" content="栈">
+  <meta name="description" content="栈的操作12345678910111213141516171819202122232425262728293031323334353637import java.util.Stack;public class TestStack &amp;#123;		public static void main(String[] args) &amp;#123;			&amp;#125;	&#x2F;**	 * 输入两个整数序列，第一个序列表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="栈的操作">
-<meta property="og:url" content="http://lxsyz.github.io/2016/08/21/栈的操作/index.html">
+<meta property="og:url" content="http://lxsyz.github.io/2016/08/21/%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="栈的操作12345678910111213141516171819202122232425262728293031323334353637import java.util.Stack;public class TestStack &amp;#123;		public static void main(String[] args) &amp;#123;			&amp;#125;	/**	 * 输入两个整数序列，第一个序列表">
-<meta property="og:updated_time" content="2016-08-21T14:44:32.856Z">
+<meta property="og:description" content="栈的操作12345678910111213141516171819202122232425262728293031323334353637import java.util.Stack;public class TestStack &amp;#123;		public static void main(String[] args) &amp;#123;			&amp;#125;	&#x2F;**	 * 输入两个整数序列，第一个序列表">
+<meta property="article:published_time" content="2016-08-21T14:38:50.000Z">
+<meta property="article:modified_time" content="2016-08-21T14:44:32.000Z">
+<meta property="article:author" content="DeathRunner">
+<meta property="article:tag" content="栈">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="栈的操作">
-<meta name="twitter:description" content="栈的操作12345678910111213141516171819202122232425262728293031323334353637import java.util.Stack;public class TestStack &amp;#123;		public static void main(String[] args) &amp;#123;			&amp;#125;	/**	 * 输入两个整数序列，第一个序列表">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -157,7 +157,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner">相册</a></li>
+					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner" target="_blank" rel="noopener">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -192,7 +192,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2016/08/21/栈的操作/" class="archive-article-date">
+<a href="/2016/08/21/%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C/" class="archive-article-date">
         <time datetime="2016-08-21T14:38:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-21</time>
 </a>
 
@@ -202,7 +202,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="栈的操作"><a href="#栈的操作" class="headerlink" title="栈的操作"></a>栈的操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">import java.util.Stack;</div><div class="line"></div><div class="line">public class TestStack &#123;</div><div class="line">	</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	/**</div><div class="line">	 * 输入两个整数序列，第一个序列表示栈的压入顺序，请判断二个序列是否为该栈的弹出顺序。</div><div class="line">	 * 假设压入栈的所有数字均不相等。例如序列1 、2、3 、4、5 是某栈压栈序列，</div><div class="line">	 * 序列4、5、3、2、1是该压栈序列对应的一个弹出序列，</div><div class="line">	 * 但4、3、5、1、2就不可能是该压棋序列的弹出序列。</div><div class="line">	 *</div><div class="line">	 * @param push 入栈序列</div><div class="line">	 * @param pop  出栈序列</div><div class="line">	 * @<span class="built_in">return</span> <span class="literal">true</span>：出栈序列是入栈序列的一个弹出顺序</div><div class="line">	 */</div><div class="line">	public static boolean isPopOrder(int[] push,int[] pop) &#123;</div><div class="line">		<span class="keyword">if</span> (push.length == 0 || pop.length == 0 || pop.length != push.length) &#123;</div><div class="line">			<span class="built_in">return</span> <span class="literal">false</span>;</div><div class="line">		&#125;</div><div class="line">		Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();</div><div class="line">		int j = 0;</div><div class="line">		//检查出栈元素</div><div class="line">		<span class="keyword">for</span> (int i = 0;i &lt; pop.length;i++) &#123;</div><div class="line">			//放入入栈元素</div><div class="line">			stack.push(push[i]);</div><div class="line">			//与出栈元素比较</div><div class="line">			<span class="keyword">while</span> (j &lt; pop.length &amp;&amp; stack.peek() == pop[j]) &#123;</div><div class="line">				stack.pop();</div><div class="line">				j++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="built_in">return</span> stack.empty() ? <span class="literal">true</span> : <span class="literal">false</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+    <h2 id="栈的操作"><a href="#栈的操作" class="headerlink" title="栈的操作"></a>栈的操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Stack;</span><br><span class="line"></span><br><span class="line">public class TestStack &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * 输入两个整数序列，第一个序列表示栈的压入顺序，请判断二个序列是否为该栈的弹出顺序。</span><br><span class="line">	 * 假设压入栈的所有数字均不相等。例如序列1 、2、3 、4、5 是某栈压栈序列，</span><br><span class="line">	 * 序列4、5、3、2、1是该压栈序列对应的一个弹出序列，</span><br><span class="line">	 * 但4、3、5、1、2就不可能是该压棋序列的弹出序列。</span><br><span class="line">	 *</span><br><span class="line">	 * @param push 入栈序列</span><br><span class="line">	 * @param pop  出栈序列</span><br><span class="line">	 * @<span class="built_in">return</span> <span class="literal">true</span>：出栈序列是入栈序列的一个弹出顺序</span><br><span class="line">	 */</span><br><span class="line">	public static boolean isPopOrder(int[] push,int[] pop) &#123;</span><br><span class="line">		<span class="keyword">if</span> (push.length == 0 || pop.length == 0 || pop.length != push.length) &#123;</span><br><span class="line">			<span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();</span><br><span class="line">		int j = 0;</span><br><span class="line">		//检查出栈元素</span><br><span class="line">		<span class="keyword">for</span> (int i = 0;i &lt; pop.length;i++) &#123;</span><br><span class="line">			//放入入栈元素</span><br><span class="line">			stack.push(push[i]);</span><br><span class="line">			//与出栈元素比较</span><br><span class="line">			<span class="keyword">while</span> (j &lt; pop.length &amp;&amp; stack.peek() == pop[j]) &#123;</span><br><span class="line">				stack.pop();</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">return</span> stack.empty() ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     
 
     
@@ -269,7 +269,7 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/09/10/滑雪/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/09/10/%E6%BB%91%E9%9B%AA/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -279,7 +279,7 @@
     </a>
   
   
-    <a href="/2016/08/20/矩阵逆序/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/08/20/%E7%9F%A9%E9%98%B5%E9%80%86%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">矩阵逆序</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -469,6 +469,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hobby</a>
               </li>
              
@@ -477,11 +481,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,19 +501,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,7 +509,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">

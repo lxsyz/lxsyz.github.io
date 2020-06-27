@@ -10,17 +10,22 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="String特性String类是final的，不可被继承，本质是字符数组，其值不可变String x = “abc” , “abc”表示字符串对象，x表示对象的引用String通过+串联得到的是一个新的字符串String pool 用来存放运行中产生的字符串，内容不重复，存在与方法的堆栈区 String创建原理 当 s=X 创建String对象时，java会拿着这个X去pool中找有没有相同内容的">
-<meta name="keywords" content="程序猿,ML,Java,Python,Programmer,Coder">
+  <meta name="description" content="String特性String类是final的，不可被继承，本质是字符数组，其值不可变String x &#x3D; “abc” , “abc”表示字符串对象，x表示对象的引用String通过+串联得到的是一个新的字符串String pool 用来存放运行中产生的字符串，内容不重复，存在与方法的堆栈区 String创建原理 当 s&#x3D;X 创建String对象时，java会拿着这个X去pool中找有没有相同内容的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="String介绍">
-<meta property="og:url" content="http://lxsyz.github.io/2017/05/09/String介绍/index.html">
+<meta property="og:url" content="http://lxsyz.github.io/2017/05/09/String%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="String特性String类是final的，不可被继承，本质是字符数组，其值不可变String x = “abc” , “abc”表示字符串对象，x表示对象的引用String通过+串联得到的是一个新的字符串String pool 用来存放运行中产生的字符串，内容不重复，存在与方法的堆栈区 String创建原理 当 s=X 创建String对象时，java会拿着这个X去pool中找有没有相同内容的">
-<meta property="og:updated_time" content="2017-05-09T06:34:46.272Z">
+<meta property="og:description" content="String特性String类是final的，不可被继承，本质是字符数组，其值不可变String x &#x3D; “abc” , “abc”表示字符串对象，x表示对象的引用String通过+串联得到的是一个新的字符串String pool 用来存放运行中产生的字符串，内容不重复，存在与方法的堆栈区 String创建原理 当 s&#x3D;X 创建String对象时，java会拿着这个X去pool中找有没有相同内容的">
+<meta property="article:published_time" content="2017-05-09T06:05:46.000Z">
+<meta property="article:modified_time" content="2017-05-09T06:34:46.000Z">
+<meta property="article:author" content="DeathRunner">
+<meta property="article:tag" content="程序猿">
+<meta property="article:tag" content="ML">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Programmer">
+<meta property="article:tag" content="Coder">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="String介绍">
-<meta name="twitter:description" content="String特性String类是final的，不可被继承，本质是字符数组，其值不可变String x = “abc” , “abc”表示字符串对象，x表示对象的引用String通过+串联得到的是一个新的字符串String pool 用来存放运行中产生的字符串，内容不重复，存在与方法的堆栈区 String创建原理 当 s=X 创建String对象时，java会拿着这个X去pool中找有没有相同内容的">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -157,7 +162,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner">相册</a></li>
+					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner" target="_blank" rel="noopener">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -192,7 +197,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2017/05/09/String介绍/" class="archive-article-date">
+<a href="/2017/05/09/String%E4%BB%8B%E7%BB%8D/" class="archive-article-date">
         <time datetime="2017-05-09T06:05:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-09</time>
 </a>
 
@@ -271,7 +276,7 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/09/24/近期学习/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/24/%E8%BF%91%E6%9C%9F%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -281,7 +286,7 @@
     </a>
   
   
-    <a href="/2017/01/21/重建二叉树/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/01/21/%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">重建二叉树</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -471,6 +476,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hobby</a>
               </li>
              
@@ -479,11 +488,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,19 +508,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,7 +516,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">

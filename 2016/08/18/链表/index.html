@@ -10,17 +10,17 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="链表123456789101112131415161718192021222324252627282930313233343536/* public class ListNode &amp;#123;    int val;    ListNode next = null;    ListNode(int val) &amp;#123;        this.val = val;    &amp;#125;&amp;#125;">
-<meta name="keywords" content="链表">
+  <meta name="description" content="链表123456789101112131415161718192021222324252627282930313233343536&#x2F;* public class ListNode &amp;#123;    int val;    ListNode next &#x3D; null;    ListNode(int val) &amp;#123;        this.val &#x3D; val;    &amp;#125;&amp;#125;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="链表">
-<meta property="og:url" content="http://lxsyz.github.io/2016/08/18/链表/index.html">
+<meta property="og:url" content="http://lxsyz.github.io/2016/08/18/%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="链表123456789101112131415161718192021222324252627282930313233343536/* public class ListNode &amp;#123;    int val;    ListNode next = null;    ListNode(int val) &amp;#123;        this.val = val;    &amp;#125;&amp;#125;">
-<meta property="og:updated_time" content="2016-08-18T08:58:12.407Z">
+<meta property="og:description" content="链表123456789101112131415161718192021222324252627282930313233343536&#x2F;* public class ListNode &amp;#123;    int val;    ListNode next &#x3D; null;    ListNode(int val) &amp;#123;        this.val &#x3D; val;    &amp;#125;&amp;#125;">
+<meta property="article:published_time" content="2016-08-18T06:36:37.000Z">
+<meta property="article:modified_time" content="2016-08-18T08:58:12.000Z">
+<meta property="article:author" content="DeathRunner">
+<meta property="article:tag" content="链表">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="链表">
-<meta name="twitter:description" content="链表123456789101112131415161718192021222324252627282930313233343536/* public class ListNode &amp;#123;    int val;    ListNode next = null;    ListNode(int val) &amp;#123;        this.val = val;    &amp;#125;&amp;#125;">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -157,7 +157,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner">相册</a></li>
+					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner" target="_blank" rel="noopener">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -192,7 +192,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2016/08/18/链表/" class="archive-article-date">
+<a href="/2016/08/18/%E9%93%BE%E8%A1%A8/" class="archive-article-date">
         <time datetime="2016-08-18T06:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-18</time>
 </a>
 
@@ -202,7 +202,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> public class ListNode &#123;</div><div class="line">    int val;</div><div class="line">    ListNode next = null;</div><div class="line"></div><div class="line">    ListNode(int val) &#123;</div><div class="line">        this.val = val;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">*/</div><div class="line">/**</div><div class="line"> *在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5</div><div class="line"> */</div><div class="line">public class Solution &#123;</div><div class="line">    public ListNode deleteDuplication(ListNode pHead)</div><div class="line">    &#123;</div><div class="line">        ListNode head = new ListNode(0);</div><div class="line">        head.next = pHead;</div><div class="line">        ListNode p = pHead;</div><div class="line">        ListNode q = head;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span> (q != null &amp;&amp; q.next != null) &#123;</div><div class="line">            <span class="keyword">if</span> (q.val == q.next.val) &#123;</div><div class="line">            	int value = q.val;</div><div class="line">                <span class="keyword">while</span> (q != null &amp;&amp; q.val == value) &#123;</div><div class="line">                    q = q.next;</div><div class="line">                &#125;</div><div class="line">                p.next = q;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                p = q;</div><div class="line">                q = q.next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">return</span> head.next;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+    <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> public class ListNode &#123;</span><br><span class="line">    int val;</span><br><span class="line">    ListNode next = null;</span><br><span class="line"></span><br><span class="line">    ListNode(int val) &#123;</span><br><span class="line">        this.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br><span class="line">/**</span><br><span class="line"> *在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5 处理后为 1-&gt;2-&gt;5</span><br><span class="line"> */</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ListNode deleteDuplication(ListNode pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        ListNode head = new ListNode(0);</span><br><span class="line">        head.next = pHead;</span><br><span class="line">        ListNode p = pHead;</span><br><span class="line">        ListNode q = head;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (q != null &amp;&amp; q.next != null) &#123;</span><br><span class="line">            <span class="keyword">if</span> (q.val == q.next.val) &#123;</span><br><span class="line">            	int value = q.val;</span><br><span class="line">                <span class="keyword">while</span> (q != null &amp;&amp; q.val == value) &#123;</span><br><span class="line">                    q = q.next;</span><br><span class="line">                &#125;</span><br><span class="line">                p.next = q;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                p = q;</span><br><span class="line">                q = q.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> head.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     
 
     
@@ -269,7 +269,7 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/08/20/矩阵逆序/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/08/20/%E7%9F%A9%E9%98%B5%E9%80%86%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -279,7 +279,7 @@
     </a>
   
   
-    <a href="/2016/08/15/链表基本操作/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/08/15/%E9%93%BE%E8%A1%A8%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">链表基本操作</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -469,6 +469,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">hobby</a>
               </li>
              
@@ -477,11 +481,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,19 +501,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度搜索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,7 +509,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
