@@ -10,17 +10,17 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="两数相除 给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。   返回被除数 dividend 除以除数 divisor 得到的商。   整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) &#x3D; 8 以及 truncate(-2.7335) &#x3D; -2  思路：以11&#x2F;3为例, 11&#x2F;3&#x3D;3 余数">
+  <meta name="description" content="两数相除 给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。 返回被除数 dividend 除以除数 divisor 得到的商。 整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) = 8 以及 truncate(-2.7335) = -2  思路：以11/3为例, 11/3=3 余数2，通过">
+<meta name="keywords" content="数学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数学">
-<meta property="og:url" content="http://lxsyz.github.io/2020/06/27/%E6%95%B0%E5%AD%A6/index.html">
+<meta property="og:url" content="http://lxsyz.github.io/2020/06/27/数学/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="两数相除 给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。   返回被除数 dividend 除以除数 divisor 得到的商。   整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) &#x3D; 8 以及 truncate(-2.7335) &#x3D; -2  思路：以11&#x2F;3为例, 11&#x2F;3&#x3D;3 余数">
-<meta property="article:published_time" content="2020-06-27T02:09:46.000Z">
-<meta property="article:modified_time" content="2020-06-27T02:51:26.524Z">
-<meta property="article:author" content="DeathRunner">
-<meta property="article:tag" content="数学">
+<meta property="og:description" content="两数相除 给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。 返回被除数 dividend 除以除数 divisor 得到的商。 整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) = 8 以及 truncate(-2.7335) = -2  思路：以11/3为例, 11/3=3 余数2，通过">
+<meta property="og:updated_time" content="2020-06-27T02:51:26.524Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数学">
+<meta name="twitter:description" content="两数相除 给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。 返回被除数 dividend 除以除数 divisor 得到的商。 整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) = 8 以及 truncate(-2.7335) = -2  思路：以11/3为例, 11/3=3 余数2，通过">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -157,7 +157,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner" target="_blank" rel="noopener">相册</a></li>
+					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -192,7 +192,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/06/27/%E6%95%B0%E5%AD%A6/" class="archive-article-date">
+<a href="/2020/06/27/数学/" class="archive-article-date">
         <time datetime="2020-06-27T02:09:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-27</time>
 </a>
 
@@ -204,25 +204,18 @@
     
     <h3 id="两数相除"><a href="#两数相除" class="headerlink" title="两数相除"></a>两数相除</h3><blockquote>
 <p>给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。</p>
-</blockquote>
-<blockquote>
 <p>返回被除数 dividend 除以除数 divisor 得到的商。</p>
-</blockquote>
-<blockquote>
 <p>整数除法的结果应当截去（truncate）其小数部分，例如：truncate(8.345) = 8 以及 truncate(-2.7335) = -2</p>
 </blockquote>
 <p>思路：以11/3为例, 11/3=3 余数2，通过对除数做移位操作，实现快速收敛</p>
 <p>示例：</p>
 <ol>
-<li>11-3 = 8， 11- 3 * 2 = 5， 11 &lt; 3* 2* 2</li>
-<li>对差5重复上面操作， 5 - 3* 1 =2，5&lt;3*2</li>
+<li>11-3 = 8， 11- 3 <em> 2 = 5， 11 &lt; 3</em> 2* 2</li>
+<li>对差5重复上面操作， 5 - 3<em> 1 =2，5&lt;3</em>2</li>
 <li>结果等于  2 +1=3</li>
 </ol>
 <p>注：为了防止溢出，都转成负数计算的方式。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取计算结果的正负号</span></span><br><span class="line">        <span class="keyword">boolean</span> sign = (dividend &gt; <span class="number">0</span>) ^ (divisor &gt; <span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 统一转成负数计算</span></span><br><span class="line">        <span class="keyword">if</span> (dividend &gt; <span class="number">0</span>) dividend = -dividend;</span><br><span class="line">        <span class="keyword">if</span> (divisor &gt; <span class="number">0</span>) divisor = -divisor;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 当被除数小于除数时跳出</span></span><br><span class="line">        <span class="keyword">while</span> (dividend &lt;= divisor) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp_result = -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> temp_divisor = divisor;</span><br><span class="line">            <span class="comment">// 除数按2的幂级增长，快速收敛</span></span><br><span class="line">            <span class="keyword">while</span> (dividend &lt;= (temp_divisor &lt;&lt; <span class="number">1</span>)) &#123;</span><br><span class="line">                <span class="comment">// 除数太小，即将越界，break掉</span></span><br><span class="line">                <span class="keyword">if</span> (temp_divisor &lt;= (Integer.MIN_VALUE &gt;&gt; <span class="number">1</span>)) <span class="keyword">break</span>;</span><br><span class="line">                temp_result = temp_result &lt;&lt; <span class="number">1</span>;</span><br><span class="line">                temp_divisor = temp_divisor&lt;&lt; <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            dividend = dividend - temp_divisor;</span><br><span class="line">            result += temp_result;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!sign) &#123;</span><br><span class="line">            <span class="keyword">if</span> (result == Integer.MIN_VALUE) <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">            result = -result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">divide</span><span class="params">(<span class="keyword">int</span> dividend, <span class="keyword">int</span> divisor)</span> </span>&#123;</div><div class="line">        <span class="comment">// 获取计算结果的正负号</span></div><div class="line">        <span class="keyword">boolean</span> sign = (dividend &gt; <span class="number">0</span>) ^ (divisor &gt; <span class="number">0</span>);</div><div class="line">        <span class="comment">// 统一转成负数计算</span></div><div class="line">        <span class="keyword">if</span> (dividend &gt; <span class="number">0</span>) dividend = -dividend;</div><div class="line">        <span class="keyword">if</span> (divisor &gt; <span class="number">0</span>) divisor = -divisor;</div><div class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">        <span class="comment">// 当被除数小于除数时跳出</span></div><div class="line">        <span class="keyword">while</span> (dividend &lt;= divisor) &#123;</div><div class="line">            <span class="keyword">int</span> temp_result = -<span class="number">1</span>;</div><div class="line">            <span class="keyword">int</span> temp_divisor = divisor;</div><div class="line">            <span class="comment">// 除数按2的幂级增长，快速收敛</span></div><div class="line">            <span class="keyword">while</span> (dividend &lt;= (temp_divisor &lt;&lt; <span class="number">1</span>)) &#123;</div><div class="line">                <span class="comment">// 除数太小，即将越界，break掉</span></div><div class="line">                <span class="keyword">if</span> (temp_divisor &lt;= (Integer.MIN_VALUE &gt;&gt; <span class="number">1</span>)) <span class="keyword">break</span>;</div><div class="line">                temp_result = temp_result &lt;&lt; <span class="number">1</span>;</div><div class="line">                temp_divisor = temp_divisor&lt;&lt; <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            dividend = dividend - temp_divisor;</div><div class="line">            result += temp_result;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!sign) &#123;</div><div class="line">            <span class="keyword">if</span> (result == Integer.MIN_VALUE) <span class="keyword">return</span> Integer.MAX_VALUE;</div><div class="line">            result = -result;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
     
 
@@ -290,7 +283,7 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/06/27/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/27/二分查找/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -300,8 +293,8 @@
     </a>
   
   
-    <a href="/2020/05/31/Mac%20%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8%E8%B8%A9%E5%9D%91/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Mac 安装应用踩坑</div>
+    <a href="/2020/05/31/Mac 安装应用踩坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -534,11 +527,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
