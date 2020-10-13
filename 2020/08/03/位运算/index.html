@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://lxsyz.github.io/2020/08/03/位运算/index.html">
 <meta property="og:site_name" content="Amanda">
 <meta property="og:description" content="本文记录可以使用位运算快速解题的相关题目，位运算操作整理如下： 123456&amp;amp; 与运算，相同为1，不同为0| 或运算， 都为0时才为0^ 异或运算，相同为0~ 取反运算&amp;lt;&amp;lt; 左移，低位补0&amp;gt;&amp;gt; 右移，高位补0 推荐文章：https://www.zhihu.com/question/38206659 位1的个数 编写一个函数，输入是一个无符号整数，返回其二进制表达式中">
-<meta property="og:updated_time" content="2020-08-03T15:34:04.717Z">
+<meta property="og:updated_time" content="2020-09-09T15:20:25.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="位运算">
 <meta name="twitter:description" content="本文记录可以使用位运算快速解题的相关题目，位运算操作整理如下： 123456&amp;amp; 与运算，相同为1，不同为0| 或运算， 都为0时才为0^ 异或运算，相同为0~ 取反运算&amp;lt;&amp;lt; 左移，低位补0&amp;gt;&amp;gt; 右移，高位补0 推荐文章：https://www.zhihu.com/question/38206659 位1的个数 编写一个函数，输入是一个无符号整数，返回其二进制表达式中">
@@ -203,12 +203,17 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>本文记录可以使用位运算快速解题的相关题目，位运算操作整理如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&amp; 与运算，相同为1，不同为0</div><div class="line">| 或运算， 都为0时才为0</div><div class="line">^ 异或运算，相同为0</div><div class="line">~ 取反运算</div><div class="line">&lt;&lt; 左移，低位补0</div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt; 右移，高位补0</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&amp; 与运算，相同为1，不同为0</div><div class="line">| 或运算， 都为0时才为0</div><div class="line">^ 异或运算，相同为0</div><div class="line">~ 取反运算</div><div class="line">&lt;&lt; 左移，低位补0</div><div class="line"><span class="meta">&gt;</span>&gt; 右移，高位补0</div></pre></td></tr></table></figure>
 <p>推荐文章：<a href="https://www.zhihu.com/question/38206659" target="_blank" rel="external">https://www.zhihu.com/question/38206659</a></p>
 <h4 id="位1的个数"><a href="#位1的个数" class="headerlink" title="位1的个数"></a>位1的个数</h4><blockquote>
 <p>编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为<a href="https://baike.baidu.com/item/汉明重量" target="_blank" rel="external">汉明重量</a>）。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 解法1，遍历32位整数，判断每一位，并进行右移</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="comment">// you need to treat n as an unsigned value</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;<span class="number">32</span>;i++) &#123;</div><div class="line">            <span class="keyword">if</span> ((n&amp;<span class="number">1</span>) != <span class="number">0</span>) &#123;</div><div class="line">                ans += <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            n &gt;&gt;=<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 解法二, n与n-1做与，直到n等于0，统计操作次数</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="comment">// you need to treat n as an unsigned value</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(n!=<span class="number">0</span>) &#123;</div><div class="line">          ans+=<span class="number">1</span>;</div><div class="line">          n = n&amp;(n-<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="371-两整数之和"><a href="#371-两整数之和" class="headerlink" title="371. 两整数之和"></a>371. 两整数之和</h4><p>对于5+7=12， 即 0101 + 0111 = 1011</p>
+<p>第一步： 相加各位的值，不考虑进位，0101+0111 = 0010    相当于是在做 <strong>异或</strong> 操作</p>
+<p>第二步：计算进位值，得到1010， 相当于每个位置做 <strong>与</strong> 操作，得到 0101，然后左移一位</p>
+<p>第三步：重复上面两个步骤，010 ^ 1010, 直到进位值为0 ，跳出循环</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">  	<span class="keyword">while</span> (b != <span class="number">0</span>) &#123;</div><div class="line">      	<span class="keyword">int</span> temp = a ^ b;</div><div class="line">      	b = (a&amp;b) &lt;&lt; <span class="number">1</span>;</div><div class="line">      	a = temp;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
     
 
@@ -496,15 +501,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">栈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">栈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,6 +522,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">软技能</a>
               </li>
              
               <li class="article-tag-list-item">
