@@ -6,21 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>非root用户安装tmux | Amanda</title>
+  <title>jvm&amp;主机配置 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
-<meta name="keywords" content="linux">
+  <meta name="description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非root用户安装tmux">
-<meta property="og:url" content="http://lxsyz.github.io/2020/05/17/非root用户安装tmux/index.html">
+<meta property="og:title" content="jvm&amp;主机配置">
+<meta property="og:url" content="http://lxsyz.github.io/2018/01/04/jvm/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
-<meta property="og:updated_time" content="2021-01-10T02:51:16.457Z">
+<meta property="og:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
+<meta property="og:image" content="http://lxsyz.github.io/images/jvm.png">
+<meta property="og:updated_time" content="2021-01-10T02:40:44.831Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="非root用户安装tmux">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
+<meta name="twitter:title" content="jvm&amp;主机配置">
+<meta name="twitter:description" content="JVM深入理解java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结： JVM简介JVM的基本结构一般如下图所示： 每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register">
+<meta name="twitter:image" content="http://lxsyz.github.io/images/jvm.png">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -173,14 +175,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-非root用户安装tmux" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-jvm" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      非root用户安装tmux
+      jvm&amp;主机配置
     </h1>
   
 
@@ -192,8 +194,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/05/17/非root用户安装tmux/" class="archive-article-date">
-        <time datetime="2020-05-17T12:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+<a href="/2018/01/04/jvm/" class="archive-article-date">
+        <time datetime="2018-01-04T06:21:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-04</time>
 </a>
 
   
@@ -202,8 +204,126 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"> </div><div class="line"><span class="meta">#</span> Script for installing tmux on systems where you don't have root access.</div><div class="line"><span class="meta">#</span> tmux will be installed in $HOME/local/bin.</div><div class="line"><span class="meta">#</span> It's assumed that wget and a C/C++ compiler are installed.</div><div class="line"> </div><div class="line"><span class="meta">#</span> exit on error</div><div class="line">set -e</div><div class="line"> </div><div class="line">TMUX_VERSION=2.2</div><div class="line"> </div><div class="line"><span class="meta">#</span> create our directories</div><div class="line">mkdir -p $HOME/local $HOME/tmux_tmp</div><div class="line">cd $HOME/tmux_tmp</div><div class="line"> </div><div class="line"><span class="meta">#</span> download source files for tmux, libevent, and ncurses</div><div class="line">wget https://github.com/tmux/tmux/releases/download/2.2/tmux-2.2.tar.gz</div><div class="line">wget https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz</div><div class="line">wget http://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz</div><div class="line"> </div><div class="line"><span class="meta">#</span> extract files, configure, and compile</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> libevent #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf libevent-2.0.22-stable.tar.gz</div><div class="line">cd libevent-2.0.22-stable</div><div class="line">./configure --prefix=$HOME/local --disable-shared</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> ncurses #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf ncurses-6.0.tar.gz</div><div class="line">cd ncurses-6.0</div><div class="line">./configure --prefix=$HOME/local</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> tmux #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf tmux-$&#123;TMUX_VERSION&#125;.tar.gz</div><div class="line">cd tmux-$&#123;TMUX_VERSION&#125;</div><div class="line">./configure CFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-L$HOME/local/lib -L$HOME/local/include/ncurses -L$HOME/local/include"</div><div class="line">CPPFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-static -L$HOME/local/include -L$HOME/local/include/ncurses -L$HOME/local/lib" make</div><div class="line">cp tmux $HOME/local/bin</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span> cleanup</div><div class="line">rm -rf $HOME/tmux_tmp</div><div class="line"> </div><div class="line">echo "$HOME/local/bin/tmux is now available. You can optionally add $HOME/local/bin to your PATH."</div></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>环境变量设置</div><div class="line"><span class="meta">#</span>将下面的语句添加到.bashrc中</div><div class="line">export PATH=$PATH:$HOME/local/bin</div><div class="line"> </div><div class="line"><span class="meta">#</span>重载环境</div><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
+    <h2 id="JVM深入理解"><a href="#JVM深入理解" class="headerlink" title="JVM深入理解"></a>JVM深入理解</h2><p>java课的作业让我们深入理解一下JVM虚拟机，之前看过很多相关知识，都容易忘掉，这里对最近学习到的知识做一下总结：</p>
+<h3 id="JVM简介"><a href="#JVM简介" class="headerlink" title="JVM简介"></a>JVM简介</h3><p>JVM的基本结构一般如下图所示：<br><img src="/images/jvm.png" alt=""></p>
+<p>每个JVM有两种机制，一个是类装载子系统，一个是负责执行包含在已装载类中的指令，称为执行引擎。每个JVM又包括方法区(method area)、堆(heap)、虚拟机栈(VM Stack)、程序计数器(PC Register)和本地方法栈(native stack)这五个部分:<br><strong>方法区</strong>：用于存储类结构信息的地方，包括常量池、静态变量、构造函数等。方法区存放装载的类数据信息包括：</p>
+<ol>
+<li>基本信息：</li>
+<li>每个类的全限定名。</li>
+<li>每个类的直接超类的全限定名(可约束类型转换)。</li>
+<li>该类是类还是接口。</li>
+<li>该类型的访问修饰符。</li>
+<li>直接超接口的全限定名的有序列表。</li>
+</ol>
+<p>每个已装载类的详细信息：<br>运行时常量池：存放该类型所用的一切常量，它们以数组形式通过索引被访问，是外部调用与类联系及类型对象化的桥梁。它是类文件(字节码)常量池的运行时表示。<br>字段信息：类中声明的每一个字段的信息(名，类型，修饰符)。<br>方法信息：类中声明的每一个方法的信息<br>静态变量<br>到类classloader的引用：即到该类的类装载器的引用。<br>到类class的引用：虚拟机为每一个被装载的类型创建一个class实例，用来代表这个被装载的类。<br>方法表：虚拟机对每个装载的非抽象类，都生成一个方法表，把它作为类信息的一部分保存在方法区。方法表是一个数组，它的元素是所有它的实例可能被调用的实例方法的直接引用，包括那些从超类继承过来的实例方法。<br><a id="more"></a><br><strong>堆(Heap)</strong>：存储java实例或者对象的地方。从存储的内容我们可以很容易知道，方法区和堆是被所有java线程共享的。</p>
+<p><strong>虚拟机栈</strong>：每当创建一个线程时，JVM就会为这个线程创建一个对应的虚拟机栈。每运行一个方法就会创建一个栈帧，用于存储局部变量表、操作栈、方法返回值等。每一个方法从调用直至执行完成，就对应一个栈帧在虚拟机栈中入栈到出栈的过程。所以虚拟机栈是线程私有的。</p>
+<p><strong>程序计数器</strong>：用于保存当前线程执行的内存地址，记录线程中断的地方，线程私有。</p>
+<p><strong>本地方法栈</strong>：和虚拟机栈的作用差不多，只不过是为JVM的native方法服务，线程私有</p>
+<h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><p>java内存分配一般有两种：静态内存和动态内存。很容易理解，编译时就能够确定的内存就是静态内存，即内存是固定的，系统一次性分配，比如int类型变量；动态内存分配就是在程序执行时才知道要分配的存储空间大小，比如java对象的内存空间。根据上面我们知道，java栈、程序计数器、本地方法栈都是线程私有的，栈中的栈帧随着方法的结束会撤销，内存自然就跟着回收了。所以这几个区域的内存分配与回收是确定的。但是堆和方法区则不一样，我们只有在程序运行期间才知道会创建哪些对象，所以这部分内存的分配和回收都是动态的。一般我们所说的垃圾回收也是针对的这一部分。</p>
+<h3 id="垃圾检测、回收算法"><a href="#垃圾检测、回收算法" class="headerlink" title="垃圾检测、回收算法"></a>垃圾检测、回收算法</h3><p>检测垃圾：引用计数法（无法回收循环指向的内存），可达性分析算法（精度高效率低）<br>回收算法：<br>标记-清除（mark-sweep）:效率低，会产生大量碎片<br>复制（Copying）：不会出现内存问题，需要两倍内存空间<br>标记-整理（mark-compact）:第一步标记被引用的对象，第二步清除未被引用的对象，并把存活的对象压缩到一块<br>增量收集：基础仍是传统的标记－清除和复制算法。增量收集算法通过对进程间冲突的妥善处理，允许垃圾收集进程以分阶段的方式完成标记、清理或复制工作。实时垃圾收集的梦想变成了现实，再也不用为垃圾收集打断程序的运行而烦恼了。增量收集算法比较典型的是火车算法，它是为了在成熟对象空间提供限度时间的增量收集。<br>分代收集：年轻的和年老的，垃圾收集器使用不同的收集算法来处理这两类内存块。</p>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p>主要有serial,ParNew,Parallel Scavenge,Serial Old,Parallel Old, CMS,G1这些。<br>详细可以参考这篇博文<a href="http://blog.csdn.net/java2000_wl/article/details/8030172" target="_blank" rel="external">http://blog.csdn.net/java2000_wl/article/details/8030172</a><br>G1收集器目前已在jdk1.9中默认使用了，将堆分成多个region，基于标记-整理收集垃圾，标记过程分五个阶段，大部分都是并发执行，大大提高了的速度。</p>
+<h2 id="FTP安装"><a href="#FTP安装" class="headerlink" title="FTP安装"></a>FTP安装</h2><p>最近突然想到自己的学生优惠还没有用，赶紧在京东云上购买了一个便宜的云主机，以备后用，顺便把linux上的知识复习一下，都快忘光了。<br>云主机系统为ubuntu 16.04 (命令：head -n 1 /etc/issue)<br>硬件信息 uname -a<br>之后又安装了一下nodejs,npm等要用到的软件</p>
+<blockquote>
+<p>sudo apt-get install nodejs<br>sudo apt-get install npm</p>
+</blockquote>
+<p>之后就是安装FTP服务器的过程了</p>
+<blockquote>
+<p>sudo apt-get update<br>sudo apt-get install vsftpd</p>
+</blockquote>
+<p>update是为了防止有些包安装不上，以防意外。在安装好vsftpd后，我们可以通过</p>
+<blockquote>
+<p>service vsftpd start # 启动服务<br>service vsftpd status # 查看服务状态</p>
+</blockquote>
+<p>按照网上有些资料的说法是，安装好vsftpd后会在home目录下生成一个ftp文件夹，然而我的主机上并没有，只能搜索一下再操作了：</p>
+<blockquote>
+<p>find / -name ftp -type d # 搜索名为ftp的文件夹<br>mkdir public             # 创建个public 文件夹<br>chmod 777 public</p>
+</blockquote>
+<p>准备工作完成，再修改一下vsftpd的配置文件(/etc/vsftpd.conf),这里为了能尽快上传文件，启用了如下几行：</p>
+<blockquote>
+<p>anonymous_enable=YES<br>  anon_upload_enable=YES<br>  anon_mkdir_write_enable=YES<br>  local_enable=YES<br>  write_enable=YES<br>  local_umask=022</p>
+</blockquote>
+<p>更多配置可以参考京东云的<a href="https://www.jcloud.com/help/FTPfwdazypz855.html" target="_blank" rel="external">官方文档</a></p>
+<p>本来以为这样就可以大功告成了，结果在本机windows这边连接ftp的过程中遇上了一些问题，主要是“无法访问FTP服务器，没有权限”等等。考虑到时客户端这边的问题，先检查FTP服务是否已经打开，控制面板-》程序-》启用或关闭windows功能-》Internet Information Services-》FTP服务器，全部启用，之后在去Internet选项中，在设置-》高级中禁用掉“使用被动FTP”。<br>这两项操作完成后，我的问题就解决了。随后可以正常匿名访问FTP了，于是直接复制文件过去，结果发现又报错了，500：unknown command。<br>检查服务器的文件夹发现，大部分小文件都发过去了，只有图片传不过去，所以这里我选择先在windows上压缩成zip格式文件，再复制到服务器，之后在服务器上解压即可。</p>
+<blockquote>
+<p>sudo apt-get install zip<br>unzip myfile.zip</p>
+</blockquote>
+<p>接下来就可以愉快的玩主机了，把忘掉的命令都捡起来。<br><a href="http://blog.csdn.net/stefansalvatore/article/details/54602415" target="_blank" rel="external">常用指令</a></p>
+<h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><p>nginx的安装不用多言，其中要用到的PCRE库、zlib库、OpenSSL库的下载安装可以参考这篇<a href="http://blog.csdn.net/somanlee/article/details/69808788" target="_blank" rel="external">博客</a><br>在配置过程中参考了很多博文，比较杂乱无章，这里我的配置如下：</p>
+<blockquote>
+<p>user www-data;<br>worker_processes auto;<br>pid /run/nginx.pid;<br>events {<br>        worker_connections 768;</p>
+<pre><code># multi_accept on;
+</code></pre><p>}<br>http {</p>
+<pre><code>##
+# Basic Settings
+##
+sendfile on;
+tcp_nopush on;
+tcp_nodelay on;
+keepalive_timeout 65;
+types_hash_max_size 2048;
+# server_tokens off;
+# server_names_hash_bucket_size 64;
+# server_name_in_redirect off;
+include /etc/nginx/mime.types;
+default_type application/octet-stream;
+##
+# SSL Settings
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+ssl_prefer_server_ciphers on;
+##
+# Logging Settings
+##
+access_log /var/log/nginx/access.log;
+error_log /var/log/nginx/error.log;
+##
+# Gzip Settings
+##
+gzip on;
+gzip_disable &quot;msie6&quot;;
+# gzip_vary on;
+# gzip_proxied any;
+# gzip_comp_level 6;
+# gzip_buffers 16 8k;
+# gzip_http_version 1.1;
+# 添加一个服务配置，访问域名，从而跳转到服务器地址
+server {
+        listen 80;
+        server_name 域名;
+        location / {
+                root 资源文件;
+                proxy_connect_timeout 3;
+                proxy_send_timeout 30;
+                proxy_read_timeout 30;
+                proxy_pass http://localhost:3000; # 重定向的地址
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+        # 图片资源访问不到，在这里添加图片资源路径
+        location ~ .*\.(gif|jpg|jpeg|png)$ {
+                expires 24h;
+                root assets; # 资源地址
+                proxy_store on;
+                proxy_store_access user:rw group:rw all:rw;
+                proxy_redirect off;
+                proxy_set_header Host localhost;
+                client_max_body_size 10m;
+                client_body_buffer_size 1280k;
+                proxy_connect_timeout 900;
+                proxy_send_timeout 900;
+                proxy_read_timeout 900;
+                proxy_buffer_size 40k;
+                proxy_buffers 40 320k;
+                proxy_temp_file_write_size 640k;
+        }
+}
+##
+# Virtual Host Configs
+##
+include /etc/nginx/conf.d/*.conf;
+include /etc/nginx/sites-enabled/*;
+</code></pre><p>}</p>
+</blockquote>
 
     
 
@@ -252,7 +372,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
@@ -271,18 +391,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/10/13/述职有感/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/03/23/聚类/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          述职有感
+          聚类
         
       </div>
     </a>
   
   
-    <a href="/2020/02/12/python中的负数取余/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">python中的负数取余</div>
+    <a href="/2017/12/09/python爬虫/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">爬虫</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -309,7 +429,7 @@
 
 
 
-<div id="SOHUCS" sid="非root用户安装tmux" ></div> 
+<div id="SOHUCS" sid="jvm" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

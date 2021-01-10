@@ -6,21 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>非root用户安装tmux | Amanda</title>
+  <title>python实现概率分布 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
-<meta name="keywords" content="linux">
+  <meta name="description" content="二项分布123456789101112131415import numpy as npfrom scipy import stats%matplotlib inlineimport matplotlib.pyplot as pltn = 10p = 0.3k = np.arange(0,21)binomial = stats.binom.pmf(k,n,p)plt.plot(k,binomial,">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非root用户安装tmux">
-<meta property="og:url" content="http://lxsyz.github.io/2020/05/17/非root用户安装tmux/index.html">
+<meta property="og:title" content="python实现概率分布">
+<meta property="og:url" content="http://lxsyz.github.io/2017/09/26/python实现概率分布/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
-<meta property="og:updated_time" content="2021-01-10T02:51:16.457Z">
+<meta property="og:description" content="二项分布123456789101112131415import numpy as npfrom scipy import stats%matplotlib inlineimport matplotlib.pyplot as pltn = 10p = 0.3k = np.arange(0,21)binomial = stats.binom.pmf(k,n,p)plt.plot(k,binomial,">
+<meta property="og:image" content="http://lxsyz.github.io/images/binomial.png">
+<meta property="og:image" content="http://lxsyz.github.io/images/poisson.png">
+<meta property="og:image" content="http://lxsyz.github.io/images/normal.png">
+<meta property="og:image" content="http://lxsyz.github.io/images/beta.png">
+<meta property="og:image" content="http://lxsyz.github.io/images/exponential.png">
+<meta property="og:updated_time" content="2021-01-10T02:41:26.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="非root用户安装tmux">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
+<meta name="twitter:title" content="python实现概率分布">
+<meta name="twitter:description" content="二项分布123456789101112131415import numpy as npfrom scipy import stats%matplotlib inlineimport matplotlib.pyplot as pltn = 10p = 0.3k = np.arange(0,21)binomial = stats.binom.pmf(k,n,p)plt.plot(k,binomial,">
+<meta name="twitter:image" content="http://lxsyz.github.io/images/binomial.png">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -173,14 +179,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-非root用户安装tmux" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-python实现概率分布" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      非root用户安装tmux
+      python实现概率分布
     </h1>
   
 
@@ -192,8 +198,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/05/17/非root用户安装tmux/" class="archive-article-date">
-        <time datetime="2020-05-17T12:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+<a href="/2017/09/26/python实现概率分布/" class="archive-article-date">
+        <time datetime="2017-09-26T11:56:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
 </a>
 
   
@@ -202,8 +208,16 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"> </div><div class="line"><span class="meta">#</span> Script for installing tmux on systems where you don't have root access.</div><div class="line"><span class="meta">#</span> tmux will be installed in $HOME/local/bin.</div><div class="line"><span class="meta">#</span> It's assumed that wget and a C/C++ compiler are installed.</div><div class="line"> </div><div class="line"><span class="meta">#</span> exit on error</div><div class="line">set -e</div><div class="line"> </div><div class="line">TMUX_VERSION=2.2</div><div class="line"> </div><div class="line"><span class="meta">#</span> create our directories</div><div class="line">mkdir -p $HOME/local $HOME/tmux_tmp</div><div class="line">cd $HOME/tmux_tmp</div><div class="line"> </div><div class="line"><span class="meta">#</span> download source files for tmux, libevent, and ncurses</div><div class="line">wget https://github.com/tmux/tmux/releases/download/2.2/tmux-2.2.tar.gz</div><div class="line">wget https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz</div><div class="line">wget http://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz</div><div class="line"> </div><div class="line"><span class="meta">#</span> extract files, configure, and compile</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> libevent #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf libevent-2.0.22-stable.tar.gz</div><div class="line">cd libevent-2.0.22-stable</div><div class="line">./configure --prefix=$HOME/local --disable-shared</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> ncurses #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf ncurses-6.0.tar.gz</div><div class="line">cd ncurses-6.0</div><div class="line">./configure --prefix=$HOME/local</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> tmux #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf tmux-$&#123;TMUX_VERSION&#125;.tar.gz</div><div class="line">cd tmux-$&#123;TMUX_VERSION&#125;</div><div class="line">./configure CFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-L$HOME/local/lib -L$HOME/local/include/ncurses -L$HOME/local/include"</div><div class="line">CPPFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-static -L$HOME/local/include -L$HOME/local/include/ncurses -L$HOME/local/lib" make</div><div class="line">cp tmux $HOME/local/bin</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span> cleanup</div><div class="line">rm -rf $HOME/tmux_tmp</div><div class="line"> </div><div class="line">echo "$HOME/local/bin/tmux is now available. You can optionally add $HOME/local/bin to your PATH."</div></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>环境变量设置</div><div class="line"><span class="meta">#</span>将下面的语句添加到.bashrc中</div><div class="line">export PATH=$PATH:$HOME/local/bin</div><div class="line"> </div><div class="line"><span class="meta">#</span>重载环境</div><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
+    <h2 id="二项分布"><a href="#二项分布" class="headerlink" title="二项分布"></a>二项分布</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy as np</div><div class="line">from scipy <span class="keyword">import</span> stats</div><div class="line">%matplotlib inline</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot as plt</div><div class="line"></div><div class="line">n = <span class="number">10</span></div><div class="line">p = <span class="number">0.3</span></div><div class="line">k = np.arange(<span class="number">0</span>,<span class="number">21</span>)</div><div class="line">binomial = stats.binom.pmf(k,n,p)</div><div class="line"></div><div class="line">plt.plot(k,binomial,<span class="string">"o-"</span>)</div><div class="line">plt.title(<span class="string">"Binomial n=%d,p=%.2f"</span> % (n,p))</div><div class="line">plt.xlabel(<span class="string">"Number of success"</span>)</div><div class="line">plt.ylabel(<span class="string">"Probablity of success"</span>)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/images/binomial.png" alt=""></p>
+<h2 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h2><p>泊松分布用于描述某段时间内，事件具体的发生概率。公式为：<br>$ P(N(t)=n) = \frac {(\lambda t)^n e^{- \lambda t}}{n!} $<br>其中$\lambda$表示事件的频率，在频率附近，事件发生的概率越高。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">rate = 2</div><div class="line">n = np.arange(0,10)</div><div class="line">y = stats.poisson.pmf(n,rate)</div><div class="line">plt.plot(n,y,&quot;o-&quot;)</div><div class="line">plt.title(&quot;rate=%.2f&quot; % (rate))</div><div class="line">plt.xlabel(&quot;Number of success&quot;)</div><div class="line">plt.ylabel(&quot;Probablity of success&quot;)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="/images/poisson.png" alt=""></p>
+<h2 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mean = 0</div><div class="line">sigma = 1</div><div class="line">n = np.arange(-5,5,0.1)</div><div class="line">y = stats.norm.pdf(n,mean,sigma)</div><div class="line">plt.plot(n,y)</div><div class="line">plt.title(&quot;mean=%.2f,sigma=%.2f&quot; % (mean,sigma))</div><div class="line">plt.xlabel(&quot;Number of success&quot;)</div><div class="line">plt.ylabel(&quot;Probablity of success&quot;)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/images/normal.png" alt=""></p>
+<h2 id="beta分布"><a href="#beta分布" class="headerlink" title="beta分布"></a>beta分布</h2><p>表示先验信息的比较好的方法，可以使用beta分布，它与二项分布都是共轭先验（先验分布是beta分布，后验分布也是beta分布）的<br>beta分布的均值为 $\frac\alpha {\alpha + \beta}$<br>方差为 $\frac{\alpha \beta} {(\alpha + \beta) ^ 2 (\alpha + \beta + 1)}$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">alpha = 1</div><div class="line">beta = 1</div><div class="line">x = np.arange(0.01,1,0.01)</div><div class="line">y = stats.beta.pdf(x,alpha,beta)</div><div class="line"></div><div class="line">plt.plot(x,y, label=&quot;alpha=%.2f,beta=%.2f&quot; % (alpha,beta))</div><div class="line"></div><div class="line">alpha = 1</div><div class="line">beta = 2</div><div class="line">y = stats.beta.pdf(x,alpha,beta)</div><div class="line">plt.plot(x,y,label=&quot;alpha=%.2f,beta=%.2f&quot; % (alpha,beta))</div><div class="line"></div><div class="line">alpha = 0.5</div><div class="line">beta = 0.5</div><div class="line">y = stats.beta.pdf(x,alpha,beta)</div><div class="line">plt.plot(x,y,label=&quot;alpha=%.2f,beta=%.2f&quot; % (alpha,beta))</div><div class="line"></div><div class="line">alpha = 2</div><div class="line">beta = 5</div><div class="line">y = stats.beta.pdf(x,alpha,beta)</div><div class="line">plt.plot(x,y,label=&quot;alpha=%.2f,beta=%.2f&quot; % (alpha,beta))</div><div class="line"></div><div class="line">plt.legend(loc=&quot;upper left&quot;)</div><div class="line">plt.xlabel(&quot;Number of success&quot;)</div><div class="line">plt.ylabel(&quot;Probablity of success&quot;)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="/images/beta.png" alt=""><br><br><br>参考文章：<a href="http://www.datalearner.com/blog/1051505532393058" target="_blank" rel="external">http://www.datalearner.com/blog/1051505532393058</a></p>
+<h2 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h2><p>$ P(x;\lambda) = \lambda e^ {-\lambda x} $<br>指数分布用于表示事件发生的时间间隔的概率，$\lambda$表示事件发生的频率，越大则事件发生的概率越小，即隔了很久事件发生的概率会越小<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">lamda = 0.2</div><div class="line">x = np.arange(0,20,0.1)</div><div class="line">y = lamda * np.exp(-lamda * x)</div><div class="line"></div><div class="line">plt.plot(x,y)</div><div class="line"></div><div class="line">plt.title(&quot;rate=%.2f&quot; % (rate))</div><div class="line">plt.xlabel(&quot;Number of success&quot;)</div><div class="line">plt.ylabel(&quot;Probablity of success&quot;)</div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+<p><img src="/images/exponential.png" alt=""></p>
 
     
 
@@ -252,7 +266,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -271,18 +285,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/10/13/述职有感/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/10/07/机器学习相关算法实现/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          述职有感
+          机器学习相关算法实现
         
       </div>
     </a>
   
   
-    <a href="/2020/02/12/python中的负数取余/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">python中的负数取余</div>
+    <a href="/2017/09/24/numpy操作/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">numpy操作</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -309,7 +323,7 @@
 
 
 
-<div id="SOHUCS" sid="非root用户安装tmux" ></div> 
+<div id="SOHUCS" sid="python实现概率分布" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

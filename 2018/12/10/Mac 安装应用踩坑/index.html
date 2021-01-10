@@ -6,21 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>非root用户安装tmux | Amanda</title>
+  <title>Hive参数调优 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
+  <meta name="description" content="Mac 安装应用踩坑1. 图床配置图床可以使用PicGo加Github的方式，不过这种方式生成的图片链接可能无法直接访问，可以通过修改hosts解决，先通过DNS工具获取到指定域名的ip，再将ip和域名添加到hosts中就可以了。 PicGo+Github配置的方式可以参考下面链接： https://www.jianshu.com/p/d51258ef5484 2. rzsz安装参考这个链接可以通">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非root用户安装tmux">
-<meta property="og:url" content="http://lxsyz.github.io/2020/05/17/非root用户安装tmux/index.html">
+<meta property="og:title" content="Hive参数调优">
+<meta property="og:url" content="http://lxsyz.github.io/2018/12/10/Mac 安装应用踩坑/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
-<meta property="og:updated_time" content="2021-01-10T02:51:16.457Z">
+<meta property="og:description" content="Mac 安装应用踩坑1. 图床配置图床可以使用PicGo加Github的方式，不过这种方式生成的图片链接可能无法直接访问，可以通过修改hosts解决，先通过DNS工具获取到指定域名的ip，再将ip和域名添加到hosts中就可以了。 PicGo+Github配置的方式可以参考下面链接： https://www.jianshu.com/p/d51258ef5484 2. rzsz安装参考这个链接可以通">
+<meta property="og:image" content="https://raw.githubusercontent.com/lxsyz/picture/master/img/20200531223115.png">
+<meta property="og:updated_time" content="2021-01-10T02:50:58.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="非root用户安装tmux">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
+<meta name="twitter:title" content="Hive参数调优">
+<meta name="twitter:description" content="Mac 安装应用踩坑1. 图床配置图床可以使用PicGo加Github的方式，不过这种方式生成的图片链接可能无法直接访问，可以通过修改hosts解决，先通过DNS工具获取到指定域名的ip，再将ip和域名添加到hosts中就可以了。 PicGo+Github配置的方式可以参考下面链接： https://www.jianshu.com/p/d51258ef5484 2. rzsz安装参考这个链接可以通">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/lxsyz/picture/master/img/20200531223115.png">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -173,14 +175,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-非root用户安装tmux" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Mac 安装应用踩坑" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      非root用户安装tmux
+      Hive参数调优
     </h1>
   
 
@@ -192,8 +194,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/05/17/非root用户安装tmux/" class="archive-article-date">
-        <time datetime="2020-05-17T12:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+<a href="/2018/12/10/Mac 安装应用踩坑/" class="archive-article-date">
+        <time datetime="2018-12-10T14:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-10</time>
 </a>
 
   
@@ -202,8 +204,23 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"> </div><div class="line"><span class="meta">#</span> Script for installing tmux on systems where you don't have root access.</div><div class="line"><span class="meta">#</span> tmux will be installed in $HOME/local/bin.</div><div class="line"><span class="meta">#</span> It's assumed that wget and a C/C++ compiler are installed.</div><div class="line"> </div><div class="line"><span class="meta">#</span> exit on error</div><div class="line">set -e</div><div class="line"> </div><div class="line">TMUX_VERSION=2.2</div><div class="line"> </div><div class="line"><span class="meta">#</span> create our directories</div><div class="line">mkdir -p $HOME/local $HOME/tmux_tmp</div><div class="line">cd $HOME/tmux_tmp</div><div class="line"> </div><div class="line"><span class="meta">#</span> download source files for tmux, libevent, and ncurses</div><div class="line">wget https://github.com/tmux/tmux/releases/download/2.2/tmux-2.2.tar.gz</div><div class="line">wget https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz</div><div class="line">wget http://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz</div><div class="line"> </div><div class="line"><span class="meta">#</span> extract files, configure, and compile</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> libevent #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf libevent-2.0.22-stable.tar.gz</div><div class="line">cd libevent-2.0.22-stable</div><div class="line">./configure --prefix=$HOME/local --disable-shared</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> ncurses #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf ncurses-6.0.tar.gz</div><div class="line">cd ncurses-6.0</div><div class="line">./configure --prefix=$HOME/local</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> tmux #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf tmux-$&#123;TMUX_VERSION&#125;.tar.gz</div><div class="line">cd tmux-$&#123;TMUX_VERSION&#125;</div><div class="line">./configure CFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-L$HOME/local/lib -L$HOME/local/include/ncurses -L$HOME/local/include"</div><div class="line">CPPFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-static -L$HOME/local/include -L$HOME/local/include/ncurses -L$HOME/local/lib" make</div><div class="line">cp tmux $HOME/local/bin</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span> cleanup</div><div class="line">rm -rf $HOME/tmux_tmp</div><div class="line"> </div><div class="line">echo "$HOME/local/bin/tmux is now available. You can optionally add $HOME/local/bin to your PATH."</div></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>环境变量设置</div><div class="line"><span class="meta">#</span>将下面的语句添加到.bashrc中</div><div class="line">export PATH=$PATH:$HOME/local/bin</div><div class="line"> </div><div class="line"><span class="meta">#</span>重载环境</div><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
+    <h2 id="Mac-安装应用踩坑"><a href="#Mac-安装应用踩坑" class="headerlink" title="Mac 安装应用踩坑"></a>Mac 安装应用踩坑</h2><h4 id="1-图床配置"><a href="#1-图床配置" class="headerlink" title="1. 图床配置"></a>1. 图床配置</h4><p>图床可以使用PicGo加Github的方式，不过这种方式生成的图片链接可能无法直接访问，可以通过修改hosts解决，先通过<a href="http://tool.chinaz.com/dns?type=1&amp;host=raw.githubusercontent.com&amp;ip=" target="_blank" rel="external">DNS工具</a>获取到指定域名的ip，再将ip和域名添加到hosts中就可以了。</p>
+<p>PicGo+Github配置的方式可以参考下面链接：</p>
+<p><a href="https://www.jianshu.com/p/d51258ef5484" target="_blank" rel="external">https://www.jianshu.com/p/d51258ef5484</a></p>
+<h4 id="2-rzsz安装"><a href="#2-rzsz安装" class="headerlink" title="2. rzsz安装"></a>2. rzsz安装</h4><p>参考这个<a href="https://cloud.tencent.com/developer/article/1548041" target="_blank" rel="external">链接</a>可以通过brew的方式下载多种工具，包括lrzsz</p>
+<p>但是下载后还不能直接使用，会出现终端直接卡死的现象，需要给iterm2配置相应的Triggers。</p>
+<h5 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h5><p>在/usr/local/bin目录下新建两个文件，并添加上内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">vim iterm2-recv-zmodem.sh</div><div class="line">vim iterm2-send-zmodem.sh</div><div class="line"></div><div class="line"><span class="meta">#</span># contents in iterm2-recv-zmodem.sh</div><div class="line"></div><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"><span class="meta">#</span> Author: Matt Mastracci (matthew@mastracci.com)</div><div class="line"><span class="meta">#</span> AppleScript from http://stackoverflow.com/questions/4309087/cancel-button-on-osascript-in-a-bash-script</div><div class="line"><span class="meta">#</span> licensed under cc-wiki with attribution required </div><div class="line"><span class="meta">#</span> Remainder of script public domain</div><div class="line"> </div><div class="line">osascript -e 'tell application "iTerm2" to version' &gt; /dev/null 2&gt;&amp;1 &amp;&amp; NAME=iTerm2 || NAME=iTerm</div><div class="line">if [[ $NAME = "iTerm" ]]; then</div><div class="line">    FILE=`osascript -e 'tell application "iTerm" to activate' -e 'tell application "iTerm" to set thefile to choose folder with prompt "Choose a folder to place received files in"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">else</div><div class="line">    FILE=`osascript -e 'tell application "iTerm2" to activate' -e 'tell application "iTerm2" to set thefile to choose folder with prompt "Choose a folder to place received files in"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">fi</div><div class="line"> </div><div class="line">if [[ $FILE = "" ]]; then</div><div class="line">    echo Cancelled.</div><div class="line">    # Send ZModem cancel</div><div class="line">    echo -e \\x18\\x18\\x18\\x18\\x18</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo \# Cancelled transfer</div><div class="line">else</div><div class="line">    cd "$FILE"</div><div class="line">    /usr/local/bin/rz -E -e -b</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo</div><div class="line">    echo \# Sent \-\&gt; $FILE</div><div class="line">fi</div><div class="line"></div><div class="line"><span class="meta">#</span>------------ 分割线-----------------------</div><div class="line"></div><div class="line"><span class="meta">#</span>## contents in iterm2-send-zmodem.sh</div><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"><span class="meta">#</span> Author: Matt Mastracci (matthew@mastracci.com)</div><div class="line"><span class="meta">#</span> AppleScript from http://stackoverflow.com/questions/4309087/cancel-button-on-osascript-in-a-bash-script</div><div class="line"><span class="meta">#</span> licensed under cc-wiki with attribution required </div><div class="line"><span class="meta">#</span> Remainder of script public domain</div><div class="line"> </div><div class="line">osascript -e 'tell application "iTerm2" to version' &gt; /dev/null 2&gt;&amp;1 &amp;&amp; NAME=iTerm2 || NAME=iTerm</div><div class="line">if [[ $NAME = "iTerm" ]]; then</div><div class="line">    FILE=`osascript -e 'tell application "iTerm" to activate' -e 'tell application "iTerm" to set thefile to choose file with prompt "Choose a file to send"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">else</div><div class="line">    FILE=`osascript -e 'tell application "iTerm2" to activate' -e 'tell application "iTerm2" to set thefile to choose file with prompt "Choose a file to send"' -e "do shell script (\"echo \"&amp;(quoted form of POSIX path of thefile as Unicode text)&amp;\"\")"`</div><div class="line">fi</div><div class="line">if [[ $FILE = "" ]]; then</div><div class="line">    echo Cancelled.</div><div class="line">    # Send ZModem cancel</div><div class="line">    echo -e \\x18\\x18\\x18\\x18\\x18</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo \# Cancelled transfer</div><div class="line">else</div><div class="line">    /usr/local/bin/sz "$FILE" -e -b</div><div class="line">    sleep 1</div><div class="line">    echo</div><div class="line">    echo \# Received $FILE</div><div class="line">fi</div><div class="line"></div><div class="line"><span class="meta">#</span>############################</div><div class="line"><span class="meta">#</span> 写完后修改权限</div><div class="line">chmod 777 iterm2-*</div></pre></td></tr></table></figure>
+<p>接着为iterm2添加配置，Perference-&gt; Profiles -&gt; Default -&gt; Advanced -&gt; Triggers 的 Edit </p>
+<p><img src="https://raw.githubusercontent.com/lxsyz/picture/master/img/20200531223115.png" alt=""></p>
+<p>内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Regular expression: rz waiting to receive.\*\*B0100</div><div class="line">Action: Run Silent Coprocess</div><div class="line">Parameters: /usr/local/bin/iterm2-send-zmodem.sh</div><div class="line"> </div><div class="line">Regular expression: \*\*B00000000000000</div><div class="line">Action: Run Silent Coprocess</div><div class="line">Parameters: /usr/local/bin/iterm2-recv-zmodem.sh</div></pre></td></tr></table></figure>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p><strong>小tips</strong></p>
+<p>下载软件可以使用Folx</p>
+<p>sublime破解可以参考<a href="https://blog.csdn.net/donaldsy/article/details/98768527" target="_blank" rel="external">这篇</a></p>
+<p>强烈推荐Go2Shell和Easy new file, 新建文件和终端可以非常方便</p>
+<p>最后非常推荐知乎大佬的这篇文章，介绍了mac上各种提效小工具，值得一看</p>
+<p><a href="https://zhuanlan.zhihu.com/p/121798647" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/121798647</a></p>
 
     
 
@@ -271,18 +288,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/10/13/述职有感/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/12/28/工作思考/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          述职有感
+          工作方法论思考
         
       </div>
     </a>
   
   
-    <a href="/2020/02/12/python中的负数取余/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">python中的负数取余</div>
+    <a href="/2018/05/25/ubuntu上配置python踩的坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ubuntu上配置python踩的坑</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -309,7 +326,7 @@
 
 
 
-<div id="SOHUCS" sid="非root用户安装tmux" ></div> 
+<div id="SOHUCS" sid="Mac 安装应用踩坑" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

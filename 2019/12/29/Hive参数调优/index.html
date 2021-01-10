@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>非root用户安装tmux | Amanda</title>
+  <title>Hive参数调优 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
-<meta name="keywords" content="linux">
+  <meta name="description" content="Hive优化一. 表连接优化 将大表放后头  Hive假定查询中最后的一个表是大表。它会将其它表缓存起来，然后扫描最后那个表。  使用相同的连接键  当对3个或者更多个表进行join连接时，如果每个on子句都使用相同的连接键的话，那么只会产生一个MapReduce job。  尽早过滤数据  尽量原子化操作   尽量避免一个SQL包含复杂逻辑，可以使用中间表来完成复杂的逻辑 二. limit 语句">
+<meta name="keywords" content="大数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="非root用户安装tmux">
-<meta property="og:url" content="http://lxsyz.github.io/2020/05/17/非root用户安装tmux/index.html">
+<meta property="og:title" content="Hive参数调优">
+<meta property="og:url" content="http://lxsyz.github.io/2019/12/29/Hive参数调优/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
-<meta property="og:updated_time" content="2021-01-10T02:51:16.457Z">
+<meta property="og:description" content="Hive优化一. 表连接优化 将大表放后头  Hive假定查询中最后的一个表是大表。它会将其它表缓存起来，然后扫描最后那个表。  使用相同的连接键  当对3个或者更多个表进行join连接时，如果每个on子句都使用相同的连接键的话，那么只会产生一个MapReduce job。  尽早过滤数据  尽量原子化操作   尽量避免一个SQL包含复杂逻辑，可以使用中间表来完成复杂的逻辑 二. limit 语句">
+<meta property="og:updated_time" content="2021-01-10T02:50:02.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="非root用户安装tmux">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#!/bin/bash # Script for installing tmux on systems where you don&apos;t have root access.# tmux will">
+<meta name="twitter:title" content="Hive参数调优">
+<meta name="twitter:description" content="Hive优化一. 表连接优化 将大表放后头  Hive假定查询中最后的一个表是大表。它会将其它表缓存起来，然后扫描最后那个表。  使用相同的连接键  当对3个或者更多个表进行join连接时，如果每个on子句都使用相同的连接键的话，那么只会产生一个MapReduce job。  尽早过滤数据  尽量原子化操作   尽量避免一个SQL包含复杂逻辑，可以使用中间表来完成复杂的逻辑 二. limit 语句">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -173,14 +173,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-非root用户安装tmux" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Hive参数调优" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      非root用户安装tmux
+      Hive参数调优
     </h1>
   
 
@@ -192,8 +192,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/05/17/非root用户安装tmux/" class="archive-article-date">
-        <time datetime="2020-05-17T12:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-17</time>
+<a href="/2019/12/29/Hive参数调优/" class="archive-article-date">
+        <time datetime="2019-12-29T14:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-29</time>
 </a>
 
   
@@ -202,8 +202,47 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>!/bin/bash</div><div class="line"> </div><div class="line"><span class="meta">#</span> Script for installing tmux on systems where you don't have root access.</div><div class="line"><span class="meta">#</span> tmux will be installed in $HOME/local/bin.</div><div class="line"><span class="meta">#</span> It's assumed that wget and a C/C++ compiler are installed.</div><div class="line"> </div><div class="line"><span class="meta">#</span> exit on error</div><div class="line">set -e</div><div class="line"> </div><div class="line">TMUX_VERSION=2.2</div><div class="line"> </div><div class="line"><span class="meta">#</span> create our directories</div><div class="line">mkdir -p $HOME/local $HOME/tmux_tmp</div><div class="line">cd $HOME/tmux_tmp</div><div class="line"> </div><div class="line"><span class="meta">#</span> download source files for tmux, libevent, and ncurses</div><div class="line">wget https://github.com/tmux/tmux/releases/download/2.2/tmux-2.2.tar.gz</div><div class="line">wget https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz</div><div class="line">wget http://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz</div><div class="line"> </div><div class="line"><span class="meta">#</span> extract files, configure, and compile</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> libevent #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf libevent-2.0.22-stable.tar.gz</div><div class="line">cd libevent-2.0.22-stable</div><div class="line">./configure --prefix=$HOME/local --disable-shared</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> ncurses #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf ncurses-6.0.tar.gz</div><div class="line">cd ncurses-6.0</div><div class="line">./configure --prefix=$HOME/local</div><div class="line">make</div><div class="line">make install</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span>###########</div><div class="line"><span class="meta">#</span> tmux #</div><div class="line"><span class="meta">#</span>###########</div><div class="line">tar xvzf tmux-$&#123;TMUX_VERSION&#125;.tar.gz</div><div class="line">cd tmux-$&#123;TMUX_VERSION&#125;</div><div class="line">./configure CFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-L$HOME/local/lib -L$HOME/local/include/ncurses -L$HOME/local/include"</div><div class="line">CPPFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" LDFLAGS="-static -L$HOME/local/include -L$HOME/local/include/ncurses -L$HOME/local/lib" make</div><div class="line">cp tmux $HOME/local/bin</div><div class="line">cd ..</div><div class="line"> </div><div class="line"><span class="meta">#</span> cleanup</div><div class="line">rm -rf $HOME/tmux_tmp</div><div class="line"> </div><div class="line">echo "$HOME/local/bin/tmux is now available. You can optionally add $HOME/local/bin to your PATH."</div></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>环境变量设置</div><div class="line"><span class="meta">#</span>将下面的语句添加到.bashrc中</div><div class="line">export PATH=$PATH:$HOME/local/bin</div><div class="line"> </div><div class="line"><span class="meta">#</span>重载环境</div><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
+    <h3 id="Hive优化"><a href="#Hive优化" class="headerlink" title="Hive优化"></a>Hive优化</h3><h5 id="一-表连接优化"><a href="#一-表连接优化" class="headerlink" title="一. 表连接优化"></a>一. 表连接优化</h5><ol>
+<li>将大表放后头</li>
+</ol>
+<p>Hive假定查询中最后的一个表是大表。它会将其它表缓存起来，然后扫描最后那个表。</p>
+<ol>
+<li>使用相同的连接键</li>
+</ol>
+<p>当对3个或者更多个表进行join连接时，如果每个on子句都使用相同的连接键的话，那么只会产生一个MapReduce job。</p>
+<ol>
+<li><p>尽早过滤数据</p>
+</li>
+<li><p>尽量原子化操作</p>
+</li>
+</ol>
+<p>尽量避免一个SQL包含复杂逻辑，可以使用中间表来完成复杂的逻辑</p>
+<h5 id="二-limit-语句快速出结果"><a href="#二-limit-语句快速出结果" class="headerlink" title="二. limit 语句快速出结果"></a>二. limit 语句快速出结果</h5><p>一般情况下，Limit语句还是需要执行整个查询语句，然后再返回部分结果。</p>
+<p>有一个配置属性可以开启，避免这种情况—对数据源进行抽样</p>
+<p>hive.limit.optimize.enable=true — 开启对数据源进行采样的功能</p>
+<p>hive.limit.row.max.size — 设置最小的采样容量</p>
+<p>hive.limit.optimize.limit.file — 设置最大的采样样本数</p>
+<h5 id="三-调整mapper和reducer的个数"><a href="#三-调整mapper和reducer的个数" class="headerlink" title="三. 调整mapper和reducer的个数"></a>三. 调整mapper和reducer的个数</h5><p>1 Map阶段优化</p>
+<p>map个数的主要的决定因素有： input的文件总个数，input的文件大小，集群设置的文件块大小（默认128M，不可自定义）。</p>
+<p><strong>举例：</strong></p>
+<p>a) 假设input目录下有1个文件a,大小为780M,那么hadoop会将该文件a分隔成7个块（6个128m的块和1个12m的块），从而产生7个map数</p>
+<p>b) 假设input目录下有3个文件a,b,c,大小分别为10m，20m，130m，那么hadoop会分隔成4个块（10m,20m,128m,2m）,从而产生4个map数</p>
+<p>即，如果文件大于块大小(128m),那么会拆分，如果小于块大小，则把该文件当成一个块。</p>
+<p>map执行时间：map任务启动和初始化的时间+逻辑处理的时间。</p>
+<h5 id="1）减少map数"><a href="#1）减少map数" class="headerlink" title="1）减少map数"></a>1）减少map数</h5><p>若有大量小文件（小于128M），会产生多个map，处理方法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">set mapred.max.split.size=100000000; </div><div class="line">set mapred.min.split.size.per.node=100000000; </div><div class="line">set mapred.min.split.size.per.rack=100000000;  </div><div class="line">set hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat; -- 执行前进行小文件合并</div></pre></td></tr></table></figure>
+<p>– 前面三个参数确定合并文件块的大小，</p>
+<p>大于文件块大小128m的，按照128m来分隔；</p>
+<p>小于128m,大于100m的，按照100m来分隔；</p>
+<p>把那些小于100m的进行合并</p>
+<h5 id="四-map端聚合"><a href="#四-map端聚合" class="headerlink" title="四. map端聚合"></a>四. map端聚合</h5><p>通过设置以下参数开启在Map端的聚合：</p>
+<p>set hive.map.aggr=true;</p>
+<p>相关配置参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">hive.groupby.mapaggr.checkinterval  -- map端group by执行聚合时处理的多少行数据（默认：100000）</div><div class="line"></div><div class="line">hive.map.aggr.hash.min.reduction -- 进行聚合的最小比例（预先对100000条数据做聚合，若聚合之后的数据量/100000的值大于该配置0.5，则不会聚合）</div><div class="line"></div><div class="line">hive.map.aggr.hash.percentmemory  -- map端聚合使用的内存的最大值</div><div class="line"></div><div class="line">hive.map.aggr.hash.force.flush.memory.threshold -- map端做聚合操作是hash表的最大可用内容，大于该值则会触发flush</div><div class="line"></div><div class="line">hive.groupby.skewindata --是否对GroupBy产生的数据倾斜做优化，默认为false</div></pre></td></tr></table></figure>
+<h5 id="四-命令介绍"><a href="#四-命令介绍" class="headerlink" title="四. 命令介绍"></a>四. 命令介绍</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hive.auto.convert.join    默认值为true，自动开户MAPJOIN优化</div><div class="line">hive.mapjoin.smalltable.filesize  默认值为2500000(25M),通过配置该属性来确定使用该优化的表的大小，如果表的大小小于此值就会被加载进内存中</div></pre></td></tr></table></figure>
+<p>学习链接：</p>
+<p><a href="https://blog.csdn.net/lazythinker/article/details/75497774" target="_blank" rel="external">hive参数</a><br><a href="https://www.cnblogs.com/smartloli/p/4356660.html" target="_blank" rel="external">Hive性能优化</a><br><a href="https://www.cnblogs.com/sandbank/p/6408762.html" target="_blank" rel="external">Hive调优</a><br><a href="https://www.cnblogs.com/smartloli/p/4288493.html" target="_blank" rel="external">Hive坑</a><br><a href="https://blog.csdn.net/hjw199089/article/details/76532180" target="_blank" rel="external">Hive调优</a><br><a href="https://blog.csdn.net/qq_18838991/article/details/51819295" target="_blank" rel="external">参数调优汇总</a></p>
+<h3 id="Fiddler使用参考链接"><a href="#Fiddler使用参考链接" class="headerlink" title="Fiddler使用参考链接"></a>Fiddler使用参考链接</h3><p><a href="https://juejin.im/post/5c9779d76fb9a070b0486b08" target="_blank" rel="external">https://juejin.im/post/5c9779d76fb9a070b0486b08</a></p>
 
     
 
@@ -252,7 +291,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">大数据</a>
         		</li>
       		
 		</ul>
@@ -271,18 +310,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/10/13/述职有感/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/02/12/python中的负数取余/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          述职有感
+          python中的负数取余
         
       </div>
     </a>
   
   
-    <a href="/2020/02/12/python中的负数取余/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">python中的负数取余</div>
+    <a href="/2019/12/28/工作思考/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">工作方法论思考</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -309,7 +348,7 @@
 
 
 
-<div id="SOHUCS" sid="非root用户安装tmux" ></div> 
+<div id="SOHUCS" sid="Hive参数调优" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
