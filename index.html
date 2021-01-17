@@ -80,8 +80,6 @@
 			
 				<li><a href="/" target="_blank">主页</a></li>
 			
-				<li><a href="https://wenqingman.top/DeathRunner" target="_blank">相册</a></li>
-			
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -138,8 +136,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -158,9 +154,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="https://wenqingman.top/DeathRunner">相册</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -177,6 +171,232 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-NLG简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/11/27/NLG简介/" target="_blank">NLG探索与实践</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/11/27/NLG简介/" class="archive-article-date">
+        <time datetime="2020-11-27T15:11:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-27</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>[TOC]</p>
+<p>在贝壳一直做内容生成相关的工作，在此对过去大半年的工作做一个复盘和思考。</p>
+<h1 id="1-NLG的概念和意义"><a href="#1-NLG的概念和意义" class="headerlink" title="1.NLG的概念和意义"></a>1.NLG的概念和意义</h1><h2 id="1-1-NLG简介"><a href="#1-1-NLG简介" class="headerlink" title="1.1 NLG简介"></a>1.1 NLG简介</h2><h3 id="1-1-1-什么是NLG"><a href="#1-1-1-什么是NLG" class="headerlink" title="1.1.1 什么是NLG?"></a>1.1.1 什么是NLG?</h3><ul>
+<li><p>自然语言生成 - NLG 是 NLP 的重要组成部分。NLU 负责理解内容，NLG 负责生成内容，它的公式表达为<strong>NLP = NLU + NLG。</strong>以智能音箱为例，当用户说“几点了？”，首先需要利用 NLU 技术判断用户意图，理解用户想要什么，然后利用 NLG 技术说出“现在是6点50分”。</p>
+</li>
+<li><p>NLG 可以将非语言格式的数据转换成人类可以理解的语言格式，如文章、报告等。目前NLG有2种方式：</p>
+</li>
+</ul>
+<p>​     （1）text-to-text：文本到文本的生成</p>
+<p>​     （2）data-to-text：数据到文本的生成</p>
+<h3 id="1-1-2-NLG的3个level"><a href="#1-1-2-NLG的3个level" class="headerlink" title="1.1.2 NLG的3个level"></a>1.1.2 NLG的3个level</h3><ul>
+<li><strong>简单的数据合并</strong></li>
+<li><strong>模板化的 NLG</strong></li>
+<li><strong>高级 NLG</strong> ：它理解输入数据的意图，并考虑上下文，智能化的整理语言，并将结果呈现在用户可以轻松阅读和理解的叙述中。</li>
+</ul>
+<h3 id="1-1-3-NLG的6个步骤"><a href="#1-1-3-NLG的6个步骤" class="headerlink" title="1.1.3 NLG的6个步骤"></a>1.1.3 NLG的6个步骤</h3><ul>
+<li><p><strong>第一步：内容确定</strong>，决定文本应该包含哪些信息。</p>
+</li>
+<li><p><strong>第二步：文本结构</strong>，合理的组织文本的顺序。例如在报道一场篮球比赛时，会优先表达「什么时间」「什么地点」「哪2支球队」，然后再表达「比赛的概况」，最后表达「比赛的结局」。</p>
+</li>
+<li><p><strong>第三步：句子聚合</strong>，多个信息合并到一个句子里表达可能会更加流畅，也更易于阅读。</p>
+</li>
+<li><p><strong>第四步：语法化</strong>，通过一些连接词将这些句子组织成自然语言。</p>
+</li>
+<li><p><strong>第五步：参考表达式生成</strong>，它跟语法化的本质区别在于需要识别出内容的领域，然后使用该领域的词汇。</p>
+</li>
+<li><p><strong>第六步：语言实现</strong>，当所有相关的单词和短语都已经确定时，需要将它们组合起来形成一个结构良好的完整句子。</p>
+</li>
+</ul>
+<h3 id="1-1-4-NLG的3种典型应用"><a href="#1-1-4-NLG的3种典型应用" class="headerlink" title="1.1.4 NLG的3种典型应用"></a>1.1.4 NLG的3种典型应用</h3><ul>
+<li>NLG 的不管如何应用，大部分都是下面的3种目的：</li>
+</ul>
+<p>​     （1）能够大规模的产生个性化内容</p>
+<p>​     （2）帮助人类洞察数据，让数据更容易理解</p>
+<p>​     （3）加速内容生产</p>
+<h2 id="1-2-为什么需要NLG"><a href="#1-2-为什么需要NLG" class="headerlink" title="1.2 为什么需要NLG?"></a>1.2 为什么需要NLG?</h2><p>​    文本内容本身就拥有很大的业务价值，一方面生产的文章内容可以增加用户的停留时间，另一方面像推荐理由这类的短文本可以吸引用户的点击，同时，目前很多文章、标题和推荐理由都是由运营或者经纪人书写的，需要的人力成本高，因此通过使用机器大规模生产文本可以起到降本提效的效果。</p>
+<p>1.3 NLG技术</p>
+<p><a href="https://tech.meituan.com/2019/03/14/information-flow-creative-optimization-practices.html" target="_blank" rel="external">大众点评信息流基于文本生成的创意优化实践</a></p>
+<p>文本生成的三种主流方法各自的优劣势：</p>
+<ul>
+<li><strong>规划式</strong>：根据结构化的信息，通过语法规则、树形规则等方式规划生成进文本中，可以抽象为三个阶段。宏观规划解决“说什么内容”，微观规划解决“怎么说”，包括语法句子粒度的规划，以及最后的表层优化对结果进行微调。其优势是控制力极强、准确率较高，特别适合新闻播报等模版化场景。而劣势是很难做到端到端的优化，损失信息上限也不高。</li>
+<li><strong>抽取式</strong>：顾名思义，在原文信息中抽取一部分作为输出。可以通过编码端的表征在解码端转化为多种不同的分类任务，来实现端到端的优化。其优势在于：能降低复杂度，较好控制与原文的相关性。而劣势在于：容易受原文的束缚，泛化能力不强。</li>
+<li><strong>生成式</strong>：通过编码端的表征，在解码端完成序列生成的任务，可以实现完全的端到端优化，可以完成多模态的任务。其在泛化能力上具有压倒性优势，但劣势是控制难度极大，建模复杂度也很高。</li>
+</ul>
+<h1 id="2-NLG平台从0到1的建设"><a href="#2-NLG平台从0到1的建设" class="headerlink" title="2 NLG平台从0到1的建设"></a>2 NLG平台从0到1的建设</h1><p><strong>以下内容可能涉及公司技术秘密，暂时不开放吧。</strong></p>
+<h2 id="2-1-基于标签的数据聚合"><a href="#2-1-基于标签的数据聚合" class="headerlink" title="2.1 基于标签的数据聚合"></a>2.1 基于标签的数据聚合</h2><h2 id="2-2-基于无监督学习的文本生成"><a href="#2-2-基于无监督学习的文本生成" class="headerlink" title="2.2 基于无监督学习的文本生成"></a>2.2 基于无监督学习的文本生成</h2><h2 id="2-3-基于监督学习的文本生成"><a href="#2-3-基于监督学习的文本生成" class="headerlink" title="2.3 基于监督学习的文本生成"></a>2.3 基于监督学习的文本生成</h2><h2 id="2-4-基于seq2seq的文本生成"><a href="#2-4-基于seq2seq的文本生成" class="headerlink" title="2.4 基于seq2seq的文本生成"></a>2.4 基于seq2seq的文本生成</h2><h1 id="3-评估方法"><a href="#3-评估方法" class="headerlink" title="3 评估方法"></a>3 评估方法</h1><ul>
+<li>基于词重叠率的方法<ul>
+<li>机器翻译 &amp; 摘要抽取 常用指标</li>
+<li>基于词重叠率的方法是指基于词汇的级别计算模型的生成文本和人工参考文本之间的相似性，比较经典的代表有 BLEU、METEOR 和 ROUGE，其中 BLEU 和 METEOR 常用于机器翻译任务，ROUGE 常用于自动文本摘要。</li>
+</ul>
+</li>
+<li>词向量评价指标(<strong>在论文中一般很少使用</strong>)<ul>
+<li>词向量评价是通过 Word2Vec、Sent2Vec 等方法将句子转换为向量表示，这样一个句子就被映射到一个低维空间，句向量在一定程度上表征了其含义，再通过余弦相似度等方法就可以计算两个句子之间的相似程度。</li>
+<li>使用词向量的好处是，可以一定程度上增加答案的多样性，因为这里大多采用词语相似度进行表征，相比词重叠中要求出现完全相同的词语，限制降低了很多。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-1-词重叠率"><a href="#3-1-词重叠率" class="headerlink" title="3.1 词重叠率"></a>3.1 词重叠率</h2><p>参考：<a href="https://zhuanlan.zhihu.com/p/144182853" target="_blank" rel="external">评估指标整理</a></p>
+<h3 id="BLEU"><a href="#BLEU" class="headerlink" title="BLEU"></a>BLEU</h3><p>核心思想</p>
+<ul>
+<li>比较候选译文和参考译文里的 n-gram 的重合程度，重合程度越高就认为译文质量越高。unigram用于衡量单词翻译的<strong>精确性</strong>，高阶n-gram用于衡量句子翻译的<strong>流畅性</strong>。 实践中，通常是取N=1~4，然后对进行加权平均。</li>
+</ul>
+<p>假设机器翻译的译文C和一个参考翻译S1如下：</p>
+<blockquote>
+<p>C: a cat is on the table<br>S1: there is a cat on the table</p>
+</blockquote>
+<p>计算各个gram精确率</p>
+<p>p1 计算 a cat is on the table 分别都在参考翻译S1中 所以 p1 = 1</p>
+<p>p2 (a, cat)在, (cat is) 没在, (is on) 没在, (on the) 在, (the table)在 所以p2 = 3/5</p>
+<p>p3 (a cat is)不在, (cat is on)不在, (is on the)不在, (on the table)在 所以 p3 = 1/4</p>
+<p>这样计算的结果明显不正确，因此在计算时，往往会加上<strong>修正和长度惩罚</strong></p>
+<ul>
+<li>缺点：<ul>
+<li>只看重精确率，不看重召回率。</li>
+<li>存在常用词干扰（可以用截断的方法解决）</li>
+<li>短句得分较高。即使引入了brevity penalty，也还是不够。</li>
+</ul>
+</li>
+<li>改进<ul>
+<li>截断：改进常用词干扰</li>
+<li>brevity penalty：改进短句得分较高的问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="ROUGE"><a href="#ROUGE" class="headerlink" title="ROUGE"></a>ROUGE</h3><p>核心思想</p>
+<ul>
+<li><p>大致分为四种：ROUGE-N，ROUGE-L，ROUGE-W，ROUGE-S。常用的是前两种（-N与-L）</p>
+<ul>
+<li><p>ROUGE-N （将BLEU的精确率优化为召回率）</p>
+</li>
+<li><p>ROUGE-L （将BLEU的n-gram优化为公共子序列），计算的是候选摘要与参考摘要的最长公共子序列长度，长度越长，得分越高，基于F值。</p>
+</li>
+<li><p>ROUGE-W （将ROUGE-L的连续匹配给予更高的奖励）</p>
+</li>
+<li><p>ROUGE-S （允许n-gram出现跳词(skip)），即跳跃二元组（skip bigram）。例如句子 “I have a cat” 的 Skip 2-gram 包括 (I, have)，(I, a)，(I, cat)，(have, a)，(have, cat)，(a, cat)。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>ROUGE的出现很大程度上是为了解决<strong>NMT的漏翻问题（低召回率）</strong>,因为它不考虑候选译文是否流畅。</p>
+<h3 id="NIST"><a href="#NIST" class="headerlink" title="NIST"></a>NIST</h3><ul>
+<li><p>NIST(National Institute of standards and Technology)方法是在BLEU方法上的一种改进。</p>
+<p>最主要的是引入了<strong>每个n-gram的信息量(information)</strong> 的概念。BLEU算法只是单纯的将n-gram的数目加起来，而nist是在得到信息量累加起来再除以整个译文的n-gram片段数目。这样相当于对于一些<strong>出现少的重点的词权重就给的大了。</strong></p>
+<p>详细链接：<a href="https://link.zhihu.com/?target=https%3A//www.cnblogs.com/by-dream/p/7765345.html" target="_blank" rel="external">机器翻译评测——BLEU改进后的NIST算法</a></p>
+</li>
+</ul>
+<h3 id="TER"><a href="#TER" class="headerlink" title="TER"></a>TER</h3><p>是一种基于距离的评价方法，用来评定机器翻译结果的译后编辑的工作量。</p>
+<p>距离被定义为将一个序列转换成另一个序列所需要的最少编辑操作次数。操作次数越多，距离越大，序列之间的相似性越低；相反距离越小，表示一个句子越容易改写成另一个句子，序列之间的相似性越高。</p>
+<p>$$score= \frac {edit(c,t)}{l}$$</p>
+<p>其中 edit(c,r) 是指机器翻译生成的候选译文 c 和参考译文 r 之间的距离，l 是归一化因子，通常为参考译文的长度。在距离计算中所有的操作的代价都为 1。在计算距离时，<strong>优先考虑移位操作，再计算编辑距离</strong>，也就是增加、删除和替换操作的次数。直到移位操作无法减少编辑距离时，将编辑距离和移位操作的次数累加得到TER 计算的距离。</p>
+<h2 id="3-2-基于语言模型的评估方法"><a href="#3-2-基于语言模型的评估方法" class="headerlink" title="3.2 基于语言模型的评估方法"></a>3.2 基于语言模型的评估方法</h2><h3 id="PPL"><a href="#PPL" class="headerlink" title="PPL"></a>PPL</h3><ul>
+<li><p>perplexity(困惑度)用来度量一个概率分布或概率模型预测样本的好坏程度。<strong>困惑度越低，翻译质量越好</strong></p>
+</li>
+<li><p>核心思想</p>
+<ul>
+<li>（1）根据参考句子，学习一个语言模型P；</li>
+<li>（2）根据语言模型P，计算候选句子的得分；</li>
+<li>（3）根据句子长度对上述得分进行Normalize</li>
+</ul>
+<p>公式：</p>
+<p>$$PPL(W)=P(w_1w_2…w_N)^{-\frac{1}{N}}$$</p>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>数据集越大，困惑度下降得越快</li>
+<li>数据中的标点会对模型的PPL产生很大影响</li>
+<li>常用词干扰</li>
+</ul>
+</li>
+</ul>
+<h3 id="基于-bert-的评分指标"><a href="#基于-bert-的评分指标" class="headerlink" title="基于 bert 的评分指标"></a>基于 bert 的评分指标</h3><p>BERTSCORE：</p>
+<p>对两个生成句和参考句（word piece 进行 tokenize）分别用 bert 提取特征，然后对 2 个句子的每一个词分别计算内积，可以得到一个相似性矩阵。基于这个矩阵，我们可以分别对参考句和生成句做一个最大相似性得分的累加然后归一化，得到 bertscore 的 precision，recall 和 F1</p>
+<p>还可以适用IDF进行加权计算。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/深度学习//" class="article-tag-list-link color5">深度学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/11/27/NLG简介/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
 
   
     <article id="post-述职有感" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -687,6 +907,355 @@
 
 
   
+    <article id="post-word2vec" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/12/20/word2vec/" target="_blank">词向量</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/12/20/word2vec/" class="archive-article-date">
+        <time datetime="2019-12-20T14:07:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>[TOC]</p>
+<p>词向量就是把一个词表示成一个向量。简单的方式就是OneHot编码，但是这样做会造成<strong>维度灾难，且词与词之间没有关系</strong>。另一种方式是用一个向量来表示，维度一般不高，在空间上也可以计算距离来表示词与词之间的相似性。</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="语言模型"><a href="#语言模型" class="headerlink" title="语言模型"></a>语言模型</h3><p>语言模型就是给定一个词，预测后面的词在前面的词出现的情况下出现的概率。如果这个概率特别低，说明这句话不是一句自然语言。</p>
+<p>$$p(s)=p(w_1)p(w_2|w_1)p(w_3|w_2,w_1)…p(w<em>T|w</em>{T-1} …w_1)$$</p>
+<p>$p(w_1)$表示词$w_1$在语料库中出现的概率，考虑一个词前面所有的词来计算概率连乘的话，计算量会特别大，因此采用n-gram模型来进行优化。</p>
+<h3 id="n-gram模型"><a href="#n-gram模型" class="headerlink" title="n-gram模型"></a>n-gram模型</h3><p>n-gram模型只考虑$w_i$前面的n-1个词，包括$w_i$本身，总共n个词，来计算在给定上文情况下，$w_i$出现的概率。也就是</p>
+<p>$$p(w_i|Context_i)=p(w<em>i|w</em>{i-n+1} …w_{i-1})$$</p>
+<p>N-gram模型也有些问题，总结如下：</p>
+<p>1、n-gram无法建模更远的关系，大部分研究或工作都是使用trigram或bigram；</p>
+<p>2、无法建模出词之间的相似度，就是有两个词经常出现在同一个context后面，但是模型是没法体现这个相似性的。</p>
+<p>3、有些n元组（n个词的组合，跟顺序有关的）在语料库里面没有出现过，对应出来的条件概率就是0，这样一整句话的概率都是0了，这是不对的，解决的方法主要是两种：平滑法（基本上是分子分母都加一个数）和回退法（利用n-1的元组的概率去代替n元组的概率）</p>
+<p>例如：students opened the <strong>book</strong></p>
+<p>（1）预测的文本 book ，语料库中没有students opened the book 这句话时，book的概率为0；可通过拉普拉斯平滑解决</p>
+<p>（2）students opened the 在语料库中不存在时，计算概率值的分母为0；使用opened the 替代，称为backoff。</p>
+<h3 id="NNLM"><a href="#NNLM" class="headerlink" title="NNLM"></a>NNLM</h3><p>神经网络语言模型使用NN直接取建模概率$p(w_i|Context_i)$,网络的输入是前n-1个单词的向量$C_i$，输出是V个节点，V就是词典大小，其中第$i$个节点的输出值就是$p(w_i|Context_i)$。模型结构如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gmr2gap3l6j311v0u07k8.jpg" alt="img"></p>
+<p>训练的目标是最大似然加正则项：</p>
+<p>​                            $$L=max\frac{1}{T}\sum logf(w<em>t,w</em>{t-1},…,w<em>{t-n+2},w</em>{t-n+1};\theta)+R(\theta)$$</p>
+<p>其中$\theta$为参数，$R(\theta)$为正则项，输出层采用softmax函数：</p>
+<p>​                            $$p(w<em>t|w</em>{t-1} …w<em>{t-n+1})=\frac{e^{y</em>{w_t}}}{\sum e^{y_i}}$$</p>
+<p>其中$y_i$是每个输出词$w_i$的log概率，计算如下：</p>
+<p>​                            $$y=b+Wx+Utanh(d+Hx)$$</p>
+<p>其中$x=(C(w<em>{t-1}),C(w</em>{t-2}),…,C(w_{t-n+1}))$, 输入层x也是要训练的参数，梯度更新的方式为：</p>
+<p>​                            $$\theta\leftarrow \theta+\alpha\frac{\partial logp(w<em>t|w</em>{t-1} …w_{t-n+1}))}{\partial \theta}$$</p>
+<p>优化结束后，词向量和语言模型就都有了。</p>
+<h3 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h3><p>CBOW是 Continuous Bag Words Model 的缩写，是一种 与前向 NNLM 类似 的模型，不同点在于 CBOW 去掉了最耗时的非线性隐层且所有词共享。 如</p>
+<p><img src="https://img-blog.csdn.net/20140525173342578" alt="img"></p>
+<p>CBOW模型是根据上下文预测中心词。</p>
+<p>这个网络结构的功能是为了完成一个的事情——判断一句话是否是自然语言。怎么判断呢？使用的是概率，就是计算一下这句话的“一列词的组合”的概率的连乘（联合概率）是多少，如果比较低，那么就可以认为不是一句自然语言，如果概率高，就是一句正常的话。</p>
+<p><strong>从输入层到隐层所进行的操作实际就是上下文向量的加和</strong>。原始代码如下(变量名也很随意呀)：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// in -&gt; hidden</span></div><div class="line">next_random = next_random * (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)<span class="number">25214903917</span> + <span class="number">11</span>;</div><div class="line">b = next_random % window;</div><div class="line">cw = <span class="number">0</span>;</div><div class="line"><span class="keyword">for</span> (a = b; a &lt; window * <span class="number">2</span> + <span class="number">1</span> - b; a++) <span class="keyword">if</span> (a != window) &#123;</div><div class="line">    c = sentence_position - window + a;</div><div class="line">    <span class="keyword">if</span> (c &lt; <span class="number">0</span>) <span class="keyword">continue</span>;</div><div class="line">    <span class="keyword">if</span> (c &gt;= sentence_length) <span class="keyword">continue</span>;</div><div class="line">    last_word = sen[c];</div><div class="line">    <span class="keyword">if</span> (last_word == <span class="number">-1</span>) <span class="keyword">continue</span>;</div><div class="line">    <span class="keyword">for</span> (c = <span class="number">0</span>; c &lt; layer1_size; c++) </div><div class="line">       	neu1[c] += syn0[c + last_word * layer1_size]; <span class="comment">// 一维数组存储向量参数</span></div><div class="line">    cw++;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中 sentence_position 为当前 word在句子中下标，b是0~window-1的一个值，整个窗口的大小为$2<em>window+1-2</em>b$，相当于左右给看$window-b$个词。最后将每个词的向量求和，赋值到neu1中</p>
+<p>CBOW有两种可选的算法: 层次Softmax和 Negative Sampling。</p>
+<p><strong>层次Softmax算法结合了Huffman编码</strong>，每个词$w$都可以从树的根节点沿着唯一一条路径被访问到。如下图所示，我们可以沿着霍夫曼树从根节点一直走到我们叶子节点的目标词，其中，根节点就是简单求和平均后的词向量。<strong>这个霍夫曼树的所有叶子节点就代表了语料库里面的所有词，而且是每个叶子节点对应一个词，不重复。</strong></p>
+<p>在word2vec中，采用逻辑回归的方法判断，沿着左子树走为负类1，右子树为正类0</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gmr2h2k15yj30gd0953ys.jpg" alt="img"></p>
+<p>似然函数为：</p>
+<p>$$f=\sigma(neu1^T\cdot syn1)$$</p>
+<p>实质上就是将每一步的sigmoid求积，<strong>neu1表示平均后的词向量，syn1为模型参数，code[j]表示对于目标词w，第j个编码的哈夫曼取值</strong>，而我们的目标就是让这个概率最大，通过最大似然的方式求解。</p>
+<p>$P(w|Context)=\prod ((f^{1-code[j]}))\cdot ((1- f)^{code[j]})$</p>
+<p>$$L=-(1-code[j]logf - code[j]log(1-f))$$</p>
+<p>解法选用的是SGD。具体说来就是对每一个样本都进行迭代，但是每个样本只影响其相关的参数，跟它无关的参数不影响。那么梯度就是：</p>
+<p>$$Grad_{neu1}=\frac{\partial L}{\partial neu1}=-(1-code[j])\cdot (1-f)\cdot syn1+code[j]\cdot f\cdot syn1=-(1-code[j]-f)\cdot syn1$$</p>
+<p>$$Grad_{syn1}=\frac{\partial L}{\partial syn1}=-(1-code[j])\cdot (1-f)\cdot neu1+code[j]\cdot f\cdot neu1=-(1-code[j]-f)\cdot neu1$$</p>
+<p>代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (hs) <span class="keyword">for</span> (d = <span class="number">0</span>; d &lt; vocab[word].codelen; d++) &#123;</div><div class="line">    f = <span class="number">0</span>;</div><div class="line">    l2 = vocab[word].point[d] * layer1_size;</div><div class="line">    <span class="comment">// Propagate hidden -&gt; output</span></div><div class="line">    <span class="keyword">for</span> (c = <span class="number">0</span>; c &lt; layer1_size; c++) f += neu1[c] * syn1[c + l2];</div><div class="line">    <span class="keyword">if</span> (f &lt;= -MAX_EXP) <span class="keyword">continue</span>;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (f &gt;= MAX_EXP) <span class="keyword">continue</span>;</div><div class="line">    <span class="keyword">else</span> f = expTable[(<span class="keyword">int</span>)((f + MAX_EXP) * (EXP_TABLE_SIZE / MAX_EXP / <span class="number">2</span>))];</div><div class="line">    <span class="comment">// 'g' is the gradient multiplied by the learning rate</span></div><div class="line">    g = (<span class="number">1</span> - vocab[word].code[d] - f) * alpha;</div><div class="line">    <span class="comment">// Propagate errors output -&gt; hidden</span></div><div class="line">    <span class="keyword">for</span> (c = <span class="number">0</span>; c &lt; layer1_size; c++) neu1e[c] += g * syn1[c + l2];</div><div class="line">    <span class="comment">// Learn weights hidden -&gt; output</span></div><div class="line">    <span class="keyword">for</span> (c = <span class="number">0</span>; c &lt; layer1_size; c++) syn1[c + l2] += g * neu1[c];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>第二种算法是Negative Sampling，对一个词wij来说，这个词本身是一个正类样本，同时对这个词，还随机抽取了k个负类样本，那么每个词在训练的时候都有k+1个样本，所以要做k+1次SGD。每个样本的负对数似然就是</p>
+<p>$f=-label\cdot log f- (1-label) \cdot log (1-f)$</p>
+<p>推导过程与上文类似，只是把1 - code[j]替换成label</p>
+<p>代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// NEGATIVE SAMPLING</span></div><div class="line"><span class="keyword">if</span> (negative &gt; <span class="number">0</span>) <span class="keyword">for</span> (d = <span class="number">0</span>; d &lt; negative + <span class="number">1</span>; d++) &#123;</div><div class="line">    <span class="keyword">if</span> (d == <span class="number">0</span>) &#123;</div><div class="line">        target = word;</div><div class="line">        label = <span class="number">1</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        next_random = next_random * (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)<span class="number">25214903917</span> + <span class="number">11</span>;</div><div class="line">        target = table[(next_random &gt;&gt; <span class="number">16</span>) % table_size];</div><div class="line">        <span class="keyword">if</span> (target == <span class="number">0</span>) target = next_random % (vocab_size - <span class="number">1</span>) + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span> (target == word) <span class="keyword">continue</span>;</div><div class="line">        label = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    l2 = target * layer1_size;</div><div class="line">    f = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (c = <span class="number">0</span>; c &lt; layer1_size; c++) f += neu1[c] * syn1neg[c + l2];</div><div class="line">    <span class="keyword">if</span> (f &gt; MAX_EXP) g = (label - <span class="number">1</span>) * alpha;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (f &lt; -MAX_EXP) g = (label - <span class="number">0</span>) * alpha;</div><div class="line">    <span class="keyword">else</span> g = (label - expTable[(<span class="keyword">int</span>)((f + MAX_EXP) * (EXP_TABLE_SIZE / MAX_EXP / <span class="number">2</span>))]) * alpha;</div><div class="line">    <span class="keyword">for</span> (c = <span class="number">0</span>; c &lt; layer1_size; c++) neu1e[c] += g * syn1neg[c + l2];</div><div class="line">    <span class="keyword">for</span> (c = <span class="number">0</span>; c &lt; layer1_size; c++) syn1neg[c + l2] += g * neu1[c];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>隐层为输入层各变量的加和，因此输入层的梯度其实就是隐层梯度，传播代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// hidden -&gt; in</span></div><div class="line"><span class="keyword">for</span> (a = b; a &lt; window * <span class="number">2</span> + <span class="number">1</span> - b; a++) <span class="keyword">if</span> (a != window) &#123;</div><div class="line">    c = sentence_position - window + a;</div><div class="line">    <span class="keyword">if</span> (c &lt; <span class="number">0</span>) <span class="keyword">continue</span>;</div><div class="line">    <span class="keyword">if</span> (c &gt;= sentence_length) <span class="keyword">continue</span>;</div><div class="line">    last_word = sen[c];</div><div class="line">    <span class="keyword">if</span> (last_word == <span class="number">-1</span>) <span class="keyword">continue</span>;</div><div class="line">    <span class="keyword">for</span> (c = <span class="number">0</span>; c &lt; layer1_size; c++) syn0[c + last_word * layer1_size] += neu1e[c];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Skip-Gram"><a href="#Skip-Gram" class="headerlink" title="Skip-Gram"></a>Skip-Gram</h3><p>Skip-Gram和CBOW最大的区别就是表达模型输入输出的方式，对于Skip-Gram来说，训练的任务则变成了由目标词向量预估上下文的2c个词。最终的预估结果会是已知目标词，求上下文的条件概率。</p>
+<p><img src="https://img-blog.csdn.net/20180831150023948?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p5bmFzaDI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<h3 id="为什么要是用层次化Softmax或Negative-Sampling"><a href="#为什么要是用层次化Softmax或Negative-Sampling" class="headerlink" title="为什么要是用层次化Softmax或Negative Sampling"></a>为什么要是用层次化Softmax或Negative Sampling</h3><p>一般的softmax方法是一个多分类的逻辑回归，分母要对所有词汇表里的单词求和，这使得计算梯度很耗时。</p>
+<p>Hierarchical Softmax 使用的办法其实是借助了分类的概念。<strong>通过使用哈夫曼编码构造一连串两分类来近似原来的多分类</strong>，模型会赋予抽象的中间节点一个合适的向量。这种近似不会带来显著的效果损失，但同时提升了计算性能。</p>
+<p>每次分类都会将数据分为两簇</p>
+<p>语言模型公式就变成$P(A|C)=p(A|G,C)P(G|C)$.</p>
+<p><strong>Negative Sampling也是用二分类近似多分类，随机采样一些负样本</strong>，调整模型参数是的模型可以区分。换一个角度来看，就是 Negative Sampling 就稍微选几个词来算算，一般就需要按照词频对应的概率分布来随机抽样。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://github.com/danielfrg/word2vec/blob/master/word2vec/includes/word2vec.c" target="_blank" rel="external">https://github.com/danielfrg/word2vec/blob/master/word2vec/includes/word2vec.c</a></p>
+<p><a href="https://blog.csdn.net/zynash2/article/details/81636338" target="_blank" rel="external">https://blog.csdn.net/zynash2/article/details/81636338</a></p>
+<p><a href="https://blog.csdn.net/mytestmy/article/details/26961315" target="_blank" rel="external">https://blog.csdn.net/mytestmy/article/details/26961315</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/深度学习//" class="article-tag-list-link color5">深度学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/12/20/word2vec/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RPC简介及实践" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/11/27/RPC简介及实践/" target="_blank">RPC简介及实践</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/11/27/RPC简介及实践/" class="archive-article-date">
+        <time datetime="2019-11-27T14:00:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-27</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>[TOC]</p>
+<h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a><strong>RPC</strong></h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a><strong>基本概念</strong></h2><p>摘自：<a href="https://www.jianshu.com/p/7d6853140e13" target="_blank" rel="external">https://www.jianshu.com/p/7d6853140e13</a></p>
+<ul>
+<li><p>RPC（Remote Procedure Call）远程过程调用，简单的理解是一个节点请求另一个节点提供的服务</p>
+</li>
+<li><p><strong>本地过程调用</strong>：如果需要将本地student对象的age+1，可以实现一个addAge()方法，将student对象传入，对年龄进行更新之后返回即可，本地方法调用的函数体通过函数指针来指定。</p>
+</li>
+<li><p>远程过程调用</p>
+<p>上述操作的过程中，如果addAge()这个方法在服务端，执行函数的函数体在远程机器上，如何告诉机器需要调用这个方法呢？</p>
+<ul>
+<li>1.首先客户端需要告诉服务器，需要调用的函数，这里函数和进程ID存在一个映射，客户端远程调用时，需要查一下函数，找到对应的ID，然后执行函数代码。</li>
+<li>2.客户端需要把本地参数传给远程函数，本地调用的过程中，直接压栈即可，但是在远程调用过程中不再同一个内存里，无法直接传递函数的参数，因此需要客户端<strong>把参数转换成字节流</strong>，传给服务端，然后<strong>服务端将字节流转换成自身能读取的格式</strong>，是一个序列化和反序列化的过程。</li>
+<li>3.数据准备好了之后，如何进行传输？网络传输层需要把调用的ID和序列化后的参数传给服务端，然后把计算好的结果序列化传给客户端，因此<strong>TCP层</strong>即可完成上述过程，gRPC中采用的是HTTP2协议。</li>
+</ul>
+</li>
+<li><p>总结</p>
+<ul>
+<li><p>Client端 ：Student student = Call(ServerAddr, addAge, student)</p>
+<ol>
+<li><p>将这个调用映射为Call ID。</p>
+</li>
+<li><p>将Call ID，student（params）序列化，以二进制形式打包</p>
+</li>
+<li><p>把2中得到的数据包发送给ServerAddr，这需要使用网络传输层</p>
+</li>
+<li><p>等待服务器返回结果</p>
+</li>
+<li><p>如果服务器调用成功，那么就将结果反序列化，并赋给student，年龄更新</p>
+</li>
+</ol>
+</li>
+<li><p>Server端</p>
+<ol>
+<li><p>在本地维护一个Call ID到函数指针的映射call_id_map，可以用Map<string, method=""> callIdMap</string,></p>
+</li>
+<li><p>等待请求</p>
+</li>
+<li><p>得到一个请求后，将其数据包反序列化，得到Call ID</p>
+</li>
+<li><p>通过在callIdMap中查找，得到相应的函数指针</p>
+</li>
+<li><p>将student（params）反序列化后，在本地调用addAge()函数，得到结果</p>
+</li>
+<li><p>将student结果序列化后通过网络返回给Client</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="RPC架构"><a href="#RPC架构" class="headerlink" title="RPC架构"></a>RPC架构</h2><p>一个完整的RPC架构里面包含了四个核心的组件，分别是Client ,Server,Client Stub以及Server Stub。分别说说这几个组件：</p>
+<ul>
+<li>客户端（Client），服务的调用方。</li>
+<li>服务端（Server），真正的服务提供者。</li>
+<li>Client Stub，存放服务端的地址消息，再将客户端的请求参数打包成网络消息，然后通过网络远程发送给服务方。</li>
+<li>Server Stub，接收客户端发送过来的消息，将消息解包，并调用本地的方法。</li>
+</ul>
+<h2 id="为什么要用RPC"><a href="#为什么要用RPC" class="headerlink" title="为什么要用RPC"></a>为什么要用RPC</h2><p>RPC效率更高，在传输例如图像这种大的字节流文件时速度比Http更快，主要原因有以下三点</p>
+<ul>
+<li>1.减少传输量。</li>
+<li>2.简化协议。</li>
+<li>3.用长连接，不再每一个请求都重新走三次握手流程</li>
+</ul>
+<p>RPC服务更适合用做线上分布式服务之间互相使用的通信协议。而HTTP服务开发迭代会更快。</p>
+<h2 id="gRPC"><a href="#gRPC" class="headerlink" title="gRPC"></a>gRPC</h2><p>常见的RPC框架有：</p>
+<ol>
+<li>gRPC。谷歌出品</li>
+<li>Thrift。Apache出品</li>
+<li>Dubbo。阿里出品，也是一个微服务框架</li>
+</ol>
+<p>gRPC的4点特性：</p>
+<ol>
+<li>使用Protocal Buffers这个强大的结构数据序列化工具</li>
+<li>grpc可以跨语言使用</li>
+<li>安装简单，扩展方便（用该框架每秒可达到百万个RPC）</li>
+<li>基于HTTP2协议</li>
+</ol>
+<p>gRPC使用流程：</p>
+<ol>
+<li>定义标准的proto文件</li>
+<li>生成标准代码</li>
+<li>服务端使用生成的代码提供服务</li>
+<li>客户端使用生成的代码调用服务</li>
+</ol>
+<h3 id="protocol-buffers是什么"><a href="#protocol-buffers是什么" class="headerlink" title="protocol buffers是什么"></a><strong>protocol buffers是什么</strong></h3><p>谷歌开源的一种结构数据序列化的工具，比方说JSON、XML也是结构数据序列化的工具，不同的是，</p>
+<ol>
+<li>Protocol Buffers序列化后的数据是不可读的，因为是二进制流</li>
+<li>使用Protocol Buffer需要事先定义数据的格式(.proto 协议文件)，还原一个序列化之后的数据需要使用到这个数据格式</li>
+<li>Protocol Buffer 比 XML、JSON快很多，因为是基于二进制流，比字符串更省带宽，传输速度快</li>
+</ol>
+<h3 id="基于python的代码实践"><a href="#基于python的代码实践" class="headerlink" title="基于python的代码实践"></a><strong>基于python的代码实践</strong></h3><p>目录结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">grpc_test</div><div class="line">	protos</div><div class="line">		example.proto</div><div class="line">	lightweight</div><div class="line">		(generated_files)</div><div class="line">	client.py</div><div class="line">	server.py</div></pre></td></tr></table></figure>
+<p>example.proto</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">syntax = &quot;proto3&quot;;</div><div class="line">//命名空间</div><div class="line">package lightweight;</div><div class="line"></div><div class="line">//</div><div class="line">service example &#123;</div><div class="line">    rpc Exp (Person) returns (Reply) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//Person 对象</div><div class="line">message Person &#123;</div><div class="line">    string name = 1;</div><div class="line">    int32 age = 2;</div><div class="line">    repeated string actions = 3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//结果对象</div><div class="line">message Reply &#123;</div><div class="line">    int32 code = 1;</div><div class="line">    string msg = 2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="编译-proto-文件生成服务接口"><a href="#编译-proto-文件生成服务接口" class="headerlink" title="编译 proto 文件生成服务接口"></a>编译 proto 文件生成服务接口</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -m grpc_tools.protoc -I=./protos --python_out=./lightweight --grpc_python_out=./lightweight ./protos/example.proto`</div></pre></td></tr></table></figure>
+<p>server.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">@author: sunyuzhao001@ke.com</span></div><div class="line"><span class="string">@file: server.py.py</span></div><div class="line"><span class="string">@time: 2021/1/11 20:16</span></div><div class="line"><span class="string">@desc:</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="keyword">from</span> concurrent <span class="keyword">import</span> futures</div><div class="line"><span class="keyword">import</span> logging</div><div class="line"><span class="keyword">import</span> grpc</div><div class="line"></div><div class="line"><span class="comment"># 支持新的包</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">sys.path.append(<span class="string">"lightweight"</span>)</div><div class="line"><span class="keyword">import</span> lightweight.example_pb2_grpc <span class="keyword">as</span> example_pb2_grpc</div><div class="line"><span class="keyword">import</span> lightweight.example_pb2 <span class="keyword">as</span> example_pb2</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(example_pb2_grpc.exampleServicer)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Exp</span><span class="params">(self, request, context)</span>:</span></div><div class="line">        print(<span class="string">f"<span class="subst">&#123;request.name&#125;</span>在思考, 内容: <span class="subst">&#123;list(request.actions)&#125;</span>"</span>)</div><div class="line">        <span class="keyword">return</span> example_pb2.Reply(code=<span class="number">0</span>, msg=<span class="string">'ok'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">serve</span><span class="params">()</span>:</span></div><div class="line">    server = grpc.server(futures.ThreadPoolExecutor(max_workers=<span class="number">10</span>))</div><div class="line">    example_pb2_grpc.add_exampleServicer_to_server(Example(), server)</div><div class="line">    server.add_insecure_port(<span class="string">'[::]:50051'</span>)</div><div class="line">    server.start()</div><div class="line">    server.wait_for_termination()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    logging.basicConfig()</div><div class="line">    serve()</div></pre></td></tr></table></figure>
+<p>client.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">@author: sunyuzhao001@ke.com</span></div><div class="line"><span class="string">@file: client.py</span></div><div class="line"><span class="string">@time: 2021/1/11 20:19</span></div><div class="line"><span class="string">@desc:</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</div><div class="line"><span class="keyword">import</span> logging</div><div class="line"><span class="keyword">import</span> grpc</div><div class="line"></div><div class="line"><span class="comment"># 支持导入新的包</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">sys.path.append(<span class="string">"lightweight"</span>)</div><div class="line"><span class="keyword">import</span> lightweight.example_pb2_grpc <span class="keyword">as</span> example_pb2_grpc</div><div class="line"><span class="keyword">import</span> lightweight.example_pb2 <span class="keyword">as</span> example_pb2</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">with</span> grpc.insecure_channel(<span class="string">'localhost:50051'</span>) <span class="keyword">as</span> channel:</div><div class="line">        stub = example_pb2_grpc.exampleStub(channel)</div><div class="line">        response = stub.BodyBuilding(example_pb2.Person(</div><div class="line">            name=<span class="string">'xxx'</span>, actions=[<span class="string">'学习'</span>, <span class="string">'看书'</span>, <span class="string">'哈哈'</span>]</div><div class="line">        ))</div><div class="line">    print(<span class="string">f'code: <span class="subst">&#123;response.code&#125;</span>, msg:<span class="subst">&#123;response.msg&#125;</span>'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    logging.basicConfig()</div><div class="line">    run()</div></pre></td></tr></table></figure>
+<h4 id="调试gRPC"><a href="#调试gRPC" class="headerlink" title="调试gRPC"></a>调试gRPC</h4><p>rest api是可用curl和postman这样的工具来调试的，grpc也有类似的工具，对应的分别是grpcurl和grpcui（均基于go语言安装），其中grpcui类似于postman，有web页面帮助调试，用户友好。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">WEB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术工具//" class="article-tag-list-link color5">技术工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/11/27/RPC简介及实践/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Mac 安装应用踩坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -695,7 +1264,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2018/12/10/Mac 安装应用踩坑/" target="_blank">Hive参数调优</a>
+	  <a class="article-title" href="/2018/12/10/Mac 安装应用踩坑/" target="_blank">Mac应用安装</a>
   
     </h1>
   
@@ -1674,7 +2243,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1686,11 +2263,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
             
             <div class="clearfix"></div>

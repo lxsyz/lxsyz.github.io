@@ -6,20 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>Tag: python | Amanda</title>
+  <title>RPC简介及实践 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="怕人询问，咽泪装欢">
-<meta name="keywords" content="程序猿,ML,Java,Python,Programmer,Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Amanda">
-<meta property="og:url" content="http://lxsyz.github.io/tags/python/index.html">
+  <meta name="description" content="[TOC] RPC基本概念摘自：https://www.jianshu.com/p/7d6853140e13  RPC（Remote Procedure Call）远程过程调用，简单的理解是一个节点请求另一个节点提供的服务  本地过程调用：如果需要将本地student对象的age+1，可以实现一个addAge()方法，将student对象传入，对年龄进行更新之后返回即可，本地方法调用的函数体通过函">
+<meta name="keywords" content="WEB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RPC简介及实践">
+<meta property="og:url" content="http://lxsyz.github.io/2019/11/27/RPC简介及实践/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="怕人询问，咽泪装欢">
+<meta property="og:description" content="[TOC] RPC基本概念摘自：https://www.jianshu.com/p/7d6853140e13  RPC（Remote Procedure Call）远程过程调用，简单的理解是一个节点请求另一个节点提供的服务  本地过程调用：如果需要将本地student对象的age+1，可以实现一个addAge()方法，将student对象传入，对年龄进行更新之后返回即可，本地方法调用的函数体通过函">
+<meta property="og:updated_time" content="2021-01-17T14:18:12.715Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Amanda">
-<meta name="twitter:description" content="怕人询问，咽泪装欢">
+<meta name="twitter:title" content="RPC简介及实践">
+<meta name="twitter:description" content="[TOC] RPC基本概念摘自：https://www.jianshu.com/p/7d6853140e13  RPC（Remote Procedure Call）远程过程调用，简单的理解是一个节点请求另一个节点提供的服务  本地过程调用：如果需要将本地student对象的age+1，可以实现一个addAge()方法，将student对象传入，对年龄进行更新之后返回即可，本地方法调用的函数体通过函">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -166,161 +167,268 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-RPC简介及实践" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/12/python中的负数取余/" class="archive-article-date">
-        <time datetime="2020-02-12T14:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-12</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/02/12/python中的负数取余/" target="_blank">python中的负数取余</a>
   
+    <h1 class="article-title" itemprop="name">
+      RPC简介及实践
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/11/27/RPC简介及实践/" class="archive-article-date">
+        <time datetime="2019-11-27T14:00:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-27</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>[TOC]</p>
+<h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a><strong>RPC</strong></h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a><strong>基本概念</strong></h2><p>摘自：<a href="https://www.jianshu.com/p/7d6853140e13" target="_blank" rel="external">https://www.jianshu.com/p/7d6853140e13</a></p>
+<ul>
+<li><p>RPC（Remote Procedure Call）远程过程调用，简单的理解是一个节点请求另一个节点提供的服务</p>
+</li>
+<li><p><strong>本地过程调用</strong>：如果需要将本地student对象的age+1，可以实现一个addAge()方法，将student对象传入，对年龄进行更新之后返回即可，本地方法调用的函数体通过函数指针来指定。</p>
+</li>
+<li><p>远程过程调用</p>
+<p>上述操作的过程中，如果addAge()这个方法在服务端，执行函数的函数体在远程机器上，如何告诉机器需要调用这个方法呢？</p>
+<ul>
+<li>1.首先客户端需要告诉服务器，需要调用的函数，这里函数和进程ID存在一个映射，客户端远程调用时，需要查一下函数，找到对应的ID，然后执行函数代码。</li>
+<li>2.客户端需要把本地参数传给远程函数，本地调用的过程中，直接压栈即可，但是在远程调用过程中不再同一个内存里，无法直接传递函数的参数，因此需要客户端<strong>把参数转换成字节流</strong>，传给服务端，然后<strong>服务端将字节流转换成自身能读取的格式</strong>，是一个序列化和反序列化的过程。</li>
+<li>3.数据准备好了之后，如何进行传输？网络传输层需要把调用的ID和序列化后的参数传给服务端，然后把计算好的结果序列化传给客户端，因此<strong>TCP层</strong>即可完成上述过程，gRPC中采用的是HTTP2协议。</li>
+</ul>
+</li>
+<li><p>总结</p>
+<ul>
+<li><p>Client端 ：Student student = Call(ServerAddr, addAge, student)</p>
+<ol>
+<li><p>将这个调用映射为Call ID。</p>
+</li>
+<li><p>将Call ID，student（params）序列化，以二进制形式打包</p>
+</li>
+<li><p>把2中得到的数据包发送给ServerAddr，这需要使用网络传输层</p>
+</li>
+<li><p>等待服务器返回结果</p>
+</li>
+<li><p>如果服务器调用成功，那么就将结果反序列化，并赋给student，年龄更新</p>
+</li>
+</ol>
+</li>
+<li><p>Server端</p>
+<ol>
+<li><p>在本地维护一个Call ID到函数指针的映射call_id_map，可以用Map<string, method=""> callIdMap</string,></p>
+</li>
+<li><p>等待请求</p>
+</li>
+<li><p>得到一个请求后，将其数据包反序列化，得到Call ID</p>
+</li>
+<li><p>通过在callIdMap中查找，得到相应的函数指针</p>
+</li>
+<li><p>将student（params）反序列化后，在本地调用addAge()函数，得到结果</p>
+</li>
+<li><p>将student结果序列化后通过网络返回给Client</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="RPC架构"><a href="#RPC架构" class="headerlink" title="RPC架构"></a>RPC架构</h2><p>一个完整的RPC架构里面包含了四个核心的组件，分别是Client ,Server,Client Stub以及Server Stub。分别说说这几个组件：</p>
+<ul>
+<li>客户端（Client），服务的调用方。</li>
+<li>服务端（Server），真正的服务提供者。</li>
+<li>Client Stub，存放服务端的地址消息，再将客户端的请求参数打包成网络消息，然后通过网络远程发送给服务方。</li>
+<li>Server Stub，接收客户端发送过来的消息，将消息解包，并调用本地的方法。</li>
+</ul>
+<h2 id="为什么要用RPC"><a href="#为什么要用RPC" class="headerlink" title="为什么要用RPC"></a>为什么要用RPC</h2><p>RPC效率更高，在传输例如图像这种大的字节流文件时速度比Http更快，主要原因有以下三点</p>
+<ul>
+<li>1.减少传输量。</li>
+<li>2.简化协议。</li>
+<li>3.用长连接，不再每一个请求都重新走三次握手流程</li>
+</ul>
+<p>RPC服务更适合用做线上分布式服务之间互相使用的通信协议。而HTTP服务开发迭代会更快。</p>
+<h2 id="gRPC"><a href="#gRPC" class="headerlink" title="gRPC"></a>gRPC</h2><p>常见的RPC框架有：</p>
+<ol>
+<li>gRPC。谷歌出品</li>
+<li>Thrift。Apache出品</li>
+<li>Dubbo。阿里出品，也是一个微服务框架</li>
+</ol>
+<p>gRPC的4点特性：</p>
+<ol>
+<li>使用Protocal Buffers这个强大的结构数据序列化工具</li>
+<li>grpc可以跨语言使用</li>
+<li>安装简单，扩展方便（用该框架每秒可达到百万个RPC）</li>
+<li>基于HTTP2协议</li>
+</ol>
+<p>gRPC使用流程：</p>
+<ol>
+<li>定义标准的proto文件</li>
+<li>生成标准代码</li>
+<li>服务端使用生成的代码提供服务</li>
+<li>客户端使用生成的代码调用服务</li>
+</ol>
+<h3 id="protocol-buffers是什么"><a href="#protocol-buffers是什么" class="headerlink" title="protocol buffers是什么"></a><strong>protocol buffers是什么</strong></h3><p>谷歌开源的一种结构数据序列化的工具，比方说JSON、XML也是结构数据序列化的工具，不同的是，</p>
+<ol>
+<li>Protocol Buffers序列化后的数据是不可读的，因为是二进制流</li>
+<li>使用Protocol Buffer需要事先定义数据的格式(.proto 协议文件)，还原一个序列化之后的数据需要使用到这个数据格式</li>
+<li>Protocol Buffer 比 XML、JSON快很多，因为是基于二进制流，比字符串更省带宽，传输速度快</li>
+</ol>
+<h3 id="基于python的代码实践"><a href="#基于python的代码实践" class="headerlink" title="基于python的代码实践"></a><strong>基于python的代码实践</strong></h3><p>目录结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">grpc_test</div><div class="line">	protos</div><div class="line">		example.proto</div><div class="line">	lightweight</div><div class="line">		(generated_files)</div><div class="line">	client.py</div><div class="line">	server.py</div></pre></td></tr></table></figure>
+<p>example.proto</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">syntax = &quot;proto3&quot;;</div><div class="line">//命名空间</div><div class="line">package lightweight;</div><div class="line"></div><div class="line">//</div><div class="line">service example &#123;</div><div class="line">    rpc Exp (Person) returns (Reply) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//Person 对象</div><div class="line">message Person &#123;</div><div class="line">    string name = 1;</div><div class="line">    int32 age = 2;</div><div class="line">    repeated string actions = 3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//结果对象</div><div class="line">message Reply &#123;</div><div class="line">    int32 code = 1;</div><div class="line">    string msg = 2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="编译-proto-文件生成服务接口"><a href="#编译-proto-文件生成服务接口" class="headerlink" title="编译 proto 文件生成服务接口"></a>编译 proto 文件生成服务接口</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python -m grpc_tools.protoc -I=./protos --python_out=./lightweight --grpc_python_out=./lightweight ./protos/example.proto`</div></pre></td></tr></table></figure>
+<p>server.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">@author: sunyuzhao001@ke.com</span></div><div class="line"><span class="string">@file: server.py.py</span></div><div class="line"><span class="string">@time: 2021/1/11 20:16</span></div><div class="line"><span class="string">@desc:</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="keyword">from</span> concurrent <span class="keyword">import</span> futures</div><div class="line"><span class="keyword">import</span> logging</div><div class="line"><span class="keyword">import</span> grpc</div><div class="line"></div><div class="line"><span class="comment"># 支持新的包</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">sys.path.append(<span class="string">"lightweight"</span>)</div><div class="line"><span class="keyword">import</span> lightweight.example_pb2_grpc <span class="keyword">as</span> example_pb2_grpc</div><div class="line"><span class="keyword">import</span> lightweight.example_pb2 <span class="keyword">as</span> example_pb2</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(example_pb2_grpc.exampleServicer)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Exp</span><span class="params">(self, request, context)</span>:</span></div><div class="line">        print(<span class="string">f"<span class="subst">&#123;request.name&#125;</span>在思考, 内容: <span class="subst">&#123;list(request.actions)&#125;</span>"</span>)</div><div class="line">        <span class="keyword">return</span> example_pb2.Reply(code=<span class="number">0</span>, msg=<span class="string">'ok'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">serve</span><span class="params">()</span>:</span></div><div class="line">    server = grpc.server(futures.ThreadPoolExecutor(max_workers=<span class="number">10</span>))</div><div class="line">    example_pb2_grpc.add_exampleServicer_to_server(Example(), server)</div><div class="line">    server.add_insecure_port(<span class="string">'[::]:50051'</span>)</div><div class="line">    server.start()</div><div class="line">    server.wait_for_termination()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    logging.basicConfig()</div><div class="line">    serve()</div></pre></td></tr></table></figure>
+<p>client.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">@author: sunyuzhao001@ke.com</span></div><div class="line"><span class="string">@file: client.py</span></div><div class="line"><span class="string">@time: 2021/1/11 20:19</span></div><div class="line"><span class="string">@desc:</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</div><div class="line"><span class="keyword">import</span> logging</div><div class="line"><span class="keyword">import</span> grpc</div><div class="line"></div><div class="line"><span class="comment"># 支持导入新的包</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">sys.path.append(<span class="string">"lightweight"</span>)</div><div class="line"><span class="keyword">import</span> lightweight.example_pb2_grpc <span class="keyword">as</span> example_pb2_grpc</div><div class="line"><span class="keyword">import</span> lightweight.example_pb2 <span class="keyword">as</span> example_pb2</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">with</span> grpc.insecure_channel(<span class="string">'localhost:50051'</span>) <span class="keyword">as</span> channel:</div><div class="line">        stub = example_pb2_grpc.exampleStub(channel)</div><div class="line">        response = stub.BodyBuilding(example_pb2.Person(</div><div class="line">            name=<span class="string">'xxx'</span>, actions=[<span class="string">'学习'</span>, <span class="string">'看书'</span>, <span class="string">'哈哈'</span>]</div><div class="line">        ))</div><div class="line">    print(<span class="string">f'code: <span class="subst">&#123;response.code&#125;</span>, msg:<span class="subst">&#123;response.msg&#125;</span>'</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    logging.basicConfig()</div><div class="line">    run()</div></pre></td></tr></table></figure>
+<h4 id="调试gRPC"><a href="#调试gRPC" class="headerlink" title="调试gRPC"></a>调试gRPC</h4><p>rest api是可用curl和postman这样的工具来调试的，grpc也有类似的工具，对应的分别是grpcurl和grpcui（均基于go语言安装），其中grpcui类似于postman，有web页面帮助调试，用户友好。</p>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">WEB</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
     
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2017/09/26/python实现概率分布/" class="archive-article-date">
-        <time datetime="2017-09-26T11:56:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2017/09/26/python实现概率分布/" target="_blank">python实现概率分布</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="/categories/技术工具//" class="article-tag-list-link color5">技术工具</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2017/09/24/numpy操作/" class="archive-article-date">
-        <time datetime="2017-09-24T01:14:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-24</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/2019/12/20/word2vec/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          词向量
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/10/Mac 安装应用踩坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mac应用安装</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2017/09/24/numpy操作/" target="_blank">numpy操作</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+<div id="SOHUCS" sid="RPC简介及实践" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -361,9 +469,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
