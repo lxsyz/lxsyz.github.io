@@ -100,7 +100,7 @@
 				
 					<a class="github" href="#" title="GitHub" target="_blank"><i class="icon-github"></i></a>
 				
-					<a class="weibo" href="#" title="微博" target="_blank"><i class="icon-weibo"></i></a>
+					<a class="weibo" href="#" title="weibo" target="_blank"><i class="icon-weibo"></i></a>
 				
 					<a class="google" href="#" title="Google" target="_blank"><i class="icon-google"></i></a>
 				
@@ -143,7 +143,7 @@
 					
 						<a class="github" target="_blank" href="#" title="GitHub"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="微博"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
 						<a class="google" target="_blank" href="#" title="Google"><i class="icon-google"></i></a>
 			        
@@ -399,6 +399,252 @@
 
 
   
+    <article id="post-Python检测程序使用内存和CPU的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/10/13/Python检测程序使用内存和CPU的方法/" target="_blank">Python检测程序内容和CPU</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/10/13/Python检测程序使用内存和CPU的方法/" class="archive-article-date">
+        <time datetime="2020-10-13T13:56:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>示例代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">fib = <span class="keyword">lambda</span> n: <span class="number">1</span> <span class="keyword">if</span> n &lt;= <span class="number">2</span> <span class="keyword">else</span> fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test1</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">20</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test2</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">30</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test3</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">35</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    test1()</div><div class="line">    test2()</div><div class="line">    test3()</div></pre></td></tr></table></figure>
+<h2 id="1-cProfile"><a href="#1-cProfile" class="headerlink" title="1. cProfile"></a>1. cProfile</h2><p>cProfile是profile模块的c语言实现，二者实现的功能相同，但是cProfile的性能更佳。</p>
+<p>使用方法: </p>
+<figure class="highlight python"><figcaption><span>-m cProfile [-o output_file] [-s sort_order] myscript.py```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>~ python -m cProfile test.py<br>         20132542 function calls (8 primitive calls) in 7.342 seconds</p>
+<p>   Ordered by: standard name</p>
+<p>   ncalls  tottime  percall  cumtime  percall filename:lineno(function)<br>20132537/3    7.342    0.000    7.342    2.447 test.py:1(<lambda>)<br>        1    0.000    0.000    7.342    7.342 test.py:1(<module>)<br>        1    0.000    0.000    6.707    6.707 test.py:12(test3)<br>        1    0.000    0.000    0.006    0.006 test.py:4(test1)<br>        1    0.000    0.000    0.630    0.630 test.py:8(test2)<br>        1    0.000    0.000    0.000    0.000 {method ‘disable’ of ‘_lsprof.Profiler’ objects}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">上述第一行表明，共有20132542次函数调用，其中8次是非递归调用。</div><div class="line"></div><div class="line">列名 | 含义</div><div class="line">---|---</div><div class="line">ncalls | 总调用次数，```20132537/3```表名，共有20132537次调用，其中3次是非递归调用</div><div class="line">tottime | 总调用时长</div><div class="line">percall | 平均调用时长，其实就是```tottime```除以```ncalls</div></pre></td></tr></table></figure></module></lambda></p>
+<p>cumtime | 累计调用总时长，本函数以及本函数的递归调用累计调用时长<br>percall | 累计平均调用时长，其实就是<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">filename:lineno(function) | 函数名及入口代码地址</div><div class="line"></div><div class="line">## 2. line_profiler</div><div class="line"></div><div class="line">line_profiler模块可以给出执行每行代码所需占用的CPU时间。</div><div class="line">首先，安装该模块：</div><div class="line"></div><div class="line">``` 	</div><div class="line">$ pip install line_profiler</div></pre></td></tr></table></figure></p>
+<p>接着，需要指定用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```Python</div><div class="line">fib = lambda n: 1 if n &lt;= 2 else fib(n - 1) + fib(n - 2)</div><div class="line"></div><div class="line">@profilt</div><div class="line">def test1():</div><div class="line">    fib(20)</div><div class="line"></div><div class="line">@profile</div><div class="line">def test2():</div><div class="line">    fib(30)</div><div class="line"></div><div class="line">@profile</div><div class="line">def test3():</div><div class="line">    fib(35)</div><div class="line"></div><div class="line">@profile</div><div class="line">def main():</div><div class="line">    test1()</div><div class="line">    test2()</div><div class="line">    test3()</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
+<p>最好，可以通过下面的命令获得关于<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">~ kernprof -l  -v test.py</div><div class="line">Wrote profile results to test.py.lprof</div><div class="line">Timer unit: 1e-06 s</div><div class="line"></div><div class="line">Total time: 0.00524 s</div><div class="line">File: test.py</div><div class="line">Function: test1 at line 3</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">     3                                           @profile</div><div class="line">     4                                           def test1():</div><div class="line">     5         1          1.0      1.0      0.0      a=10</div><div class="line">     6         1       5239.0   5239.0    100.0      fib(20)</div><div class="line"></div><div class="line">Total time: 0.641574 s</div><div class="line">File: test.py</div><div class="line">Function: test2 at line 9</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">     9                                           @profile</div><div class="line">    10                                           def test2():</div><div class="line">    11         1     641574.0 641574.0    100.0      fib(30)</div><div class="line"></div><div class="line">Total time: 6.75469 s</div><div class="line">File: test.py</div><div class="line">Function: test3 at line 14</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">    14                                           @profile</div><div class="line">    15                                           def test3():</div><div class="line">    16         1    6754692.0 6754692.0    100.0      fib(35)</div><div class="line"></div><div class="line">Total time: 7.40158 s</div><div class="line">File: test.py</div><div class="line">Function: main at line 18</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">    18                                           @profile</div><div class="line">    19                                           def main():</div><div class="line">    20         1       5274.0   5274.0      0.1      test1()</div><div class="line">    21         1     641592.0 641592.0      8.7      test2()</div><div class="line">    22         1    6754713.0 6754713.0     91.3      test3()</div></pre></td></tr></table></figure></p>
+<p>其中-l表示逐行解释，-v表示表示输出详细结果。<br>需要注意的是，<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">通过这种方法，我们看到```test3()```方法消耗了剩余的91.3%的时间。</div><div class="line"></div><div class="line"></div><div class="line">标题 | 含义</div><div class="line">---|---</div><div class="line">Line # | 代码行号</div><div class="line">Hits | 执行次数</div><div class="line">Per Hit | 每次执行的平均执行时长</div><div class="line">% Time | 该行执行时长占所在函数执行时长的占比</div><div class="line">Line Contents | 实际代码内容</div><div class="line"></div><div class="line">## 3. memory_profiler</div><div class="line"></div><div class="line">memory_profiler模块可以给出执行每行代码所使用的内存。</div><div class="line">安装该模块：</div><div class="line"></div><div class="line">``` 	</div><div class="line">$ pip install memory_profiler</div></pre></td></tr></table></figure></p>
+<p>同<figure class="highlight plain"><figcaption><span>使用```@profile```修饰需要检测的函数。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>~ python -m memory_profiler test.py<br>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents"><a href="#Line-Mem-usage-Increment-Line-Contents" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>3   34.945 MiB   34.945 MiB   @profile
+4                             def test1():
+5   34.945 MiB    0.000 MiB       a=10
+6   34.953 MiB    0.008 MiB       fib(20)
+</code></pre><p>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents-1"><a href="#Line-Mem-usage-Increment-Line-Contents-1" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code> 9   34.953 MiB   34.953 MiB   @profile
+10                             def test2():
+11   34.961 MiB    0.008 MiB       fib(30)
+</code></pre><p>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents-2"><a href="#Line-Mem-usage-Increment-Line-Contents-2" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>14   34.961 MiB   34.961 MiB   @profile
+15                             def test3():
+16   34.961 MiB    0.000 MiB       fib(35)
+</code></pre><p>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents-3"><a href="#Line-Mem-usage-Increment-Line-Contents-3" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>18   34.938 MiB   34.938 MiB   @profile
+19                             def main():
+20   34.953 MiB   34.953 MiB       test1()
+21   34.961 MiB   34.961 MiB       test2()
+22   34.961 MiB   34.961 MiB       test3()
+</code></pre><p>```</p>
+<table>
+<thead>
+<tr>
+<th>标题</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Line #</td>
+<td>代码行号</td>
+</tr>
+<tr>
+<td>Mem usage</td>
+<td>内存使用数量</td>
+</tr>
+<tr>
+<td>Increment</td>
+<td>本行代码新增内存使用数量</td>
+</tr>
+<tr>
+<td>Line Content</td>
+<td>实际代码内容</td>
+</tr>
+</tbody>
+</table>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/10/13/Python检测程序使用内存和CPU的方法/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python数据可视化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/10/13/python数据可视化/" target="_blank">python数据可视化</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/10/13/python数据可视化/" class="archive-article-date">
+        <time datetime="2020-10-13T13:56:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="pycharts"><a href="#pycharts" class="headerlink" title="pycharts"></a>pycharts</h1><ul>
+<li><a href="https://pyecharts.org/#/zh-cn/quickstart" target="_blank" rel="external">pyecharts官网</a></li>
+</ul>
+<p>参考官网上的示例我们可以可视化数据，渲染成html文件</p>
+<blockquote>
+<p>注意：如果需要保存为图片，还需要安装<code>selenium</code>, <code>phantomjs</code> 和 <code>pyppeteer</code> 相应插件来处理</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Bar</div><div class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> options <span class="keyword">as</span> opts</div><div class="line"></div><div class="line"><span class="comment"># V1 版本开始支持链式调用</span></div><div class="line"><span class="comment"># 你所看到的格式其实是 `black` 格式化以后的效果</span></div><div class="line"><span class="comment"># 可以执行 `pip install black` 下载使用</span></div><div class="line">bar = (</div><div class="line">    Bar()</div><div class="line">    .add_xaxis([<span class="string">"衬衫"</span>, <span class="string">"羊毛衫"</span>, <span class="string">"雪纺衫"</span>, <span class="string">"裤子"</span>, <span class="string">"高跟鞋"</span>, <span class="string">"袜子"</span>])</div><div class="line">    .add_yaxis(<span class="string">"商家A"</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">75</span>, <span class="number">90</span>])</div><div class="line">    .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">"主标题"</span>, subtitle=<span class="string">"副标题"</span>))</div><div class="line">    <span class="comment"># 或者直接使用字典参数</span></div><div class="line">    <span class="comment"># .set_global_opts(title_opts=&#123;"text": "主标题", "subtext": "副标题"&#125;)</span></div><div class="line">)</div><div class="line">bar.render()</div><div class="line"></div><div class="line"><span class="comment"># 不习惯链式调用的开发者依旧可以单独调用方法</span></div><div class="line">bar = Bar()</div><div class="line">bar.add_xaxis([<span class="string">"衬衫"</span>, <span class="string">"羊毛衫"</span>, <span class="string">"雪纺衫"</span>, <span class="string">"裤子"</span>, <span class="string">"高跟鞋"</span>, <span class="string">"袜子"</span>])</div><div class="line">bar.add_yaxis(<span class="string">"商家A"</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">75</span>, <span class="number">90</span>])</div><div class="line">bar.set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">"主标题"</span>, subtitle=<span class="string">"副标题"</span>))</div><div class="line">bar.render()</div></pre></td></tr></table></figure>
+<h1 id="PyGraphviz"><a href="#PyGraphviz" class="headerlink" title="PyGraphviz"></a>PyGraphviz</h1><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/104636240" target="_blank" rel="external">PyGraphviz (几何图形可视化工具) 简单入门</a></li>
+<li><a href="https://graphviz.org/download/" target="_blank" rel="external">Graphviz</a> 是一个几何图形可视化软件，能够将数据的结构信息表示为抽象图形和网络图的方式。</li>
+<li>PyGraphviz 主要<strong>对数据量大、可任意定制的图形上具有强大优势</strong>。</li>
+</ul>
+<p>安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew install graphviz # mac</div><div class="line">pip install graphviz # linux</div><div class="line">conda install graphviz # conda</div><div class="line">pip3 install pygraphviz</div></pre></td></tr></table></figure>
+<p>使用：</p>
+<p>神经网络图</p>
+<p><img src="https://i.loli.net/2021/01/26/KPrkmdCvN8yOStp.png" alt="神经网络.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pygraphviz <span class="keyword">as</span> pgv</div><div class="line"></div><div class="line">G = pgv.AGraph(directed=<span class="keyword">True</span>, rankdir=<span class="string">"LR"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置层数、每层节点数</span></div><div class="line">network_structure = input(<span class="string">"输入神经网络每层节点数，如：[10, 7, 5, 4, 2, 1]\n"</span>)</div><div class="line">all_nodes = [[<span class="string">f"layer<span class="subst">&#123;layer_index&#125;</span>node<span class="subst">&#123;node_index&#125;</span>"</span> <span class="keyword">for</span> node_index <span class="keyword">in</span> range(layer_nodes_num)] <span class="keyword">for</span></div><div class="line">             layer_index, layer_nodes_num <span class="keyword">in</span> enumerate(eval(network_structure))]</div><div class="line"></div><div class="line"><span class="comment"># 添加输入层节点</span></div><div class="line"><span class="keyword">for</span> node_index, node <span class="keyword">in</span> enumerate(all_nodes[<span class="number">0</span>]):</div><div class="line">    G.add_node(node, label=<span class="string">""</span>, shape=<span class="string">"circle"</span>, style=<span class="string">"bold"</span>, color=<span class="string">"#60acfc"</span>, pos=<span class="string">f"0,<span class="subst">&#123;<span class="number">0.6</span> * node_index&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加输入层文本</span></div><div class="line">G.add_node(<span class="string">f"Input_Layer"</span>, shape=<span class="string">"none"</span>, label=<span class="string">f"Input_Layer(<span class="subst">&#123;len(all_nodes[<span class="number">0</span>])&#125;</span>)"</span>,</div><div class="line">           pos=<span class="string">f"<span class="subst">&#123;<span class="number">0</span>&#125;</span>,<span class="subst">&#123;(node_index + <span class="number">1</span>) * <span class="number">0.6</span>&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加中间层、输出层节点</span></div><div class="line"><span class="keyword">for</span> layer_index, layer <span class="keyword">in</span> enumerate(all_nodes[<span class="number">1</span>:]):</div><div class="line">    color = <span class="string">"#5bc49f"</span> <span class="keyword">if</span> layer_index == len(all_nodes[<span class="number">1</span>:]) - <span class="number">1</span> <span class="keyword">else</span> <span class="string">"#ff7c7c"</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> node_index, node <span class="keyword">in</span> enumerate(layer):</div><div class="line">        x = <span class="number">1.5</span> * (layer_index + <span class="number">1</span>)</div><div class="line">        y = - <span class="number">0.3</span> * (len(all_nodes[layer_index + <span class="number">1</span>]) - len(all_nodes[<span class="number">0</span>])) + <span class="number">0.6</span> * node_index</div><div class="line">        G.add_node(node, label=<span class="string">""</span>, shape=<span class="string">"circle"</span>, style=<span class="string">"bold"</span>, color=color, pos=<span class="string">f"<span class="subst">&#123;x&#125;</span>,<span class="subst">&#123;y&#125;</span>!"</span>)</div><div class="line"></div><div class="line">    <span class="comment"># 添加中间层、输出层文本</span></div><div class="line">    text = <span class="string">f"Output_Layer(<span class="subst">&#123;len(all_nodes[<span class="number">-1</span>])&#125;</span>)"</span> <span class="keyword">if</span> layer_index == len(all_nodes[<span class="number">1</span>:]) - <span class="number">1</span> <span class="keyword">else</span> <span class="string">f"Layer_<span class="subst">&#123;layer_index + <span class="number">1</span>&#125;</span>(<span class="subst">&#123;len(layer)&#125;</span>)"</span></div><div class="line">    G.add_node(<span class="string">f"Layer_<span class="subst">&#123;layer_index + <span class="number">1</span>&#125;</span>)"</span>, shape=<span class="string">"none"</span>, label=text,</div><div class="line">               pos=<span class="string">f"<span class="subst">&#123;x&#125;</span>,<span class="subst">&#123;y + <span class="number">0.4</span>&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加线</span></div><div class="line"><span class="keyword">for</span> layer_index <span class="keyword">in</span> range(all_nodes.__len__() - <span class="number">1</span>):</div><div class="line">    <span class="keyword">for</span> start <span class="keyword">in</span> all_nodes[layer_index]:</div><div class="line">        <span class="keyword">for</span> end <span class="keyword">in</span> all_nodes[layer_index + <span class="number">1</span>]:</div><div class="line">            G.add_edge(start, end)</div><div class="line"></div><div class="line"><span class="comment"># 导出图形</span></div><div class="line">G.layout()</div><div class="line">G.draw(<span class="string">"神经网络.png"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 运行代码，输入 [5, 10, 15, 15, 15, 10, 5, 1]</span></div></pre></td></tr></table></figure>
+<p>因子相关性</p>
+<p><img src="https://i.loli.net/2021/01/26/BFu7yEpmGR4OQw8.png" alt="因子相关性图.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pygraphviz <span class="keyword">as</span> pgv</div><div class="line"></div><div class="line">G = pgv.AGraph(directed=<span class="keyword">True</span>, rankdir=<span class="string">"TB"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置节点标签</span></div><div class="line">Root = <span class="string">"道路交通流畅"</span></div><div class="line">negative_1 = <span class="string">"平均延误时间"</span></div><div class="line">negative_2 = <span class="string">"负荷度"</span></div><div class="line">negative_3 = <span class="string">"小区位置"</span></div><div class="line">negative_4 = <span class="string">"相对延误率"</span></div><div class="line">negative_5 = <span class="string">"房屋密度"</span></div><div class="line">negative_6 = <span class="string">"人口密度"</span></div><div class="line">negative_7 = <span class="string">"总延误率"</span></div><div class="line">negative_8 = <span class="string">"排队率"</span></div><div class="line">negative_9 = <span class="string">"行驶时间"</span></div><div class="line">positive_1 = <span class="string">"通行能力"</span></div><div class="line">positive_2 = <span class="string">"公路层级"</span></div><div class="line">positive_3 = <span class="string">"路网结构"</span></div><div class="line">positive_4 = <span class="string">"行驶速度"</span></div><div class="line">positive_5 = <span class="string">"路网长度"</span></div><div class="line">positive_6 = <span class="string">"小区面积"</span></div><div class="line">positive_7 = <span class="string">"内部道路密度"</span></div><div class="line">positive_8 = <span class="string">"路网密度"</span></div><div class="line"></div><div class="line"><span class="comment"># 添加节点</span></div><div class="line">G.add_node(Root, style=<span class="string">"filled"</span>, shape=<span class="string">"box3d"</span>, color=<span class="string">"#feb64d"</span>)</div><div class="line"><span class="keyword">for</span> negative <span class="keyword">in</span> [eval(_) <span class="keyword">for</span> _ <span class="keyword">in</span> dir() <span class="keyword">if</span> _.startswith(<span class="string">"negative"</span>)]:</div><div class="line">    G.add_node(negative, style=<span class="string">"filled"</span>, shape=<span class="string">"ellipse"</span>, color=<span class="string">"#CFDBF6"</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> positive <span class="keyword">in</span> [eval(_) <span class="keyword">for</span> _ <span class="keyword">in</span> dir() <span class="keyword">if</span> _.startswith(<span class="string">"positive"</span>)]:</div><div class="line">    G.add_node(positive, style=<span class="string">"filled"</span>, shape=<span class="string">"ellipse"</span>, color=<span class="string">"#B4E7B7"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加边</span></div><div class="line">G.add_edges_from([[Root, negative_1], [Root, negative_6], [Root, negative_8], [Root, negative_9],</div><div class="line">                  [negative_1, negative_2], [negative_1, negative_7], [negative_2, negative_3],</div><div class="line">                  [negative_2, negative_7], [negative_3, negative_4], [negative_8, negative_9],</div><div class="line">                  [positive_2, negative_5], [positive_3, negative_4], [positive_4, negative_5]],</div><div class="line">                 color=<span class="string">"#B4DBFF"</span>, style=<span class="string">"dashed"</span>, penwidth=<span class="number">1.5</span>)</div><div class="line"></div><div class="line">G.add_edges_from([[Root, positive_1], [Root, positive_8], [negative_5, negative_4],</div><div class="line">                  [negative_6, positive_4], [negative_5, positive_4], [negative_9, positive_5],</div><div class="line">                  [positive_1, positive_2], [positive_2, positive_3], [positive_6, positive_5],</div><div class="line">                  [positive_7, positive_6], [positive_8, positive_7]],</div><div class="line">                 color=<span class="string">"#B4E7B7"</span>, style=<span class="string">"dashed"</span>, penwidth=<span class="number">1.5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 导出图形</span></div><div class="line">G.layout()</div><div class="line">G.draw(<span class="string">"因子相关性图.png"</span>, prog=<span class="string">"dot"</span>)</div></pre></td></tr></table></figure>
+<h2 id="SmartChart"><a href="#SmartChart" class="headerlink" title="SmartChart"></a>SmartChart</h2><p><a href="https://github.com/JohnYan2017/Echarts-Django" target="_blank" rel="external">smartchart</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/10/13/python数据可视化/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-述职有感" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -480,6 +726,97 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/10/13/述职有感/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-机器学习资料汇总" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/06/10/机器学习资料汇总/" target="_blank">机器学习资料汇总</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/06/10/机器学习资料汇总/" class="archive-article-date">
+        <time datetime="2020-06-10T12:51:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="机器学习资料汇总"><a href="#机器学习资料汇总" class="headerlink" title="机器学习资料汇总"></a>机器学习资料汇总</h1><h2 id="《统计学习方法》总结："><a href="#《统计学习方法》总结：" class="headerlink" title="《统计学习方法》总结："></a>《统计学习方法》总结：</h2><p><a href="https://github.com/ExtremeMart/lihang-code" target="_blank" rel="external">Python代码实现</a></p>
+<p><a href="https://github.com/Dod-o/Statistical-Learning-Method_Code" target="_blank" rel="external">Python代码实现+博客解析</a></p>
+<h2 id="李宏毅课程学习笔记"><a href="#李宏毅课程学习笔记" class="headerlink" title="李宏毅课程学习笔记"></a>李宏毅课程学习笔记</h2><p><a href="https://datawhalechina.github.io/leeml-notes/#/" target="_blank" rel="external">在线笔记</a></p>
+<p><a href="https://www.bilibili.com/video/av35932863" target="_blank" rel="external">机器学习-李宏毅(2019) Machine Learning</a></p>
+<h2 id="Google机器学习"><a href="#Google机器学习" class="headerlink" title="Google机器学习"></a>Google机器学习</h2><ul>
+<li><a href="https://developers.google.cn/machine-learning/crash-course/" target="_blank" rel="external">Google Machine Learning Crash Course</a></li>
+<li>B站地址, <a href="https://www.bilibili.com/video/av58945047/?p=5" target="_blank" rel="external">google机器学习速成(基于tensorflow API)</a></li>
+</ul>
+<h2 id="周志华机器学习"><a href="#周志华机器学习" class="headerlink" title="周志华机器学习"></a>周志华机器学习</h2><p><a href="https://github.com/Vay-keen/Machine-learning-learning-notes" target="_blank" rel="external">周志华机器学习笔记</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资料汇总</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/06/10/机器学习资料汇总/">展开全文 >></a>
     </p>
     
 
@@ -1490,10 +1827,107 @@
     <h2 id="什么样的聚类效果好？"><a href="#什么样的聚类效果好？" class="headerlink" title="什么样的聚类效果好？"></a>什么样的聚类效果好？</h2><p>聚类结果的簇内相似度高，且簇间相似度低</p>
 <h2 id="聚类性能度量"><a href="#聚类性能度量" class="headerlink" title="聚类性能度量"></a>聚类性能度量</h2><p>外部指标：结果与某个参考模型作比较，如Jaccard系数，FM指数，Rand指数，<br>内部指标：直接考察聚类结果，如DB指数，DI指数</p>
 <h2 id="计算距离"><a href="#计算距离" class="headerlink" title="计算距离"></a>计算距离</h2><p>闵可夫斯基距离和VDM距离结合，可以计算有序属性和无序属性</p>
-<h1 id="原型聚类算法"><a href="#原型聚类算法" class="headerlink" title="原型聚类算法"></a>原型聚类算法</h1><h2 id="简单K-means算法"><a href="#简单K-means算法" class="headerlink" title="简单K-means算法"></a>简单K-means算法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder,OneHotEncoder</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_k_sample</span><span class="params">(data, k)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    随机选择K个样本作为初始均值向量</span></div><div class="line"><span class="string">    """</span></div><div class="line">    n = np.shape(data)[<span class="number">1</span>] <span class="comment"># n个特征</span></div><div class="line">    m = np.shape(data)[<span class="number">0</span>]</div><div class="line">    centroids = np.zeros((k, n)) <span class="comment"># k个样本</span></div><div class="line">    temp = random.sample(range(m), k)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</div><div class="line">        centroids[i] = data[temp[i]]</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> centroids</div><div class="line"><span class="comment">## 数据加载过程省略</span></div><div class="line">my_data = data.iloc[:, <span class="number">0</span>:<span class="number">-1</span>]</div><div class="line">my_data = my_data.values</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_dist</span><span class="params">(vec1, vec2)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    计算欧式距离</span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="keyword">return</span> np.sqrt(np.sum(np.power(vec1 - vec2, <span class="number">2</span>)))</div><div class="line">m = np.shape(my_data)[<span class="number">0</span>]</div><div class="line">n = np.shape(my_data)[<span class="number">1</span>]</div><div class="line">k = <span class="number">3</span></div><div class="line">centroids = random_k_sample(my_data, k)</div><div class="line"></div><div class="line"><span class="comment"># 每个样本与选出来的样本向量计算距离，距离谁近就归为哪一类</span></div><div class="line">result = np.zeros((m, <span class="number">2</span>)) <span class="comment"># 存放样本类别，和到质心的距离</span></div><div class="line"></div><div class="line"><span class="comment"># 控制均值向量是否更新</span></div><div class="line">changed = <span class="keyword">True</span></div><div class="line"><span class="keyword">while</span> (changed):</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">        min_value = np.inf <span class="comment"># 最小距离</span></div><div class="line">        min_label = <span class="number">-1</span> <span class="comment"># 类别</span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</div><div class="line">            dist = calc_dist(my_data[i], centroids[j])</div><div class="line">            <span class="keyword">if</span> dist &lt; min_value:</div><div class="line">                min_value = dist</div><div class="line">                min_label = j</div><div class="line">        </div><div class="line">        result[i, :] = min_value, min_label</div><div class="line">        print(<span class="string">'iteration %d, %s'</span> % (i, result[i, :]))</div><div class="line">    </div><div class="line">    is_update = <span class="keyword">False</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</div><div class="line">        <span class="comment"># 计算新的均值向量</span></div><div class="line">        <span class="comment"># 对每一类的特征列求平均值</span></div><div class="line">        temp = np.mean(my_data[(result[:, <span class="number">1</span>] == j)], axis=<span class="number">0</span>)</div><div class="line">        </div><div class="line"><span class="comment">#         print(temp)</span></div><div class="line"><span class="comment">#         print(centroids[j])</span></div><div class="line"></div><div class="line">        <span class="comment"># 如果均值向量更新了，重新迭代</span></div><div class="line">        <span class="keyword">if</span> (centroids[j] != temp).any():</div><div class="line">            centroids[j] = temp</div><div class="line">            print(<span class="string">'update'</span>)</div><div class="line">            is_update = <span class="keyword">True</span></div><div class="line">    </div><div class="line">    <span class="keyword">if</span> is_update:</div><div class="line">        changed = <span class="keyword">True</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        changed = <span class="keyword">False</span></div><div class="line"></div><div class="line">data[<span class="string">'label'</span>] = result[:, <span class="number">1</span>]</div></pre></td></tr></table></figure>
+<h1 id="sklearn聚类"><a href="#sklearn聚类" class="headerlink" title="sklearn聚类"></a><strong>sklearn聚类</strong></h1><ul>
+<li>参考：<ul>
+<li><a href="https://blog.csdn.net/ustbbsy/article/details/80960652" target="_blank" rel="external">sklearn聚类算法详解</a></li>
+<li><a href="https://www.cnblogs.com/xc-family/p/11006525.html" target="_blank" rel="external">scikit-learn中的无监督聚类算法</a></li>
+</ul>
+</li>
+<li>scikit-learn主要由分类、回归、聚类和降维四大部分组成，其中分类和回归属于有监督学习范畴，聚类属于无监督学习范畴，降维适用于有监督学习和无监督学习。scikit-learn的结构示意图如下所示：</li>
+<li><img src="https://img2018.cnblogs.com/blog/1286380/201906/1286380-20190611222013552-2012482171.png" alt="img"></li>
+<li>scikit-learn中的聚类算法主要有：<ul>
+<li>K-Means(cluster.KMeans)</li>
+<li>AP聚类（cluster.AffinityPropagation）</li>
+<li>均值漂移（cluster.MeanShift）</li>
+<li>层次聚类（cluster.AgglomerativeClustering）</li>
+<li>DBSCAN（cluster.DBSCAN）</li>
+<li>BRICH（cluster.Brich）</li>
+<li>谱聚类（cluster.Spectral.Clustering）</li>
+<li>高斯混合模型（GMM）∈期望最大化（EM）算法（mixture.GaussianMixture）</li>
+</ul>
+</li>
+</ul>
+<h2 id="K-Means"><a href="#K-Means" class="headerlink" title="K-Means"></a>K-Means</h2><h3 id="1-1-算法描述"><a href="#1-1-算法描述" class="headerlink" title="1.1 算法描述"></a>1.1 算法描述</h3><ol>
+<li>随机选择k个中心</li>
+<li>遍历所有样本，把样本划分到距离最近的一个中心</li>
+<li>划分之后就有K个簇，计算每个簇的平均值作为新的质心</li>
+<li>重复步骤2，直到达到停止条件</li>
+</ol>
+<ul>
+<li>停止条件：<ul>
+<li>聚类中心不再发生变化；所有的距离最小；迭代次数达到设定值，</li>
+</ul>
+</li>
+<li>代价函数：误差平方和</li>
+</ul>
+<h3 id="1-2-算法优缺点"><a href="#1-2-算法优缺点" class="headerlink" title="1.2 算法优缺点"></a>1.2 算法优缺点</h3><p>优点：</p>
+<ul>
+<li>算法容易理解，聚类效果不错</li>
+<li>具有出色的速度</li>
+<li>当簇近似高斯分布时，效果比较好</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>需要自己确定K值,k值的选定是比较难确定</strong></li>
+<li><strong>对初始中心点敏感</strong></li>
+<li>不适合发现非凸形状的簇或者大小差别较大的簇</li>
+<li><strong>特殊值/离群值对模型的影响比较大</strong></li>
+<li>从数据先验的角度来说，<strong>在 Kmeans 中,我们假设各个 cluster 的先验概率是一样的,但是各个 cluster 的数据量可能是不均匀的。举个例子,cluster A 中包含了10000个样本,cluster B 中只包含了100个。那么对于一个新的样本,在不考虑其与A cluster、 B cluster 相似度的情况,其属于 cluster A 的概率肯定是要大于 cluster B的。</strong></li>
+</ul>
+<h3 id="1-3-效果评价"><a href="#1-3-效果评价" class="headerlink" title="1.3 效果评价"></a>1.3 效果评价</h3><p>聚类结果的簇内相似度高，且簇间相似度低</p>
+<p>常见方法有轮廓系数Silhouette Coefficient和<strong>Calinski-Harabasz Index(CH指标，越大越好)</strong></p>
+<p><strong>Silhouette Coefficient：</strong></p>
+<p>$$s(i)=\frac{b(i)-a(i)}{max(a(i),b(i))}$$</p>
+<p>其中a(i)是样本$i$到同类所有样本的平均距离，b(i)是到其他某类所有样本的平均距离</p>
+<ul>
+<li>si接近1，则说明样本i聚类合理；</li>
+<li>si接近-1，则说明样本i更应该分类到另外的簇；</li>
+<li>若si 近似为0，则说明样本i在两个簇的边界上。</li>
+</ul>
+<p><strong>Calinski-Harabasz Index</strong></p>
+<p>类别内部数据的协方差越小越好，类别之间的协方差越大越好，这样的Calinski-Harabasz分数会高。实例代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">下面的方法是用kmeans方法进行聚类，用calinski_harabaz_score方法评价聚类效果的好坏</span></div><div class="line"><span class="string">大概是类间距除以类内距，因此这个值越大越好</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">"""</span></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</div><div class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> metrics</div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">下面是生成一些样本数据</span></div><div class="line"><span class="string">X为样本特征，Y为样本簇类别， 共1000个样本，每个样本2个特征，共4个簇，簇中心在[-1,-1], [0,0],[1,1], [2,2]，</span></div><div class="line"><span class="string">簇方差分别为[0.4, 0.5, 0.2]</span></div><div class="line"><span class="string">"""</span></div><div class="line">X, y = make_blobs(n_samples=<span class="number">500</span>, n_features=<span class="number">2</span>, centers=[[<span class="number">2</span>,<span class="number">3</span>], [<span class="number">3</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">1</span>]], cluster_std=[<span class="number">0.4</span>, <span class="number">0.5</span>, <span class="number">0.2</span>],</div><div class="line">                  random_state =<span class="number">9</span>)</div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">首先画出生成的样本数据的分布</span></div><div class="line"><span class="string">"""</span></div><div class="line">plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], marker=<span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">下面看不同的k值下的聚类效果</span></div><div class="line"><span class="string">"""</span></div><div class="line">score_all=[]</div><div class="line">list1=range(<span class="number">2</span>,<span class="number">6</span>)</div><div class="line"><span class="comment">#其中i不能为0，也不能为1</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">6</span>):</div><div class="line">    y_pred = KMeans(n_clusters=i, random_state=<span class="number">9</span>).fit_predict(X)</div><div class="line">    <span class="comment">#画出结果的散点图</span></div><div class="line">    plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], c=y_pred)</div><div class="line">    plt.show()</div><div class="line">    score=metrics.calinski_harabasz_score(X, y_pred)</div><div class="line">    score_all.append(score)</div><div class="line">    print(score)</div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">画出不同k值对应的聚类效果</span></div><div class="line"><span class="string">"""</span></div><div class="line">plt.plt(list1,score_all)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><strong>python实现KMeans</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder,OneHotEncoder</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_k_sample</span><span class="params">(data, k)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    随机选择K个样本作为初始均值向量</span></div><div class="line"><span class="string">    """</span></div><div class="line">    n = np.shape(data)[<span class="number">1</span>] <span class="comment"># n个特征</span></div><div class="line">    m = np.shape(data)[<span class="number">0</span>]</div><div class="line">    centroids = np.zeros((k, n)) <span class="comment"># k个样本</span></div><div class="line">    temp = random.sample(range(m), k)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</div><div class="line">        centroids[i] = data[temp[i]]</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> centroids</div><div class="line"><span class="comment">## 数据加载过程省略</span></div><div class="line">my_data = data.iloc[:, <span class="number">0</span>:<span class="number">-1</span>]</div><div class="line">my_data = my_data.values</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_dist</span><span class="params">(vec1, vec2)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line"><span class="string">    计算欧式距离</span></div><div class="line"><span class="string">    """</span></div><div class="line">    <span class="keyword">return</span> np.sqrt(np.sum(np.power(vec1 - vec2, <span class="number">2</span>)))</div><div class="line">m = np.shape(my_data)[<span class="number">0</span>]</div><div class="line">n = np.shape(my_data)[<span class="number">1</span>]</div><div class="line">k = <span class="number">3</span></div><div class="line">centroids = random_k_sample(my_data, k)</div><div class="line"></div><div class="line"><span class="comment"># 每个样本与选出来的样本向量计算距离，距离谁近就归为哪一类</span></div><div class="line">result = np.zeros((m, <span class="number">2</span>)) <span class="comment"># 存放样本类别，和到质心的距离</span></div><div class="line"></div><div class="line"><span class="comment"># 控制均值向量是否更新</span></div><div class="line">changed = <span class="keyword">True</span></div><div class="line"><span class="keyword">while</span> (changed):</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</div><div class="line">        min_value = np.inf <span class="comment"># 最小距离</span></div><div class="line">        min_label = <span class="number">-1</span> <span class="comment"># 类别</span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</div><div class="line">            dist = calc_dist(my_data[i], centroids[j])</div><div class="line">            <span class="keyword">if</span> dist &lt; min_value:</div><div class="line">                min_value = dist</div><div class="line">                min_label = j</div><div class="line">        </div><div class="line">        result[i, :] = min_value, min_label</div><div class="line">        print(<span class="string">'iteration %d, %s'</span> % (i, result[i, :]))</div><div class="line">    </div><div class="line">    is_update = <span class="keyword">False</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</div><div class="line">        <span class="comment"># 计算新的均值向量</span></div><div class="line">        <span class="comment"># 对每一类的特征列求平均值</span></div><div class="line">        temp = np.mean(my_data[(result[:, <span class="number">1</span>] == j)], axis=<span class="number">0</span>)</div><div class="line">        </div><div class="line"><span class="comment">#         print(temp)</span></div><div class="line"><span class="comment">#         print(centroids[j])</span></div><div class="line"></div><div class="line">        <span class="comment"># 如果均值向量更新了，重新迭代</span></div><div class="line">        <span class="keyword">if</span> (centroids[j] != temp).any():</div><div class="line">            centroids[j] = temp</div><div class="line">            print(<span class="string">'update'</span>)</div><div class="line">            is_update = <span class="keyword">True</span></div><div class="line">    </div><div class="line">    <span class="keyword">if</span> is_update:</div><div class="line">        changed = <span class="keyword">True</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        changed = <span class="keyword">False</span></div><div class="line"></div><div class="line">data[<span class="string">'label'</span>] = result[:, <span class="number">1</span>]</div></pre></td></tr></table></figure>
 <h2 id="LVQ算法"><a href="#LVQ算法" class="headerlink" title="LVQ算法"></a>LVQ算法</h2><p>学习向量量化，随机选择有标记训练样本，找出距离最近的原型向量，根据两者的类别标记是否相同来对原型向量进行相应的更新（靠拢或者远离）。</p>
 <h2 id="高斯混合聚类"><a href="#高斯混合聚类" class="headerlink" title="高斯混合聚类"></a>高斯混合聚类</h2><p>初始化模型参数，计算各混合分布的后验概率，重新计算新均值向量，新协方差矩阵，新混合系数，不断迭代。</p>
-<h1 id="密度聚类算法"><a href="#密度聚类算法" class="headerlink" title="密度聚类算法"></a>密度聚类算法</h1><h2 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h2><p>簇：由密度可达关系导出的最大的密度相连样本集合。<br>根据个样本的伶域，确定核心对象集，随机选取一个核心对象，找到它密度可达的样本，生成第一个聚类簇，并将其从核心对象集中去除，再从更新后的集合中选取核心对象，直到核心对象集为空。</p>
+<h1 id="密度聚类算法"><a href="#密度聚类算法" class="headerlink" title="密度聚类算法"></a>密度聚类算法</h1><h2 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h2><p>基于密度的空间聚类方法</p>
+<p>簇：由密度可达关系导出的最大的密度相连样本集合。<br><strong>DBSCAN的聚类是一个不断生长的过程。先找到一个核心对象，从整个核心对象出发，找出它的直接密度可达的对象，再从这些对象出发，寻找它们直接密度可达的对象，一直重复这个过程，直至最后没有可寻找的对象了，那么一个簇的更新就完成了。也可以认为，簇是所有密度可达的点的集合。</strong></p>
+<p>两个参数：</p>
+<ul>
+<li><ul>
+<li>Eps邻域半径(epsilon,小量，小的值）</li>
+</ul>
+</li>
+<li><ul>
+<li>MinPts(minimum number of points required to form a cluster)定义核心点时的阈值。</li>
+</ul>
+</li>
+</ul>
+<p>几个概念：</p>
+<ul>
+<li><p>$\epsilon$ 邻域: 对于样本$x_j$，包含D中与$x_j$样本距离不大于$\epsilon$的样本</p>
+</li>
+<li><p>核心对象：对于任一样本点，如果其 $\epsilon$ 邻域内至少包含MinPts个样本点，那么这个样本点就是核心对象。（一个点）</p>
+</li>
+<li>直接密度可达：如果一个样本点p处于一个核心对象q的Eps邻域内，则称该样本点p从对象q出发时是直接密度可达的。</li>
+<li>密度相连：对于样本点p和q，如果存在核心对象m,使得p、p均由m直接密度可达，则称p和q密度相连。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li><strong>不需要指定cluster的数目</strong></li>
+<li><strong>聚类的形状可以是任意的</strong></li>
+<li>能找出数据中的噪音，<strong>对噪音不敏感</strong></li>
+<li>算法应用参数少，只需要两个</li>
+<li>聚类结果几乎不依赖于节点的遍历顺序</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>如果样本集较大时，聚类收敛时间较长，此时可以对搜索最近邻时建立的KD树或者球树进行规模限制来改进。</li>
+<li>DBSCAN算法的聚类效果依赖于距离公式的选取，实际中常用的距离是欧几里得距离，由于‘维数灾难’，距离的度量标准已变得不再重要。（分类器的性能随着特征数量的增加而不断提升，但过了某一值后，性能不升反而下降，这种现象称为维数灾难。对于维度灾难的理解：<a href="https://blog.csdn.net/ustbbsy/article/details/80961157" target="_blank" rel="external">维度灾难的理解</a>）</li>
+<li>不适合数据集中<strong>密度差异很大的情形，因为这种情形，参数Eps,MinPts不好选择</strong>。（个人理解，如果是密度大的，你选一个小的邻域半径就可以把这些数据点聚类，但对于那些密度小的数据点，你设置的小的邻域半径，并不能把密度小的这些点给全部聚类。）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> DBSCAN</div><div class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> cycle</div><div class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</div><div class="line"></div><div class="line"><span class="comment"># 产生随机数据的中心</span></div><div class="line">centers = [[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">-1</span>], [<span class="number">1</span>, <span class="number">-1</span>]]</div><div class="line">n_samples= <span class="number">500</span></div><div class="line">X, label_true = make_blobs(n_samples=n_samples, centers=centers,</div><div class="line">                           cluster_std=<span class="number">0.4</span>, random_state=<span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置密度聚类, 默认是欧式距离</span></div><div class="line">model = DBSCAN(eps=<span class="number">0.3</span>, min_samples=<span class="number">10</span>)</div><div class="line"><span class="comment"># 自定义函数</span></div><div class="line"><span class="comment">#DB = DBSCAN(eps=400,min_samples=min_samples_num, metric=lambda a, b: haversine(a,b)).fit(X)</span></div><div class="line">model.fit(X)</div><div class="line"></div><div class="line">core_samples_mask = np.zeros_like(label_true, dtype=np.bool)</div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">   这里是关键点(针对这行代码：xy = X[class_member_mask &amp; ~core_samples_mask])：</span></div><div class="line"><span class="string">   db.core_sample_indices_  表示的是某个点在寻找核心点集合的过程中暂时被标为噪声点的点(即周围点</span></div><div class="line"><span class="string">   小于min_samples)，并不是最终的噪声点。在对核心点进行联通的过程中，这部分点会被进行重新归类(即标签</span></div><div class="line"><span class="string">   并不会是表示噪声点的-1)，也可也这样理解，这些点不适合做核心点，但是会被包含在某个核心点的范围之内</span></div><div class="line"><span class="string">'''</span></div><div class="line">core_samples_mask[model.core_sample_indices_] = <span class="keyword">True</span></div><div class="line"></div><div class="line"><span class="comment">##每个数据的分类</span></div><div class="line">label = model.labels_</div><div class="line"></div><div class="line"><span class="comment">##分类个数：lables中包含-1，表示噪声点</span></div><div class="line">n_clusters_ =len(np.unique(label)) - (<span class="number">1</span> <span class="keyword">if</span> <span class="number">-1</span> <span class="keyword">in</span> label <span class="keyword">else</span> <span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="comment">##绘图</span></div><div class="line">unique_labels = set(label)</div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">   1)np.linspace 返回[0,1]之间的len(unique_labels) 个数</span></div><div class="line"><span class="string">   2)plt.cm 一个颜色映射模块</span></div><div class="line"><span class="string">   3)生成的每个colors包含4个值，分别是rgba</span></div><div class="line"><span class="string">   4)其实这行代码的意思就是生成4个可以和光谱对应的颜色值</span></div><div class="line"><span class="string">'''</span></div><div class="line">colors = plt.cm.Spectral(np.linspace(<span class="number">0</span>, <span class="number">1</span>, len(unique_labels)))</div><div class="line"></div><div class="line">plt.figure(<span class="number">1</span>)</div><div class="line">plt.clf()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span> k, col <span class="keyword">in</span> zip(unique_labels, colors):</div><div class="line">    <span class="comment">##-1表示噪声点,这里的k表示黑色</span></div><div class="line">    <span class="keyword">if</span> k == <span class="number">-1</span>:</div><div class="line">        col = <span class="string">'k'</span></div><div class="line"></div><div class="line">    <span class="comment">##生成一个True、False数组，lables == k 的设置成True</span></div><div class="line">    class_member_mask = (label == k)</div><div class="line"></div><div class="line">    <span class="comment">##两个数组做&amp;运算，找出即是核心点又等于分类k的值  markeredgecolor='k',</span></div><div class="line">    xy = X[class_member_mask &amp; core_samples_mask]</div><div class="line">    plt.plot(xy[:, <span class="number">0</span>], xy[:, <span class="number">1</span>], <span class="string">'o'</span>, c=col,markersize=<span class="number">14</span>)</div><div class="line">    <span class="string">'''</span></div><div class="line"><span class="string">       1)~优先级最高，按位对core_samples_mask 求反，求出的是噪音点的位置</span></div><div class="line"><span class="string">       2)&amp; 于运算之后，求出虽然刚开始是噪音点的位置，但是重新归类却属于k的点</span></div><div class="line"><span class="string">       3)对核心分类之后进行的扩展</span></div><div class="line"><span class="string">    '''</span></div><div class="line">    xy = X[class_member_mask &amp; ~core_samples_mask]</div><div class="line">    plt.plot(xy[:, <span class="number">0</span>], xy[:, <span class="number">1</span>], <span class="string">'o'</span>, c=col, markersize=<span class="number">6</span>)</div><div class="line"></div><div class="line">plt.title(<span class="string">'Estimated number of clusters: %d'</span> % n_clusters_)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
 <h1 id="层次聚类算法"><a href="#层次聚类算法" class="headerlink" title="层次聚类算法"></a>层次聚类算法</h1><p>层次聚类试图在不同层次对数据集进行划分，形成树的聚类结构。<br>AGNES算法在树状图上的特定层次进行分割，得到相应的簇划分结果。</p>
 
     
@@ -2239,15 +2673,11 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2255,15 +2685,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">软技能</a>
+                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">软技能</a>
               </li>
              
               <li class="article-tag-list-item">

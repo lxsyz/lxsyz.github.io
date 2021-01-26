@@ -6,21 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>ubuntu上配置python踩的坑 | Amanda</title>
+  <title>python数据可视化 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
-<meta name="keywords" content="linux">
+  <meta name="description" content="pycharts pyecharts官网  参考官网上的示例我们可以可视化数据，渲染成html文件  注意：如果需要保存为图片，还需要安装selenium, phantomjs 和 pyppeteer 相应插件来处理  12345678910111213141516171819202122from pyecharts.charts import Barfrom pyecharts import o">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu上配置python踩的坑">
-<meta property="og:url" content="http://lxsyz.github.io/2018/05/25/ubuntu上配置python踩的坑/index.html">
+<meta property="og:title" content="python数据可视化">
+<meta property="og:url" content="http://lxsyz.github.io/2020/10/13/python数据可视化/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
-<meta property="og:updated_time" content="2018-05-25T10:24:12.000Z">
+<meta property="og:description" content="pycharts pyecharts官网  参考官网上的示例我们可以可视化数据，渲染成html文件  注意：如果需要保存为图片，还需要安装selenium, phantomjs 和 pyppeteer 相应插件来处理  12345678910111213141516171819202122from pyecharts.charts import Barfrom pyecharts import o">
+<meta property="og:image" content="https://i.loli.net/2021/01/26/KPrkmdCvN8yOStp.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/26/BFu7yEpmGR4OQw8.png">
+<meta property="og:updated_time" content="2021-01-26T15:25:59.325Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu上配置python踩的坑">
-<meta name="twitter:description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
+<meta name="twitter:title" content="python数据可视化">
+<meta name="twitter:description" content="pycharts pyecharts官网  参考官网上的示例我们可以可视化数据，渲染成html文件  注意：如果需要保存为图片，还需要安装selenium, phantomjs 和 pyppeteer 相应插件来处理  12345678910111213141516171819202122from pyecharts.charts import Barfrom pyecharts import o">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/26/KPrkmdCvN8yOStp.png">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -167,14 +170,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ubuntu上配置python踩的坑" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-python数据可视化" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      ubuntu上配置python踩的坑
+      python数据可视化
     </h1>
   
 
@@ -186,8 +189,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2018/05/25/ubuntu上配置python踩的坑/" class="archive-article-date">
-        <time datetime="2018-05-25T05:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
+<a href="/2020/10/13/python数据可视化/" class="archive-article-date">
+        <time datetime="2020-10-13T13:56:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
 </a>
 
   
@@ -196,30 +199,29 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。</p>
-<hr>
-<ol>
-<li>安装成功了numpy，却无法调用，ImportError<br> 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy就会报错，我的解决方法如下：<ul>
-<li>find / -name numpy 找到numpy所在的位置，结果发现我安装的numpy出现在了/usr/local/python2.7/lib/dist-packages路径下。</li>
-<li>rm -rf numpy 删除那个路径下的numpy相关文件</li>
-<li>sudo pip install numpy -t ../site-packages/ 重新安装numpy到site-packages路径下</li>
-<li>这样再import numpy就不会报importError了</li>
+    <h1 id="pycharts"><a href="#pycharts" class="headerlink" title="pycharts"></a>pycharts</h1><ul>
+<li><a href="https://pyecharts.org/#/zh-cn/quickstart" target="_blank" rel="external">pyecharts官网</a></li>
 </ul>
-</li>
-<li>numpy调用后提示undefined symbol: PyUnicodeUCS2_FromUnicode<ul>
-<li>这种情况只能重新编译python成4个unicode字节，切换至下载解压好的python目录</li>
-<li>sudo ./configure –enable-shared –enable-unicode=ucs4</li>
-<li>接着 sudo make install 安装</li>
-<li>安装成功后，再次调用numpy就不会有问题了。</li>
+<p>参考官网上的示例我们可以可视化数据，渲染成html文件</p>
+<blockquote>
+<p>注意：如果需要保存为图片，还需要安装<code>selenium</code>, <code>phantomjs</code> 和 <code>pyppeteer</code> 相应插件来处理</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Bar</div><div class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> options <span class="keyword">as</span> opts</div><div class="line"></div><div class="line"><span class="comment"># V1 版本开始支持链式调用</span></div><div class="line"><span class="comment"># 你所看到的格式其实是 `black` 格式化以后的效果</span></div><div class="line"><span class="comment"># 可以执行 `pip install black` 下载使用</span></div><div class="line">bar = (</div><div class="line">    Bar()</div><div class="line">    .add_xaxis([<span class="string">"衬衫"</span>, <span class="string">"羊毛衫"</span>, <span class="string">"雪纺衫"</span>, <span class="string">"裤子"</span>, <span class="string">"高跟鞋"</span>, <span class="string">"袜子"</span>])</div><div class="line">    .add_yaxis(<span class="string">"商家A"</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">75</span>, <span class="number">90</span>])</div><div class="line">    .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">"主标题"</span>, subtitle=<span class="string">"副标题"</span>))</div><div class="line">    <span class="comment"># 或者直接使用字典参数</span></div><div class="line">    <span class="comment"># .set_global_opts(title_opts=&#123;"text": "主标题", "subtext": "副标题"&#125;)</span></div><div class="line">)</div><div class="line">bar.render()</div><div class="line"></div><div class="line"><span class="comment"># 不习惯链式调用的开发者依旧可以单独调用方法</span></div><div class="line">bar = Bar()</div><div class="line">bar.add_xaxis([<span class="string">"衬衫"</span>, <span class="string">"羊毛衫"</span>, <span class="string">"雪纺衫"</span>, <span class="string">"裤子"</span>, <span class="string">"高跟鞋"</span>, <span class="string">"袜子"</span>])</div><div class="line">bar.add_yaxis(<span class="string">"商家A"</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">75</span>, <span class="number">90</span>])</div><div class="line">bar.set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">"主标题"</span>, subtitle=<span class="string">"副标题"</span>))</div><div class="line">bar.render()</div></pre></td></tr></table></figure>
+<h1 id="PyGraphviz"><a href="#PyGraphviz" class="headerlink" title="PyGraphviz"></a>PyGraphviz</h1><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/104636240" target="_blank" rel="external">PyGraphviz (几何图形可视化工具) 简单入门</a></li>
+<li><a href="https://graphviz.org/download/" target="_blank" rel="external">Graphviz</a> 是一个几何图形可视化软件，能够将数据的结构信息表示为抽象图形和网络图的方式。</li>
+<li>PyGraphviz 主要<strong>对数据量大、可任意定制的图形上具有强大优势</strong>。</li>
 </ul>
-</li>
-<li>python安装matplotlib错误<ul>
-<li>一开始遇到的错误是 matplotlib fatal error:Python.h:没有那个文件或目录。解决方法是需要先安装好Python的静态库和头文件，使用apt-get即可：sudo apt-get install python-dev</li>
-<li>之后在import时遇到了错误是 No module named bz2，详细情况可以参考<br><a href="https://stackoverflow.com/questions/8115280/importerror-no-module-named-bz2-for-python-2-7-2" target="_blank" rel="external">here</a>,我采用了其中的先安装libbz2-dev， sudo apt-get install libbz2-dev，再重新编译python，就可以了。</li>
-</ul>
-</li>
-</ol>
-<p>待续。。。。</p>
+<p>安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew install graphviz # mac</div><div class="line">pip install graphviz # linux</div><div class="line">conda install graphviz # conda</div><div class="line">pip3 install pygraphviz</div></pre></td></tr></table></figure>
+<p>使用：</p>
+<p>神经网络图</p>
+<p><img src="https://i.loli.net/2021/01/26/KPrkmdCvN8yOStp.png" alt="神经网络.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pygraphviz <span class="keyword">as</span> pgv</div><div class="line"></div><div class="line">G = pgv.AGraph(directed=<span class="keyword">True</span>, rankdir=<span class="string">"LR"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置层数、每层节点数</span></div><div class="line">network_structure = input(<span class="string">"输入神经网络每层节点数，如：[10, 7, 5, 4, 2, 1]\n"</span>)</div><div class="line">all_nodes = [[<span class="string">f"layer<span class="subst">&#123;layer_index&#125;</span>node<span class="subst">&#123;node_index&#125;</span>"</span> <span class="keyword">for</span> node_index <span class="keyword">in</span> range(layer_nodes_num)] <span class="keyword">for</span></div><div class="line">             layer_index, layer_nodes_num <span class="keyword">in</span> enumerate(eval(network_structure))]</div><div class="line"></div><div class="line"><span class="comment"># 添加输入层节点</span></div><div class="line"><span class="keyword">for</span> node_index, node <span class="keyword">in</span> enumerate(all_nodes[<span class="number">0</span>]):</div><div class="line">    G.add_node(node, label=<span class="string">""</span>, shape=<span class="string">"circle"</span>, style=<span class="string">"bold"</span>, color=<span class="string">"#60acfc"</span>, pos=<span class="string">f"0,<span class="subst">&#123;<span class="number">0.6</span> * node_index&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加输入层文本</span></div><div class="line">G.add_node(<span class="string">f"Input_Layer"</span>, shape=<span class="string">"none"</span>, label=<span class="string">f"Input_Layer(<span class="subst">&#123;len(all_nodes[<span class="number">0</span>])&#125;</span>)"</span>,</div><div class="line">           pos=<span class="string">f"<span class="subst">&#123;<span class="number">0</span>&#125;</span>,<span class="subst">&#123;(node_index + <span class="number">1</span>) * <span class="number">0.6</span>&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加中间层、输出层节点</span></div><div class="line"><span class="keyword">for</span> layer_index, layer <span class="keyword">in</span> enumerate(all_nodes[<span class="number">1</span>:]):</div><div class="line">    color = <span class="string">"#5bc49f"</span> <span class="keyword">if</span> layer_index == len(all_nodes[<span class="number">1</span>:]) - <span class="number">1</span> <span class="keyword">else</span> <span class="string">"#ff7c7c"</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> node_index, node <span class="keyword">in</span> enumerate(layer):</div><div class="line">        x = <span class="number">1.5</span> * (layer_index + <span class="number">1</span>)</div><div class="line">        y = - <span class="number">0.3</span> * (len(all_nodes[layer_index + <span class="number">1</span>]) - len(all_nodes[<span class="number">0</span>])) + <span class="number">0.6</span> * node_index</div><div class="line">        G.add_node(node, label=<span class="string">""</span>, shape=<span class="string">"circle"</span>, style=<span class="string">"bold"</span>, color=color, pos=<span class="string">f"<span class="subst">&#123;x&#125;</span>,<span class="subst">&#123;y&#125;</span>!"</span>)</div><div class="line"></div><div class="line">    <span class="comment"># 添加中间层、输出层文本</span></div><div class="line">    text = <span class="string">f"Output_Layer(<span class="subst">&#123;len(all_nodes[<span class="number">-1</span>])&#125;</span>)"</span> <span class="keyword">if</span> layer_index == len(all_nodes[<span class="number">1</span>:]) - <span class="number">1</span> <span class="keyword">else</span> <span class="string">f"Layer_<span class="subst">&#123;layer_index + <span class="number">1</span>&#125;</span>(<span class="subst">&#123;len(layer)&#125;</span>)"</span></div><div class="line">    G.add_node(<span class="string">f"Layer_<span class="subst">&#123;layer_index + <span class="number">1</span>&#125;</span>)"</span>, shape=<span class="string">"none"</span>, label=text,</div><div class="line">               pos=<span class="string">f"<span class="subst">&#123;x&#125;</span>,<span class="subst">&#123;y + <span class="number">0.4</span>&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加线</span></div><div class="line"><span class="keyword">for</span> layer_index <span class="keyword">in</span> range(all_nodes.__len__() - <span class="number">1</span>):</div><div class="line">    <span class="keyword">for</span> start <span class="keyword">in</span> all_nodes[layer_index]:</div><div class="line">        <span class="keyword">for</span> end <span class="keyword">in</span> all_nodes[layer_index + <span class="number">1</span>]:</div><div class="line">            G.add_edge(start, end)</div><div class="line"></div><div class="line"><span class="comment"># 导出图形</span></div><div class="line">G.layout()</div><div class="line">G.draw(<span class="string">"神经网络.png"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 运行代码，输入 [5, 10, 15, 15, 15, 10, 5, 1]</span></div></pre></td></tr></table></figure>
+<p>因子相关性</p>
+<p><img src="https://i.loli.net/2021/01/26/BFu7yEpmGR4OQw8.png" alt="因子相关性图.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pygraphviz <span class="keyword">as</span> pgv</div><div class="line"></div><div class="line">G = pgv.AGraph(directed=<span class="keyword">True</span>, rankdir=<span class="string">"TB"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置节点标签</span></div><div class="line">Root = <span class="string">"道路交通流畅"</span></div><div class="line">negative_1 = <span class="string">"平均延误时间"</span></div><div class="line">negative_2 = <span class="string">"负荷度"</span></div><div class="line">negative_3 = <span class="string">"小区位置"</span></div><div class="line">negative_4 = <span class="string">"相对延误率"</span></div><div class="line">negative_5 = <span class="string">"房屋密度"</span></div><div class="line">negative_6 = <span class="string">"人口密度"</span></div><div class="line">negative_7 = <span class="string">"总延误率"</span></div><div class="line">negative_8 = <span class="string">"排队率"</span></div><div class="line">negative_9 = <span class="string">"行驶时间"</span></div><div class="line">positive_1 = <span class="string">"通行能力"</span></div><div class="line">positive_2 = <span class="string">"公路层级"</span></div><div class="line">positive_3 = <span class="string">"路网结构"</span></div><div class="line">positive_4 = <span class="string">"行驶速度"</span></div><div class="line">positive_5 = <span class="string">"路网长度"</span></div><div class="line">positive_6 = <span class="string">"小区面积"</span></div><div class="line">positive_7 = <span class="string">"内部道路密度"</span></div><div class="line">positive_8 = <span class="string">"路网密度"</span></div><div class="line"></div><div class="line"><span class="comment"># 添加节点</span></div><div class="line">G.add_node(Root, style=<span class="string">"filled"</span>, shape=<span class="string">"box3d"</span>, color=<span class="string">"#feb64d"</span>)</div><div class="line"><span class="keyword">for</span> negative <span class="keyword">in</span> [eval(_) <span class="keyword">for</span> _ <span class="keyword">in</span> dir() <span class="keyword">if</span> _.startswith(<span class="string">"negative"</span>)]:</div><div class="line">    G.add_node(negative, style=<span class="string">"filled"</span>, shape=<span class="string">"ellipse"</span>, color=<span class="string">"#CFDBF6"</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> positive <span class="keyword">in</span> [eval(_) <span class="keyword">for</span> _ <span class="keyword">in</span> dir() <span class="keyword">if</span> _.startswith(<span class="string">"positive"</span>)]:</div><div class="line">    G.add_node(positive, style=<span class="string">"filled"</span>, shape=<span class="string">"ellipse"</span>, color=<span class="string">"#B4E7B7"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加边</span></div><div class="line">G.add_edges_from([[Root, negative_1], [Root, negative_6], [Root, negative_8], [Root, negative_9],</div><div class="line">                  [negative_1, negative_2], [negative_1, negative_7], [negative_2, negative_3],</div><div class="line">                  [negative_2, negative_7], [negative_3, negative_4], [negative_8, negative_9],</div><div class="line">                  [positive_2, negative_5], [positive_3, negative_4], [positive_4, negative_5]],</div><div class="line">                 color=<span class="string">"#B4DBFF"</span>, style=<span class="string">"dashed"</span>, penwidth=<span class="number">1.5</span>)</div><div class="line"></div><div class="line">G.add_edges_from([[Root, positive_1], [Root, positive_8], [negative_5, negative_4],</div><div class="line">                  [negative_6, positive_4], [negative_5, positive_4], [negative_9, positive_5],</div><div class="line">                  [positive_1, positive_2], [positive_2, positive_3], [positive_6, positive_5],</div><div class="line">                  [positive_7, positive_6], [positive_8, positive_7]],</div><div class="line">                 color=<span class="string">"#B4E7B7"</span>, style=<span class="string">"dashed"</span>, penwidth=<span class="number">1.5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 导出图形</span></div><div class="line">G.layout()</div><div class="line">G.draw(<span class="string">"因子相关性图.png"</span>, prog=<span class="string">"dot"</span>)</div></pre></td></tr></table></figure>
+<h2 id="SmartChart"><a href="#SmartChart" class="headerlink" title="SmartChart"></a>SmartChart</h2><p><a href="https://github.com/JohnYan2017/Echarts-Django" target="_blank" rel="external">smartchart</a></p>
 
     
 
@@ -268,7 +270,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -287,18 +289,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/12/10/Mac 安装应用踩坑/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/10/13/Python检测程序使用内存和CPU的方法/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mac应用安装
+          Python检测程序内容和CPU
         
       </div>
     </a>
   
   
-    <a href="/2018/03/23/聚类/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">聚类</div>
+    <a href="/2020/10/13/述职有感/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">述职有感</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -325,7 +327,7 @@
 
 
 
-<div id="SOHUCS" sid="ubuntu上配置python踩的坑" ></div> 
+<div id="SOHUCS" sid="python数据可视化" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

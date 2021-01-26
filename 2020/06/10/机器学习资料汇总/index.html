@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>ubuntu上配置python踩的坑 | Amanda</title>
+  <title>机器学习资料汇总 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
-<meta name="keywords" content="linux">
+  <meta name="description" content="机器学习资料汇总《统计学习方法》总结：Python代码实现 Python代码实现+博客解析 李宏毅课程学习笔记在线笔记 机器学习-李宏毅(2019) Machine Learning Google机器学习 Google Machine Learning Crash Course B站地址, google机器学习速成(基于tensorflow API)  周志华机器学习周志华机器学习笔记">
+<meta name="keywords" content="资料汇总">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu上配置python踩的坑">
-<meta property="og:url" content="http://lxsyz.github.io/2018/05/25/ubuntu上配置python踩的坑/index.html">
+<meta property="og:title" content="机器学习资料汇总">
+<meta property="og:url" content="http://lxsyz.github.io/2020/06/10/机器学习资料汇总/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
-<meta property="og:updated_time" content="2018-05-25T10:24:12.000Z">
+<meta property="og:description" content="机器学习资料汇总《统计学习方法》总结：Python代码实现 Python代码实现+博客解析 李宏毅课程学习笔记在线笔记 机器学习-李宏毅(2019) Machine Learning Google机器学习 Google Machine Learning Crash Course B站地址, google机器学习速成(基于tensorflow API)  周志华机器学习周志华机器学习笔记">
+<meta property="og:updated_time" content="2021-01-18T15:58:03.720Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu上配置python踩的坑">
-<meta name="twitter:description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
+<meta name="twitter:title" content="机器学习资料汇总">
+<meta name="twitter:description" content="机器学习资料汇总《统计学习方法》总结：Python代码实现 Python代码实现+博客解析 李宏毅课程学习笔记在线笔记 机器学习-李宏毅(2019) Machine Learning Google机器学习 Google Machine Learning Crash Course B站地址, google机器学习速成(基于tensorflow API)  周志华机器学习周志华机器学习笔记">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -167,14 +167,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ubuntu上配置python踩的坑" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-机器学习资料汇总" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      ubuntu上配置python踩的坑
+      机器学习资料汇总
     </h1>
   
 
@@ -186,8 +186,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2018/05/25/ubuntu上配置python踩的坑/" class="archive-article-date">
-        <time datetime="2018-05-25T05:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
+<a href="/2020/06/10/机器学习资料汇总/" class="archive-article-date">
+        <time datetime="2020-06-10T12:51:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
 </a>
 
   
@@ -196,30 +196,15 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。</p>
-<hr>
-<ol>
-<li>安装成功了numpy，却无法调用，ImportError<br> 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy就会报错，我的解决方法如下：<ul>
-<li>find / -name numpy 找到numpy所在的位置，结果发现我安装的numpy出现在了/usr/local/python2.7/lib/dist-packages路径下。</li>
-<li>rm -rf numpy 删除那个路径下的numpy相关文件</li>
-<li>sudo pip install numpy -t ../site-packages/ 重新安装numpy到site-packages路径下</li>
-<li>这样再import numpy就不会报importError了</li>
+    <h1 id="机器学习资料汇总"><a href="#机器学习资料汇总" class="headerlink" title="机器学习资料汇总"></a>机器学习资料汇总</h1><h2 id="《统计学习方法》总结："><a href="#《统计学习方法》总结：" class="headerlink" title="《统计学习方法》总结："></a>《统计学习方法》总结：</h2><p><a href="https://github.com/ExtremeMart/lihang-code" target="_blank" rel="external">Python代码实现</a></p>
+<p><a href="https://github.com/Dod-o/Statistical-Learning-Method_Code" target="_blank" rel="external">Python代码实现+博客解析</a></p>
+<h2 id="李宏毅课程学习笔记"><a href="#李宏毅课程学习笔记" class="headerlink" title="李宏毅课程学习笔记"></a>李宏毅课程学习笔记</h2><p><a href="https://datawhalechina.github.io/leeml-notes/#/" target="_blank" rel="external">在线笔记</a></p>
+<p><a href="https://www.bilibili.com/video/av35932863" target="_blank" rel="external">机器学习-李宏毅(2019) Machine Learning</a></p>
+<h2 id="Google机器学习"><a href="#Google机器学习" class="headerlink" title="Google机器学习"></a>Google机器学习</h2><ul>
+<li><a href="https://developers.google.cn/machine-learning/crash-course/" target="_blank" rel="external">Google Machine Learning Crash Course</a></li>
+<li>B站地址, <a href="https://www.bilibili.com/video/av58945047/?p=5" target="_blank" rel="external">google机器学习速成(基于tensorflow API)</a></li>
 </ul>
-</li>
-<li>numpy调用后提示undefined symbol: PyUnicodeUCS2_FromUnicode<ul>
-<li>这种情况只能重新编译python成4个unicode字节，切换至下载解压好的python目录</li>
-<li>sudo ./configure –enable-shared –enable-unicode=ucs4</li>
-<li>接着 sudo make install 安装</li>
-<li>安装成功后，再次调用numpy就不会有问题了。</li>
-</ul>
-</li>
-<li>python安装matplotlib错误<ul>
-<li>一开始遇到的错误是 matplotlib fatal error:Python.h:没有那个文件或目录。解决方法是需要先安装好Python的静态库和头文件，使用apt-get即可：sudo apt-get install python-dev</li>
-<li>之后在import时遇到了错误是 No module named bz2，详细情况可以参考<br><a href="https://stackoverflow.com/questions/8115280/importerror-no-module-named-bz2-for-python-2-7-2" target="_blank" rel="external">here</a>,我采用了其中的先安装libbz2-dev， sudo apt-get install libbz2-dev，再重新编译python，就可以了。</li>
-</ul>
-</li>
-</ol>
-<p>待续。。。。</p>
+<h2 id="周志华机器学习"><a href="#周志华机器学习" class="headerlink" title="周志华机器学习"></a>周志华机器学习</h2><p><a href="https://github.com/Vay-keen/Machine-learning-learning-notes" target="_blank" rel="external">周志华机器学习笔记</a></p>
 
     
 
@@ -268,7 +253,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资料汇总</a>
         		</li>
       		
 		</ul>
@@ -287,18 +272,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/12/10/Mac 安装应用踩坑/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/10/13/述职有感/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mac应用安装
+          述职有感
         
       </div>
     </a>
   
   
-    <a href="/2018/03/23/聚类/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">聚类</div>
+    <a href="/2020/05/17/非root用户安装tmux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">非root用户安装tmux</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -325,7 +310,7 @@
 
 
 
-<div id="SOHUCS" sid="ubuntu上配置python踩的坑" ></div> 
+<div id="SOHUCS" sid="机器学习资料汇总" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

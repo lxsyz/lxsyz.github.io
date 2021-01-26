@@ -6,21 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>ubuntu上配置python踩的坑 | Amanda</title>
+  <title>Tag: 资料汇总 | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
-<meta name="keywords" content="linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu上配置python踩的坑">
-<meta property="og:url" content="http://lxsyz.github.io/2018/05/25/ubuntu上配置python踩的坑/index.html">
+  <meta name="description" content="怕人询问，咽泪装欢">
+<meta name="keywords" content="程序猿,ML,Java,Python,Programmer,Coder">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Amanda">
+<meta property="og:url" content="http://lxsyz.github.io/tags/资料汇总/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
-<meta property="og:updated_time" content="2018-05-25T10:24:12.000Z">
+<meta property="og:description" content="怕人询问，咽泪装欢">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu上配置python踩的坑">
-<meta name="twitter:description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
+<meta name="twitter:title" content="Amanda">
+<meta name="twitter:description" content="怕人询问，咽泪装欢">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -167,181 +166,65 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ubuntu上配置python踩的坑" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2020/06/10/机器学习资料汇总/" class="archive-article-date">
+        <time datetime="2020-06-10T12:51:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-10</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2020/06/10/机器学习资料汇总/" target="_blank">机器学习资料汇总</a>
   
-    <h1 class="article-title" itemprop="name">
-      ubuntu上配置python踩的坑
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2018/05/25/ubuntu上配置python踩的坑/" class="archive-article-date">
-        <time datetime="2018-05-25T05:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。</p>
-<hr>
-<ol>
-<li>安装成功了numpy，却无法调用，ImportError<br> 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy就会报错，我的解决方法如下：<ul>
-<li>find / -name numpy 找到numpy所在的位置，结果发现我安装的numpy出现在了/usr/local/python2.7/lib/dist-packages路径下。</li>
-<li>rm -rf numpy 删除那个路径下的numpy相关文件</li>
-<li>sudo pip install numpy -t ../site-packages/ 重新安装numpy到site-packages路径下</li>
-<li>这样再import numpy就不会报importError了</li>
-</ul>
-</li>
-<li>numpy调用后提示undefined symbol: PyUnicodeUCS2_FromUnicode<ul>
-<li>这种情况只能重新编译python成4个unicode字节，切换至下载解压好的python目录</li>
-<li>sudo ./configure –enable-shared –enable-unicode=ucs4</li>
-<li>接着 sudo make install 安装</li>
-<li>安装成功后，再次调用numpy就不会有问题了。</li>
-</ul>
-</li>
-<li>python安装matplotlib错误<ul>
-<li>一开始遇到的错误是 matplotlib fatal error:Python.h:没有那个文件或目录。解决方法是需要先安装好Python的静态库和头文件，使用apt-get即可：sudo apt-get install python-dev</li>
-<li>之后在import时遇到了错误是 No module named bz2，详细情况可以参考<br><a href="https://stackoverflow.com/questions/8115280/importerror-no-module-named-bz2-for-python-2-7-2" target="_blank" rel="external">here</a>,我采用了其中的先安装libbz2-dev， sudo apt-get install libbz2-dev，再重新编译python，就可以了。</li>
-</ul>
-</li>
-</ol>
-<p>待续。。。。</p>
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.jpg">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资料汇总</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/2018/12/10/Mac 安装应用踩坑/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Mac应用安装
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/03/23/聚类/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">聚类</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-<div id="SOHUCS" sid="ubuntu上配置python踩的坑" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "true",
-        conf: "true"
-    });
-</script>
-</script>
-
-
-
-
-
-
-
-
+    
 
 
           </div>
@@ -382,9 +265,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

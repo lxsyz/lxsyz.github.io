@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lxsyz.github.io">
-  <title>ubuntu上配置python踩的坑 | Amanda</title>
+  <title>Python检测程序内容和CPU | Amanda</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
-<meta name="keywords" content="linux">
+  <meta name="description" content="示例代码 12345678910111213141516171819fib = lambda n: 1 if n &amp;lt;= 2 else fib(n - 1) + fib(n - 2)def test1():    fib(20)def test2():    fib(30)def test3():    fib(35)if __name__ == &apos;__main__&apos;:    test1()">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu上配置python踩的坑">
-<meta property="og:url" content="http://lxsyz.github.io/2018/05/25/ubuntu上配置python踩的坑/index.html">
+<meta property="og:title" content="Python检测程序内容和CPU">
+<meta property="og:url" content="http://lxsyz.github.io/2020/10/13/Python检测程序使用内存和CPU的方法/index.html">
 <meta property="og:site_name" content="Amanda">
-<meta property="og:description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
-<meta property="og:updated_time" content="2018-05-25T10:24:12.000Z">
+<meta property="og:description" content="示例代码 12345678910111213141516171819fib = lambda n: 1 if n &amp;lt;= 2 else fib(n - 1) + fib(n - 2)def test1():    fib(20)def test2():    fib(30)def test3():    fib(35)if __name__ == &apos;__main__&apos;:    test1()">
+<meta property="og:updated_time" content="2021-01-26T14:28:33.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu上配置python踩的坑">
-<meta name="twitter:description" content="为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。   安装成功了numpy，却无法调用，ImportError 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy">
+<meta name="twitter:title" content="Python检测程序内容和CPU">
+<meta name="twitter:description" content="示例代码 12345678910111213141516171819fib = lambda n: 1 if n &amp;lt;= 2 else fib(n - 1) + fib(n - 2)def test1():    fib(20)def test2():    fib(30)def test3():    fib(35)if __name__ == &apos;__main__&apos;:    test1()">
   
     <link rel="alternative" href="/atom.xml" title="Amanda" type="application/atom+xml">
   
@@ -167,14 +167,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ubuntu上配置python踩的坑" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Python检测程序使用内存和CPU的方法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      ubuntu上配置python踩的坑
+      Python检测程序内容和CPU
     </h1>
   
 
@@ -186,8 +186,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2018/05/25/ubuntu上配置python踩的坑/" class="archive-article-date">
-        <time datetime="2018-05-25T05:38:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
+<a href="/2020/10/13/Python检测程序使用内存和CPU的方法/" class="archive-article-date">
+        <time datetime="2020-10-13T13:56:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
 </a>
 
   
@@ -196,30 +196,65 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>为了配置一个开源库，折腾了好久，还联系了作者，发现它只能在linux系统上运行，无奈只好在linux上配置python+numpy+scipy等一系列开发环境，这里记录下遇到的坑。。。</p>
-<hr>
-<ol>
-<li>安装成功了numpy，却无法调用，ImportError<br> 使用sudo pip install numpy成功安装了numpy,并且使用pip list能查看到确实存在numpy包，但是import numpy就会报错，我的解决方法如下：<ul>
-<li>find / -name numpy 找到numpy所在的位置，结果发现我安装的numpy出现在了/usr/local/python2.7/lib/dist-packages路径下。</li>
-<li>rm -rf numpy 删除那个路径下的numpy相关文件</li>
-<li>sudo pip install numpy -t ../site-packages/ 重新安装numpy到site-packages路径下</li>
-<li>这样再import numpy就不会报importError了</li>
-</ul>
-</li>
-<li>numpy调用后提示undefined symbol: PyUnicodeUCS2_FromUnicode<ul>
-<li>这种情况只能重新编译python成4个unicode字节，切换至下载解压好的python目录</li>
-<li>sudo ./configure –enable-shared –enable-unicode=ucs4</li>
-<li>接着 sudo make install 安装</li>
-<li>安装成功后，再次调用numpy就不会有问题了。</li>
-</ul>
-</li>
-<li>python安装matplotlib错误<ul>
-<li>一开始遇到的错误是 matplotlib fatal error:Python.h:没有那个文件或目录。解决方法是需要先安装好Python的静态库和头文件，使用apt-get即可：sudo apt-get install python-dev</li>
-<li>之后在import时遇到了错误是 No module named bz2，详细情况可以参考<br><a href="https://stackoverflow.com/questions/8115280/importerror-no-module-named-bz2-for-python-2-7-2" target="_blank" rel="external">here</a>,我采用了其中的先安装libbz2-dev， sudo apt-get install libbz2-dev，再重新编译python，就可以了。</li>
-</ul>
-</li>
-</ol>
-<p>待续。。。。</p>
+    <p>示例代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">fib = <span class="keyword">lambda</span> n: <span class="number">1</span> <span class="keyword">if</span> n &lt;= <span class="number">2</span> <span class="keyword">else</span> fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test1</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">20</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test2</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">30</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test3</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">35</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    test1()</div><div class="line">    test2()</div><div class="line">    test3()</div></pre></td></tr></table></figure>
+<h2 id="1-cProfile"><a href="#1-cProfile" class="headerlink" title="1. cProfile"></a>1. cProfile</h2><p>cProfile是profile模块的c语言实现，二者实现的功能相同，但是cProfile的性能更佳。</p>
+<p>使用方法: </p>
+<figure class="highlight python"><figcaption><span>-m cProfile [-o output_file] [-s sort_order] myscript.py```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>~ python -m cProfile test.py<br>         20132542 function calls (8 primitive calls) in 7.342 seconds</p>
+<p>   Ordered by: standard name</p>
+<p>   ncalls  tottime  percall  cumtime  percall filename:lineno(function)<br>20132537/3    7.342    0.000    7.342    2.447 test.py:1(<lambda>)<br>        1    0.000    0.000    7.342    7.342 test.py:1(<module>)<br>        1    0.000    0.000    6.707    6.707 test.py:12(test3)<br>        1    0.000    0.000    0.006    0.006 test.py:4(test1)<br>        1    0.000    0.000    0.630    0.630 test.py:8(test2)<br>        1    0.000    0.000    0.000    0.000 {method ‘disable’ of ‘_lsprof.Profiler’ objects}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">上述第一行表明，共有20132542次函数调用，其中8次是非递归调用。</div><div class="line"></div><div class="line">列名 | 含义</div><div class="line">---|---</div><div class="line">ncalls | 总调用次数，```20132537/3```表名，共有20132537次调用，其中3次是非递归调用</div><div class="line">tottime | 总调用时长</div><div class="line">percall | 平均调用时长，其实就是```tottime```除以```ncalls</div></pre></td></tr></table></figure></module></lambda></p>
+<p>cumtime | 累计调用总时长，本函数以及本函数的递归调用累计调用时长<br>percall | 累计平均调用时长，其实就是<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">filename:lineno(function) | 函数名及入口代码地址</div><div class="line"></div><div class="line">## 2. line_profiler</div><div class="line"></div><div class="line">line_profiler模块可以给出执行每行代码所需占用的CPU时间。</div><div class="line">首先，安装该模块：</div><div class="line"></div><div class="line">``` 	</div><div class="line">$ pip install line_profiler</div></pre></td></tr></table></figure></p>
+<p>接着，需要指定用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```Python</div><div class="line">fib = lambda n: 1 if n &lt;= 2 else fib(n - 1) + fib(n - 2)</div><div class="line"></div><div class="line">@profilt</div><div class="line">def test1():</div><div class="line">    fib(20)</div><div class="line"></div><div class="line">@profile</div><div class="line">def test2():</div><div class="line">    fib(30)</div><div class="line"></div><div class="line">@profile</div><div class="line">def test3():</div><div class="line">    fib(35)</div><div class="line"></div><div class="line">@profile</div><div class="line">def main():</div><div class="line">    test1()</div><div class="line">    test2()</div><div class="line">    test3()</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
+<p>最好，可以通过下面的命令获得关于<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">~ kernprof -l  -v test.py</div><div class="line">Wrote profile results to test.py.lprof</div><div class="line">Timer unit: 1e-06 s</div><div class="line"></div><div class="line">Total time: 0.00524 s</div><div class="line">File: test.py</div><div class="line">Function: test1 at line 3</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">     3                                           @profile</div><div class="line">     4                                           def test1():</div><div class="line">     5         1          1.0      1.0      0.0      a=10</div><div class="line">     6         1       5239.0   5239.0    100.0      fib(20)</div><div class="line"></div><div class="line">Total time: 0.641574 s</div><div class="line">File: test.py</div><div class="line">Function: test2 at line 9</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">     9                                           @profile</div><div class="line">    10                                           def test2():</div><div class="line">    11         1     641574.0 641574.0    100.0      fib(30)</div><div class="line"></div><div class="line">Total time: 6.75469 s</div><div class="line">File: test.py</div><div class="line">Function: test3 at line 14</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">    14                                           @profile</div><div class="line">    15                                           def test3():</div><div class="line">    16         1    6754692.0 6754692.0    100.0      fib(35)</div><div class="line"></div><div class="line">Total time: 7.40158 s</div><div class="line">File: test.py</div><div class="line">Function: main at line 18</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">    18                                           @profile</div><div class="line">    19                                           def main():</div><div class="line">    20         1       5274.0   5274.0      0.1      test1()</div><div class="line">    21         1     641592.0 641592.0      8.7      test2()</div><div class="line">    22         1    6754713.0 6754713.0     91.3      test3()</div></pre></td></tr></table></figure></p>
+<p>其中-l表示逐行解释，-v表示表示输出详细结果。<br>需要注意的是，<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">通过这种方法，我们看到```test3()```方法消耗了剩余的91.3%的时间。</div><div class="line"></div><div class="line"></div><div class="line">标题 | 含义</div><div class="line">---|---</div><div class="line">Line # | 代码行号</div><div class="line">Hits | 执行次数</div><div class="line">Per Hit | 每次执行的平均执行时长</div><div class="line">% Time | 该行执行时长占所在函数执行时长的占比</div><div class="line">Line Contents | 实际代码内容</div><div class="line"></div><div class="line">## 3. memory_profiler</div><div class="line"></div><div class="line">memory_profiler模块可以给出执行每行代码所使用的内存。</div><div class="line">安装该模块：</div><div class="line"></div><div class="line">``` 	</div><div class="line">$ pip install memory_profiler</div></pre></td></tr></table></figure></p>
+<p>同<figure class="highlight plain"><figcaption><span>使用```@profile```修饰需要检测的函数。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>~ python -m memory_profiler test.py<br>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents"><a href="#Line-Mem-usage-Increment-Line-Contents" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>3   34.945 MiB   34.945 MiB   @profile
+4                             def test1():
+5   34.945 MiB    0.000 MiB       a=10
+6   34.953 MiB    0.008 MiB       fib(20)
+</code></pre><p>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents-1"><a href="#Line-Mem-usage-Increment-Line-Contents-1" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code> 9   34.953 MiB   34.953 MiB   @profile
+10                             def test2():
+11   34.961 MiB    0.008 MiB       fib(30)
+</code></pre><p>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents-2"><a href="#Line-Mem-usage-Increment-Line-Contents-2" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>14   34.961 MiB   34.961 MiB   @profile
+15                             def test3():
+16   34.961 MiB    0.000 MiB       fib(35)
+</code></pre><p>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents-3"><a href="#Line-Mem-usage-Increment-Line-Contents-3" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>18   34.938 MiB   34.938 MiB   @profile
+19                             def main():
+20   34.953 MiB   34.953 MiB       test1()
+21   34.961 MiB   34.961 MiB       test2()
+22   34.961 MiB   34.961 MiB       test3()
+</code></pre><p>```</p>
+<table>
+<thead>
+<tr>
+<th>标题</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Line #</td>
+<td>代码行号</td>
+</tr>
+<tr>
+<td>Mem usage</td>
+<td>内存使用数量</td>
+</tr>
+<tr>
+<td>Increment</td>
+<td>本行代码新增内存使用数量</td>
+</tr>
+<tr>
+<td>Line Content</td>
+<td>实际代码内容</td>
+</tr>
+</tbody>
+</table>
 
     
 
@@ -268,7 +303,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -287,18 +322,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/12/10/Mac 安装应用踩坑/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/11/27/NLG简介/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mac应用安装
+          NLG探索与实践
         
       </div>
     </a>
   
   
-    <a href="/2018/03/23/聚类/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">聚类</div>
+    <a href="/2020/10/13/python数据可视化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python数据可视化</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -325,7 +360,7 @@
 
 
 
-<div id="SOHUCS" sid="ubuntu上配置python踩的坑" ></div> 
+<div id="SOHUCS" sid="Python检测程序使用内存和CPU的方法" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
