@@ -100,7 +100,7 @@
 				
 					<a class="github" href="#" title="GitHub" target="_blank"><i class="icon-github"></i></a>
 				
-					<a class="weibo" href="#" title="weibo" target="_blank"><i class="icon-weibo"></i></a>
+					<a class="weibo" href="#" title="微博" target="_blank"><i class="icon-weibo"></i></a>
 				
 					<a class="google" href="#" title="Google" target="_blank"><i class="icon-google"></i></a>
 				
@@ -143,7 +143,7 @@
 					
 						<a class="github" target="_blank" href="#" title="GitHub"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="微博"><i class="icon-weibo"></i></a>
 			        
 						<a class="google" target="_blank" href="#" title="Google"><i class="icon-google"></i></a>
 			        
@@ -171,6 +171,158 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-对话系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/02/01/对话系统/" target="_blank">对话系统</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/02/01/对话系统/" class="archive-article-date">
+        <time datetime="2021-02-01T13:55:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-01</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>对话机器人的任务类型可以分为三类：</p>
+<p>第一类是<strong>任务型对话</strong>，主要解决如订机票、订酒店等问题。它涉及的技术包括：<strong>语义理解、意图识别、状态追踪、对话决策</strong>等；</p>
+<p>第二类是<strong>知识型对话</strong>，在寿险客服的场景里，用户可能会问“你这个保险要交多少钱？”这类问题。它涉及的技术包括：<strong>文本表示、语义匹配、知识图谱</strong>等；</p>
+<p>第三类是<strong>闲聊型对话</strong>，用户可能只想找人聊聊天，对话不涉及到知识或业务，比如说“今天天气真好”。它涉及的技术包括：<strong>文本生成模型、文本检索、排序技术</strong>等；</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">NLP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/02/01/对话系统/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>题目： <a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="external">https://leetcode-cn.com/problems/coin-change/</a></p>
+<blockquote>
+<p>给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。</p>
+<p>你可以认为每种硬币的数量是无限的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">输入：coins = [1, 2, 5], amount = 11</div><div class="line">输出：3 </div><div class="line">解释：11 = 5 + 5 + 1</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">coinChange</span><span class="params">(self, coins: List[int], amount: int)</span> -&gt; int:</span></div><div class="line">    <span class="comment"># 自底向上的方法</span></div><div class="line">    <span class="comment"># 1. 定义状态 金额 的变化 </span></div><div class="line">    <span class="comment"># 2. 状态转移， dp[i] 当目标金额是i 时, 需要dp[i]个硬币</span></div><div class="line">    <span class="comment"># 3. 定义选择 coins列表, dp[i] = dp[i - coin] + 1</span></div><div class="line">    <span class="comment">#    选一个coin如5, 当目标金额是11时，dp[11] = dp[6] + 1, dp[6] = d[1] + 1, dp[1] = dp[0] + 1</span></div><div class="line"></div><div class="line">    dp = [amount + <span class="number">1</span>] * (amount + <span class="number">1</span>)  <span class="comment"># 最多要amount个硬币, 初始化为amount+1</span></div><div class="line">    dp[<span class="number">0</span>] = <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dp)):</div><div class="line">        <span class="keyword">for</span> coin <span class="keyword">in</span> coins:</div><div class="line">            <span class="keyword">if</span> i - coin &lt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">    				dp[i] = min(dp[i], dp[i - coin] + <span class="number">1</span>)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> dp[amount] == amount + <span class="number">1</span>:  <span class="comment"># 凑不出来的情况</span></div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">    <span class="keyword">return</span> dp[amount]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">coinChange</span><span class="params">(self, coins: List[int], amount: int)</span> -&gt; int:</span></div><div class="line">    <span class="comment"># 自顶向上</span></div><div class="line">    <span class="comment"># 直接递归会有很多重复计算  例如 f(11) = f(5) + f(5) + f(1)</span></div><div class="line">    <span class="comment"># 空间换时间，先把f(5)存起来</span></div><div class="line">    hashmap = dict()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dp</span><span class="params">(n)</span>:</span></div><div class="line">        <span class="keyword">if</span> n <span class="keyword">in</span> hashmap:</div><div class="line">            <span class="keyword">return</span> hashmap[n]</div><div class="line"></div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> n &lt; <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">        res = sys.maxsize</div><div class="line">        <span class="keyword">for</span> coin <span class="keyword">in</span> coins:</div><div class="line">            subproblem = dp(n - coin)</div><div class="line">            <span class="keyword">if</span> subproblem &lt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            res = min(res, subproblem + <span class="number">1</span>)</div><div class="line">        hashmap[n] = res <span class="keyword">if</span> res != sys.maxsize <span class="keyword">else</span> <span class="number">-1</span></div><div class="line">        <span class="keyword">return</span> hashmap[n]</div><div class="line"></div><div class="line">    <span class="keyword">return</span> dp(amount)</div></pre></td></tr></table></figure>
+<p>题目：<a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="external">https://leetcode-cn.com/problems/house-robber/</a></p>
+<blockquote>
+<p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+<p>输入：[1,2,3,1]<br>输出：4<br>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。<br>偷窃到的最高金额 = 1 + 3 = 4 。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></div><div class="line">    <span class="comment"># 定义状态 金额</span></div><div class="line">    <span class="comment"># 定义选择 非相邻房屋</span></div><div class="line">    <span class="comment"># 定义 dp[i] 偷到第 i 个房屋，可以偷的最大金额</span></div><div class="line">    <span class="comment"># dp[i] = max(dp[i-1], dp[i-2] + nums[i])</span></div><div class="line">    dp = [<span class="number">0</span>] * len(nums)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> nums:</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>]</div><div class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]</div><div class="line">    dp[<span class="number">1</span>] = max(dp[<span class="number">0</span>], nums[<span class="number">1</span>])</div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">2</span>:</div><div class="line">        <span class="keyword">return</span> dp[<span class="number">1</span>]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(nums)):</div><div class="line">        dp[i] = max(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>] + nums[i])</div><div class="line">    <span class="keyword">return</span> dp[len(nums) - <span class="number">1</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(nums: List[int])</span> -&gt; int:</span></div><div class="line">    <span class="comment"># i = 2</span></div><div class="line">    <span class="comment"># i % n-1 = 0</span></div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>]</div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">2</span>:</div><div class="line">        <span class="keyword">return</span> max(nums[<span class="number">0</span>], nums[<span class="number">1</span>])</div><div class="line">    <span class="comment"># 定义状态， 金额</span></div><div class="line">    <span class="comment"># 定义选择， 房屋 i</span></div><div class="line">    <span class="comment"># 定义状态转移 dp[i] = max(dp[i-1], dp[i - 2] + nums[i])</span></div><div class="line">    <span class="comment"># 不一样的是，本题中 第0个房子和第n-1个房子不能同时偷</span></div><div class="line">    <span class="comment"># 因此只需要求出 rob(nums[1:]) 和 rob(nums[:n-1]) 两种情况的最大金额，再取个最大值即可</span></div><div class="line"></div><div class="line">    <span class="comment"># 优化上一题，因为 dp[i]只与 dp[i-1]和dp[i-2]有关，因此可以只用两个变量表示，和斐波那契数列是一样的原理</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(nums)</span>:</span></div><div class="line">        <span class="comment"># 两个变量表示状态</span></div><div class="line">        pre = <span class="number">0</span></div><div class="line">        cur = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            cur, pre = max(cur, pre + nums[i]), cur</div><div class="line">            <span class="keyword">return</span> cur</div><div class="line">    res = max(func(nums[<span class="number">0</span>:len(nums) - <span class="number">1</span>]), func(nums[<span class="number">1</span>:]))</div><div class="line">    <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/02/01/动态规划/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
 
   
     <article id="post-NLG简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -399,252 +551,6 @@
 
 
   
-    <article id="post-Python检测程序使用内存和CPU的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/10/13/Python检测程序使用内存和CPU的方法/" target="_blank">Python检测程序内容和CPU</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/10/13/Python检测程序使用内存和CPU的方法/" class="archive-article-date">
-        <time datetime="2020-10-13T13:56:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>示例代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">fib = <span class="keyword">lambda</span> n: <span class="number">1</span> <span class="keyword">if</span> n &lt;= <span class="number">2</span> <span class="keyword">else</span> fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test1</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">20</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test2</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">30</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test3</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">35</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    test1()</div><div class="line">    test2()</div><div class="line">    test3()</div></pre></td></tr></table></figure>
-<h2 id="1-cProfile"><a href="#1-cProfile" class="headerlink" title="1. cProfile"></a>1. cProfile</h2><p>cProfile是profile模块的c语言实现，二者实现的功能相同，但是cProfile的性能更佳。</p>
-<p>使用方法: </p>
-<figure class="highlight python"><figcaption><span>-m cProfile [-o output_file] [-s sort_order] myscript.py```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<p>~ python -m cProfile test.py<br>         20132542 function calls (8 primitive calls) in 7.342 seconds</p>
-<p>   Ordered by: standard name</p>
-<p>   ncalls  tottime  percall  cumtime  percall filename:lineno(function)<br>20132537/3    7.342    0.000    7.342    2.447 test.py:1(<lambda>)<br>        1    0.000    0.000    7.342    7.342 test.py:1(<module>)<br>        1    0.000    0.000    6.707    6.707 test.py:12(test3)<br>        1    0.000    0.000    0.006    0.006 test.py:4(test1)<br>        1    0.000    0.000    0.630    0.630 test.py:8(test2)<br>        1    0.000    0.000    0.000    0.000 {method ‘disable’ of ‘_lsprof.Profiler’ objects}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">上述第一行表明，共有20132542次函数调用，其中8次是非递归调用。</div><div class="line"></div><div class="line">列名 | 含义</div><div class="line">---|---</div><div class="line">ncalls | 总调用次数，```20132537/3```表名，共有20132537次调用，其中3次是非递归调用</div><div class="line">tottime | 总调用时长</div><div class="line">percall | 平均调用时长，其实就是```tottime```除以```ncalls</div></pre></td></tr></table></figure></module></lambda></p>
-<p>cumtime | 累计调用总时长，本函数以及本函数的递归调用累计调用时长<br>percall | 累计平均调用时长，其实就是<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">filename:lineno(function) | 函数名及入口代码地址</div><div class="line"></div><div class="line">## 2. line_profiler</div><div class="line"></div><div class="line">line_profiler模块可以给出执行每行代码所需占用的CPU时间。</div><div class="line">首先，安装该模块：</div><div class="line"></div><div class="line">``` 	</div><div class="line">$ pip install line_profiler</div></pre></td></tr></table></figure></p>
-<p>接着，需要指定用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```Python</div><div class="line">fib = lambda n: 1 if n &lt;= 2 else fib(n - 1) + fib(n - 2)</div><div class="line"></div><div class="line">@profilt</div><div class="line">def test1():</div><div class="line">    fib(20)</div><div class="line"></div><div class="line">@profile</div><div class="line">def test2():</div><div class="line">    fib(30)</div><div class="line"></div><div class="line">@profile</div><div class="line">def test3():</div><div class="line">    fib(35)</div><div class="line"></div><div class="line">@profile</div><div class="line">def main():</div><div class="line">    test1()</div><div class="line">    test2()</div><div class="line">    test3()</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
-<p>最好，可以通过下面的命令获得关于<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">~ kernprof -l  -v test.py</div><div class="line">Wrote profile results to test.py.lprof</div><div class="line">Timer unit: 1e-06 s</div><div class="line"></div><div class="line">Total time: 0.00524 s</div><div class="line">File: test.py</div><div class="line">Function: test1 at line 3</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">     3                                           @profile</div><div class="line">     4                                           def test1():</div><div class="line">     5         1          1.0      1.0      0.0      a=10</div><div class="line">     6         1       5239.0   5239.0    100.0      fib(20)</div><div class="line"></div><div class="line">Total time: 0.641574 s</div><div class="line">File: test.py</div><div class="line">Function: test2 at line 9</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">     9                                           @profile</div><div class="line">    10                                           def test2():</div><div class="line">    11         1     641574.0 641574.0    100.0      fib(30)</div><div class="line"></div><div class="line">Total time: 6.75469 s</div><div class="line">File: test.py</div><div class="line">Function: test3 at line 14</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">    14                                           @profile</div><div class="line">    15                                           def test3():</div><div class="line">    16         1    6754692.0 6754692.0    100.0      fib(35)</div><div class="line"></div><div class="line">Total time: 7.40158 s</div><div class="line">File: test.py</div><div class="line">Function: main at line 18</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">    18                                           @profile</div><div class="line">    19                                           def main():</div><div class="line">    20         1       5274.0   5274.0      0.1      test1()</div><div class="line">    21         1     641592.0 641592.0      8.7      test2()</div><div class="line">    22         1    6754713.0 6754713.0     91.3      test3()</div></pre></td></tr></table></figure></p>
-<p>其中-l表示逐行解释，-v表示表示输出详细结果。<br>需要注意的是，<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">通过这种方法，我们看到```test3()```方法消耗了剩余的91.3%的时间。</div><div class="line"></div><div class="line"></div><div class="line">标题 | 含义</div><div class="line">---|---</div><div class="line">Line # | 代码行号</div><div class="line">Hits | 执行次数</div><div class="line">Per Hit | 每次执行的平均执行时长</div><div class="line">% Time | 该行执行时长占所在函数执行时长的占比</div><div class="line">Line Contents | 实际代码内容</div><div class="line"></div><div class="line">## 3. memory_profiler</div><div class="line"></div><div class="line">memory_profiler模块可以给出执行每行代码所使用的内存。</div><div class="line">安装该模块：</div><div class="line"></div><div class="line">``` 	</div><div class="line">$ pip install memory_profiler</div></pre></td></tr></table></figure></p>
-<p>同<figure class="highlight plain"><figcaption><span>使用```@profile```修饰需要检测的函数。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>~ python -m memory_profiler test.py<br>Filename: test.py</p>
-<h1 id="Line-Mem-usage-Increment-Line-Contents"><a href="#Line-Mem-usage-Increment-Line-Contents" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>3   34.945 MiB   34.945 MiB   @profile
-4                             def test1():
-5   34.945 MiB    0.000 MiB       a=10
-6   34.953 MiB    0.008 MiB       fib(20)
-</code></pre><p>Filename: test.py</p>
-<h1 id="Line-Mem-usage-Increment-Line-Contents-1"><a href="#Line-Mem-usage-Increment-Line-Contents-1" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code> 9   34.953 MiB   34.953 MiB   @profile
-10                             def test2():
-11   34.961 MiB    0.008 MiB       fib(30)
-</code></pre><p>Filename: test.py</p>
-<h1 id="Line-Mem-usage-Increment-Line-Contents-2"><a href="#Line-Mem-usage-Increment-Line-Contents-2" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>14   34.961 MiB   34.961 MiB   @profile
-15                             def test3():
-16   34.961 MiB    0.000 MiB       fib(35)
-</code></pre><p>Filename: test.py</p>
-<h1 id="Line-Mem-usage-Increment-Line-Contents-3"><a href="#Line-Mem-usage-Increment-Line-Contents-3" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>18   34.938 MiB   34.938 MiB   @profile
-19                             def main():
-20   34.953 MiB   34.953 MiB       test1()
-21   34.961 MiB   34.961 MiB       test2()
-22   34.961 MiB   34.961 MiB       test3()
-</code></pre><p>```</p>
-<table>
-<thead>
-<tr>
-<th>标题</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Line #</td>
-<td>代码行号</td>
-</tr>
-<tr>
-<td>Mem usage</td>
-<td>内存使用数量</td>
-</tr>
-<tr>
-<td>Increment</td>
-<td>本行代码新增内存使用数量</td>
-</tr>
-<tr>
-<td>Line Content</td>
-<td>实际代码内容</td>
-</tr>
-</tbody>
-</table>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/10/13/Python检测程序使用内存和CPU的方法/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python数据可视化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/10/13/python数据可视化/" target="_blank">python数据可视化</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/10/13/python数据可视化/" class="archive-article-date">
-        <time datetime="2020-10-13T13:56:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-13</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="pycharts"><a href="#pycharts" class="headerlink" title="pycharts"></a>pycharts</h1><ul>
-<li><a href="https://pyecharts.org/#/zh-cn/quickstart" target="_blank" rel="external">pyecharts官网</a></li>
-</ul>
-<p>参考官网上的示例我们可以可视化数据，渲染成html文件</p>
-<blockquote>
-<p>注意：如果需要保存为图片，还需要安装<code>selenium</code>, <code>phantomjs</code> 和 <code>pyppeteer</code> 相应插件来处理</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Bar</div><div class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> options <span class="keyword">as</span> opts</div><div class="line"></div><div class="line"><span class="comment"># V1 版本开始支持链式调用</span></div><div class="line"><span class="comment"># 你所看到的格式其实是 `black` 格式化以后的效果</span></div><div class="line"><span class="comment"># 可以执行 `pip install black` 下载使用</span></div><div class="line">bar = (</div><div class="line">    Bar()</div><div class="line">    .add_xaxis([<span class="string">"衬衫"</span>, <span class="string">"羊毛衫"</span>, <span class="string">"雪纺衫"</span>, <span class="string">"裤子"</span>, <span class="string">"高跟鞋"</span>, <span class="string">"袜子"</span>])</div><div class="line">    .add_yaxis(<span class="string">"商家A"</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">75</span>, <span class="number">90</span>])</div><div class="line">    .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">"主标题"</span>, subtitle=<span class="string">"副标题"</span>))</div><div class="line">    <span class="comment"># 或者直接使用字典参数</span></div><div class="line">    <span class="comment"># .set_global_opts(title_opts=&#123;"text": "主标题", "subtext": "副标题"&#125;)</span></div><div class="line">)</div><div class="line">bar.render()</div><div class="line"></div><div class="line"><span class="comment"># 不习惯链式调用的开发者依旧可以单独调用方法</span></div><div class="line">bar = Bar()</div><div class="line">bar.add_xaxis([<span class="string">"衬衫"</span>, <span class="string">"羊毛衫"</span>, <span class="string">"雪纺衫"</span>, <span class="string">"裤子"</span>, <span class="string">"高跟鞋"</span>, <span class="string">"袜子"</span>])</div><div class="line">bar.add_yaxis(<span class="string">"商家A"</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">75</span>, <span class="number">90</span>])</div><div class="line">bar.set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">"主标题"</span>, subtitle=<span class="string">"副标题"</span>))</div><div class="line">bar.render()</div></pre></td></tr></table></figure>
-<h1 id="PyGraphviz"><a href="#PyGraphviz" class="headerlink" title="PyGraphviz"></a>PyGraphviz</h1><ul>
-<li><a href="https://zhuanlan.zhihu.com/p/104636240" target="_blank" rel="external">PyGraphviz (几何图形可视化工具) 简单入门</a></li>
-<li><a href="https://graphviz.org/download/" target="_blank" rel="external">Graphviz</a> 是一个几何图形可视化软件，能够将数据的结构信息表示为抽象图形和网络图的方式。</li>
-<li>PyGraphviz 主要<strong>对数据量大、可任意定制的图形上具有强大优势</strong>。</li>
-</ul>
-<p>安装：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew install graphviz # mac</div><div class="line">pip install graphviz # linux</div><div class="line">conda install graphviz # conda</div><div class="line">pip3 install pygraphviz</div></pre></td></tr></table></figure>
-<p>使用：</p>
-<p>神经网络图</p>
-<p><img src="https://i.loli.net/2021/01/26/KPrkmdCvN8yOStp.png" alt="神经网络.png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pygraphviz <span class="keyword">as</span> pgv</div><div class="line"></div><div class="line">G = pgv.AGraph(directed=<span class="keyword">True</span>, rankdir=<span class="string">"LR"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置层数、每层节点数</span></div><div class="line">network_structure = input(<span class="string">"输入神经网络每层节点数，如：[10, 7, 5, 4, 2, 1]\n"</span>)</div><div class="line">all_nodes = [[<span class="string">f"layer<span class="subst">&#123;layer_index&#125;</span>node<span class="subst">&#123;node_index&#125;</span>"</span> <span class="keyword">for</span> node_index <span class="keyword">in</span> range(layer_nodes_num)] <span class="keyword">for</span></div><div class="line">             layer_index, layer_nodes_num <span class="keyword">in</span> enumerate(eval(network_structure))]</div><div class="line"></div><div class="line"><span class="comment"># 添加输入层节点</span></div><div class="line"><span class="keyword">for</span> node_index, node <span class="keyword">in</span> enumerate(all_nodes[<span class="number">0</span>]):</div><div class="line">    G.add_node(node, label=<span class="string">""</span>, shape=<span class="string">"circle"</span>, style=<span class="string">"bold"</span>, color=<span class="string">"#60acfc"</span>, pos=<span class="string">f"0,<span class="subst">&#123;<span class="number">0.6</span> * node_index&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加输入层文本</span></div><div class="line">G.add_node(<span class="string">f"Input_Layer"</span>, shape=<span class="string">"none"</span>, label=<span class="string">f"Input_Layer(<span class="subst">&#123;len(all_nodes[<span class="number">0</span>])&#125;</span>)"</span>,</div><div class="line">           pos=<span class="string">f"<span class="subst">&#123;<span class="number">0</span>&#125;</span>,<span class="subst">&#123;(node_index + <span class="number">1</span>) * <span class="number">0.6</span>&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加中间层、输出层节点</span></div><div class="line"><span class="keyword">for</span> layer_index, layer <span class="keyword">in</span> enumerate(all_nodes[<span class="number">1</span>:]):</div><div class="line">    color = <span class="string">"#5bc49f"</span> <span class="keyword">if</span> layer_index == len(all_nodes[<span class="number">1</span>:]) - <span class="number">1</span> <span class="keyword">else</span> <span class="string">"#ff7c7c"</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> node_index, node <span class="keyword">in</span> enumerate(layer):</div><div class="line">        x = <span class="number">1.5</span> * (layer_index + <span class="number">1</span>)</div><div class="line">        y = - <span class="number">0.3</span> * (len(all_nodes[layer_index + <span class="number">1</span>]) - len(all_nodes[<span class="number">0</span>])) + <span class="number">0.6</span> * node_index</div><div class="line">        G.add_node(node, label=<span class="string">""</span>, shape=<span class="string">"circle"</span>, style=<span class="string">"bold"</span>, color=color, pos=<span class="string">f"<span class="subst">&#123;x&#125;</span>,<span class="subst">&#123;y&#125;</span>!"</span>)</div><div class="line"></div><div class="line">    <span class="comment"># 添加中间层、输出层文本</span></div><div class="line">    text = <span class="string">f"Output_Layer(<span class="subst">&#123;len(all_nodes[<span class="number">-1</span>])&#125;</span>)"</span> <span class="keyword">if</span> layer_index == len(all_nodes[<span class="number">1</span>:]) - <span class="number">1</span> <span class="keyword">else</span> <span class="string">f"Layer_<span class="subst">&#123;layer_index + <span class="number">1</span>&#125;</span>(<span class="subst">&#123;len(layer)&#125;</span>)"</span></div><div class="line">    G.add_node(<span class="string">f"Layer_<span class="subst">&#123;layer_index + <span class="number">1</span>&#125;</span>)"</span>, shape=<span class="string">"none"</span>, label=text,</div><div class="line">               pos=<span class="string">f"<span class="subst">&#123;x&#125;</span>,<span class="subst">&#123;y + <span class="number">0.4</span>&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加线</span></div><div class="line"><span class="keyword">for</span> layer_index <span class="keyword">in</span> range(all_nodes.__len__() - <span class="number">1</span>):</div><div class="line">    <span class="keyword">for</span> start <span class="keyword">in</span> all_nodes[layer_index]:</div><div class="line">        <span class="keyword">for</span> end <span class="keyword">in</span> all_nodes[layer_index + <span class="number">1</span>]:</div><div class="line">            G.add_edge(start, end)</div><div class="line"></div><div class="line"><span class="comment"># 导出图形</span></div><div class="line">G.layout()</div><div class="line">G.draw(<span class="string">"神经网络.png"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 运行代码，输入 [5, 10, 15, 15, 15, 10, 5, 1]</span></div></pre></td></tr></table></figure>
-<p>因子相关性</p>
-<p><img src="https://i.loli.net/2021/01/26/BFu7yEpmGR4OQw8.png" alt="因子相关性图.png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pygraphviz <span class="keyword">as</span> pgv</div><div class="line"></div><div class="line">G = pgv.AGraph(directed=<span class="keyword">True</span>, rankdir=<span class="string">"TB"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置节点标签</span></div><div class="line">Root = <span class="string">"道路交通流畅"</span></div><div class="line">negative_1 = <span class="string">"平均延误时间"</span></div><div class="line">negative_2 = <span class="string">"负荷度"</span></div><div class="line">negative_3 = <span class="string">"小区位置"</span></div><div class="line">negative_4 = <span class="string">"相对延误率"</span></div><div class="line">negative_5 = <span class="string">"房屋密度"</span></div><div class="line">negative_6 = <span class="string">"人口密度"</span></div><div class="line">negative_7 = <span class="string">"总延误率"</span></div><div class="line">negative_8 = <span class="string">"排队率"</span></div><div class="line">negative_9 = <span class="string">"行驶时间"</span></div><div class="line">positive_1 = <span class="string">"通行能力"</span></div><div class="line">positive_2 = <span class="string">"公路层级"</span></div><div class="line">positive_3 = <span class="string">"路网结构"</span></div><div class="line">positive_4 = <span class="string">"行驶速度"</span></div><div class="line">positive_5 = <span class="string">"路网长度"</span></div><div class="line">positive_6 = <span class="string">"小区面积"</span></div><div class="line">positive_7 = <span class="string">"内部道路密度"</span></div><div class="line">positive_8 = <span class="string">"路网密度"</span></div><div class="line"></div><div class="line"><span class="comment"># 添加节点</span></div><div class="line">G.add_node(Root, style=<span class="string">"filled"</span>, shape=<span class="string">"box3d"</span>, color=<span class="string">"#feb64d"</span>)</div><div class="line"><span class="keyword">for</span> negative <span class="keyword">in</span> [eval(_) <span class="keyword">for</span> _ <span class="keyword">in</span> dir() <span class="keyword">if</span> _.startswith(<span class="string">"negative"</span>)]:</div><div class="line">    G.add_node(negative, style=<span class="string">"filled"</span>, shape=<span class="string">"ellipse"</span>, color=<span class="string">"#CFDBF6"</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> positive <span class="keyword">in</span> [eval(_) <span class="keyword">for</span> _ <span class="keyword">in</span> dir() <span class="keyword">if</span> _.startswith(<span class="string">"positive"</span>)]:</div><div class="line">    G.add_node(positive, style=<span class="string">"filled"</span>, shape=<span class="string">"ellipse"</span>, color=<span class="string">"#B4E7B7"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加边</span></div><div class="line">G.add_edges_from([[Root, negative_1], [Root, negative_6], [Root, negative_8], [Root, negative_9],</div><div class="line">                  [negative_1, negative_2], [negative_1, negative_7], [negative_2, negative_3],</div><div class="line">                  [negative_2, negative_7], [negative_3, negative_4], [negative_8, negative_9],</div><div class="line">                  [positive_2, negative_5], [positive_3, negative_4], [positive_4, negative_5]],</div><div class="line">                 color=<span class="string">"#B4DBFF"</span>, style=<span class="string">"dashed"</span>, penwidth=<span class="number">1.5</span>)</div><div class="line"></div><div class="line">G.add_edges_from([[Root, positive_1], [Root, positive_8], [negative_5, negative_4],</div><div class="line">                  [negative_6, positive_4], [negative_5, positive_4], [negative_9, positive_5],</div><div class="line">                  [positive_1, positive_2], [positive_2, positive_3], [positive_6, positive_5],</div><div class="line">                  [positive_7, positive_6], [positive_8, positive_7]],</div><div class="line">                 color=<span class="string">"#B4E7B7"</span>, style=<span class="string">"dashed"</span>, penwidth=<span class="number">1.5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 导出图形</span></div><div class="line">G.layout()</div><div class="line">G.draw(<span class="string">"因子相关性图.png"</span>, prog=<span class="string">"dot"</span>)</div></pre></td></tr></table></figure>
-<h2 id="SmartChart"><a href="#SmartChart" class="headerlink" title="SmartChart"></a>SmartChart</h2><p><a href="https://github.com/JohnYan2017/Echarts-Django" target="_blank" rel="external">smartchart</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/10/13/python数据可视化/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-述职有感" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -726,6 +632,327 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/10/13/述职有感/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-python数据可视化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/09/07/python数据可视化/" target="_blank">python数据可视化</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/09/07/python数据可视化/" class="archive-article-date">
+        <time datetime="2020-09-07T12:10:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-07</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="pycharts"><a href="#pycharts" class="headerlink" title="pycharts"></a>pycharts</h1><ul>
+<li><a href="https://pyecharts.org/#/zh-cn/quickstart" target="_blank" rel="external">pyecharts官网</a></li>
+</ul>
+<p>参考官网上的示例我们可以可视化数据，渲染成html文件</p>
+<blockquote>
+<p>注意：如果需要保存为图片，还需要安装<code>selenium</code>, <code>phantomjs</code> 和 <code>pyppeteer</code> 相应插件来处理</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Bar</div><div class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> options <span class="keyword">as</span> opts</div><div class="line"></div><div class="line"><span class="comment"># V1 版本开始支持链式调用</span></div><div class="line"><span class="comment"># 你所看到的格式其实是 `black` 格式化以后的效果</span></div><div class="line"><span class="comment"># 可以执行 `pip install black` 下载使用</span></div><div class="line">bar = (</div><div class="line">    Bar()</div><div class="line">    .add_xaxis([<span class="string">"衬衫"</span>, <span class="string">"羊毛衫"</span>, <span class="string">"雪纺衫"</span>, <span class="string">"裤子"</span>, <span class="string">"高跟鞋"</span>, <span class="string">"袜子"</span>])</div><div class="line">    .add_yaxis(<span class="string">"商家A"</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">75</span>, <span class="number">90</span>])</div><div class="line">    .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">"主标题"</span>, subtitle=<span class="string">"副标题"</span>))</div><div class="line">    <span class="comment"># 或者直接使用字典参数</span></div><div class="line">    <span class="comment"># .set_global_opts(title_opts=&#123;"text": "主标题", "subtext": "副标题"&#125;)</span></div><div class="line">)</div><div class="line">bar.render()</div><div class="line"></div><div class="line"><span class="comment"># 不习惯链式调用的开发者依旧可以单独调用方法</span></div><div class="line">bar = Bar()</div><div class="line">bar.add_xaxis([<span class="string">"衬衫"</span>, <span class="string">"羊毛衫"</span>, <span class="string">"雪纺衫"</span>, <span class="string">"裤子"</span>, <span class="string">"高跟鞋"</span>, <span class="string">"袜子"</span>])</div><div class="line">bar.add_yaxis(<span class="string">"商家A"</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">36</span>, <span class="number">10</span>, <span class="number">75</span>, <span class="number">90</span>])</div><div class="line">bar.set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">"主标题"</span>, subtitle=<span class="string">"副标题"</span>))</div><div class="line">bar.render()</div></pre></td></tr></table></figure>
+<h1 id="PyGraphviz"><a href="#PyGraphviz" class="headerlink" title="PyGraphviz"></a>PyGraphviz</h1><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/104636240" target="_blank" rel="external">PyGraphviz (几何图形可视化工具) 简单入门</a></li>
+<li><a href="https://graphviz.org/download/" target="_blank" rel="external">Graphviz</a> 是一个几何图形可视化软件，能够将数据的结构信息表示为抽象图形和网络图的方式。</li>
+<li>PyGraphviz 主要<strong>对数据量大、可任意定制的图形上具有强大优势</strong>。</li>
+</ul>
+<p>安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew install graphviz # mac</div><div class="line">pip install graphviz # linux</div><div class="line">conda install graphviz # conda</div><div class="line">pip3 install pygraphviz</div></pre></td></tr></table></figure>
+<p>使用：</p>
+<p>神经网络图</p>
+<p><img src="https://i.loli.net/2021/01/26/KPrkmdCvN8yOStp.png" alt="神经网络.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pygraphviz <span class="keyword">as</span> pgv</div><div class="line"></div><div class="line">G = pgv.AGraph(directed=<span class="keyword">True</span>, rankdir=<span class="string">"LR"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置层数、每层节点数</span></div><div class="line">network_structure = input(<span class="string">"输入神经网络每层节点数，如：[10, 7, 5, 4, 2, 1]\n"</span>)</div><div class="line">all_nodes = [[<span class="string">f"layer<span class="subst">&#123;layer_index&#125;</span>node<span class="subst">&#123;node_index&#125;</span>"</span> <span class="keyword">for</span> node_index <span class="keyword">in</span> range(layer_nodes_num)] <span class="keyword">for</span></div><div class="line">             layer_index, layer_nodes_num <span class="keyword">in</span> enumerate(eval(network_structure))]</div><div class="line"></div><div class="line"><span class="comment"># 添加输入层节点</span></div><div class="line"><span class="keyword">for</span> node_index, node <span class="keyword">in</span> enumerate(all_nodes[<span class="number">0</span>]):</div><div class="line">    G.add_node(node, label=<span class="string">""</span>, shape=<span class="string">"circle"</span>, style=<span class="string">"bold"</span>, color=<span class="string">"#60acfc"</span>, pos=<span class="string">f"0,<span class="subst">&#123;<span class="number">0.6</span> * node_index&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加输入层文本</span></div><div class="line">G.add_node(<span class="string">f"Input_Layer"</span>, shape=<span class="string">"none"</span>, label=<span class="string">f"Input_Layer(<span class="subst">&#123;len(all_nodes[<span class="number">0</span>])&#125;</span>)"</span>,</div><div class="line">           pos=<span class="string">f"<span class="subst">&#123;<span class="number">0</span>&#125;</span>,<span class="subst">&#123;(node_index + <span class="number">1</span>) * <span class="number">0.6</span>&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加中间层、输出层节点</span></div><div class="line"><span class="keyword">for</span> layer_index, layer <span class="keyword">in</span> enumerate(all_nodes[<span class="number">1</span>:]):</div><div class="line">    color = <span class="string">"#5bc49f"</span> <span class="keyword">if</span> layer_index == len(all_nodes[<span class="number">1</span>:]) - <span class="number">1</span> <span class="keyword">else</span> <span class="string">"#ff7c7c"</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> node_index, node <span class="keyword">in</span> enumerate(layer):</div><div class="line">        x = <span class="number">1.5</span> * (layer_index + <span class="number">1</span>)</div><div class="line">        y = - <span class="number">0.3</span> * (len(all_nodes[layer_index + <span class="number">1</span>]) - len(all_nodes[<span class="number">0</span>])) + <span class="number">0.6</span> * node_index</div><div class="line">        G.add_node(node, label=<span class="string">""</span>, shape=<span class="string">"circle"</span>, style=<span class="string">"bold"</span>, color=color, pos=<span class="string">f"<span class="subst">&#123;x&#125;</span>,<span class="subst">&#123;y&#125;</span>!"</span>)</div><div class="line"></div><div class="line">    <span class="comment"># 添加中间层、输出层文本</span></div><div class="line">    text = <span class="string">f"Output_Layer(<span class="subst">&#123;len(all_nodes[<span class="number">-1</span>])&#125;</span>)"</span> <span class="keyword">if</span> layer_index == len(all_nodes[<span class="number">1</span>:]) - <span class="number">1</span> <span class="keyword">else</span> <span class="string">f"Layer_<span class="subst">&#123;layer_index + <span class="number">1</span>&#125;</span>(<span class="subst">&#123;len(layer)&#125;</span>)"</span></div><div class="line">    G.add_node(<span class="string">f"Layer_<span class="subst">&#123;layer_index + <span class="number">1</span>&#125;</span>)"</span>, shape=<span class="string">"none"</span>, label=text,</div><div class="line">               pos=<span class="string">f"<span class="subst">&#123;x&#125;</span>,<span class="subst">&#123;y + <span class="number">0.4</span>&#125;</span>!"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加线</span></div><div class="line"><span class="keyword">for</span> layer_index <span class="keyword">in</span> range(all_nodes.__len__() - <span class="number">1</span>):</div><div class="line">    <span class="keyword">for</span> start <span class="keyword">in</span> all_nodes[layer_index]:</div><div class="line">        <span class="keyword">for</span> end <span class="keyword">in</span> all_nodes[layer_index + <span class="number">1</span>]:</div><div class="line">            G.add_edge(start, end)</div><div class="line"></div><div class="line"><span class="comment"># 导出图形</span></div><div class="line">G.layout()</div><div class="line">G.draw(<span class="string">"神经网络.png"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 运行代码，输入 [5, 10, 15, 15, 15, 10, 5, 1]</span></div></pre></td></tr></table></figure>
+<p>因子相关性</p>
+<p><img src="https://i.loli.net/2021/01/26/BFu7yEpmGR4OQw8.png" alt="因子相关性图.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pygraphviz <span class="keyword">as</span> pgv</div><div class="line"></div><div class="line">G = pgv.AGraph(directed=<span class="keyword">True</span>, rankdir=<span class="string">"TB"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 设置节点标签</span></div><div class="line">Root = <span class="string">"道路交通流畅"</span></div><div class="line">negative_1 = <span class="string">"平均延误时间"</span></div><div class="line">negative_2 = <span class="string">"负荷度"</span></div><div class="line">negative_3 = <span class="string">"小区位置"</span></div><div class="line">negative_4 = <span class="string">"相对延误率"</span></div><div class="line">negative_5 = <span class="string">"房屋密度"</span></div><div class="line">negative_6 = <span class="string">"人口密度"</span></div><div class="line">negative_7 = <span class="string">"总延误率"</span></div><div class="line">negative_8 = <span class="string">"排队率"</span></div><div class="line">negative_9 = <span class="string">"行驶时间"</span></div><div class="line">positive_1 = <span class="string">"通行能力"</span></div><div class="line">positive_2 = <span class="string">"公路层级"</span></div><div class="line">positive_3 = <span class="string">"路网结构"</span></div><div class="line">positive_4 = <span class="string">"行驶速度"</span></div><div class="line">positive_5 = <span class="string">"路网长度"</span></div><div class="line">positive_6 = <span class="string">"小区面积"</span></div><div class="line">positive_7 = <span class="string">"内部道路密度"</span></div><div class="line">positive_8 = <span class="string">"路网密度"</span></div><div class="line"></div><div class="line"><span class="comment"># 添加节点</span></div><div class="line">G.add_node(Root, style=<span class="string">"filled"</span>, shape=<span class="string">"box3d"</span>, color=<span class="string">"#feb64d"</span>)</div><div class="line"><span class="keyword">for</span> negative <span class="keyword">in</span> [eval(_) <span class="keyword">for</span> _ <span class="keyword">in</span> dir() <span class="keyword">if</span> _.startswith(<span class="string">"negative"</span>)]:</div><div class="line">    G.add_node(negative, style=<span class="string">"filled"</span>, shape=<span class="string">"ellipse"</span>, color=<span class="string">"#CFDBF6"</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> positive <span class="keyword">in</span> [eval(_) <span class="keyword">for</span> _ <span class="keyword">in</span> dir() <span class="keyword">if</span> _.startswith(<span class="string">"positive"</span>)]:</div><div class="line">    G.add_node(positive, style=<span class="string">"filled"</span>, shape=<span class="string">"ellipse"</span>, color=<span class="string">"#B4E7B7"</span>)</div><div class="line"></div><div class="line"><span class="comment"># 添加边</span></div><div class="line">G.add_edges_from([[Root, negative_1], [Root, negative_6], [Root, negative_8], [Root, negative_9],</div><div class="line">                  [negative_1, negative_2], [negative_1, negative_7], [negative_2, negative_3],</div><div class="line">                  [negative_2, negative_7], [negative_3, negative_4], [negative_8, negative_9],</div><div class="line">                  [positive_2, negative_5], [positive_3, negative_4], [positive_4, negative_5]],</div><div class="line">                 color=<span class="string">"#B4DBFF"</span>, style=<span class="string">"dashed"</span>, penwidth=<span class="number">1.5</span>)</div><div class="line"></div><div class="line">G.add_edges_from([[Root, positive_1], [Root, positive_8], [negative_5, negative_4],</div><div class="line">                  [negative_6, positive_4], [negative_5, positive_4], [negative_9, positive_5],</div><div class="line">                  [positive_1, positive_2], [positive_2, positive_3], [positive_6, positive_5],</div><div class="line">                  [positive_7, positive_6], [positive_8, positive_7]],</div><div class="line">                 color=<span class="string">"#B4E7B7"</span>, style=<span class="string">"dashed"</span>, penwidth=<span class="number">1.5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 导出图形</span></div><div class="line">G.layout()</div><div class="line">G.draw(<span class="string">"因子相关性图.png"</span>, prog=<span class="string">"dot"</span>)</div></pre></td></tr></table></figure>
+<h2 id="SmartChart"><a href="#SmartChart" class="headerlink" title="SmartChart"></a>SmartChart</h2><p><a href="https://github.com/JohnYan2017/Echarts-Django" target="_blank" rel="external">smartchart</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/09/07/python数据可视化/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/08/13/leetcode-tree/" target="_blank">leetcode-tree</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/08/13/leetcode-tree/" class="archive-article-date">
+        <time datetime="2020-08-13T15:12:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-13</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>[toc]</p>
+<h1 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h1><h2 id="108-将有序数组转换为二叉搜索树"><a href="#108-将有序数组转换为二叉搜索树" class="headerlink" title="108. 将有序数组转换为二叉搜索树"></a>108. 将有序数组转换为二叉搜索树</h2><blockquote>
+<p>二叉搜索树的中序遍历就是一个有序数组，相当于是要根据中序遍历结果还原一棵二叉搜索树，代码如下：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> helper(nums, <span class="number">0</span>, nums.length-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (start &gt; end) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 使用中间数字的右边数字作为根节点</span></div><div class="line">        <span class="comment">// int mid = (end - start + 1) / 2 + start;</span></div><div class="line">        <span class="keyword">int</span> mid = (end - start) /<span class="number">2</span> + start;</div><div class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(nums[mid]);</div><div class="line">        root.left = helper(nums, start, mid - <span class="number">1</span>);</div><div class="line">        root.right = helper(nums, mid + <span class="number">1</span>, end);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="105-从前序与中序遍历序列构造二叉树"><a href="#105-从前序与中序遍历序列构造二叉树" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树"></a>105. 从前序与中序遍历序列构造二叉树</h2><blockquote>
+<p>前序遍历的第一个节点就是根节点，随后递归执行,可以通过构造中序遍历的字典来快速查找中序遍历根节点，优化时间</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; indexMap;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">myBuildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder, <span class="keyword">int</span> preorder_left, <span class="keyword">int</span> preorder_right, <span class="keyword">int</span> inorder_left, <span class="keyword">int</span> inorder_right)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (preorder_left &gt; preorder_right) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// 前序遍历中的第一个节点就是根节点</span></div><div class="line">        <span class="keyword">int</span> preorder_root = preorder_left;</div><div class="line">        <span class="comment">// 在中序遍历中定位根节点</span></div><div class="line">        <span class="keyword">int</span> inorder_root = indexMap.get(preorder[preorder_root]);</div><div class="line">        </div><div class="line">        <span class="comment">// 先把根节点建立出来</span></div><div class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(preorder[preorder_root]);</div><div class="line">        <span class="comment">// 得到左子树中的节点数目</span></div><div class="line">        <span class="keyword">int</span> size_left_subtree = inorder_root - inorder_left;</div><div class="line">        <span class="comment">// 递归地构造左子树，并连接到根节点</span></div><div class="line">        <span class="comment">// 先序遍历中「从 左边界+1 开始的 size_left_subtree」个元素就对应了中序遍历中「从 左边界 开始到 根节点定位-1」的元素</span></div><div class="line">        root.left = myBuildTree(preorder, inorder, preorder_left + <span class="number">1</span>, preorder_left + size_left_subtree, inorder_left, inorder_root - <span class="number">1</span>);</div><div class="line">        <span class="comment">// 递归地构造右子树，并连接到根节点</span></div><div class="line">        <span class="comment">// 先序遍历中「从 左边界+1+左子树节点数目 开始到 右边界」的元素就对应了中序遍历中「从 根节点定位+1 到 右边界」的元素</span></div><div class="line">        root.right = myBuildTree(preorder, inorder, preorder_left + size_left_subtree + <span class="number">1</span>, preorder_right, inorder_root + <span class="number">1</span>, inorder_right);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> n = preorder.length;</div><div class="line">        <span class="comment">// 构造哈希映射，帮助我们快速定位根节点</span></div><div class="line">        indexMap = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">            indexMap.put(inorder[i], i);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> myBuildTree(preorder, inorder, <span class="number">0</span>, n - <span class="number">1</span>, <span class="number">0</span>, n - <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="恢复二叉搜索树"><a href="#恢复二叉搜索树" class="headerlink" title="恢复二叉搜索树"></a>恢复二叉搜索树</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">recoverTree</span><span class="params">(self, root: TreeNode)</span> -&gt; <span class="keyword">None</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        Do not return anything, modify root in-place instead.</span></div><div class="line"><span class="string">        """</span></div><div class="line">        <span class="string">"""</span></div><div class="line"><span class="string">        1. 找到二叉搜索树中序遍历得到值序列的不满足条件的位置。</span></div><div class="line"><span class="string">        2. 如果有两个，维护一个prednode, 用x保存, 第二个交换的位置使用Y保存</span></div><div class="line"><span class="string">        以 1234 -&gt; 1432 为例，当cur = 3时， x=4 y=cur=3 </span></div><div class="line"><span class="string">                             当cur=2时，仅更新y值 y=cur=2  x非空，跳出循环</span></div><div class="line"><span class="string">        """</span></div><div class="line">        stack = list()</div><div class="line"></div><div class="line">        pred = x = y = <span class="keyword">None</span></div><div class="line">        <span class="keyword">while</span> root <span class="keyword">or</span> stack:</div><div class="line">            <span class="keyword">while</span> root:</div><div class="line">                stack.append(root)</div><div class="line">                root = root.left</div><div class="line">            <span class="keyword">if</span> stack:</div><div class="line">                curnode = stack.pop()</div><div class="line">                <span class="keyword">if</span> pred <span class="keyword">and</span> curnode.val &lt; pred.val:</div><div class="line">                    y = curnode</div><div class="line">                    <span class="keyword">if</span> <span class="keyword">not</span> x:</div><div class="line">                        x = pred</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        <span class="keyword">break</span></div><div class="line">                pred = curnode</div><div class="line">                root = curnode.right</div><div class="line">        </div><div class="line">        x.val, y.val = y.val, x.val</div></pre></td></tr></table></figure>
+<h1 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h1><h2 id="模版"><a href="#模版" class="headerlink" title="模版"></a>模版</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> (!Q.empty())</div><div class="line">&#123;</div><div class="line">    size = Q.size()</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range <span class="number">0.</span>.size</div><div class="line">    &#123;</div><div class="line">        node = Q.pop()</div><div class="line">        Q.push(node.left)</div><div class="line">        Q.push(node.right)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="116-填充每个节点的下一个右侧节点指针"><a href="#116-填充每个节点的下一个右侧节点指针" class="headerlink" title="116. 填充每个节点的下一个右侧节点指针"></a>116. 填充每个节点的下一个右侧节点指针</h2><p>O(1)空间解法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> root;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Node x = root;</div><div class="line">        <span class="keyword">while</span> (x.left != <span class="keyword">null</span>) &#123;</div><div class="line">            Node head = x;</div><div class="line">            <span class="keyword">while</span> (head != <span class="keyword">null</span>) &#123;</div><div class="line">                head.left.next = head.right;</div><div class="line">                <span class="keyword">if</span> (head.next != <span class="keyword">null</span>) &#123;</div><div class="line">                    head.right.next = head.next.left;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// 模拟层次遍历，遍历右子树</span></div><div class="line">                head = head.next;</div><div class="line">            &#125;</div><div class="line">            x = x.left;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>O(n)空间解法<br>Bfs<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">connect</span><span class="params">(Node root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> root;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Queue&lt;Node&gt; Q = <span class="keyword">new</span> LinkedList&lt;Node&gt;(); </div><div class="line">        Q.add(root);</div><div class="line"></div><div class="line">        <span class="keyword">while</span> (!Q.isEmpty()) &#123;</div><div class="line">            <span class="keyword">int</span> size = Q.size();</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; size;i++) &#123;</div><div class="line">                Node x = Q.poll();</div><div class="line">                <span class="keyword">if</span> (i &lt; size - <span class="number">1</span>) &#123;</div><div class="line">                    x.next = Q.peek();</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (x.left != <span class="keyword">null</span>) &#123;</div><div class="line">                    Q.offer(x.left);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (x.right != <span class="keyword">null</span>) &#123;</div><div class="line">                    Q.offer(x.right);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="103-二叉树的锯齿形层次遍历"><a href="#103-二叉树的锯齿形层次遍历" class="headerlink" title="103. 二叉树的锯齿形层次遍历"></a>103. 二叉树的锯齿形层次遍历</h2><blockquote>
+<p>Bfs遍历这棵树，在指定位置翻转结果<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) &#123;</div><div class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        List&lt;List&lt;Integer&gt;&gt; results = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line"></div><div class="line">        LinkedList&lt;TreeNode&gt; node_queue = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</div><div class="line">        node_queue.offer(root);</div><div class="line"></div><div class="line">        <span class="keyword">boolean</span> is_left = <span class="keyword">true</span>;</div><div class="line"></div><div class="line">        <span class="keyword">while</span> (!node_queue.isEmpty()) &#123;</div><div class="line">            LinkedList&lt;Integer&gt; array = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">            <span class="keyword">int</span> size = node_queue.size();</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">0</span>;i &lt; size;i++) &#123;</div><div class="line">                TreeNode node = node_queue.poll();</div><div class="line">                <span class="keyword">if</span> (node.left != <span class="keyword">null</span>) &#123;</div><div class="line">                    node_queue.offer(node.left);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) &#123;</div><div class="line">                    node_queue.offer(node.right);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (is_left) &#123;</div><div class="line">                    array.add(node.val);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    array.push(node.val);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            is_left = !is_left;</div><div class="line">            results.add(array);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> results;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h1><h2 id="124-二叉树中的最大路径和"><a href="#124-二叉树中的最大路径和" class="headerlink" title="124. 二叉树中的最大路径和"></a>124. 二叉树中的最大路径和</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> maxSum = Integer.MIN_VALUE;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="comment">// 计算根节点最大收益</span></div><div class="line">        <span class="keyword">int</span> rootGain = maxGain(root);</div><div class="line">        <span class="keyword">return</span> maxSum;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxGain</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 为负数则置0，不选择它，</span></div><div class="line">        <span class="comment">// 左子树最大收益</span></div><div class="line">        <span class="keyword">int</span> leftMax = Math.max(maxGain(root.left), <span class="number">0</span>);</div><div class="line">        <span class="comment">// 右子树最大收益</span></div><div class="line">        <span class="keyword">int</span> rightMax = Math.max(maxGain(root.right), <span class="number">0</span>);</div><div class="line"></div><div class="line">        <span class="comment">// 经过该节点的最大路径收益</span></div><div class="line">        <span class="keyword">int</span> gain = leftMax+rightMax + root.val;</div><div class="line">        <span class="keyword">if</span> (gain &gt; maxSum) &#123;</div><div class="line">            maxSum = gain;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 返回该节点的最大收益</span></div><div class="line">        <span class="keyword">return</span> root.val + Math.max(leftMax, rightMax);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/08/13/leetcode-tree/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-二分查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/06/27/二分查找/" target="_blank">二分查找</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/06/27/二分查找/" class="archive-article-date">
+        <time datetime="2020-06-27T02:51:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-27</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>二分查找的代码框架：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> (left&lt;=right) &#123;</div><div class="line">		<span class="keyword">int</span> mid = left + (right - left)/<span class="number">2</span>;</div><div class="line">    <span class="comment">// 判断待查找的数与 mid 的数的关系，更新左右指针的位置</span></div><div class="line">    <span class="keyword">if</span> (target &gt; arr[mid]) &#123;</div><div class="line">        left = mid + <span class="number">1</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &lt; arr[mid]) &#123;</div><div class="line">        right = mid - <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="搜索旋转排序数组"><a href="#搜索旋转排序数组" class="headerlink" title="搜索旋转排序数组"></a>搜索旋转排序数组</h4><blockquote>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p>
+<p>搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。</p>
+<p>你可以假设数组中不存在重复的元素。</p>
+<p>你的算法时间复杂度必须是 O(log n) 级别。</p>
+<p>示例 1:</p>
+<p>输入: nums = [4,5,6,7,0,1,2], target = 0<br>输出: 4</p>
+<p>示例 2:</p>
+<p>输入: nums = [4,5,6,7,0,1,2], target = 3<br>输出: -1</p>
+</blockquote>
+<p>思路：</p>
+<ol>
+<li>按照中间元素，可以将数组分为有序和无序两部分，</li>
+<li>分别判断 左侧子数组有序 和 右侧子数组有序 的情况</li>
+<li>对有序数组中执行二分查找操作，对无序数组重复上述操作。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (nums.length == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span> (nums.length == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (nums[<span class="number">0</span>] == target) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</div><div class="line">            <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</div><div class="line">            <span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> mid;</div><div class="line">            <span class="keyword">if</span> (nums[<span class="number">0</span>] &lt;= nums[mid]) &#123;</div><div class="line">                <span class="comment">// 左侧数组为有序数组</span></div><div class="line">                <span class="comment">// target 在有序数组中，处理有序数组部分</span></div><div class="line">                <span class="keyword">if</span> (nums[<span class="number">0</span>] &lt;= target &amp;&amp; target &lt;= nums[mid]) &#123;</div><div class="line">                    right = mid - <span class="number">1</span>;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    left = mid + <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">// 右侧数组为有序数组</span></div><div class="line">                <span class="keyword">if</span> (nums[mid] &lt;= target &amp;&amp; target &lt;= nums[right]) &#123;</div><div class="line">                    left = mid + <span class="number">1</span>;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    right = mid - <span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="排序数组中查找元素的第一个和最后一个位置"><a href="#排序数组中查找元素的第一个和最后一个位置" class="headerlink" title="排序数组中查找元素的第一个和最后一个位置"></a>排序数组中查找元素的第一个和最后一个位置</h3><blockquote>
+<p>给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。</p>
+<p>你的算法时间复杂度必须是 O(log n) 级别。</p>
+<p>如果数组中不存在目标值，返回 [-1, -1]。</p>
+<p>示例 1:</p>
+<p>输入: nums = [5,7,7,8,8,10], target = 8<br>输出: [3,4]<br>示例 2:</p>
+<p>输入: nums = [5,7,7,8,8,10], target = 6<br>输出: [-1,-1]</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array" target="_blank" rel="external">https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array</a></p>
+</blockquote>
+<p>思路：</p>
+<ol>
+<li>做两次二分查找，一次找起始位置，一次找结束位置</li>
+<li>找起始位置时，找到了target元素，右指针继续向左移动</li>
+<li>找结束位置时，左指针继续向右移动</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] searchRange(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</div><div class="line">    <span class="keyword">int</span>[] result = &#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 查找左区间</span></div><div class="line">    <span class="keyword">int</span> left = find(nums, target, <span class="keyword">true</span>);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (left == nums.length || nums[left] != target) &#123;</div><div class="line">      <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    result[<span class="number">0</span>] = left;</div><div class="line">    <span class="comment">// 最终结果注意减 1</span></div><div class="line">    result[<span class="number">1</span>] = find(nums, target, <span class="keyword">false</span>) -<span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target, <span class="keyword">boolean</span> leftFlag)</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</div><div class="line">  <span class="keyword">while</span> (left &lt;= right) &#123;</div><div class="line">      <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</div><div class="line">      <span class="keyword">if</span> (leftFlag &amp;&amp; nums[mid] == target) &#123;</div><div class="line">        	right = mid - <span class="number">1</span>;</div><div class="line">       		<span class="keyword">continue</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</div><div class="line">        	right = mid - <span class="number">1</span>;</div><div class="line">      &#125; <span class="keyword">else</span></div><div class="line">        	left = mid+<span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> left;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">二分查找</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/06/27/二分查找/">展开全文 >></a>
     </p>
     
 
@@ -901,6 +1128,399 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/05/17/非root用户安装tmux/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-背包问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/03/背包问题/" target="_blank">背包问题</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/03/背包问题/" class="archive-article-date">
+        <time datetime="2020-05-03T15:16:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>参考博客：<a href="https://www.cnblogs.com/jbelial/articles/2116074.html" target="_blank" rel="external">https://www.cnblogs.com/jbelial/articles/2116074.html</a></p>
+<h4 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h4><blockquote>
+<p>01背包问题</p>
+<p>有N件物品和一个容量为V的背包。第i件物品的费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。</p>
+<p> 用子问题定义状态：即$f[i][v]$表示前i件物品恰放入一个容量为v的背包可以获得的最大价值。则其状态转移方程便是：$f[i][v]=max(f[i-1][v],f[i-1][v-c[i]]+w[i])$。</p>
+<p> “将前i件物品放入容量为v的背包中”这个子问题，若只考虑第i件物品的策略（放或不放），那么就可以转化为一个只牵扯前i-1件物品的问题。</p>
+<p> 如果不放第i件物品，那么问题就转化为“前i-1件物品放入容量为v的背包中”；如果放第i件物品，那么问题就转化为“前i-1件物品放入剩下的容量为v-c[i]的背包中”，此时能获得的最大价值就是$f [i-1][v-c[i]]$再加上通过放入第i件物品获得的价值w[i]。  </p>
+</blockquote>
+    
+    <a class="article-more-a" href="/2020/05/03/背包问题/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/03/背包问题/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-逆序对" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/02/逆序对/" target="_blank">逆序对</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/02/逆序对/" class="archive-article-date">
+        <time datetime="2020-05-02T09:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
+<p>链接：<a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof" target="_blank" rel="external">https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof</a></p>
+<p>示例 1:</p>
+<blockquote>
+<p>输入: [7,5,6,4]<br>输出: 5</p>
+</blockquote>
+    
+    <a class="article-more-a" href="/2020/05/02/逆序对/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/02/逆序对/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode-硬币问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/04/23/leetcode-硬币问题/" target="_blank">leetcode-硬币问题</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/04/23/leetcode-硬币问题/" class="archive-article-date">
+        <time datetime="2020-04-23T12:44:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-23</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>链接：<a href="https://leetcode-cn.com/problems/coin-lcci" target="_blank" rel="external">https://leetcode-cn.com/problems/coin-lcci</a></p>
+<p>硬币。给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)</p>
+<p>示例1:</p>
+<blockquote>
+<p> 输入: n = 5<br> 输出：2<br> 解释: 有两种方式可以凑成总金额:<br>5=5<br>5=1+1+1+1+1</p>
+</blockquote>
+<p>示例2:</p>
+<blockquote>
+<p> 输入: n = 10<br> 输出：4<br> 解释: 有四种方式可以凑成总金额:<br>10=10<br>10=5+5<br>10=5+1+1+1+1+1<br>10=1+1+1+1+1+1+1+1+1+1</p>
+</blockquote>
+<h4 id="解决思路："><a href="#解决思路：" class="headerlink" title="解决思路："></a>解决思路：</h4><h5 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h5><p>定义 f(i, v) 表示前 i 种硬币构成面值为 v 的方案数，用 c[i] 表示第 i 种硬币面值</p>
+<p>则<br>$$<br>f(i,v) = f(i-1, v-0 <em> c[i]) + f(i-1, v-1</em>c[i]) + … + f(i-1, v-k<em>c[i])<br>$$<br>其中<br>$$<br>k&lt;= v/c[i]<br>$$<br> 举例说明：  c={1,5,10,25}, 当i=4时，c[i]=25, 如果我们求前4种硬币构成50的方案数，则<br>$$<br>f(4, 50) = f(3, 50) + f(3, 50-1</em>25) + f(3, 50-2<em>25)<br>$$<br>优化<br>$$<br>f(i, v-c[i]) = f(i-1, v-c[i]) + f(i-1, v-2</em>c[i]) + … + f(i-1, v-k*c[i])<br>$$<br>得到化简后的方程：<br>$$<br>f(i,v) = f(i-1, v) + f(i, v-c[i])<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">waysToChange</span><span class="params">(self, n)</span>:</span></div><div class="line">		mod = <span class="number">10</span> ** <span class="number">9</span> + <span class="number">7</span></div><div class="line">		coins = [<span class="number">25</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">1</span>]</div><div class="line">		</div><div class="line">		f = [<span class="number">1</span>] + [<span class="number">0</span>] * n</div><div class="line">		<span class="keyword">for</span> coin <span class="keyword">in</span> coins:</div><div class="line">			<span class="keyword">for</span> i <span class="keyword">in</span> range(coin, n+<span class="number">1</span>):</div><div class="line">				f[i] += f[i - coin]</div><div class="line">		<span class="keyword">return</span> f[n] % mod</div></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/04/23/leetcode-硬币问题/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-leetcode-优美子数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/04/22/leetcode-优美子数组/" target="_blank">leetcode-优美子数组.md</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/04/22/leetcode-优美子数组/" class="archive-article-date">
+        <time datetime="2020-04-22T13:52:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>链接：<a href="https://leetcode-cn.com/problems/count-number-of-nice-subarrays" target="_blank" rel="external">https://leetcode-cn.com/problems/count-number-of-nice-subarrays</a></p>
+<p>给你一个整数数组 nums 和一个整数 k。</p>
+<p>如果某个 连续 子数组中恰好有 k 个奇数数字，我们就认为这个子数组是「优美子数组」。</p>
+<p>请返回这个数组中「优美子数组」的数目。</p>
+<p>示例 1：</p>
+<blockquote>
+<p>输入：nums = [1,1,2,1,1], k = 3<br>输出：2<br>解释：包含 3 个奇数的子数组是 [1,1,2,1] 和 [1,2,1,1] 。</p>
+</blockquote>
+<p>示例 2：</p>
+<blockquote>
+<p>输入：nums = [2,4,6], k = 1<br>输出：0<br>解释：数列中不包含任何奇数，所以不存在优美子数组。</p>
+</blockquote>
+<p>示例 3：</p>
+<blockquote>
+<p>输入：nums = [2,2,2,1,2,2,1,2,2,2], k = 2<br>输出：16</p>
+</blockquote>
+<h4 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h4><h5 id="一-滑动窗口"><a href="#一-滑动窗口" class="headerlink" title="一. 滑动窗口"></a>一. 滑动窗口</h5><ol>
+<li>定义两个指针和奇数个数，left, right, num, 控制right指针先遍历数组，遇到奇数则num++</li>
+<li>当奇数个数等于k时，即left~right窗口里包含k个奇数，且right在最右边界， 开始做以下处理：<ul>
+<li>right继续右移，直到遇到新的奇数，统计中间的偶数数量  rightEvenCount</li>
+<li>left开始右移，直到遇到奇数，此时left为窗口左边界，统计移动过程中的偶数数量， leftEvenCount</li>
+<li>最终这个窗口的优美子数组数目为： (leftEvenCount + 1) * (rightEvenCount + 1)，结果加到最终返回的结果result中</li>
+<li>right 继续遍历，重复上述操作</li>
+</ul>
+</li>
+</ol>
+<p>具体代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    public int numberOfSubarrays(int[] nums, int k) &#123;</div><div class="line">        int left=0, right=0, num=0;</div><div class="line">        int res=0;</div><div class="line">        while (right &lt; nums.length) &#123;</div><div class="line">            if ((nums[right++] &amp; 1)==1) &#123;</div><div class="line">                num++;</div><div class="line">            &#125;</div><div class="line">            // 该滑动窗口中奇数为k个</div><div class="line">            if (num == k) &#123;</div><div class="line">                int leftEven=0,rightEven=0;</div><div class="line">                int temp = right;</div><div class="line">                while (right &lt; nums.length &amp;&amp; (nums[right]&amp;1)==0) &#123;</div><div class="line">                    right++;</div><div class="line">                &#125;</div><div class="line">                rightEven = right-temp;</div><div class="line"></div><div class="line">                while((nums[left]&amp;1)==0) &#123;</div><div class="line">                    left++;</div><div class="line">                    leftEven++;</div><div class="line">                &#125;</div><div class="line">                res += (rightEven+1)*(leftEven+1);</div><div class="line"></div><div class="line">                left++;</div><div class="line">                num--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="二-前缀项和"><a href="#二-前缀项和" class="headerlink" title="二. 前缀项和"></a>二. 前缀项和</h5><ol>
+<li>定义 pre[i] 为[0:i]中奇数的个数</li>
+<li>每次遍历，计算当前数组的奇数个数sum，当sum&gt;=k 时，在最终结果res中加上前缀项和为 sum - k 的个数</li>
+</ol>
+<p>具体代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    public int numberOfSubarrays(int[] nums, int k) &#123;</div><div class="line">        int[] pre = new int[nums.length+1];</div><div class="line">        int res=0, sum=0;</div><div class="line">        pre[0] = 1;</div><div class="line">        for (int num:nums) &#123;</div><div class="line">            sum += num &amp; 1;</div><div class="line">            // 截止此时，数组中有sum个奇数的数量</div><div class="line">            pre[sum]++;</div><div class="line">            if (sum &gt;= k) &#123;</div><div class="line">                res += pre[sum - k];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return res;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/04/22/leetcode-优美子数组/">展开全文 >></a>
     </p>
     
 
@@ -1564,6 +2184,147 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2019/11/27/RPC简介及实践/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python检测程序使用内存和CPU的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/05/10/Python检测程序使用内存和CPU的方法/" target="_blank">Python检测程序内容和CPU</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/05/10/Python检测程序使用内存和CPU的方法/" class="archive-article-date">
+        <time datetime="2019-05-10T12:32:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>示例代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">fib = <span class="keyword">lambda</span> n: <span class="number">1</span> <span class="keyword">if</span> n &lt;= <span class="number">2</span> <span class="keyword">else</span> fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test1</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">20</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test2</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">30</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">test3</span><span class="params">()</span>:</span></div><div class="line">    fib(<span class="number">35</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    test1()</div><div class="line">    test2()</div><div class="line">    test3()</div></pre></td></tr></table></figure>
+<h2 id="1-cProfile"><a href="#1-cProfile" class="headerlink" title="1. cProfile"></a>1. cProfile</h2><p>cProfile是profile模块的c语言实现，二者实现的功能相同，但是cProfile的性能更佳。</p>
+<p>使用方法: </p>
+<figure class="highlight python"><figcaption><span>-m cProfile [-o output_file] [-s sort_order] myscript.py```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<p>~ python -m cProfile test.py<br>         20132542 function calls (8 primitive calls) in 7.342 seconds</p>
+<p>   Ordered by: standard name</p>
+<p>   ncalls  tottime  percall  cumtime  percall filename:lineno(function)<br>20132537/3    7.342    0.000    7.342    2.447 test.py:1(<lambda>)<br>        1    0.000    0.000    7.342    7.342 test.py:1(<module>)<br>        1    0.000    0.000    6.707    6.707 test.py:12(test3)<br>        1    0.000    0.000    0.006    0.006 test.py:4(test1)<br>        1    0.000    0.000    0.630    0.630 test.py:8(test2)<br>        1    0.000    0.000    0.000    0.000 {method ‘disable’ of ‘_lsprof.Profiler’ objects}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">上述第一行表明，共有20132542次函数调用，其中8次是非递归调用。</div><div class="line"></div><div class="line">列名 | 含义</div><div class="line">---|---</div><div class="line">ncalls | 总调用次数，```20132537/3```表名，共有20132537次调用，其中3次是非递归调用</div><div class="line">tottime | 总调用时长</div><div class="line">percall | 平均调用时长，其实就是```tottime```除以```ncalls</div></pre></td></tr></table></figure></module></lambda></p>
+<p>cumtime | 累计调用总时长，本函数以及本函数的递归调用累计调用时长<br>percall | 累计平均调用时长，其实就是<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">filename:lineno(function) | 函数名及入口代码地址</div><div class="line"></div><div class="line">## 2. line_profiler</div><div class="line"></div><div class="line">line_profiler模块可以给出执行每行代码所需占用的CPU时间。</div><div class="line">首先，安装该模块：</div><div class="line"></div><div class="line">``` 	</div><div class="line">$ pip install line_profiler</div></pre></td></tr></table></figure></p>
+<p>接着，需要指定用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```Python</div><div class="line">fib = lambda n: 1 if n &lt;= 2 else fib(n - 1) + fib(n - 2)</div><div class="line"></div><div class="line">@profilt</div><div class="line">def test1():</div><div class="line">    fib(20)</div><div class="line"></div><div class="line">@profile</div><div class="line">def test2():</div><div class="line">    fib(30)</div><div class="line"></div><div class="line">@profile</div><div class="line">def test3():</div><div class="line">    fib(35)</div><div class="line"></div><div class="line">@profile</div><div class="line">def main():</div><div class="line">    test1()</div><div class="line">    test2()</div><div class="line">    test3()</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
+<p>最好，可以通过下面的命令获得关于<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">~ kernprof -l  -v test.py</div><div class="line">Wrote profile results to test.py.lprof</div><div class="line">Timer unit: 1e-06 s</div><div class="line"></div><div class="line">Total time: 0.00524 s</div><div class="line">File: test.py</div><div class="line">Function: test1 at line 3</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">     3                                           @profile</div><div class="line">     4                                           def test1():</div><div class="line">     5         1          1.0      1.0      0.0      a=10</div><div class="line">     6         1       5239.0   5239.0    100.0      fib(20)</div><div class="line"></div><div class="line">Total time: 0.641574 s</div><div class="line">File: test.py</div><div class="line">Function: test2 at line 9</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">     9                                           @profile</div><div class="line">    10                                           def test2():</div><div class="line">    11         1     641574.0 641574.0    100.0      fib(30)</div><div class="line"></div><div class="line">Total time: 6.75469 s</div><div class="line">File: test.py</div><div class="line">Function: test3 at line 14</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">    14                                           @profile</div><div class="line">    15                                           def test3():</div><div class="line">    16         1    6754692.0 6754692.0    100.0      fib(35)</div><div class="line"></div><div class="line">Total time: 7.40158 s</div><div class="line">File: test.py</div><div class="line">Function: main at line 18</div><div class="line"></div><div class="line">Line #      Hits         Time  Per Hit   % Time  Line Contents</div><div class="line">==============================================================</div><div class="line">    18                                           @profile</div><div class="line">    19                                           def main():</div><div class="line">    20         1       5274.0   5274.0      0.1      test1()</div><div class="line">    21         1     641592.0 641592.0      8.7      test2()</div><div class="line">    22         1    6754713.0 6754713.0     91.3      test3()</div></pre></td></tr></table></figure></p>
+<p>其中-l表示逐行解释，-v表示表示输出详细结果。<br>需要注意的是，<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">通过这种方法，我们看到```test3()```方法消耗了剩余的91.3%的时间。</div><div class="line"></div><div class="line"></div><div class="line">标题 | 含义</div><div class="line">---|---</div><div class="line">Line # | 代码行号</div><div class="line">Hits | 执行次数</div><div class="line">Per Hit | 每次执行的平均执行时长</div><div class="line">% Time | 该行执行时长占所在函数执行时长的占比</div><div class="line">Line Contents | 实际代码内容</div><div class="line"></div><div class="line">## 3. memory_profiler</div><div class="line"></div><div class="line">memory_profiler模块可以给出执行每行代码所使用的内存。</div><div class="line">安装该模块：</div><div class="line"></div><div class="line">``` 	</div><div class="line">$ pip install memory_profiler</div></pre></td></tr></table></figure></p>
+<p>同<figure class="highlight plain"><figcaption><span>使用```@profile```修饰需要检测的函数。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>~ python -m memory_profiler test.py<br>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents"><a href="#Line-Mem-usage-Increment-Line-Contents" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>3   34.945 MiB   34.945 MiB   @profile
+4                             def test1():
+5   34.945 MiB    0.000 MiB       a=10
+6   34.953 MiB    0.008 MiB       fib(20)
+</code></pre><p>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents-1"><a href="#Line-Mem-usage-Increment-Line-Contents-1" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code> 9   34.953 MiB   34.953 MiB   @profile
+10                             def test2():
+11   34.961 MiB    0.008 MiB       fib(30)
+</code></pre><p>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents-2"><a href="#Line-Mem-usage-Increment-Line-Contents-2" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>14   34.961 MiB   34.961 MiB   @profile
+15                             def test3():
+16   34.961 MiB    0.000 MiB       fib(35)
+</code></pre><p>Filename: test.py</p>
+<h1 id="Line-Mem-usage-Increment-Line-Contents-3"><a href="#Line-Mem-usage-Increment-Line-Contents-3" class="headerlink" title="Line #    Mem usage    Increment   Line Contents"></a>Line #    Mem usage    Increment   Line Contents</h1><pre><code>18   34.938 MiB   34.938 MiB   @profile
+19                             def main():
+20   34.953 MiB   34.953 MiB       test1()
+21   34.961 MiB   34.961 MiB       test2()
+22   34.961 MiB   34.961 MiB       test3()
+</code></pre><p>```</p>
+<table>
+<thead>
+<tr>
+<th>标题</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Line #</td>
+<td>代码行号</td>
+</tr>
+<tr>
+<td>Mem usage</td>
+<td>内存使用数量</td>
+</tr>
+<tr>
+<td>Increment</td>
+<td>本行代码新增内存使用数量</td>
+</tr>
+<tr>
+<td>Line Content</td>
+<td>实际代码内容</td>
+</tr>
+</tbody>
+</table>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2019/05/10/Python检测程序使用内存和CPU的方法/">展开全文 >></a>
     </p>
     
 
@@ -2689,7 +3450,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2697,7 +3458,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
+                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2706,6 +3471,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
               </li>
             
             <div class="clearfix"></div>
