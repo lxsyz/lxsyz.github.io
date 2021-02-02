@@ -354,7 +354,13 @@
     <p>[TOC]</p>
 <p>在贝壳一直做内容生成相关的工作，在此对过去大半年的工作做一个复盘和思考。</p>
 <h1 id="1-NLG的概念和意义"><a href="#1-NLG的概念和意义" class="headerlink" title="1.NLG的概念和意义"></a>1.NLG的概念和意义</h1><h2 id="1-1-NLG简介"><a href="#1-1-NLG简介" class="headerlink" title="1.1 NLG简介"></a>1.1 NLG简介</h2><h3 id="1-1-1-什么是NLG"><a href="#1-1-1-什么是NLG" class="headerlink" title="1.1.1 什么是NLG?"></a>1.1.1 什么是NLG?</h3><ul>
-<li><p>自然语言生成 - NLG 是 NLP 的重要组成部分。NLU 负责理解内容，NLG 负责生成内容，它的公式表达为<strong>NLP = NLU + NLG。</strong>以智能音箱为例，当用户说“几点了？”，首先需要利用 NLU 技术判断用户意图，理解用户想要什么，然后利用 NLG 技术说出“现在是6点50分”。</p>
+<li>自然语言生成 - NLG 是 NLP 的重要组成部分。NLU 负责理解内容，NLG 负责生成内容，它的公式表达为<strong>NLP = NLU + NLG。</strong>以智能音箱为例，当用户说“几点了？”，首先需要利用 NLU 技术判断用户意图，理解用户想要什么，然后利用 NLG 技术说出“现在是6点50分”。NLG可以用于<strong>对话系统和一些需要机器内容</strong></li>
+<li><p>对于对话系统，有三种方式：</p>
+<ul>
+<li>规则模版。优势：实现简单，效果可控；劣势：缺乏多样性</li>
+<li>生成模型。seq2seq 和 transformer,   优势：无需规则；劣势： 效果不可控</li>
+<li>检索式模型。文本检索与排序从问答库中挑选；优点：数据来源于已生成的回复，通顺性高；劣势：不能生成新的回复文本</li>
+</ul>
 </li>
 <li><p>NLG 可以将非语言格式的数据转换成人类可以理解的语言格式，如文章、报告等。目前NLG有2种方式：</p>
 </li>
@@ -387,16 +393,144 @@
 <p>​     （2）帮助人类洞察数据，让数据更容易理解</p>
 <p>​     （3）加速内容生产</p>
 <h2 id="1-2-为什么需要NLG"><a href="#1-2-为什么需要NLG" class="headerlink" title="1.2 为什么需要NLG?"></a>1.2 为什么需要NLG?</h2><p>​    文本内容本身就拥有很大的业务价值，一方面生产的文章内容可以增加用户的停留时间，另一方面像推荐理由这类的短文本可以吸引用户的点击，同时，目前很多文章、标题和推荐理由都是由运营或者经纪人书写的，需要的人力成本高，因此通过使用机器大规模生产文本可以起到降本提效的效果。</p>
-<p>1.3 NLG技术</p>
-<p><a href="https://tech.meituan.com/2019/03/14/information-flow-creative-optimization-practices.html" target="_blank" rel="external">大众点评信息流基于文本生成的创意优化实践</a></p>
+<h2 id="1-3-NLG技术"><a href="#1-3-NLG技术" class="headerlink" title="1.3 NLG技术"></a>1.3 NLG技术</h2><p><a href="https://tech.meituan.com/2019/03/14/information-flow-creative-optimization-practices.html" target="_blank" rel="external">大众点评信息流基于文本生成的创意优化实践</a></p>
 <p>文本生成的三种主流方法各自的优劣势：</p>
 <ul>
 <li><strong>规划式</strong>：根据结构化的信息，通过语法规则、树形规则等方式规划生成进文本中，可以抽象为三个阶段。宏观规划解决“说什么内容”，微观规划解决“怎么说”，包括语法句子粒度的规划，以及最后的表层优化对结果进行微调。其优势是控制力极强、准确率较高，特别适合新闻播报等模版化场景。而劣势是很难做到端到端的优化，损失信息上限也不高。</li>
 <li><strong>抽取式</strong>：顾名思义，在原文信息中抽取一部分作为输出。可以通过编码端的表征在解码端转化为多种不同的分类任务，来实现端到端的优化。其优势在于：能降低复杂度，较好控制与原文的相关性。而劣势在于：容易受原文的束缚，泛化能力不强。</li>
 <li><strong>生成式</strong>：通过编码端的表征，在解码端完成序列生成的任务，可以实现完全的端到端优化，可以完成多模态的任务。其在泛化能力上具有压倒性优势，但劣势是控制难度极大，建模复杂度也很高。</li>
 </ul>
-<h1 id="2-NLG平台从0到1的建设"><a href="#2-NLG平台从0到1的建设" class="headerlink" title="2 NLG平台从0到1的建设"></a>2 NLG平台从0到1的建设</h1><p><strong>以下内容可能涉及公司技术秘密，暂时不开放吧。</strong></p>
-<h2 id="2-1-基于标签的数据聚合"><a href="#2-1-基于标签的数据聚合" class="headerlink" title="2.1 基于标签的数据聚合"></a>2.1 基于标签的数据聚合</h2><h2 id="2-2-基于无监督学习的文本生成"><a href="#2-2-基于无监督学习的文本生成" class="headerlink" title="2.2 基于无监督学习的文本生成"></a>2.2 基于无监督学习的文本生成</h2><h2 id="2-3-基于监督学习的文本生成"><a href="#2-3-基于监督学习的文本生成" class="headerlink" title="2.3 基于监督学习的文本生成"></a>2.3 基于监督学习的文本生成</h2><h2 id="2-4-基于seq2seq的文本生成"><a href="#2-4-基于seq2seq的文本生成" class="headerlink" title="2.4 基于seq2seq的文本生成"></a>2.4 基于seq2seq的文本生成</h2><h1 id="3-评估方法"><a href="#3-评估方法" class="headerlink" title="3 评估方法"></a>3 评估方法</h1><ul>
+<p>而我们的内容平台的建设就是基于这三步。</p>
+<h1 id="2-NLG平台从0到1的建设"><a href="#2-NLG平台从0到1的建设" class="headerlink" title="2 NLG平台从0到1的建设"></a>2 NLG平台从0到1的建设</h1><p>整体而言，目前贝壳内容带来的用户日活、月日比、留存等数据指标并不乐观，房产类内容更新频率低（周更或月更），用户一次性消费（看过后不会再看），内容本身偏严肃性，缺乏吸引力。</p>
+<p>不过从MAU角度而言，内容还是可以起到召回用户的作用，通过精准push或者经纪人转发的方式，最近几日没使用APP的用户被召回的数量还是很可观的，这一切也需要基于内容的建设。</p>
+<h2 id="2-1-基于标签的数据聚合"><a href="#2-1-基于标签的数据聚合" class="headerlink" title="2.1 基于标签的数据聚合"></a>2.1 基于标签的数据聚合</h2><p><strong>整体目标：通过机器算法提升内容的生产效率和内容质量，并通过精准化的推荐分发给用户，提升平台整体的商机量和MAU；</strong></p>
+<p>为了能快速上线、拓展场景，我们采用了基于内容主题词的模版内容+房源卡片聚合的方法。首先设定多个内容主题，如500万内，降价房等，为每个主题词定义一套计算逻辑，从房源列表中召回满足条件的房源，与标题、导语组合成文章。标题、导语中会添加地理维度占位符，如小区，城市等，在生产文章时，可以填充这些占位符裂变出多个粒度的文章内容，月产文章可达到数十万，重复文章会进行去重。</p>
+<p>规划式生成</p>
+<p>上述方式生产的文章几乎没有内容信息，都是些房源引导用户点击；为了生产有内容信息的文章，我们将模版与代码解耦，使用python编写数据处理逻辑，liquid编写模版，最后通过liquidpy渲染生成文章内容；步骤如下：</p>
+<ol>
+<li>运营撰写文章样稿，并拆解成一块块模版，附加数据约束条件；</li>
+<li>需求评估，通过则RD进入开发；</li>
+<li>数据处理+模版编写（hive+python+liquid）</li>
+<li>渲染成文，线上投放</li>
+</ol>
+<p>这样生产的内容信息量十足。</p>
+<h2 id="2-2-基于无监督学习的文本生成"><a href="#2-2-基于无监督学习的文本生成" class="headerlink" title="2.2 基于无监督学习的文本生成"></a>2.2 基于无监督学习的文本生成</h2><p>卖点创意是指通过内容挖掘算法来<strong>自动生成房源真正有温度、有亮点的内容描述。</strong> 可以参考美团的发现页面中的店铺，就是通过从用户评论中抽取内容描述作为店铺的推荐标语，让人有点击的欲望。核心指标为CTR。</p>
+<p>TextRank算法是一种仿照PageRank的无监督摘要抽取方法。PageRank<strong>主要用于对在线搜索结果中的网页进行排序</strong>。以概率d按照存在的超链接随机跳转，以概率转移矩阵中的概率从超链接跳转到下一个页面；或以概率(1-d)进行完全随机跳转，这时以等概率（1/n）跳转到任意网页</p>
+<p>$$PR = \frac{1-d}{N}+d\sum {\frac{PR}{|OUT(v_j)|}}$$</p>
+<p>注意以下几点：</p>
+<ol>
+<li>转移矩阵，2行1列，表示b-&gt;c 的连接，<strong>计算时相当于b分了部分权重给c</strong></li>
+<li><strong>rank leak</strong>: 某个节点只有入链，会导致其他节点rank为0，</li>
+<li><strong>rank sink</strong>: 某节点只有出链</li>
+<li>阻尼因子d，解决dead ends问题，这个因子代表了用户按照跳转链接或是直接输入网址来上网的概率</li>
+</ol>
+<p><img src="https://i.loli.net/2021/01/31/Zahsyw7d1Hkx4DW.jpg" alt="textrank.jpg" style="zoom:25%;"></p>
+<p>TextRank只是把网页替换成了句子，<strong>将句子作为节点，句子间的相似度作为边来构建图模型，根据计算公式迭代计算每个句子的TextRank得分</strong>，但是这样计算出来的矩阵是不满足马尔可夫矩阵性质的，所以可以使用softmax对每一列做处理进行改良。</p>
+<h2 id="2-3-基于监督学习的文本生成"><a href="#2-3-基于监督学习的文本生成" class="headerlink" title="2.3 基于监督学习的文本生成"></a>2.3 基于监督学习的文本生成</h2><p>将卖点抽取问题建模成文本分类问题，注意几点：</p>
+<ol>
+<li><p>标注时做好交叉验证和校验。</p>
+</li>
+<li><p>训练词向量时无需去除停用词，但要去除低频词，如数字等等。标注员在标注时会考虑停用词，有停用词的句子更完整。</p>
+</li>
+<li><p>训练模型时输入数据仅保留中文数据，冻结embedding向量，学习率调低</p>
+</li>
+<li><p>模型准确率到了93%，再也提升不了，拿最好的模型去run下训练集和验证集，看看是哪些样本一直识别不了，看看是否需要重新标注。</p>
+<p> import tensorflow as tf<br> #词嵌入层<br> with tf.name_scope(“embedding”):</p>
+<pre><code>    # 利用预训练的词向量初始化词嵌入矩阵
+    if self.word_vectors is not None:
+        embedding_w = tf.Variable(tf.cast(self.word_vectors, dtype=tf.float32, name=&quot;word2vec&quot;),
+                                  name=&quot;embedding_w&quot;)
+    else:
+        embedding_w = tf.get_variable(&quot;embedding_w&quot;, shape=[self.vocab_size, self.config[&quot;embedding_size&quot;]],
+                                      initializer=tf.contrib.layers.xavier_initializer())
+    # 利用词嵌入矩阵将输入的数据中的词转换成词向量，维度[batch_size, sequence_length, embedding_size]
+    embedded_words = tf.nn.embedding_lookup(embedding_w, self.inputs)
+
+# 定义两层双向LSTM的模型结构
+with tf.name_scope(&quot;Bi-LSTM&quot;):
+    for idx, hidden_size in enumerate(self.config[&quot;hidden_sizes&quot;]):
+        with tf.name_scope(&quot;Bi-LSTM&quot; + str(idx)):
+            # 定义前向LSTM结构
+            lstm_fw_cell = tf.nn.rnn_cell.DropoutWrapper(
+                tf.nn.rnn_cell.LSTMCell(num_units=hidden_size, state_is_tuple=True),
+                output_keep_prob=self.keep_prob)
+            # 定义反向LSTM结构
+            lstm_bw_cell = tf.nn.rnn_cell.DropoutWrapper(
+                tf.nn.rnn_cell.LSTMCell(num_units=hidden_size, state_is_tuple=True),
+                output_keep_prob=self.keep_prob)
+
+            # 采用动态rnn，可以动态的输入序列的长度，若没有输入，则取序列的全长
+            # outputs是一个元祖(output_fw, output_bw)，其中两个元素的维度都是[batch_size, max_time, hidden_size],
+            # fw和bw的hidden_size一样
+            # self.current_state 是最终的状态，二元组(state_fw, state_bw)，state_fw=[batch_size, s]，s是一个元祖(h, c)
+            outputs, current_state = tf.nn.bidirectional_dynamic_rnn(lstm_fw_cell, lstm_bw_cell,
+                                                                     embedded_words, dtype=tf.float32,
+                                                                     scope=&quot;bi-lstm&quot; + str(idx))
+
+            # 对outputs中的fw和bw的结果拼接 [batch_size, time_step, hidden_size * 2]
+            embedded_words = tf.concat(outputs, 2)
+
+# 取出最后时间步的输出作为全连接的输入
+final_output = embedded_words[:, -1, :]
+
+output_size = self.config[&quot;hidden_sizes&quot;][-1] * 2  # 因为是双向LSTM，最终的输出值是fw和bw的拼接，因此要乘以2
+output = tf.reshape(final_output, [-1, output_size])  # reshape成全连接层的输入维度
+
+# 全连接层的输出
+with tf.name_scope(&quot;output&quot;):
+    output_w = tf.get_variable(
+        &quot;output_w&quot;,
+        shape=[output_size, self.config[&quot;num_classes&quot;]],
+        initializer=tf.contrib.layers.xavier_initializer())
+
+    output_b = tf.Variable(tf.constant(0.1, shape=[self.config[&quot;num_classes&quot;]]), name=&quot;output_b&quot;)
+    self.l2_loss += tf.nn.l2_loss(output_w)
+    self.l2_loss += tf.nn.l2_loss(output_b)
+    self.logits = tf.nn.xw_plus_b(output, output_w, output_b, name=&quot;logits&quot;)
+    self.predictions = self.get_predictions()
+</code></pre><h2 id="2-4-基于seq2seq的文本生成"><a href="#2-4-基于seq2seq的文本生成" class="headerlink" title="2.4 基于seq2seq的文本生成"></a>2.4 基于seq2seq的文本生成</h2></li>
+</ol>
+<p>2014年提出的Seq2Seq Model，是解决这类问题一个非常通用的思路，本质是将输入句子或其中的词Token做Embedding后，输入循环神经网络中作为源句的表示，这一部分称为Encoder；另一部分生成端在每一个位置同样通过循环神经网络，循环输出对应的Token，这一部分称为Decoder。通过两个循环神经网络连接Encoder和Decoder，可以将两个平行表示连接起来。</p>
+<p>另外一个非常重要的，就是Attention机制，其本质思想是获取两端的某种权重关系，即在Decoder端生成的词和Encoder端的某些信息更相关。它也同样可以处理多模态的问题，比如Image2Text任务，通过CNN等将图片做一个关键特征的向量表示，将这个表示输出到类似的Decoder中去解码输出文本，视频语音等也使用同样的方式（如下图所示）。</p>
+<p>RNN在梯度计算过程中存在连乘，导致梯度趋于0或者趋于无穷大，使得模型无法有效地学习到长距离的依赖关系</p>
+<p><strong>LSTM是RNN的一种常见的改进模型，</strong>引用了门机制去解决梯度爆炸或者梯度消散的问题。门计算所需要用到的参数，由模型自己去进行学习。每一个门都有对应的参数，每一个门的每次计算，是根据当前的输入前一刻的状态，以及内部状态，来计算门的值是什么，最后再对整个状态进行更新。</p>
+<p><strong>GRU是另一个对RNN进行改进的模型</strong>，可以看作是LSTM的变形。相对于LSTM ，GRU模型减少了一个门，参数量也会变少。因此，最终GRU的速度比RNN、LSTM更快一些。</p>
+<p>在seq2seq模型里，实际上输入的是一段序列文本，生成的也是一段序列文本</p>
+<p><strong>Encoder</strong>：seq2seq的编码器是单层或多层的RNN（双向），会对输入的文本进行编码变成一个向量输出。</p>
+<p><strong>Decoder</strong>：seq2seq的解码器，也是一个单层或多层的RNN（非双向），根据context信息对每一步进行解码，输出对应的文本。</p>
+<p>这里提到的每步context，最简单的方法是<strong>直接拿encoder的输入文本信息的最后一个状态</strong>，或者是<strong>整个状态进行加总</strong>，得到一个固定的向量。然后，再将这个向量作为decoder的context进行输入。</p>
+<p>但这样的问题是，这个context是一个固定长度的向量，表达能力比较有限，所以在这个基础上，又提出了<strong>Attention机制</strong>。</p>
+<p><strong>Attention机制</strong>：每步解码都会根据当前状态对encoder的文本进行动态权重计算，然后对权重进行归一化。得到归一化后，再算出一个当前加权后的context，作为decode的context。这样处理后的表达能力就会就会更强一些。</p>
+<blockquote>
+<p>Luong Attention 相较 Bahdanau Attention 主要有以下几点区别:</p>
+<ol>
+<li>$c_t$计算方式不同，Luong: $c_t=\sum h_dh_e$  巴达脑： $c<em>t=\sum h</em>{d-1}h_e$</li>
+<li>decoder输入输出不同： Luong Attention: $W_t[c_t;h_t]$    Bahdanau：$[c<em>t, h</em>{t-1}]$ ,</li>
+</ol>
+<p><strong>全局注意力模式</strong>会将 encoder 的<strong>每一步 hidden state</strong> 进行注意力计算，而局部注意力模式则计算部分范围的 hidden state。</p>
+</blockquote>
+<p>损失函数：对每一步单词计算交叉熵，累加</p>
+<p>Beam search: 贪心搜索；可能会产生的问题是：<strong>可能都是十分相近的句子。</strong></p>
+<p><strong>Copy机制最初设计用于解决OOV问题。</strong>当生成一段文本的时候，这个生成单词可以有两种来源：一种是通过普通seq2seq生成；另一种是从原文本拷贝过来。比如普通的生成任务里，他往往有大量的OOV（out of vocabulary），这样的词是无法生成的，以至于回复效果会变差。</p>
+<p>注意力的得分的明显特点是，它经过了归一化，代表了这段文本中不同单词在当前步骤的重要程度，可以看作拷贝不同单词的概率</p>
+<p>将每步输出的单词概率看作一个混合模型（<strong>生成的单词概率分布</strong>与拷贝<strong>原文的单词概率分布</strong>的混合），利用注意力得分作为拷贝单词的概率。</p>
+<p><strong>普通seq2seq</strong>存在生成回复相关性不够高、生成回复为否定句或负面情感的问题。</p>
+<p><strong>Copy机制+seq2seq</strong>：提高了回复相关性，但依然无法解决回复为否定句或负面情感的问题。</p>
+<p><strong>主题控制+seq2seq</strong>：既提高回复相关性，也可以控制回复语义，提升回复效果，但可能出现回复不通顺的问题，并存在否定句式与负面回复。</p>
+<p><strong>属性控制+seq2seq</strong>：比较能满足场景需要，但有一定比例的通用回复，可以通过改进Beam Search、后排序的办法来提高个性化回复的得分，从而提高回复多样性</p>
+<p><strong>Beam search 解决多样性：</strong></p>
+<p><strong>通过增加惩罚项：比如对同一组的第二、第三选项进行降权，避免搜索结果来自同一路径</strong></p>
+<p><strong>计算每条路径的概率分，后面生成的话跟第一组相似，就对该组进行降权，避免组与组之间相似度过高</strong></p>
+<p><strong>Coverage Loss:</strong> 若该词之前出现过了，$c_{i}^t$就会很大，loss优化时就需要$a_i^t $变小，代表这个位置的词被注意的概率变小</p>
+<p>让模型自己去学习它想说什么：</p>
+<p>输入静态标签信息，数据预处理清洗后</p>
+<p>对目标文本做NLU识别出其中涉及到的标签或者说实体，将这部分标签与静态标签信息做个融合，这部分标签作为</p>
+<p><strong>Pointer network</strong>让decoder可以根据输入序列决定输出的长度</p>
+<p>decoder输出的结果，和encoder状态计算一个attention分布，argmax后结果作为decoder新的输入，知道end出现</p>
+<p>适合做summary,直接从input中挑字出来</p>
+<p>训练一个$p_{gen}$</p>
+<h1 id="3-评估方法"><a href="#3-评估方法" class="headerlink" title="3 评估方法"></a>3 评估方法</h1><p>项目中使用的人工评估的方式，多样化的描述更好，不一定要和目标越接近越好</p>
+<ul>
 <li>基于词重叠率的方法<ul>
 <li>机器翻译 &amp; 摘要抽取 常用指标</li>
 <li>基于词重叠率的方法是指基于词汇的级别计算模型的生成文本和人工参考文本之间的相似性，比较经典的代表有 BLEU、METEOR 和 ROUGE，其中 BLEU 和 METEOR 常用于机器翻译任务，ROUGE 常用于自动文本摘要。</li>
@@ -484,6 +618,44 @@
 <h3 id="基于-bert-的评分指标"><a href="#基于-bert-的评分指标" class="headerlink" title="基于 bert 的评分指标"></a>基于 bert 的评分指标</h3><p>BERTSCORE：</p>
 <p>对两个生成句和参考句（word piece 进行 tokenize）分别用 bert 提取特征，然后对 2 个句子的每一个词分别计算内积，可以得到一个相似性矩阵。基于这个矩阵，我们可以分别对参考句和生成句做一个最大相似性得分的累加然后归一化，得到 bertscore 的 precision，recall 和 F1</p>
 <p>还可以适用IDF进行加权计算。</p>
+<h3 id="PTM"><a href="#PTM" class="headerlink" title="PTM"></a>PTM</h3><p>浅层词嵌入： word2vec，无法解决一词多义，OOV问题</p>
+<p>预训练编码器： elmo, gpt-1, bert, xlnet</p>
+<p>将外部领域数据整合训练： LIBERT,SenseBERT</p>
+<p>模型太大，需要<strong>模型压缩</strong></p>
+<p>剪枝、知识蒸馏、模型替换</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>MEMM判别模型，考虑了相邻状态的依赖，</p>
+<p>CRF解决标记偏置问题</p>
+<p>LSTM+CRF: s=A+P ,   logP(y|X) = s - log()</p>
+<p>xgboost对特征值做聚合统计，按照特征值密度分布，构造直方图计算特征值分布面积，划分分布成若干个桶</p>
+<p>每个桶面积相同，将桶边界上的特征值作为split point的候选分裂点。 <strong>计算特征收益可以多线程进行</strong></p>
+<p>word2vec直接sum，不再拼接，舍弃隐层，用两种方式进行优化</p>
+<p>负采样： 加速模型计算（每次更新采样词的权重），保障模型训练效果；</p>
+<p>LSA（基于概率图模型的生成模型）基于共现矩阵构建词向量，采用SVD进行矩阵分解</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>特征提取</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>elmo</td>
+<td>LSTM</td>
+<td></td>
+</tr>
+<tr>
+<td>GPT</td>
+<td>t ran sformer</td>
+<td></td>
+</tr>
+<tr>
+<td>bert</td>
+<td>t ran sformer</td>
+</tr>
+</tbody>
+</table>
 
     
 
@@ -3434,6 +3606,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
@@ -3442,11 +3622,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3458,7 +3634,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
+                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3466,15 +3642,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">软技能</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
+                <a href="javascript:void(0)" class="js-tag color4">软技能</a>
               </li>
             
             <div class="clearfix"></div>
