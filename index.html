@@ -102,7 +102,7 @@
 				
 					<a class="github" href="#" title="GitHub" target="_blank"><i class="icon-github"></i></a>
 				
-					<a class="weibo" href="#" title="weibo" target="_blank"><i class="icon-weibo"></i></a>
+					<a class="weibo" href="#" title="微博" target="_blank"><i class="icon-weibo"></i></a>
 				
 					<a class="google" href="#" title="Google" target="_blank"><i class="icon-google"></i></a>
 				
@@ -147,7 +147,7 @@
 					
 						<a class="github" target="_blank" href="#" title="GitHub"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="微博"><i class="icon-weibo"></i></a>
 			        
 						<a class="google" target="_blank" href="#" title="Google"><i class="icon-google"></i></a>
 			        
@@ -265,72 +265,6 @@
 
 
   
-    <article id="post-动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>题目： <a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="external">https://leetcode-cn.com/problems/coin-change/</a></p>
-<blockquote>
-<p>给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。</p>
-<p>你可以认为每种硬币的数量是无限的。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">输入：coins = [1, 2, 5], amount = 11</div><div class="line">输出：3 </div><div class="line">解释：11 = 5 + 5 + 1</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">coinChange</span><span class="params">(self, coins: List[int], amount: int)</span> -&gt; int:</span></div><div class="line">    <span class="comment"># 自底向上的方法</span></div><div class="line">    <span class="comment"># 1. 定义状态 金额 的变化 </span></div><div class="line">    <span class="comment"># 2. 状态转移， dp[i] 当目标金额是i 时, 需要dp[i]个硬币</span></div><div class="line">    <span class="comment"># 3. 定义选择 coins列表, dp[i] = dp[i - coin] + 1</span></div><div class="line">    <span class="comment">#    选一个coin如5, 当目标金额是11时，dp[11] = dp[6] + 1, dp[6] = d[1] + 1, dp[1] = dp[0] + 1</span></div><div class="line"></div><div class="line">    dp = [amount + <span class="number">1</span>] * (amount + <span class="number">1</span>)  <span class="comment"># 最多要amount个硬币, 初始化为amount+1</span></div><div class="line">    dp[<span class="number">0</span>] = <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dp)):</div><div class="line">        <span class="keyword">for</span> coin <span class="keyword">in</span> coins:</div><div class="line">            <span class="keyword">if</span> i - coin &lt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">    				dp[i] = min(dp[i], dp[i - coin] + <span class="number">1</span>)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> dp[amount] == amount + <span class="number">1</span>:  <span class="comment"># 凑不出来的情况</span></div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">    <span class="keyword">return</span> dp[amount]</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">coinChange</span><span class="params">(self, coins: List[int], amount: int)</span> -&gt; int:</span></div><div class="line">    <span class="comment"># 自顶向上</span></div><div class="line">    <span class="comment"># 直接递归会有很多重复计算  例如 f(11) = f(5) + f(5) + f(1)</span></div><div class="line">    <span class="comment"># 空间换时间，先把f(5)存起来</span></div><div class="line">    hashmap = dict()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dp</span><span class="params">(n)</span>:</span></div><div class="line">        <span class="keyword">if</span> n <span class="keyword">in</span> hashmap:</div><div class="line">            <span class="keyword">return</span> hashmap[n]</div><div class="line"></div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> n &lt; <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">        res = sys.maxsize</div><div class="line">        <span class="keyword">for</span> coin <span class="keyword">in</span> coins:</div><div class="line">            subproblem = dp(n - coin)</div><div class="line">            <span class="keyword">if</span> subproblem &lt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            res = min(res, subproblem + <span class="number">1</span>)</div><div class="line">        hashmap[n] = res <span class="keyword">if</span> res != sys.maxsize <span class="keyword">else</span> <span class="number">-1</span></div><div class="line">        <span class="keyword">return</span> hashmap[n]</div><div class="line"></div><div class="line">    <span class="keyword">return</span> dp(amount)</div></pre></td></tr></table></figure>
-<p>题目：<a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="external">https://leetcode-cn.com/problems/house-robber/</a></p>
-<blockquote>
-<p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
-<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
-<p>输入：[1,2,3,1]<br>输出：4<br>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。<br>偷窃到的最高金额 = 1 + 3 = 4 。</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></div><div class="line">    <span class="comment"># 定义状态 金额</span></div><div class="line">    <span class="comment"># 定义选择 非相邻房屋</span></div><div class="line">    <span class="comment"># 定义 dp[i] 偷到第 i 个房屋，可以偷的最大金额</span></div><div class="line">    <span class="comment"># dp[i] = max(dp[i-1], dp[i-2] + nums[i])</span></div><div class="line">    dp = [<span class="number">0</span>] * len(nums)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> nums:</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>]</div><div class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]</div><div class="line">    dp[<span class="number">1</span>] = max(dp[<span class="number">0</span>], nums[<span class="number">1</span>])</div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">2</span>:</div><div class="line">        <span class="keyword">return</span> dp[<span class="number">1</span>]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(nums)):</div><div class="line">        dp[i] = max(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>] + nums[i])</div><div class="line">    <span class="keyword">return</span> dp[len(nums) - <span class="number">1</span>]</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(nums: List[int])</span> -&gt; int:</span></div><div class="line">    <span class="comment"># i = 2</span></div><div class="line">    <span class="comment"># i % n-1 = 0</span></div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>]</div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">2</span>:</div><div class="line">        <span class="keyword">return</span> max(nums[<span class="number">0</span>], nums[<span class="number">1</span>])</div><div class="line">    <span class="comment"># 定义状态， 金额</span></div><div class="line">    <span class="comment"># 定义选择， 房屋 i</span></div><div class="line">    <span class="comment"># 定义状态转移 dp[i] = max(dp[i-1], dp[i - 2] + nums[i])</span></div><div class="line">    <span class="comment"># 不一样的是，本题中 第0个房子和第n-1个房子不能同时偷</span></div><div class="line">    <span class="comment"># 因此只需要求出 rob(nums[1:]) 和 rob(nums[:n-1]) 两种情况的最大金额，再取个最大值即可</span></div><div class="line"></div><div class="line">    <span class="comment"># 优化上一题，因为 dp[i]只与 dp[i-1]和dp[i-2]有关，因此可以只用两个变量表示，和斐波那契数列是一样的原理</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(nums)</span>:</span></div><div class="line">        <span class="comment"># 两个变量表示状态</span></div><div class="line">        pre = <span class="number">0</span></div><div class="line">        cur = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            cur, pre = max(cur, pre + nums[i]), cur</div><div class="line">            <span class="keyword">return</span> cur</div><div class="line">    res = max(func(nums[<span class="number">0</span>:len(nums) - <span class="number">1</span>]), func(nums[<span class="number">1</span>:]))</div><div class="line">    <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/02/01/动态规划/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-NLG简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -373,296 +307,9 @@
 </ul>
 <p>​     （1）text-to-text：文本到文本的生成</p>
 <p>​     （2）data-to-text：数据到文本的生成</p>
-<h3 id="1-1-2-NLG的3个level"><a href="#1-1-2-NLG的3个level" class="headerlink" title="1.1.2 NLG的3个level"></a>1.1.2 NLG的3个level</h3><ul>
-<li><strong>简单的数据合并</strong></li>
-<li><strong>模板化的 NLG</strong></li>
-<li><strong>高级 NLG</strong> ：它理解输入数据的意图，并考虑上下文，智能化的整理语言，并将结果呈现在用户可以轻松阅读和理解的叙述中。</li>
-</ul>
-<h3 id="1-1-3-NLG的6个步骤"><a href="#1-1-3-NLG的6个步骤" class="headerlink" title="1.1.3 NLG的6个步骤"></a>1.1.3 NLG的6个步骤</h3><ul>
-<li><p><strong>第一步：内容确定</strong>，决定文本应该包含哪些信息。</p>
-</li>
-<li><p><strong>第二步：文本结构</strong>，合理的组织文本的顺序。例如在报道一场篮球比赛时，会优先表达「什么时间」「什么地点」「哪2支球队」，然后再表达「比赛的概况」，最后表达「比赛的结局」。</p>
-</li>
-<li><p><strong>第三步：句子聚合</strong>，多个信息合并到一个句子里表达可能会更加流畅，也更易于阅读。</p>
-</li>
-<li><p><strong>第四步：语法化</strong>，通过一些连接词将这些句子组织成自然语言。</p>
-</li>
-<li><p><strong>第五步：参考表达式生成</strong>，它跟语法化的本质区别在于需要识别出内容的领域，然后使用该领域的词汇。</p>
-</li>
-<li><p><strong>第六步：语言实现</strong>，当所有相关的单词和短语都已经确定时，需要将它们组合起来形成一个结构良好的完整句子。</p>
-</li>
-</ul>
-<h3 id="1-1-4-NLG的3种典型应用"><a href="#1-1-4-NLG的3种典型应用" class="headerlink" title="1.1.4 NLG的3种典型应用"></a>1.1.4 NLG的3种典型应用</h3><ul>
-<li>NLG 的不管如何应用，大部分都是下面的3种目的：</li>
-</ul>
-<p>​     （1）能够大规模的产生个性化内容</p>
-<p>​     （2）帮助人类洞察数据，让数据更容易理解</p>
-<p>​     （3）加速内容生产</p>
-<h2 id="1-2-为什么需要NLG"><a href="#1-2-为什么需要NLG" class="headerlink" title="1.2 为什么需要NLG?"></a>1.2 为什么需要NLG?</h2><p>​    文本内容本身就拥有很大的业务价值，一方面生产的文章内容可以增加用户的停留时间，另一方面像推荐理由这类的短文本可以吸引用户的点击，同时，目前很多文章、标题和推荐理由都是由运营或者经纪人书写的，需要的人力成本高，因此通过使用机器大规模生产文本可以起到降本提效的效果。</p>
-<h2 id="1-3-NLG技术"><a href="#1-3-NLG技术" class="headerlink" title="1.3 NLG技术"></a>1.3 NLG技术</h2><p><a href="https://tech.meituan.com/2019/03/14/information-flow-creative-optimization-practices.html" target="_blank" rel="external">大众点评信息流基于文本生成的创意优化实践</a></p>
-<p>文本生成的三种主流方法各自的优劣势：</p>
-<ul>
-<li><strong>规划式</strong>：根据结构化的信息，通过语法规则、树形规则等方式规划生成进文本中，可以抽象为三个阶段。宏观规划解决“说什么内容”，微观规划解决“怎么说”，包括语法句子粒度的规划，以及最后的表层优化对结果进行微调。其优势是控制力极强、准确率较高，特别适合新闻播报等模版化场景。而劣势是很难做到端到端的优化，损失信息上限也不高。</li>
-<li><strong>抽取式</strong>：顾名思义，在原文信息中抽取一部分作为输出。可以通过编码端的表征在解码端转化为多种不同的分类任务，来实现端到端的优化。其优势在于：能降低复杂度，较好控制与原文的相关性。而劣势在于：容易受原文的束缚，泛化能力不强。</li>
-<li><strong>生成式</strong>：通过编码端的表征，在解码端完成序列生成的任务，可以实现完全的端到端优化，可以完成多模态的任务。其在泛化能力上具有压倒性优势，但劣势是控制难度极大，建模复杂度也很高。</li>
-</ul>
-<p>而我们的内容平台的建设就是基于这三步。</p>
-<h1 id="2-NLG平台从0到1的建设"><a href="#2-NLG平台从0到1的建设" class="headerlink" title="2 NLG平台从0到1的建设"></a>2 NLG平台从0到1的建设</h1><p>整体而言，目前贝壳内容带来的用户日活、月日比、留存等数据指标并不乐观，房产类内容更新频率低（周更或月更），用户一次性消费（看过后不会再看），内容本身偏严肃性，缺乏吸引力。</p>
-<p>不过从MAU角度而言，内容还是可以起到召回用户的作用，通过精准push或者经纪人转发的方式，最近几日没使用APP的用户被召回的数量还是很可观的，这一切也需要基于内容的建设。</p>
-<h2 id="2-1-基于标签的数据聚合"><a href="#2-1-基于标签的数据聚合" class="headerlink" title="2.1 基于标签的数据聚合"></a>2.1 基于标签的数据聚合</h2><p><strong>整体目标：通过机器算法提升内容的生产效率和内容质量，并通过精准化的推荐分发给用户，提升平台整体的商机量和MAU；</strong></p>
-<p>为了能快速上线、拓展场景，我们采用了基于内容主题词的模版内容+房源卡片聚合的方法。首先设定多个内容主题，如500万内，降价房等，为每个主题词定义一套计算逻辑，从房源列表中召回满足条件的房源，与标题、导语组合成文章。标题、导语中会添加地理维度占位符，如小区，城市等，在生产文章时，可以填充这些占位符裂变出多个粒度的文章内容，月产文章可达到数十万，重复文章会进行去重。</p>
-<p>规划式生成</p>
-<p>上述方式生产的文章几乎没有内容信息，都是些房源引导用户点击；为了生产有内容信息的文章，我们将模版与代码解耦，使用python编写数据处理逻辑，liquid编写模版，最后通过liquidpy渲染生成文章内容；步骤如下：</p>
-<ol>
-<li>运营撰写文章样稿，并拆解成一块块模版，附加数据约束条件；</li>
-<li>需求评估，通过则RD进入开发；</li>
-<li>数据处理+模版编写（hive+python+liquid）</li>
-<li>渲染成文，线上投放</li>
-</ol>
-<p>这样生产的内容信息量十足。</p>
-<h2 id="2-2-基于无监督学习的文本生成"><a href="#2-2-基于无监督学习的文本生成" class="headerlink" title="2.2 基于无监督学习的文本生成"></a>2.2 基于无监督学习的文本生成</h2><p>卖点创意是指通过内容挖掘算法来<strong>自动生成房源真正有温度、有亮点的内容描述。</strong> 可以参考美团的发现页面中的店铺，就是通过从用户评论中抽取内容描述作为店铺的推荐标语，让人有点击的欲望。核心指标为CTR。</p>
-<p>TextRank算法是一种仿照PageRank的无监督摘要抽取方法。PageRank<strong>主要用于对在线搜索结果中的网页进行排序</strong>。以概率d按照存在的超链接随机跳转，以概率转移矩阵中的概率从超链接跳转到下一个页面；或以概率(1-d)进行完全随机跳转，这时以等概率（1/n）跳转到任意网页</p>
-<p>$$PR = \frac{1-d}{N}+d\sum {\frac{PR}{|OUT(v_j)|}}$$</p>
-<p>注意以下几点：</p>
-<ol>
-<li>转移矩阵，2行1列，表示b-&gt;c 的连接，<strong>计算时相当于b分了部分权重给c</strong></li>
-<li><strong>rank leak</strong>: 某个节点只有入链，会导致其他节点rank为0，</li>
-<li><strong>rank sink</strong>: 某节点只有出链</li>
-<li>阻尼因子d，解决dead ends问题，这个因子代表了用户按照跳转链接或是直接输入网址来上网的概率</li>
-</ol>
-<p><img src="https://i.loli.net/2021/01/31/Zahsyw7d1Hkx4DW.jpg" alt="textrank.jpg" style="zoom:25%;"></p>
-<p>TextRank只是把网页替换成了句子，<strong>将句子作为节点，句子间的相似度作为边来构建图模型，根据计算公式迭代计算每个句子的TextRank得分</strong>，但是这样计算出来的矩阵是不满足马尔可夫矩阵性质的，所以可以使用softmax对每一列做处理进行改良。</p>
-<h2 id="2-3-基于监督学习的文本生成"><a href="#2-3-基于监督学习的文本生成" class="headerlink" title="2.3 基于监督学习的文本生成"></a>2.3 基于监督学习的文本生成</h2><p>将卖点抽取问题建模成文本分类问题，注意几点：</p>
-<ol>
-<li><p>标注时做好交叉验证和校验。</p>
-</li>
-<li><p>训练词向量时无需去除停用词，但要去除低频词，如数字等等。标注员在标注时会考虑停用词，有停用词的句子更完整。</p>
-</li>
-<li><p>训练模型时输入数据仅保留中文数据，冻结embedding向量，学习率调低</p>
-</li>
-<li><p>模型准确率到了93%，再也提升不了，拿最好的模型去run下训练集和验证集，看看是哪些样本一直识别不了，看看是否需要重新标注。</p>
-<p> import tensorflow as tf<br> #词嵌入层<br> with tf.name_scope(“embedding”):</p>
-<pre><code>    # 利用预训练的词向量初始化词嵌入矩阵
-    if self.word_vectors is not None:
-        embedding_w = tf.Variable(tf.cast(self.word_vectors, dtype=tf.float32, name=&quot;word2vec&quot;),
-                                  name=&quot;embedding_w&quot;)
-    else:
-        embedding_w = tf.get_variable(&quot;embedding_w&quot;, shape=[self.vocab_size, self.config[&quot;embedding_size&quot;]],
-                                      initializer=tf.contrib.layers.xavier_initializer())
-    # 利用词嵌入矩阵将输入的数据中的词转换成词向量，维度[batch_size, sequence_length, embedding_size]
-    embedded_words = tf.nn.embedding_lookup(embedding_w, self.inputs)
-
-# 定义两层双向LSTM的模型结构
-with tf.name_scope(&quot;Bi-LSTM&quot;):
-    for idx, hidden_size in enumerate(self.config[&quot;hidden_sizes&quot;]):
-        with tf.name_scope(&quot;Bi-LSTM&quot; + str(idx)):
-            # 定义前向LSTM结构
-            lstm_fw_cell = tf.nn.rnn_cell.DropoutWrapper(
-                tf.nn.rnn_cell.LSTMCell(num_units=hidden_size, state_is_tuple=True),
-                output_keep_prob=self.keep_prob)
-            # 定义反向LSTM结构
-            lstm_bw_cell = tf.nn.rnn_cell.DropoutWrapper(
-                tf.nn.rnn_cell.LSTMCell(num_units=hidden_size, state_is_tuple=True),
-                output_keep_prob=self.keep_prob)
-
-            # 采用动态rnn，可以动态的输入序列的长度，若没有输入，则取序列的全长
-            # outputs是一个元祖(output_fw, output_bw)，其中两个元素的维度都是[batch_size, max_time, hidden_size],
-            # fw和bw的hidden_size一样
-            # self.current_state 是最终的状态，二元组(state_fw, state_bw)，state_fw=[batch_size, s]，s是一个元祖(h, c)
-            outputs, current_state = tf.nn.bidirectional_dynamic_rnn(lstm_fw_cell, lstm_bw_cell,
-                                                                     embedded_words, dtype=tf.float32,
-                                                                     scope=&quot;bi-lstm&quot; + str(idx))
-
-            # 对outputs中的fw和bw的结果拼接 [batch_size, time_step, hidden_size * 2]
-            embedded_words = tf.concat(outputs, 2)
-
-# 取出最后时间步的输出作为全连接的输入
-final_output = embedded_words[:, -1, :]
-
-output_size = self.config[&quot;hidden_sizes&quot;][-1] * 2  # 因为是双向LSTM，最终的输出值是fw和bw的拼接，因此要乘以2
-output = tf.reshape(final_output, [-1, output_size])  # reshape成全连接层的输入维度
-
-# 全连接层的输出
-with tf.name_scope(&quot;output&quot;):
-    output_w = tf.get_variable(
-        &quot;output_w&quot;,
-        shape=[output_size, self.config[&quot;num_classes&quot;]],
-        initializer=tf.contrib.layers.xavier_initializer())
-
-    output_b = tf.Variable(tf.constant(0.1, shape=[self.config[&quot;num_classes&quot;]]), name=&quot;output_b&quot;)
-    self.l2_loss += tf.nn.l2_loss(output_w)
-    self.l2_loss += tf.nn.l2_loss(output_b)
-    self.logits = tf.nn.xw_plus_b(output, output_w, output_b, name=&quot;logits&quot;)
-    self.predictions = self.get_predictions()
-</code></pre><h2 id="2-4-基于seq2seq的文本生成"><a href="#2-4-基于seq2seq的文本生成" class="headerlink" title="2.4 基于seq2seq的文本生成"></a>2.4 基于seq2seq的文本生成</h2></li>
-</ol>
-<p>2014年提出的Seq2Seq Model，是解决这类问题一个非常通用的思路，本质是将输入句子或其中的词Token做Embedding后，输入循环神经网络中作为源句的表示，这一部分称为Encoder；另一部分生成端在每一个位置同样通过循环神经网络，循环输出对应的Token，这一部分称为Decoder。通过两个循环神经网络连接Encoder和Decoder，可以将两个平行表示连接起来。</p>
-<p>另外一个非常重要的，就是Attention机制，其本质思想是获取两端的某种权重关系，即在Decoder端生成的词和Encoder端的某些信息更相关。它也同样可以处理多模态的问题，比如Image2Text任务，通过CNN等将图片做一个关键特征的向量表示，将这个表示输出到类似的Decoder中去解码输出文本，视频语音等也使用同样的方式（如下图所示）。</p>
-<p>RNN在梯度计算过程中存在连乘，导致梯度趋于0或者趋于无穷大，使得模型无法有效地学习到长距离的依赖关系</p>
-<p><strong>LSTM是RNN的一种常见的改进模型，</strong>引用了门机制去解决梯度爆炸或者梯度消散的问题。门计算所需要用到的参数，由模型自己去进行学习。每一个门都有对应的参数，每一个门的每次计算，是根据当前的输入前一刻的状态，以及内部状态，来计算门的值是什么，最后再对整个状态进行更新。</p>
-<p><strong>GRU是另一个对RNN进行改进的模型</strong>，可以看作是LSTM的变形。相对于LSTM ，GRU模型减少了一个门，参数量也会变少。因此，最终GRU的速度比RNN、LSTM更快一些。</p>
-<p>在seq2seq模型里，实际上输入的是一段序列文本，生成的也是一段序列文本</p>
-<p><strong>Encoder</strong>：seq2seq的编码器是单层或多层的RNN（双向），会对输入的文本进行编码变成一个向量输出。</p>
-<p><strong>Decoder</strong>：seq2seq的解码器，也是一个单层或多层的RNN（非双向），根据context信息对每一步进行解码，输出对应的文本。</p>
-<p>这里提到的每步context，最简单的方法是<strong>直接拿encoder的输入文本信息的最后一个状态</strong>，或者是<strong>整个状态进行加总</strong>，得到一个固定的向量。然后，再将这个向量作为decoder的context进行输入。</p>
-<p>但这样的问题是，这个context是一个固定长度的向量，表达能力比较有限，所以在这个基础上，又提出了<strong>Attention机制</strong>。</p>
-<p><strong>Attention机制</strong>：每步解码都会根据当前状态对encoder的文本进行动态权重计算，然后对权重进行归一化。得到归一化后，再算出一个当前加权后的context，作为decode的context。这样处理后的表达能力就会就会更强一些。</p>
-<blockquote>
-<p>Luong Attention 相较 Bahdanau Attention 主要有以下几点区别:</p>
-<ol>
-<li>$c_t$计算方式不同，Luong: $c_t=\sum h_dh_e$  巴达脑： $c<em>t=\sum h</em>{d-1}h_e$</li>
-<li>decoder输入输出不同： Luong Attention: $W_t[c_t;h_t]$    Bahdanau：$[c<em>t, h</em>{t-1}]$ ,</li>
-</ol>
-<p><strong>全局注意力模式</strong>会将 encoder 的<strong>每一步 hidden state</strong> 进行注意力计算，而局部注意力模式则计算部分范围的 hidden state。</p>
-</blockquote>
-<p>损失函数：对每一步单词计算交叉熵，累加</p>
-<p>Beam search: 贪心搜索；可能会产生的问题是：<strong>可能都是十分相近的句子。</strong></p>
-<p><strong>Copy机制最初设计用于解决OOV问题。</strong>当生成一段文本的时候，这个生成单词可以有两种来源：一种是通过普通seq2seq生成；另一种是从原文本拷贝过来。比如普通的生成任务里，他往往有大量的OOV（out of vocabulary），这样的词是无法生成的，以至于回复效果会变差。</p>
-<p>注意力的得分的明显特点是，它经过了归一化，代表了这段文本中不同单词在当前步骤的重要程度，可以看作拷贝不同单词的概率</p>
-<p>将每步输出的单词概率看作一个混合模型（<strong>生成的单词概率分布</strong>与拷贝<strong>原文的单词概率分布</strong>的混合），利用注意力得分作为拷贝单词的概率。</p>
-<p><strong>普通seq2seq</strong>存在生成回复相关性不够高、生成回复为否定句或负面情感的问题。</p>
-<p><strong>Copy机制+seq2seq</strong>：提高了回复相关性，但依然无法解决回复为否定句或负面情感的问题。</p>
-<p><strong>主题控制+seq2seq</strong>：既提高回复相关性，也可以控制回复语义，提升回复效果，但可能出现回复不通顺的问题，并存在否定句式与负面回复。</p>
-<p><strong>属性控制+seq2seq</strong>：比较能满足场景需要，但有一定比例的通用回复，可以通过改进Beam Search、后排序的办法来提高个性化回复的得分，从而提高回复多样性</p>
-<p><strong>Beam search 解决多样性：</strong></p>
-<p><strong>通过增加惩罚项：比如对同一组的第二、第三选项进行降权，避免搜索结果来自同一路径</strong></p>
-<p><strong>计算每条路径的概率分，后面生成的话跟第一组相似，就对该组进行降权，避免组与组之间相似度过高</strong></p>
-<p><strong>Coverage Loss:</strong> 若该词之前出现过了，$c_{i}^t$就会很大，loss优化时就需要$a_i^t $变小，代表这个位置的词被注意的概率变小</p>
-<p>让模型自己去学习它想说什么：</p>
-<p>输入静态标签信息，数据预处理清洗后</p>
-<p>对目标文本做NLU识别出其中涉及到的标签或者说实体，将这部分标签与静态标签信息做个融合，这部分标签作为</p>
-<p><strong>Pointer network</strong>让decoder可以根据输入序列决定输出的长度</p>
-<p>decoder输出的结果，和encoder状态计算一个attention分布，argmax后结果作为decoder新的输入，知道end出现</p>
-<p>适合做summary,直接从input中挑字出来</p>
-<p>训练一个$p_{gen}$</p>
-<h1 id="3-评估方法"><a href="#3-评估方法" class="headerlink" title="3 评估方法"></a>3 评估方法</h1><p>项目中使用的人工评估的方式，多样化的描述更好，不一定要和目标越接近越好</p>
-<ul>
-<li>基于词重叠率的方法<ul>
-<li>机器翻译 &amp; 摘要抽取 常用指标</li>
-<li>基于词重叠率的方法是指基于词汇的级别计算模型的生成文本和人工参考文本之间的相似性，比较经典的代表有 BLEU、METEOR 和 ROUGE，其中 BLEU 和 METEOR 常用于机器翻译任务，ROUGE 常用于自动文本摘要。</li>
-</ul>
-</li>
-<li>词向量评价指标(<strong>在论文中一般很少使用</strong>)<ul>
-<li>词向量评价是通过 Word2Vec、Sent2Vec 等方法将句子转换为向量表示，这样一个句子就被映射到一个低维空间，句向量在一定程度上表征了其含义，再通过余弦相似度等方法就可以计算两个句子之间的相似程度。</li>
-<li>使用词向量的好处是，可以一定程度上增加答案的多样性，因为这里大多采用词语相似度进行表征，相比词重叠中要求出现完全相同的词语，限制降低了很多。</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-1-词重叠率"><a href="#3-1-词重叠率" class="headerlink" title="3.1 词重叠率"></a>3.1 词重叠率</h2><p>参考：<a href="https://zhuanlan.zhihu.com/p/144182853" target="_blank" rel="external">评估指标整理</a></p>
-<h3 id="BLEU"><a href="#BLEU" class="headerlink" title="BLEU"></a>BLEU</h3><p>核心思想</p>
-<ul>
-<li>比较候选译文和参考译文里的 n-gram 的重合程度，重合程度越高就认为译文质量越高。unigram用于衡量单词翻译的<strong>精确性</strong>，高阶n-gram用于衡量句子翻译的<strong>流畅性</strong>。 实践中，通常是取N=1~4，然后对进行加权平均。</li>
-</ul>
-<p>假设机器翻译的译文C和一个参考翻译S1如下：</p>
-<blockquote>
-<p>C: a cat is on the table<br>S1: there is a cat on the table</p>
-</blockquote>
-<p>计算各个gram精确率</p>
-<p>p1 计算 a cat is on the table 分别都在参考翻译S1中 所以 p1 = 1</p>
-<p>p2 (a, cat)在, (cat is) 没在, (is on) 没在, (on the) 在, (the table)在 所以p2 = 3/5</p>
-<p>p3 (a cat is)不在, (cat is on)不在, (is on the)不在, (on the table)在 所以 p3 = 1/4</p>
-<p>这样计算的结果明显不正确，因此在计算时，往往会加上<strong>修正和长度惩罚</strong></p>
-<ul>
-<li>缺点：<ul>
-<li>只看重精确率，不看重召回率。</li>
-<li>存在常用词干扰（可以用截断的方法解决）</li>
-<li>短句得分较高。即使引入了brevity penalty，也还是不够。</li>
-</ul>
-</li>
-<li>改进<ul>
-<li>截断：改进常用词干扰</li>
-<li>brevity penalty：改进短句得分较高的问题</li>
-</ul>
-</li>
-</ul>
-<h3 id="ROUGE"><a href="#ROUGE" class="headerlink" title="ROUGE"></a>ROUGE</h3><p>核心思想</p>
-<ul>
-<li><p>大致分为四种：ROUGE-N，ROUGE-L，ROUGE-W，ROUGE-S。常用的是前两种（-N与-L）</p>
-<ul>
-<li><p>ROUGE-N （将BLEU的精确率优化为召回率）</p>
-</li>
-<li><p>ROUGE-L （将BLEU的n-gram优化为公共子序列），计算的是候选摘要与参考摘要的最长公共子序列长度，长度越长，得分越高，基于F值。</p>
-</li>
-<li><p>ROUGE-W （将ROUGE-L的连续匹配给予更高的奖励）</p>
-</li>
-<li><p>ROUGE-S （允许n-gram出现跳词(skip)），即跳跃二元组（skip bigram）。例如句子 “I have a cat” 的 Skip 2-gram 包括 (I, have)，(I, a)，(I, cat)，(have, a)，(have, cat)，(a, cat)。</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>ROUGE的出现很大程度上是为了解决<strong>NMT的漏翻问题（低召回率）</strong>,因为它不考虑候选译文是否流畅。</p>
-<h3 id="NIST"><a href="#NIST" class="headerlink" title="NIST"></a>NIST</h3><ul>
-<li><p>NIST(National Institute of standards and Technology)方法是在BLEU方法上的一种改进。</p>
-<p>最主要的是引入了<strong>每个n-gram的信息量(information)</strong> 的概念。BLEU算法只是单纯的将n-gram的数目加起来，而nist是在得到信息量累加起来再除以整个译文的n-gram片段数目。这样相当于对于一些<strong>出现少的重点的词权重就给的大了。</strong></p>
-<p>详细链接：<a href="https://link.zhihu.com/?target=https%3A//www.cnblogs.com/by-dream/p/7765345.html" target="_blank" rel="external">机器翻译评测——BLEU改进后的NIST算法</a></p>
-</li>
-</ul>
-<h3 id="TER"><a href="#TER" class="headerlink" title="TER"></a>TER</h3><p>是一种基于距离的评价方法，用来评定机器翻译结果的译后编辑的工作量。</p>
-<p>距离被定义为将一个序列转换成另一个序列所需要的最少编辑操作次数。操作次数越多，距离越大，序列之间的相似性越低；相反距离越小，表示一个句子越容易改写成另一个句子，序列之间的相似性越高。</p>
-<p>$$score= \frac {edit(c,t)}{l}$$</p>
-<p>其中 edit(c,r) 是指机器翻译生成的候选译文 c 和参考译文 r 之间的距离，l 是归一化因子，通常为参考译文的长度。在距离计算中所有的操作的代价都为 1。在计算距离时，<strong>优先考虑移位操作，再计算编辑距离</strong>，也就是增加、删除和替换操作的次数。直到移位操作无法减少编辑距离时，将编辑距离和移位操作的次数累加得到TER 计算的距离。</p>
-<h2 id="3-2-基于语言模型的评估方法"><a href="#3-2-基于语言模型的评估方法" class="headerlink" title="3.2 基于语言模型的评估方法"></a>3.2 基于语言模型的评估方法</h2><h3 id="PPL"><a href="#PPL" class="headerlink" title="PPL"></a>PPL</h3><ul>
-<li><p>perplexity(困惑度)用来度量一个概率分布或概率模型预测样本的好坏程度。<strong>困惑度越低，翻译质量越好</strong></p>
-</li>
-<li><p>核心思想</p>
-<ul>
-<li>（1）根据参考句子，学习一个语言模型P；</li>
-<li>（2）根据语言模型P，计算候选句子的得分；</li>
-<li>（3）根据句子长度对上述得分进行Normalize</li>
-</ul>
-<p>公式：</p>
-<p>$$PPL(W)=P(w_1w_2…w_N)^{-\frac{1}{N}}$$</p>
-</li>
-<li><p>缺点</p>
-<ul>
-<li>数据集越大，困惑度下降得越快</li>
-<li>数据中的标点会对模型的PPL产生很大影响</li>
-<li>常用词干扰</li>
-</ul>
-</li>
-</ul>
-<h3 id="基于-bert-的评分指标"><a href="#基于-bert-的评分指标" class="headerlink" title="基于 bert 的评分指标"></a>基于 bert 的评分指标</h3><p>BERTSCORE：</p>
-<p>对两个生成句和参考句（word piece 进行 tokenize）分别用 bert 提取特征，然后对 2 个句子的每一个词分别计算内积，可以得到一个相似性矩阵。基于这个矩阵，我们可以分别对参考句和生成句做一个最大相似性得分的累加然后归一化，得到 bertscore 的 precision，recall 和 F1</p>
-<p>还可以适用IDF进行加权计算。</p>
-<h3 id="PTM"><a href="#PTM" class="headerlink" title="PTM"></a>PTM</h3><p>浅层词嵌入： word2vec，无法解决一词多义，OOV问题</p>
-<p>预训练编码器： elmo, gpt-1, bert, xlnet</p>
-<p>将外部领域数据整合训练： LIBERT,SenseBERT</p>
-<p>模型太大，需要<strong>模型压缩</strong></p>
-<p>剪枝、知识蒸馏、模型替换</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>MEMM判别模型，考虑了相邻状态的依赖，</p>
-<p>CRF解决标记偏置问题</p>
-<p>LSTM+CRF: s=A+P ,   logP(y|X) = s - log()</p>
-<p>xgboost对特征值做聚合统计，按照特征值密度分布，构造直方图计算特征值分布面积，划分分布成若干个桶</p>
-<p>每个桶面积相同，将桶边界上的特征值作为split point的候选分裂点。 <strong>计算特征收益可以多线程进行</strong></p>
-<p>word2vec直接sum，不再拼接，舍弃隐层，用两种方式进行优化</p>
-<p>负采样： 加速模型计算（每次更新采样词的权重），保障模型训练效果；</p>
-<p>LSA（基于概率图模型的生成模型）基于共现矩阵构建词向量，采用SVD进行矩阵分解</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>特征提取</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>elmo</td>
-<td>LSTM</td>
-<td></td>
-</tr>
-<tr>
-<td>GPT</td>
-<td>t ran sformer</td>
-<td></td>
-</tr>
-<tr>
-<td>bert</td>
-<td>t ran sformer</td>
-</tr>
-</tbody>
-</table>
-
+    
+    <a class="article-more-a" href="/2020/11/27/NLG简介/#more">more >></a>
+    
     
 
     
@@ -885,19 +532,9 @@ with tf.name_scope(&quot;output&quot;):
 </ol>
 <p>简单点说，如果是一个项目，就可以按照<strong>“是什么— 为什么—怎么做—结果怎么样”</strong>的思路来叙述，但是如果负责的是多个项目，就需要思考<strong>项目间内在的联系</strong>，把这多个项目整合起来，而不是一个一个介绍，这样到后面评委们就会忘了前面你讲了什么内容了。</p>
 <p>以我这次述职为例，其中有一个模块内容生产做了很多工作，生产了A,B,C三种形式的内容，看似毫无联系，但是仔细思考，它们其实存在一个递进关系：先做了A，但是发现A存在不足，于是我们又尝试做B，A+B的模式取得了不错的效果，这就够了吗？我们开始思考新的内容形式，最终决定尝试做C。 这样层层递进的感觉，更有利于抓住评委们的思路。这里非常感谢我的Mentor给我的建议。</p>
-<h5 id="素材整理"><a href="#素材整理" class="headerlink" title="素材整理"></a>素材整理</h5><p>工作期间不知素材的珍贵，临到做PPT空流泪。在工作时需要多思考自己当前做的工作需要用哪些数据来进行量化评估，什么样的指标可以衡量我们工作的产出，如果要写进PPT中，我需要哪些图片，哪些数据图表呢，平时都可以好好整理一下关键的素材以及获取数据的方法（如sql）。</p>
-<h4 id="正式开干"><a href="#正式开干" class="headerlink" title="正式开干"></a>正式开干</h4><p>初版：<strong>内容大于形式</strong>，可以按照之前梳理的思路，把自己想表达的内容硬贴上去，讲清楚自己的工作和思考即可；</p>
-<p>第二版：这时候就要考虑美观了，我不善于设计，审美也一般，为了让自己的PPT能好看些，我会看很多大佬们的PPT，学他们的排版、配色、绘图，说的通俗点，看多了，抄多了，做的PPT渐渐就有大佬PPT的影子了，虽然不可能一下就融会贯通，但是也比自己画的图要好看多了哈哈。</p>
-<p>第三版：可以考虑给身边的人试讲一下，听听他们的意见，如果他们听完一头雾水，那就要思考下PPT的整体思路有问题了；同时也可以听听他们对整体样式的看法。</p>
-<p>终版：对每一页都好好检查，追求极致，对齐、字体大小、字体颜色、多加引导页等等</p>
-<h4 id="后续思考"><a href="#后续思考" class="headerlink" title="后续思考"></a>后续思考</h4><p>一定要私底下多讲、多练，把握好时间，同时一定要自信。</p>
-<p>多思考，想想评委们会问什么问题，PPT上的内容是否有<strong>未被论证自己凭直觉写的</strong>，是否有未来规划，<strong>但是自己其实没有想明白怎么做的</strong>，这些都可能成为评委们的问题，提前都要准备充足。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
-<li>先梳理思路，画好故事框架，总分总形式介绍</li>
-<li>功在平时，多积累数据素材</li>
-<li>反复练习，精益求精</li>
-</ol>
-
+    
+    <a class="article-more-a" href="/2020/10/13/述职有感/#more">more >></a>
+    
     
 
     
@@ -1420,6 +1057,104 @@ with tf.name_scope(&quot;output&quot;):
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/05/17/非root用户安装tmux/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/05/10/动态规划/" target="_blank">动态规划</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/05/10/动态规划/" class="archive-article-date">
+        <time datetime="2020-05-10T14:21:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-10</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>题目： <a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="external">https://leetcode-cn.com/problems/coin-change/</a></p>
+<blockquote>
+<p>给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。</p>
+<p>你可以认为每种硬币的数量是无限的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">输入：coins = [1, 2, 5], amount = 11</div><div class="line">输出：3 </div><div class="line">解释：11 = 5 + 5 + 1</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">coinChange</span><span class="params">(self, coins: List[int], amount: int)</span> -&gt; int:</span></div><div class="line">    <span class="comment"># 自底向上的方法</span></div><div class="line">    <span class="comment"># 1. 定义状态 金额 的变化 </span></div><div class="line">    <span class="comment"># 2. 状态转移， dp[i] 当目标金额是i 时, 需要dp[i]个硬币</span></div><div class="line">    <span class="comment"># 3. 定义选择 coins列表, dp[i] = dp[i - coin] + 1</span></div><div class="line">    <span class="comment">#    选一个coin如5, 当目标金额是11时，dp[11] = dp[6] + 1, dp[6] = d[1] + 1, dp[1] = dp[0] + 1</span></div><div class="line"></div><div class="line">    dp = [amount + <span class="number">1</span>] * (amount + <span class="number">1</span>)  <span class="comment"># 最多要amount个硬币, 初始化为amount+1</span></div><div class="line">    dp[<span class="number">0</span>] = <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dp)):</div><div class="line">        <span class="keyword">for</span> coin <span class="keyword">in</span> coins:</div><div class="line">            <span class="keyword">if</span> i - coin &lt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">    				dp[i] = min(dp[i], dp[i - coin] + <span class="number">1</span>)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> dp[amount] == amount + <span class="number">1</span>:  <span class="comment"># 凑不出来的情况</span></div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">    <span class="keyword">return</span> dp[amount]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">coinChange</span><span class="params">(self, coins: List[int], amount: int)</span> -&gt; int:</span></div><div class="line">    <span class="comment"># 自顶向上</span></div><div class="line">    <span class="comment"># 直接递归会有很多重复计算  例如 f(11) = f(5) + f(5) + f(1)</span></div><div class="line">    <span class="comment"># 空间换时间，先把f(5)存起来</span></div><div class="line">    hashmap = dict()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dp</span><span class="params">(n)</span>:</span></div><div class="line">        <span class="keyword">if</span> n <span class="keyword">in</span> hashmap:</div><div class="line">            <span class="keyword">return</span> hashmap[n]</div><div class="line"></div><div class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> n &lt; <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">        res = sys.maxsize</div><div class="line">        <span class="keyword">for</span> coin <span class="keyword">in</span> coins:</div><div class="line">            subproblem = dp(n - coin)</div><div class="line">            <span class="keyword">if</span> subproblem &lt; <span class="number">0</span>:</div><div class="line">                <span class="keyword">continue</span></div><div class="line">            res = min(res, subproblem + <span class="number">1</span>)</div><div class="line">        hashmap[n] = res <span class="keyword">if</span> res != sys.maxsize <span class="keyword">else</span> <span class="number">-1</span></div><div class="line">        <span class="keyword">return</span> hashmap[n]</div><div class="line"></div><div class="line">    <span class="keyword">return</span> dp(amount)</div></pre></td></tr></table></figure>
+<p>题目：<a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="external">https://leetcode-cn.com/problems/house-robber/</a></p>
+<blockquote>
+<p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+<p>输入：[1,2,3,1]<br>输出：4<br>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。<br>偷窃到的最高金额 = 1 + 3 = 4 。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></div><div class="line">    <span class="comment"># 定义状态 金额</span></div><div class="line">    <span class="comment"># 定义选择 非相邻房屋</span></div><div class="line">    <span class="comment"># 定义 dp[i] 偷到第 i 个房屋，可以偷的最大金额</span></div><div class="line">    <span class="comment"># dp[i] = max(dp[i-1], dp[i-2] + nums[i])</span></div><div class="line">    dp = [<span class="number">0</span>] * len(nums)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> nums:</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>]</div><div class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]</div><div class="line">    dp[<span class="number">1</span>] = max(dp[<span class="number">0</span>], nums[<span class="number">1</span>])</div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">2</span>:</div><div class="line">        <span class="keyword">return</span> dp[<span class="number">1</span>]</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(nums)):</div><div class="line">        dp[i] = max(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>] + nums[i])</div><div class="line">    <span class="keyword">return</span> dp[len(nums) - <span class="number">1</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">rob</span><span class="params">(nums: List[int])</span> -&gt; int:</span></div><div class="line">    <span class="comment"># i = 2</span></div><div class="line">    <span class="comment"># i % n-1 = 0</span></div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>]</div><div class="line">    <span class="keyword">if</span> len(nums) == <span class="number">2</span>:</div><div class="line">        <span class="keyword">return</span> max(nums[<span class="number">0</span>], nums[<span class="number">1</span>])</div><div class="line">    <span class="comment"># 定义状态， 金额</span></div><div class="line">    <span class="comment"># 定义选择， 房屋 i</span></div><div class="line">    <span class="comment"># 定义状态转移 dp[i] = max(dp[i-1], dp[i - 2] + nums[i])</span></div><div class="line">    <span class="comment"># 不一样的是，本题中 第0个房子和第n-1个房子不能同时偷</span></div><div class="line">    <span class="comment"># 因此只需要求出 rob(nums[1:]) 和 rob(nums[:n-1]) 两种情况的最大金额，再取个最大值即可</span></div><div class="line"></div><div class="line">    <span class="comment"># 优化上一题，因为 dp[i]只与 dp[i-1]和dp[i-2]有关，因此可以只用两个变量表示，和斐波那契数列是一样的原理</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(nums)</span>:</span></div><div class="line">        <span class="comment"># 两个变量表示状态</span></div><div class="line">        pre = <span class="number">0</span></div><div class="line">        cur = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</div><div class="line">            cur, pre = max(cur, pre + nums[i]), cur</div><div class="line">            <span class="keyword">return</span> cur</div><div class="line">    res = max(func(nums[<span class="number">0</span>:len(nums) - <span class="number">1</span>]), func(nums[<span class="number">1</span>:]))</div><div class="line">    <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/05/10/动态规划/">展开全文 >></a>
     </p>
     
 
@@ -3730,19 +3465,19 @@ with tf.name_scope(&quot;output&quot;):
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3754,7 +3489,7 @@ with tf.name_scope(&quot;output&quot;):
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3766,11 +3501,11 @@ with tf.name_scope(&quot;output&quot;):
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
             
             <div class="clearfix"></div>

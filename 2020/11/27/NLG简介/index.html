@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Amanda">
 <meta property="og:description" content="[TOC] 在贝壳一直做内容生成相关的工作，在此对过去大半年的工作做一个复盘和思考。 1.NLG的概念和意义1.1 NLG简介1.1.1 什么是NLG? 自然语言生成 - NLG 是 NLP 的重要组成部分。NLU 负责理解内容，NLG 负责生成内容，它的公式表达为NLP = NLU + NLG。以智能音箱为例，当用户说“几点了？”，首先需要利用 NLU 技术判断用户意图，理解用户想要什么，然后利">
 <meta property="og:image" content="https://i.loli.net/2021/01/31/Zahsyw7d1Hkx4DW.jpg">
-<meta property="og:updated_time" content="2021-02-02T16:26:40.026Z">
+<meta property="og:updated_time" content="2021-02-10T08:42:20.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLG探索与实践">
 <meta name="twitter:description" content="[TOC] 在贝壳一直做内容生成相关的工作，在此对过去大半年的工作做一个复盘和思考。 1.NLG的概念和意义1.1 NLG简介1.1.1 什么是NLG? 自然语言生成 - NLG 是 NLP 的重要组成部分。NLU 负责理解内容，NLG 负责生成内容，它的公式表达为NLP = NLU + NLG。以智能音箱为例，当用户说“几点了？”，首先需要利用 NLU 技术判断用户意图，理解用户想要什么，然后利">
@@ -101,7 +101,7 @@
 				
 					<a class="github" href="#" title="GitHub" target="_blank"><i class="icon-github"></i></a>
 				
-					<a class="weibo" href="#" title="weibo" target="_blank"><i class="icon-weibo"></i></a>
+					<a class="weibo" href="#" title="微博" target="_blank"><i class="icon-weibo"></i></a>
 				
 					<a class="google" href="#" title="Google" target="_blank"><i class="icon-google"></i></a>
 				
@@ -146,7 +146,7 @@
 					
 						<a class="github" target="_blank" href="#" title="GitHub"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="微博"><i class="icon-weibo"></i></a>
 			        
 						<a class="google" target="_blank" href="#" title="Google"><i class="icon-google"></i></a>
 			        
@@ -220,6 +220,7 @@
 </ul>
 <p>​     （1）text-to-text：文本到文本的生成</p>
 <p>​     （2）data-to-text：数据到文本的生成</p>
+<a id="more"></a>
 <h3 id="1-1-2-NLG的3个level"><a href="#1-1-2-NLG的3个level" class="headerlink" title="1.1.2 NLG的3个level"></a>1.1.2 NLG的3个level</h3><ul>
 <li><strong>简单的数据合并</strong></li>
 <li><strong>模板化的 NLG</strong></li>
@@ -288,63 +289,11 @@
 <li><p>训练模型时输入数据仅保留中文数据，冻结embedding向量，学习率调低</p>
 </li>
 <li><p>模型准确率到了93%，再也提升不了，拿最好的模型去run下训练集和验证集，看看是哪些样本一直识别不了，看看是否需要重新标注。</p>
-<p> import tensorflow as tf<br> #词嵌入层<br> with tf.name_scope(“embedding”):</p>
-<pre><code>    # 利用预训练的词向量初始化词嵌入矩阵
-    if self.word_vectors is not None:
-        embedding_w = tf.Variable(tf.cast(self.word_vectors, dtype=tf.float32, name=&quot;word2vec&quot;),
-                                  name=&quot;embedding_w&quot;)
-    else:
-        embedding_w = tf.get_variable(&quot;embedding_w&quot;, shape=[self.vocab_size, self.config[&quot;embedding_size&quot;]],
-                                      initializer=tf.contrib.layers.xavier_initializer())
-    # 利用词嵌入矩阵将输入的数据中的词转换成词向量，维度[batch_size, sequence_length, embedding_size]
-    embedded_words = tf.nn.embedding_lookup(embedding_w, self.inputs)
-
-# 定义两层双向LSTM的模型结构
-with tf.name_scope(&quot;Bi-LSTM&quot;):
-    for idx, hidden_size in enumerate(self.config[&quot;hidden_sizes&quot;]):
-        with tf.name_scope(&quot;Bi-LSTM&quot; + str(idx)):
-            # 定义前向LSTM结构
-            lstm_fw_cell = tf.nn.rnn_cell.DropoutWrapper(
-                tf.nn.rnn_cell.LSTMCell(num_units=hidden_size, state_is_tuple=True),
-                output_keep_prob=self.keep_prob)
-            # 定义反向LSTM结构
-            lstm_bw_cell = tf.nn.rnn_cell.DropoutWrapper(
-                tf.nn.rnn_cell.LSTMCell(num_units=hidden_size, state_is_tuple=True),
-                output_keep_prob=self.keep_prob)
-
-            # 采用动态rnn，可以动态的输入序列的长度，若没有输入，则取序列的全长
-            # outputs是一个元祖(output_fw, output_bw)，其中两个元素的维度都是[batch_size, max_time, hidden_size],
-            # fw和bw的hidden_size一样
-            # self.current_state 是最终的状态，二元组(state_fw, state_bw)，state_fw=[batch_size, s]，s是一个元祖(h, c)
-            outputs, current_state = tf.nn.bidirectional_dynamic_rnn(lstm_fw_cell, lstm_bw_cell,
-                                                                     embedded_words, dtype=tf.float32,
-                                                                     scope=&quot;bi-lstm&quot; + str(idx))
-
-            # 对outputs中的fw和bw的结果拼接 [batch_size, time_step, hidden_size * 2]
-            embedded_words = tf.concat(outputs, 2)
-
-# 取出最后时间步的输出作为全连接的输入
-final_output = embedded_words[:, -1, :]
-
-output_size = self.config[&quot;hidden_sizes&quot;][-1] * 2  # 因为是双向LSTM，最终的输出值是fw和bw的拼接，因此要乘以2
-output = tf.reshape(final_output, [-1, output_size])  # reshape成全连接层的输入维度
-
-# 全连接层的输出
-with tf.name_scope(&quot;output&quot;):
-    output_w = tf.get_variable(
-        &quot;output_w&quot;,
-        shape=[output_size, self.config[&quot;num_classes&quot;]],
-        initializer=tf.contrib.layers.xavier_initializer())
-
-    output_b = tf.Variable(tf.constant(0.1, shape=[self.config[&quot;num_classes&quot;]]), name=&quot;output_b&quot;)
-    self.l2_loss += tf.nn.l2_loss(output_w)
-    self.l2_loss += tf.nn.l2_loss(output_b)
-    self.logits = tf.nn.xw_plus_b(output, output_w, output_b, name=&quot;logits&quot;)
-    self.predictions = self.get_predictions()
-</code></pre><h2 id="2-4-基于seq2seq的文本生成"><a href="#2-4-基于seq2seq的文本生成" class="headerlink" title="2.4 基于seq2seq的文本生成"></a>2.4 基于seq2seq的文本生成</h2></li>
+</li>
 </ol>
-<p>2014年提出的Seq2Seq Model，是解决这类问题一个非常通用的思路，本质是将输入句子或其中的词Token做Embedding后，输入循环神经网络中作为源句的表示，这一部分称为Encoder；另一部分生成端在每一个位置同样通过循环神经网络，循环输出对应的Token，这一部分称为Decoder。通过两个循环神经网络连接Encoder和Decoder，可以将两个平行表示连接起来。</p>
-<p>另外一个非常重要的，就是Attention机制，其本质思想是获取两端的某种权重关系，即在Decoder端生成的词和Encoder端的某些信息更相关。它也同样可以处理多模态的问题，比如Image2Text任务，通过CNN等将图片做一个关键特征的向量表示，将这个表示输出到类似的Decoder中去解码输出文本，视频语音等也使用同样的方式（如下图所示）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"><span class="comment">#词嵌入层</span></div><div class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"embedding"</span>):</div><div class="line">    <span class="comment"># 利用预训练的词向量初始化词嵌入矩阵</span></div><div class="line">    <span class="keyword">if</span> self.word_vectors <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</div><div class="line">        embedding_w = tf.Variable(tf.cast(self.word_vectors, dtype=tf.float32, name=<span class="string">"word2vec"</span>),</div><div class="line">                                  name=<span class="string">"embedding_w"</span>)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        embedding_w = tf.get_variable(<span class="string">"embedding_w"</span>, shape=[self.vocab_size, self.config[<span class="string">"embedding_size"</span>]],</div><div class="line">                                      initializer=tf.contrib.layers.xavier_initializer())</div><div class="line">    <span class="comment"># 利用词嵌入矩阵将输入的数据中的词转换成词向量，维度[batch_size, sequence_length, embedding_size]</span></div><div class="line">    embedded_words = tf.nn.embedding_lookup(embedding_w, self.inputs)</div><div class="line"></div><div class="line"><span class="comment"># 定义两层双向LSTM的模型结构</span></div><div class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"Bi-LSTM"</span>):</div><div class="line">    <span class="keyword">for</span> idx, hidden_size <span class="keyword">in</span> enumerate(self.config[<span class="string">"hidden_sizes"</span>]):</div><div class="line">        <span class="keyword">with</span> tf.name_scope(<span class="string">"Bi-LSTM"</span> + str(idx)):</div><div class="line">            <span class="comment"># 定义前向LSTM结构</span></div><div class="line">            lstm_fw_cell = tf.nn.rnn_cell.DropoutWrapper(</div><div class="line">                tf.nn.rnn_cell.LSTMCell(num_units=hidden_size, state_is_tuple=<span class="keyword">True</span>),</div><div class="line">                output_keep_prob=self.keep_prob)</div><div class="line">            <span class="comment"># 定义反向LSTM结构</span></div><div class="line">            lstm_bw_cell = tf.nn.rnn_cell.DropoutWrapper(</div><div class="line">                tf.nn.rnn_cell.LSTMCell(num_units=hidden_size, state_is_tuple=<span class="keyword">True</span>),</div><div class="line">                output_keep_prob=self.keep_prob)</div><div class="line"></div><div class="line">            <span class="comment"># 采用动态rnn，可以动态的输入序列的长度，若没有输入，则取序列的全长</span></div><div class="line">            <span class="comment"># outputs是一个元祖(output_fw, output_bw)，其中两个元素的维度都是[batch_size, max_time, hidden_size],</span></div><div class="line">            <span class="comment"># fw和bw的hidden_size一样</span></div><div class="line">            <span class="comment"># self.current_state 是最终的状态，二元组(state_fw, state_bw)，state_fw=[batch_size, s]，s是一个元祖(h, c)</span></div><div class="line">            outputs, current_state = tf.nn.bidirectional_dynamic_rnn(lstm_fw_cell, lstm_bw_cell,</div><div class="line">                                                                     embedded_words, dtype=tf.float32,</div><div class="line">                                                                     scope=<span class="string">"bi-lstm"</span> + str(idx))</div><div class="line"></div><div class="line">            <span class="comment"># 对outputs中的fw和bw的结果拼接 [batch_size, time_step, hidden_size * 2]</span></div><div class="line">            embedded_words = tf.concat(outputs, <span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment"># 取出最后时间步的输出作为全连接的输入</span></div><div class="line">final_output = embedded_words[:, <span class="number">-1</span>, :]</div><div class="line"></div><div class="line">output_size = self.config[<span class="string">"hidden_sizes"</span>][<span class="number">-1</span>] * <span class="number">2</span>  <span class="comment"># 因为是双向LSTM，最终的输出值是fw和bw的拼接，因此要乘以2</span></div><div class="line">output = tf.reshape(final_output, [<span class="number">-1</span>, output_size])  <span class="comment"># reshape成全连接层的输入维度</span></div><div class="line"></div><div class="line"><span class="comment"># 全连接层的输出</span></div><div class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"output"</span>):</div><div class="line">    output_w = tf.get_variable(</div><div class="line">        <span class="string">"output_w"</span>,</div><div class="line">        shape=[output_size, self.config[<span class="string">"num_classes"</span>]],</div><div class="line">        initializer=tf.contrib.layers.xavier_initializer())</div><div class="line"></div><div class="line">    output_b = tf.Variable(tf.constant(<span class="number">0.1</span>, shape=[self.config[<span class="string">"num_classes"</span>]]), name=<span class="string">"output_b"</span>)</div><div class="line">    self.l2_loss += tf.nn.l2_loss(output_w)</div><div class="line">    self.l2_loss += tf.nn.l2_loss(output_b)</div><div class="line">    self.logits = tf.nn.xw_plus_b(output, output_w, output_b, name=<span class="string">"logits"</span>)</div><div class="line">    self.predictions = self.get_predictions()</div></pre></td></tr></table></figure>
+<h2 id="2-4-基于seq2seq的文本生成"><a href="#2-4-基于seq2seq的文本生成" class="headerlink" title="2.4 基于seq2seq的文本生成"></a>2.4 基于seq2seq的文本生成</h2><p>2014年提出的Seq2Seq Model，是解决这类问题一个非常通用的思路，本质是将输入句子或其中的词Token做Embedding后，输入循环神经网络中作为源句的表示，这一部分称为Encoder；另一部分生成端在每一个位置同样通过循环神经网络，循环输出对应的Token，这一部分称为Decoder。通过两个循环神经网络连接Encoder和Decoder，可以将两个平行表示连接起来。</p>
+<p>另外一个非常重要的，就是Attention机制，其本质思想是获取两端的某种权重关系，即在Decoder端生成的词和Encoder端的某些信息更相关。</p>
 <p>RNN在梯度计算过程中存在连乘，导致梯度趋于0或者趋于无穷大，使得模型无法有效地学习到长距离的依赖关系</p>
 <p><strong>LSTM是RNN的一种常见的改进模型，</strong>引用了门机制去解决梯度爆炸或者梯度消散的问题。门计算所需要用到的参数，由模型自己去进行学习。每一个门都有对应的参数，每一个门的每次计算，是根据当前的输入前一刻的状态，以及内部状态，来计算门的值是什么，最后再对整个状态进行更新。</p>
 <p><strong>GRU是另一个对RNN进行改进的模型</strong>，可以看作是LSTM的变形。相对于LSTM ，GRU模型减少了一个门，参数量也会变少。因此，最终GRU的速度比RNN、LSTM更快一些。</p>
@@ -587,11 +536,11 @@ with tf.name_scope(&quot;output&quot;):
 
 <nav id="article-nav">
   
-    <a href="/2021/02/01/动态规划/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/02/01/对话系统/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          对话系统
         
       </div>
     </a>
@@ -795,19 +744,19 @@ with tf.name_scope(&quot;output&quot;):
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">NLP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -819,7 +768,7 @@ with tf.name_scope(&quot;output&quot;):
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -831,11 +780,11 @@ with tf.name_scope(&quot;output&quot;):
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
             
             <div class="clearfix"></div>
