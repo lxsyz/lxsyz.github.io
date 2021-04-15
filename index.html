@@ -179,6 +179,146 @@
             
 
   
+    <article id="post-tersorflow2-1笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/02/13/tersorflow2-1笔记/" target="_blank">tersorflow2.1笔记</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/02/13/tersorflow2-1笔记/" class="archive-article-date">
+        <time datetime="2021-02-13T08:54:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-13</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="tf-function-使用"><a href="#tf-function-使用" class="headerlink" title="@tf.function 使用"></a>@tf.function 使用</h2><p>Reference: <a href="https://yaoyaowd.medium.com/tensorflow-2-0%E4%B8%8A%E6%89%8B6-%E8%A7%A3%E5%89%96tf-function%E7%9A%84%E4%BD%BF%E7%94%A8-b48cef249ca4" target="_blank" rel="external">https://yaoyaowd.medium.com/tensorflow-2-0%E4%B8%8A%E6%89%8B6-%E8%A7%A3%E5%89%96tf-function%E7%9A%84%E4%BD%BF%E7%94%A8-b48cef249ca4</a></p>
+<p>Tensorflow2.1代码像普通的Python代码一样简单。<strong>在Tensorflow 2.0中，会自动的对被@tf.function装饰的函数进行AutoGraph优化．</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = tf.constant([[<span class="number">10</span>,<span class="number">10</span>],[<span class="number">11.</span>,<span class="number">1.</span>]])</div><div class="line">x = tf.constant([[<span class="number">1.</span>,<span class="number">0.</span>],[<span class="number">0.</span>,<span class="number">1.</span>]])</div><div class="line">b = tf.Variable(<span class="number">12.</span>)</div><div class="line">y = tf.matmul(a, x) + b</div><div class="line">print(y.numpy())</div></pre></td></tr></table></figure>
+<p>代码非常易读，但是也带来了执行效率低的问题，因为代码需要依赖Python的解释器来进行计算，无法对数据流以及计算图进行优化．</p>
+<p>为了在代码可读性和代码速度之间保持平衡，Tensorflow 2.0引入了<code>tf.function</code>这一概念．</p>
+<p>我们来粗浅的看一下被<code>tf.function</code>装饰的函数第一次执行时都做了什么：</p>
+<ol>
+<li>函数被执行并且被跟踪(tracing)．Eager execution处于关闭状态，所有的Tensorflow函数被当做<code>tf.Operation</code>进行图的创建．</li>
+<li><strong>AutoGraph被唤醒，去检测Python代码可以转为Tensorflow的逻辑</strong>，比如while &gt; tf.while, for &gt; tf.while, if &gt; tf.cond, assert &gt; tf.assert．</li>
+<li>通过以上两部，我们对函数进行<strong>建图</strong>，为了保证Python代码中每一行的执行顺序，<code>tf.control_dependencies</code>被自动加入到代码中．保证第i行执行完后我们会执行第i+1行．</li>
+<li>返回tf.Graph，根据函数名和输入参数，我们将这个<strong>graph存到一个cache中</strong>．</li>
+<li>对于任何一个该函数的调用，我们会重复利用cache中的计算图进行计算．</li>
+</ol>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></div><div class="line">    a = tf.constant([[<span class="number">10</span>,<span class="number">10</span>],[<span class="number">11.</span>,<span class="number">1.</span>]])</div><div class="line">    x = tf.constant([[<span class="number">1.</span>,<span class="number">0.</span>],[<span class="number">0.</span>,<span class="number">1.</span>]])</div><div class="line">    b = tf.Variable(<span class="number">12.</span>)</div><div class="line">    y = tf.matmul(a, x) + b</div><div class="line">    <span class="keyword">return</span> y</div><div class="line">print(f().numpy())</div><div class="line"><span class="comment">#执行结果</span></div><div class="line">[[<span class="number">22.</span> <span class="number">22.</span>]</div><div class="line"> [<span class="number">23.</span> <span class="number">13.</span>]]</div><div class="line"></div><div class="line"><span class="meta">@tf.function</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></div><div class="line">    a = tf.constant([[<span class="number">10</span>,<span class="number">10</span>],[<span class="number">11.</span>,<span class="number">1.</span>]])</div><div class="line">    x = tf.constant([[<span class="number">1.</span>,<span class="number">0.</span>],[<span class="number">0.</span>,<span class="number">1.</span>]])</div><div class="line">    b = tf.Variable(<span class="number">12.</span>)</div><div class="line">    y = tf.matmul(a, x) + b</div><div class="line">    print(<span class="string">"PRINT: "</span>, y)</div><div class="line">    tf.print(<span class="string">"TF-PRINT: "</span>, y)</div><div class="line">    <span class="keyword">return</span> y</div><div class="line">f()</div><div class="line"><span class="comment">#执行结果</span></div><div class="line">PRINT:  Tensor(<span class="string">"add:0"</span>, shape=(<span class="number">2</span>, <span class="number">2</span>), dtype=float32)</div><div class="line">ValueError: tf.function-decorated function tried to create variables on non-first call.</div></pre></td></tr></table></figure>
+<p>咦，为什么代码报错了？</p>
+<p><code>tf.function</code>可能会对一段Python函数进行多次执行来构图，在多次执行的过程中，同样的Variable被创建了多次，产生错误．</p>
+<p>这其实也是一个很容易混乱的概念，在eager mode下一个Variable是一个Python object，所以会在执行范围外被销毁．但是在<code>tf.function</code>的装饰下，Variable变成了<code>tf.Variable</code>，是在Graph中持续存在的．</p>
+<p><strong>把一个在eager mode下正常执行的函数转换到Tensorflow图形式，需要一边思考着计算图一边构建程序．</strong></p>
+<p>解决方案：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 将所有的内容写到一个class里，就好像Keras layer一样,所有的Variable都是class的内部参数(self._b)，将class的__call__()通过tf.function装饰．</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">F</span><span class="params">()</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self._b = <span class="keyword">None</span></div><div class="line"><span class="meta">    @tf.function</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self)</span>:</span></div><div class="line">        a = tf.constant([[<span class="number">10</span>, <span class="number">10</span>], [<span class="number">11.</span>, <span class="number">1.</span>]])</div><div class="line">        x = tf.constant([[<span class="number">1.</span>, <span class="number">0.</span>], [<span class="number">0.</span>, <span class="number">1.</span>]])</div><div class="line">        <span class="keyword">if</span> self._b <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            self._b = tf.Variable(<span class="number">12.</span>)</div><div class="line">        y = tf.matmul(a, x) + self._b</div><div class="line">        print(<span class="string">"PRINT: "</span>, y)</div><div class="line">        tf.print(<span class="string">"TF-PRINT: "</span>, y)</div><div class="line">        <span class="keyword">return</span> y</div><div class="line">f = F()</div><div class="line">f()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 外部变量传入的形式</span></div><div class="line"><span class="meta">@tf.function</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(b)</span>:</span></div><div class="line">    a = tf.constant([[<span class="number">10</span>,<span class="number">10</span>],[<span class="number">11.</span>,<span class="number">1.</span>]])</div><div class="line">    x = tf.constant([[<span class="number">1.</span>,<span class="number">0.</span>],[<span class="number">0.</span>,<span class="number">1.</span>]])</div><div class="line">    y = tf.matmul(a, x) + b</div><div class="line">    print(<span class="string">"PRINT: "</span>, y)</div><div class="line">    tf.print(<span class="string">"TF-PRINT: "</span>, y)</div><div class="line">    <span class="keyword">return</span> y</div><div class="line">b = tf.Variable(<span class="number">12.</span>)</div><div class="line">f(b)</div></pre></td></tr></table></figure>
+<h2 id="Tf-keras-Metrics"><a href="#Tf-keras-Metrics" class="headerlink" title="Tf.keras.Metrics"></a>Tf.keras.Metrics</h2><p>Reference: <a href="https://blog.csdn.net/qq_39507748/article/details/105267168" target="_blank" rel="external">https://blog.csdn.net/qq_39507748/article/details/105267168</a></p>
+<ul>
+<li><code>reset_states()</code>,清除之前的计算结果，相当于复位重新开始计算</li>
+<li><code>result()</code>，计算并且返回结果</li>
+<li><code>update_state()</code>，将每一次更新的数据作为一组数据，这样在真正计算的时候会计算出每一组的结果，然后求多组结果的平均值。但并不会直接计算，计算还是在调用 <code>result()</code>时完成</li>
+</ul>
+<p>1、<code>tf.keras.metrics.Accuracy</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">m = tf.keras.metrics.Accuracy() </div><div class="line">_ = m.update_state([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]) </div><div class="line">m.result().numpy() </div><div class="line"><span class="comment">#输出：0.75</span></div><div class="line">m.reset_states() </div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">通俗来讲，sample_weight的作用就是用来指定</span></div><div class="line"><span class="string">哪些数据用来计算结果，哪些不参与计算</span></div><div class="line"><span class="string">'''</span></div><div class="line">_ = m.update_state([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], </div><div class="line">                    sample_weight=[<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>]) </div><div class="line">m.result().numpy() </div><div class="line"><span class="comment">#输出：0.5</span></div></pre></td></tr></table></figure>
+<p>2、<code>tf.keras.metrics.BinaryAccuracy</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">threshold用来指定一个阈值，如果数值超过这个阈值就认为是1，否则就是0</span></div><div class="line"><span class="string">'''</span></div><div class="line">tf.keras.metrics.BinaryAccuracy(</div><div class="line">    name=<span class="string">'binary_accuracy'</span>, dtype=<span class="keyword">None</span>, threshold=<span class="number">0.5</span></div><div class="line">)</div><div class="line"></div><div class="line">m = tf.keras.metrics.BinaryAccuracy()</div><div class="line">m.update_state([<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0.98</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0.6</span>])</div><div class="line">print(<span class="string">'Final result: '</span>, m.result().numpy())  <span class="comment"># Final result: 0.75</span></div></pre></td></tr></table></figure>
+<p>3、<code>tf.keras.metrics.BinaryCrossentropy</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">tf.keras.metrics.BinaryCrossentropy(</div><div class="line">    name=<span class="string">'binary_crossentropy'</span>, dtype=<span class="keyword">None</span>, from_logits=<span class="keyword">False</span>, label_smoothing=<span class="number">0</span></div><div class="line">)</div><div class="line"></div><div class="line">m = tf.keras.metrics.BinaryCrossentropy()</div><div class="line">m.update_state([<span class="number">1.</span>, <span class="number">0.</span>, <span class="number">1.</span>, <span class="number">0.</span>], [<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>, <span class="number">0.</span>])</div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string"># EPSILON = 1e-7, y = y_true, y` = y_pred, Y_MAX = 0.9999999</span></div><div class="line"><span class="string"># y` = clip_ops.clip_by_value(output, EPSILON, 1. - EPSILON)</span></div><div class="line"><span class="string"># y` = [Y_MAX, Y_MAX, Y_MAX, EPSILON]</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># Metric = -(y log(y` + EPSILON) + (1 - y) log(1 - y` + EPSILON))</span></div><div class="line"><span class="string">#        = [-log(Y_MAX + EPSILON), -log(1 - Y_MAX + EPSILON),</span></div><div class="line"><span class="string">#           -log(Y_MAX + EPSILON), -log(1)]</span></div><div class="line"><span class="string">#        = [(0 + 15.33) / 2, (0 + 0) / 2]</span></div><div class="line"><span class="string"># Reduced metric = 7.665 / 2</span></div><div class="line"><span class="string">'''</span></div><div class="line">print(<span class="string">'Final result: '</span>, m.result().numpy())  <span class="comment"># Final result: 3.833</span></div></pre></td></tr></table></figure>
+<p>4、<code>tf.keras.metrics.CategoricalAccuracy</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">m = tf.keras.metrics.CategoricalAccuracy() </div><div class="line">_ = m.update_state([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>]], [[<span class="number">0.1</span>, <span class="number">0.9</span>, <span class="number">0.8</span>], </div><div class="line">                    [<span class="number">0.05</span>, <span class="number">0.95</span>, <span class="number">0</span>]]) </div><div class="line">m.result().numpy() </div><div class="line"><span class="comment">#输出：0.5</span></div></pre></td></tr></table></figure>
+<p>5、<code>tf.keras.metrics.CategoricalCrossentropy</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">from_logits:为True时，表示预测结果非概率分布，而是确切的类别值；</span></div><div class="line"><span class="string">            为False时表示输出是概率分布</span></div><div class="line"><span class="string">'''</span></div><div class="line">tf.keras.metrics.CategoricalCrossentropy(</div><div class="line">    name=<span class="string">'categorical_crossentropy'</span>, dtype=<span class="keyword">None</span>, </div><div class="line">    from_logits=<span class="keyword">False</span>,label_smoothing=<span class="number">0</span></div><div class="line">)</div><div class="line"></div><div class="line">m = tf.keras.metrics.CategoricalCrossentropy()</div><div class="line">m.update_state([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>]],</div><div class="line">               [[<span class="number">0.05</span>, <span class="number">0.95</span>, <span class="number">0</span>], [<span class="number">0.1</span>, <span class="number">0.8</span>, <span class="number">0.1</span>]])</div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string"># EPSILON = 1e-7, y = y_true, y` = y_pred</span></div><div class="line"><span class="string"># y` = clip_ops.clip_by_value(output, EPSILON, 1. - EPSILON)</span></div><div class="line"><span class="string"># y` = [[0.05, 0.95, EPSILON], [0.1, 0.8, 0.1]]</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># xent = -sum(y * log(y'), axis = -1)</span></div><div class="line"><span class="string">#      = -((log 0.95), (log 0.1))</span></div><div class="line"><span class="string">#      = [0.051, 2.302]</span></div><div class="line"><span class="string"># Reduced xent = (0.051 + 2.302) / 2</span></div><div class="line"><span class="string">'''</span></div><div class="line">print(<span class="string">'Final result: '</span>, m.result().numpy())  <span class="comment"># Final result: 1.176</span></div></pre></td></tr></table></figure>
+<p>6、<code>tf.keras.metrics.SparseCategoricalAccuracy</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">m = tf.keras.metrics.SparseCategoricalAccuracy() </div><div class="line">_ = m.update_state([[<span class="number">2</span>], [<span class="number">1</span>]], [[<span class="number">0.1</span>, <span class="number">0.9</span>, <span class="number">0.8</span>], [<span class="number">0.05</span>, <span class="number">0.95</span>, <span class="number">0</span>]]) </div><div class="line">m.result().numpy() </div><div class="line"><span class="comment">#输出：0.5</span></div></pre></td></tr></table></figure>
+<p>7、<code>tf.keras.metrics.SparseCategoricalCrossentropy</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">m = tf.keras.metrics.SparseCategoricalCrossentropy()</div><div class="line">m.update_state(</div><div class="line">  [<span class="number">1</span>, <span class="number">2</span>],</div><div class="line">  [[<span class="number">0.05</span>, <span class="number">0.95</span>, <span class="number">0</span>], [<span class="number">0.1</span>, <span class="number">0.8</span>, <span class="number">0.1</span>]])</div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string"># y_true = one_hot(y_true) = [[0, 1, 0], [0, 0, 1]]</span></div><div class="line"><span class="string"># logits = log(y_pred)</span></div><div class="line"><span class="string"># softmax = exp(logits) / sum(exp(logits), axis=-1)</span></div><div class="line"><span class="string"># softmax = [[0.05, 0.95, EPSILON], [0.1, 0.8, 0.1]]</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># xent = -sum(y * log(softmax), 1)</span></div><div class="line"><span class="string"># log(softmax) = [[-2.9957, -0.0513, -16.1181], [-2.3026, -0.2231, -2.3026]]</span></div><div class="line"><span class="string"># y_true * log(softmax) = [[0, -0.0513, 0], [0, 0, -2.3026]]</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"># xent = [0.0513, 2.3026]</span></div><div class="line"><span class="string"># Reduced xent = (0.0513 + 2.3026) / 2</span></div><div class="line"><span class="string">'''</span></div><div class="line">print(<span class="string">'Final result: '</span>, m.result().numpy())  <span class="comment"># Final result: 1.176</span></div></pre></td></tr></table></figure>
+<h2 id="数据预处理形式"><a href="#数据预处理形式" class="headerlink" title="数据预处理形式"></a>数据预处理形式</h2><h5 id="图片数据建模示例"><a href="#图片数据建模示例" class="headerlink" title="图片数据建模示例"></a>图片数据建模示例</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf </div><div class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> datasets,layers,models</div><div class="line"></div><div class="line">BATCH_SIZE = <span class="number">100</span></div><div class="line"></div><div class="line"><span class="comment"># 图片预处理</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_image</span><span class="params">(img_path,size = <span class="params">(<span class="number">32</span>,<span class="number">32</span>)</span>)</span>:</span></div><div class="line">    label = tf.constant(<span class="number">1</span>,tf.int8) <span class="keyword">if</span> tf.strings.regex_full_match(img_path,<span class="string">".*automobile.*"</span>) \</div><div class="line">            <span class="keyword">else</span> tf.constant(<span class="number">0</span>,tf.int8)</div><div class="line">    img = tf.io.read_file(img_path)</div><div class="line">    img = tf.image.decode_jpeg(img) <span class="comment">#注意此处为jpeg格式</span></div><div class="line">    img = tf.image.resize(img,size)/<span class="number">255.0</span></div><div class="line">    <span class="keyword">return</span>(img,label)</div><div class="line"></div><div class="line"><span class="comment">#使用并行化预处理num_parallel_calls 和预存数据prefetch来提升性能</span></div><div class="line"><span class="comment"># 遍历文件夹， 对图片数据做预处理， shuffle， 预存数据</span></div><div class="line">ds_train = tf.data.Dataset.list_files(<span class="string">"../../data/cifar2/train/*/*.jpg"</span>) \</div><div class="line">           .map(load_image, num_parallel_calls=tf.data.experimental.AUTOTUNE) \</div><div class="line">           .shuffle(buffer_size = <span class="number">1000</span>).batch(BATCH_SIZE) \</div><div class="line">           .prefetch(tf.data.experimental.AUTOTUNE)  </div><div class="line"></div><div class="line">ds_test = tf.data.Dataset.list_files(<span class="string">"../../data/cifar2/test/*/*.jpg"</span>) \</div><div class="line">           .map(load_image, num_parallel_calls=tf.data.experimental.AUTOTUNE) \</div><div class="line">           .batch(BATCH_SIZE) \</div><div class="line">           .prefetch(tf.data.experimental.AUTOTUNE)  </div><div class="line"><span class="comment"># 迭代器取一张</span></div><div class="line"><span class="comment"># 可以使用ds_train.take(1)</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ------------------</span></div><div class="line"><span class="comment"># Keras保存模型结构及权重</span></div><div class="line"><span class="comment"># ------------------</span></div><div class="line"></div><div class="line">model.save(<span class="string">'data/keras_model.h5'</span>)  </div><div class="line"></div><div class="line"><span class="keyword">del</span> model  <span class="comment">#删除现有模型</span></div><div class="line"></div><div class="line"><span class="comment"># identical to the previous one</span></div><div class="line">model = models.load_model(<span class="string">'data/keras_model.h5'</span>)</div><div class="line"></div><div class="line">json_str = model.to_json()</div><div class="line">model_json = models.model_from_json(json_str)</div><div class="line">print(json_str)</div><div class="line">print(model_json)</div><div class="line"></div><div class="line"><span class="comment"># ------------------</span></div><div class="line"><span class="comment"># tensorflow保存权重</span></div><div class="line"><span class="comment"># ------------------</span></div><div class="line"></div><div class="line">model.save_weights(<span class="string">'../../data/tf_model_weights.ckpt'</span>,save_format = <span class="string">"tf"</span>)</div><div class="line"><span class="comment"># 保存模型结构与模型参数到文件,该方式保存的模型具有跨平台性便于部署</span></div><div class="line"></div><div class="line">model.save(<span class="string">'../../data/tf_model_savedmodel'</span>, save_format=<span class="string">"tf"</span>)</div><div class="line">print(<span class="string">'export saved model.'</span>)</div><div class="line"></div><div class="line">model_loaded = tf.keras.models.load_model(<span class="string">'../../data/tf_model_savedmodel'</span>)</div><div class="line"><span class="comment"># model_loaded.evaluate(x_test,y_test)</span></div></pre></td></tr></table></figure>
+<h5 id="文本数据预处理方式"><a href="#文本数据预处理方式" class="headerlink" title="文本数据预处理方式"></a>文本数据预处理方式</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. tf.keras.preprocessing中的Tokenizer词典构建工具和tf.keras.utils.Sequence构建文本数据生成器管道</span></div><div class="line"><span class="comment"># https://zhuanlan.zhihu.com/p/67697840</span></div><div class="line"></div><div class="line"><span class="comment"># 2. tf.data.Dataset 和 keras.layers.experimental.preprocessing.TextVectorization预处理</span></div><div class="line">MAX_WORDS = <span class="number">10000</span>  <span class="comment"># 仅考虑最高频的10000个词</span></div><div class="line">MAX_LEN = <span class="number">200</span>  <span class="comment"># 每个样本保留200个词的长度</span></div><div class="line">BATCH_SIZE = <span class="number">20</span> </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_line</span><span class="params">(line)</span>:</span></div><div class="line">    arr = tf.strings.split(line, <span class="string">"\t"</span>)</div><div class="line">    label = tf.expand_dims(tf.cast(tf.strings.to_number(arr[<span class="number">0</span>]), tf.int32), axis=<span class="number">0</span>)</div><div class="line">    text = tf.expand_dims(arr[<span class="number">1</span>], axis=<span class="number">0</span>)</div><div class="line">    <span class="keyword">return</span> text, label</div><div class="line"></div><div class="line"><span class="comment"># 处理文件夹，并行处理</span></div><div class="line">ds_train_raw =  tf.data.TextLineDataset(filenames = [train_data_path]) \</div><div class="line">   .map(split_line,num_parallel_calls = tf.data.experimental.AUTOTUNE) \</div><div class="line">   .shuffle(buffer_size = <span class="number">1000</span>).batch(BATCH_SIZE) \</div><div class="line">   .prefetch(tf.data.experimental.AUTOTUNE)</div><div class="line"></div><div class="line">ds_test_raw = tf.data.TextLineDataset(filenames = [test_data_path]) \</div><div class="line">   .map(split_line,num_parallel_calls = tf.data.experimental.AUTOTUNE) \</div><div class="line">   .batch(BATCH_SIZE) \</div><div class="line">   .prefetch(tf.data.experimental.AUTOTUNE)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">clean_text</span><span class="params">(text)</span>:</span></div><div class="line">    lowercase = tf.strings.lower(text)</div><div class="line">    stripped_html = tf.strings.regex_replace(lowercase, <span class="string">'&lt;br /&gt;'</span>, <span class="string">' '</span>)</div><div class="line">    cleaned_punctuation = tf.strings.regex_replace(stripped_html,</div><div class="line">         <span class="string">'[%s]'</span> % re.escape(string.punctuation),<span class="string">''</span>)</div><div class="line">    <span class="keyword">return</span> cleaned_punctuation</div><div class="line"></div><div class="line"></div><div class="line">vectorize_layer = TextVectorization(</div><div class="line">    standardize=clean_text,</div><div class="line">    split = <span class="string">'whitespace'</span>,</div><div class="line">    max_tokens=MAX_WORDS<span class="number">-1</span>, <span class="comment">#有一个留给占位符</span></div><div class="line">    output_mode=<span class="string">'int'</span>,</div><div class="line">    output_sequence_length=MAX_LEN)</div><div class="line"></div><div class="line">ds_text = ds_train_raw.map(<span class="keyword">lambda</span> text,label: text)</div><div class="line">vectorize_layer.adapt(ds_text)</div><div class="line">print(vectorize_layer.get_vocabulary()[<span class="number">0</span>:<span class="number">100</span>])</div><div class="line"></div><div class="line"><span class="comment">#单词编码</span></div><div class="line">ds_train = ds_train_raw.map(<span class="keyword">lambda</span> text,label:(vectorize_layer(text),label)) \</div><div class="line">     .prefetch(tf.data.experimental.AUTOTUNE)</div><div class="line">ds_test = ds_test_raw.map(<span class="keyword">lambda</span> text,label:(vectorize_layer(text),label)) \</div><div class="line">     .prefetch(tf.data.experimental.AUTOTUNE)</div></pre></td></tr></table></figure>
+<h5 id="时序数据预处理方式"><a href="#时序数据预处理方式" class="headerlink" title="时序数据预处理方式"></a>时序数据预处理方式</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">df = pd.DataFrame()</div><div class="line"></div><div class="line">df[<span class="string">'confirmed_num'</span>] = [<span class="number">15</span>, <span class="number">12</span>, <span class="number">13</span>]</div><div class="line">df[<span class="string">'cured_num'</span>] = [<span class="number">13</span>, <span class="number">12</span>, <span class="number">12</span>]</div><div class="line">df[<span class="string">'dead_num'</span>] = [<span class="number">10</span>, <span class="number">123</span>, <span class="number">134</span>]</div><div class="line">df[<span class="string">'date'</span>] = [<span class="string">'2020-01-02'</span>, <span class="string">'2020-02-02'</span>, <span class="string">'2020-03-02'</span>]</div><div class="line">df = df.set_index(<span class="string">"date"</span>)</div><div class="line">print(df)</div><div class="line"><span class="comment"># 做差分处理</span></div><div class="line">dfdiff = df.diff(periods=<span class="number">1</span>).dropna()</div><div class="line">dfdiff = dfdiff.reset_index(<span class="string">"date"</span>)</div><div class="line">print(dfdiff)</div><div class="line"></div><div class="line"><span class="string">"""</span></div><div class="line"><span class="string">confirmed_num  cured_num  dead_num</span></div><div class="line"><span class="string">date                                          </span></div><div class="line"><span class="string">2020-01-02             15         13        10</span></div><div class="line"><span class="string">2020-02-02             12         12       123</span></div><div class="line"><span class="string">2020-03-02             13         12       134</span></div><div class="line"><span class="string">         date  confirmed_num  cured_num  dead_num</span></div><div class="line"><span class="string">0  2020-02-02           -3.0       -1.0     113.0</span></div><div class="line"><span class="string">1  2020-03-02            1.0        0.0      11.0</span></div><div class="line"><span class="string">"""</span></div><div class="line"></div><div class="line"><span class="comment">#用某日前3天窗口数据作为输入预测该日数据</span></div><div class="line">WINDOW_SIZE = <span class="number">3</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">batch_dataset</span><span class="params">(dataset)</span>:</span></div><div class="line">    dataset_batched = dataset.batch(WINDOW_SIZE,drop_remainder=<span class="keyword">True</span>)</div><div class="line">    <span class="keyword">return</span> dataset_batched</div><div class="line"><span class="comment"># 取window_size个数据，然后shift</span></div><div class="line">ds_data = tf.data.Dataset.from_tensor_slices(tf.constant(dfdiff.values,dtype = tf.float32)) \</div><div class="line">   .window(WINDOW_SIZE,shift=<span class="number">1</span>).flat_map(batch_dataset)</div><div class="line"></div><div class="line">print(list(ds_data.as_numpy_iterator()))</div><div class="line"></div><div class="line">ds_label = tf.data.Dataset.from_tensor_slices(</div><div class="line">    tf.constant(dfdiff.values[WINDOW_SIZE:],dtype = tf.float32))</div><div class="line">print(list(ds_label.as_numpy_iterator()))</div><div class="line"></div><div class="line"><span class="comment">#数据较小，可以将全部训练数据放入到一个batch中，提升性能</span></div><div class="line">ds_train = tf.data.Dataset.zip((ds_data,ds_label)).batch(<span class="number">2</span>).cache()</div></pre></td></tr></table></figure>
+<p>Jupiter 查看文档； 导出代码成py</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tensorflow//" class="article-tag-list-link color1">tensorflow</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/02/13/tersorflow2-1笔记/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-对话系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -236,6 +376,410 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2021/02/01/对话系统/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-模型介绍资料汇总" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/01/02/模型介绍资料汇总/" target="_blank">模型资料汇总</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/01/02/模型介绍资料汇总/" class="archive-article-date">
+        <time datetime="2021-01-02T09:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-02</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Transformer: <a href="https://zhuanlan.zhihu.com/p/59629215" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/59629215</a></p>
+<p>Self-attention: 编码器对特定单词编码时<strong>查看输入序列的其他单词</strong></p>
+<p>解码器中 Encoder-Decoder Attention 帮解码器<strong>注意输入句子</strong>的相关部分</p>
+<p><strong>多头注意力机制</strong></p>
+<p>这篇文章通过增加一种称为“多头”注意力的机制完善了self-attention层。这通过两种方式改善了注意力层的性能：</p>
+<ol>
+<li>它扩展了模型关注不同位置的能力。在上面的例子中，Z1包含了每个其他编码的一点，但它可能由实际的单词本身支配。翻译句子：“The animal didn’t cross the street because it was too tired”，我们很想知道这里的“it”指代什么？ 这时候会很有帮助。</li>
+<li>它给予attention层多个“表达子空间”。接下来会看到多头注意力有多组Query/ Key /Value权重矩阵（Transformer使用了8组注意力头，所以这里我们为每个编码器/解码器设置了8组），而不是简单的一组。每组集合都是随机初始化。之后在训练中每组用于将词嵌入（或来自较低层编码器/解码器的输出）映射到不同的表达子空间。</li>
+</ol>
+<p>位置编码</p>
+<p>这是因为左边的值是由一个函数(正弦)产生的，右边的值是由另一个函数(余弦)产生的。然后将它们连接起来形成每个位置编码向量</p>
+<p>残差连接</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/01/02/模型介绍资料汇总/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-价值投资" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/12/30/价值投资/" target="_blank">价值投资与实战</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/12/30/价值投资/" class="archive-article-date">
+        <time datetime="2020-12-30T14:21:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-30</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>格雷厄姆：低市盈率，三分之二市净率；</p>
+<p>巴菲特：买的公司要有相应的资产、利润和现金流，而不仅仅是依靠未来成长的可能性来支撑其价值；</p>
+<blockquote>
+<p>首先，ROE应与市盈率相挂钩。净资产收益率（ROE）为10%的公司，其正确的估值就应该是10倍市盈率。</p>
+<p>PE/ROE，其实就是“市场价格”（市盈率）与“上市公司赚钱能力”（净资产收益率）的比值。当该值小于1时，即为低估值。</p>
+<p>当ROE等于20%时，正确估值的市净率应为4倍；当ROE等于25%时，正确估值的市净率应为6.25倍；当ROE等于30%时，正确估值的市净率应为9倍。因此，ROE与市净率实际上应为“平方关系”。</p>
+<p>有鉴于此，ROE等于20%的股票，价值投资的买入价最好是2倍市净率；ROE等于25%的股票，价值投资的买入价则最好是3.125倍市净率；ROE等于30%的股票，价值投资的买入价则最好是4.5倍市净率。</p>
+</blockquote>
+<h3 id="对企业价值的理解"><a href="#对企业价值的理解" class="headerlink" title="对企业价值的理解"></a>对企业价值的理解</h3><p><strong>对企业内在价值影响最大的，其实是未来现金流的折现，近三年盈利对企业的内在价值影响很小</strong></p>
+<p>策略：”看长做短”</p>
+<p>买入的行业和板块，一定要有一年以上、偏中长期的投资逻辑，而不能只是几个月的利好。持有计划也应当是一年以上</p>
+<p>“做短”：短期上涨太快，注意止盈</p>
+<blockquote>
+<p>投资，不一定要赚大钱，而是慢慢用自己的分析和交易来赚钱，来培养自己对一种方法的自信。去改变之前自己那种冲动交易的风格，去相信事实、相信自己的分析，但也不要把运气当能力，不要去垃圾股里长黄金。没有人因为赚钱少而被市场淘汰，被淘汰的都是因为亏钱太多。</p>
+</blockquote>
+<p><strong>风格持续漂移的人赚不到什么钱，即看到什么涨，买什么，追热点很难赚到钱</strong></p>
+<p>逆向投资：</p>
+<p>顺势赚快钱，逆势赚大钱；</p>
+<p>巴菲特：别人恐惧我贪婪，别人贪婪我恐惧；</p>
+<p>价值投资:</p>
+<p>买入理由：低估值；ROE20%~30%稳定，企业核心价值的短期利空；企业正发生积极的变化；</p>
+<p>卖出理由：逻辑变了，财报大幅低于预期；有更好的标的；估值高啦；</p>
+<p>趋势投资：</p>
+<ol>
+<li>适合周期投资，无法预测未来的现金流</li>
+<li>适合牛市下半段使用</li>
+<li><strong>周期股，牛市中后期，外汇产品</strong></li>
+</ol>
+<h2 id="家庭资产配置"><a href="#家庭资产配置" class="headerlink" title="家庭资产配置"></a>家庭资产配置</h2><p>一定要配置 大盘股+小盘股，大盘股抗跌，小盘股增收</p>
+<p><strong>某些时段，大小盘股片会表现不同力度的上涨。最佳策略是同时持有大小盘，动态平衡，谁涨的多就卖一些，买入涨的少的。在熊市初期和中期，尽量持有大盘股指数，估值回归到正常情况下，加大力度加仓小盘股。</strong></p>
+<p>中证500与中小板指，两支配一支，选择500，覆盖范围广，波动率大</p>
+<p>创业板和500怎么选择，等创业板跌下来，建仓或移仓</p>
+<p>大的选50和300.小的选500和创业</p>
+<p>行业指数作为宽基的补充，有必要配置长期持有</p>
+<p>行业指数的配置比例要低于宽基。医药和消费指数</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">读书笔记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/12/30/价值投资/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Pytorch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/12/05/Pytorch/" target="_blank">Pytorch</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/12/05/Pytorch/" class="archive-article-date">
+        <time datetime="2020-12-05T05:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-05</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>数据加载</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dl_train = DataLoader(TensorDataset(torch.tensor(x_train).float(),torch.tensor(y_train).float()),shuffle = <span class="keyword">True</span>, batch_size = <span class="number">8</span>)</div><div class="line">dl_valid = DataLoader(TensorDataset(torch.tensor(x_test).float(),torch.tensor(y_test).float()),shuffle = <span class="keyword">False</span>, batch_size = <span class="number">8</span>)</div></pre></td></tr></table></figure>
+<p>模型训练</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</div><div class="line"></div><div class="line">loss_func = nn.BCELoss()</div><div class="line">optimizer = torch.optim.Adam(params=net.parameters(),lr = <span class="number">0.01</span>)</div><div class="line">metric_func = <span class="keyword">lambda</span> y_pred,y_true: accuracy_score(y_true.data.numpy(),y_pred.data.numpy()&gt;<span class="number">0.5</span>)</div><div class="line">metric_name = <span class="string">"accuracy"</span></div><div class="line"></div><div class="line">epochs = <span class="number">10</span></div><div class="line">log_step_freq = <span class="number">30</span></div><div class="line"></div><div class="line">dfhistory = pd.DataFrame(columns = [<span class="string">"epoch"</span>,<span class="string">"loss"</span>,metric_name,<span class="string">"val_loss"</span>,<span class="string">"val_"</span>+metric_name]) </div><div class="line">print(<span class="string">"Start Training..."</span>)</div><div class="line">nowtime = datetime.datetime.now().strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>)</div><div class="line">print(<span class="string">"=========="</span>*<span class="number">8</span> + <span class="string">"%s"</span>%nowtime)</div><div class="line"></div><div class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(<span class="number">1</span>,epochs+<span class="number">1</span>):  </div><div class="line"></div><div class="line">    <span class="comment"># 1，训练循环-------------------------------------------------</span></div><div class="line">    net.train()</div><div class="line">    loss_sum = <span class="number">0.0</span></div><div class="line">    metric_sum = <span class="number">0.0</span></div><div class="line">    step = <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> step, (features,labels) <span class="keyword">in</span> enumerate(dl_train, <span class="number">1</span>):</div><div class="line"></div><div class="line">        <span class="comment"># 梯度清零</span></div><div class="line">        optimizer.zero_grad()</div><div class="line"></div><div class="line">        <span class="comment"># 正向传播求损失</span></div><div class="line">        predictions = net(features)</div><div class="line">        loss = loss_func(predictions,labels)</div><div class="line">        metric = metric_func(predictions,labels)</div><div class="line"></div><div class="line">        <span class="comment"># 反向传播求梯度</span></div><div class="line">        loss.backward()</div><div class="line">        optimizer.step()</div><div class="line"></div><div class="line">        <span class="comment"># 打印batch级别日志</span></div><div class="line">        loss_sum += loss.item()</div><div class="line">        metric_sum += metric.item()</div><div class="line">        <span class="keyword">if</span> step%log_step_freq == <span class="number">0</span>:   </div><div class="line">            print((<span class="string">"[step = %d] loss: %.3f, "</span>+metric_name+<span class="string">": %.3f"</span>) %</div><div class="line">                  (step, loss_sum/step, metric_sum/step))</div><div class="line"></div><div class="line">    <span class="comment"># 2，验证循环-------------------------------------------------</span></div><div class="line">    net.eval()</div><div class="line">    val_loss_sum = <span class="number">0.0</span></div><div class="line">    val_metric_sum = <span class="number">0.0</span></div><div class="line">    val_step = <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> val_step, (features,labels) <span class="keyword">in</span> enumerate(dl_valid, <span class="number">1</span>):</div><div class="line">        <span class="comment"># 关闭梯度计算</span></div><div class="line">        <span class="keyword">with</span> torch.no_grad():</div><div class="line">            predictions = net(features)</div><div class="line">            val_loss = loss_func(predictions,labels)</div><div class="line">            val_metric = metric_func(predictions,labels)</div><div class="line">        val_loss_sum += val_loss.item()</div><div class="line">        val_metric_sum += val_metric.item()</div><div class="line"></div><div class="line">    <span class="comment"># 3，记录日志-------------------------------------------------</span></div><div class="line">    info = (epoch, loss_sum/step, metric_sum/step, </div><div class="line">            val_loss_sum/val_step, val_metric_sum/val_step)</div><div class="line">    dfhistory.loc[epoch<span class="number">-1</span>] = info</div><div class="line"></div><div class="line">    <span class="comment"># 打印epoch级别日志</span></div><div class="line">    print((<span class="string">"\nEPOCH = %d, loss = %.3f,"</span>+ metric_name + \</div><div class="line">          <span class="string">"  = %.3f, val_loss = %.3f, "</span>+<span class="string">"val_"</span>+ metric_name+<span class="string">" = %.3f"</span>) </div><div class="line">          %info)</div><div class="line">    nowtime = datetime.datetime.now().strftime(<span class="string">'%Y-%m-%d %H:%M:%S'</span>)</div><div class="line">    print(<span class="string">"\n"</span>+<span class="string">"=========="</span>*<span class="number">8</span> + <span class="string">"%s"</span>%nowtime)</div><div class="line"></div><div class="line">print(<span class="string">'Finished Training...'</span>)</div></pre></td></tr></table></figure>
+<p>图表展示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">%matplotlib inline</div><div class="line">%config InlineBackend.figure_format = <span class="string">'svg'</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_metric</span><span class="params">(dfhistory, metric)</span>:</span></div><div class="line">    train_metrics = dfhistory[metric]</div><div class="line">    val_metrics = dfhistory[<span class="string">'val_'</span>+metric]</div><div class="line">    epochs = range(<span class="number">1</span>, len(train_metrics) + <span class="number">1</span>)</div><div class="line">    plt.plot(epochs, train_metrics, <span class="string">'bo--'</span>)</div><div class="line">    plt.plot(epochs, val_metrics, <span class="string">'ro-'</span>)</div><div class="line">    plt.title(<span class="string">'Training and validation '</span>+ metric)</div><div class="line">    plt.xlabel(<span class="string">"Epochs"</span>)</div><div class="line">    plt.ylabel(metric)</div><div class="line">    plt.legend([<span class="string">"train_"</span>+metric, <span class="string">'val_'</span>+metric])</div><div class="line">    plt.show()</div><div class="line">    </div><div class="line">plot_metric(dfhistory,<span class="string">"loss"</span>)</div></pre></td></tr></table></figure>
+<p>预测</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#预测概率</span></div><div class="line">y_pred_probs = net(torch.tensor(x_test[<span class="number">0</span>:<span class="number">10</span>]).float()).data</div><div class="line">y_pred_probs</div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">tensor([[0.0119],</span></div><div class="line"><span class="string">        [0.6029],</span></div><div class="line"><span class="string">        [0.2970],</span></div><div class="line"><span class="string">        [0.5717],</span></div><div class="line"><span class="string">        [0.5034],</span></div><div class="line"><span class="string">        [0.8655],</span></div><div class="line"><span class="string">        [0.0572],</span></div><div class="line"><span class="string">        [0.9182],</span></div><div class="line"><span class="string">        [0.5038],</span></div><div class="line"><span class="string">        [0.1739]])</span></div><div class="line"><span class="string">'''</span></div><div class="line"><span class="comment">#预测类别</span></div><div class="line">y_pred = torch.where(y_pred_probs&gt;<span class="number">0.5</span>,</div><div class="line">        torch.ones_like(y_pred_probs),torch.zeros_like(y_pred_probs))</div><div class="line">y_pred</div></pre></td></tr></table></figure>
+<p>保存模型参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 保存模型参数</span></div><div class="line"></div><div class="line">torch.save(net.state_dict(), <span class="string">"../data/net_parameter.pkl"</span>)</div><div class="line"></div><div class="line">net_clone = create_net()</div><div class="line">net_clone.load_state_dict(torch.load(<span class="string">"../data/net_parameter.pkl"</span>))</div><div class="line"></div><div class="line">net_clone.forward(torch.tensor(x_test[<span class="number">0</span>:<span class="number">10</span>]).float()).data</div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string"># 保存模型</span></div><div class="line"><span class="string">torch.save(net, '../data/net_model.pkl')</span></div><div class="line"><span class="string">net_loaded = torch.load('../data/net_model.pkl')</span></div><div class="line"><span class="string">net_loaded(torch.tensor(x_test[0:10]).float()).data</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">tensor([[0.0119],</span></div><div class="line"><span class="string">        [0.6029],</span></div><div class="line"><span class="string">        [0.2970],</span></div><div class="line"><span class="string">        [0.5717],</span></div><div class="line"><span class="string">        [0.5034],</span></div><div class="line"><span class="string">        [0.8655],</span></div><div class="line"><span class="string">        [0.0572],</span></div><div class="line"><span class="string">        [0.9182],</span></div><div class="line"><span class="string">        [0.5038],</span></div><div class="line"><span class="string">        [0.1739]])</span></div><div class="line"><span class="string">'''</span></div></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/2020/12/05/Pytorch/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/12/05/Pytorch/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-git子仓库使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/12/05/git子仓库使用/" target="_blank">git子仓库使用</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/12/05/git子仓库使用/" class="archive-article-date">
+        <time datetime="2020-12-05T05:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-05</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h1><h2 id="子仓库使用说明"><a href="#子仓库使用说明" class="headerlink" title="子仓库使用说明"></a>子仓库使用说明</h2><h3 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h3><p>下列操作会克隆下主仓库和子仓库代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone --recursive [库名]</div></pre></td></tr></table></figure>
+<h3 id="拉取子仓库代码"><a href="#拉取子仓库代码" class="headerlink" title="拉取子仓库代码"></a>拉取子仓库代码</h3><p>更新所有子仓库代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git submodule foreach git pull</div></pre></td></tr></table></figure>
+<h3 id="提交更新"><a href="#提交更新" class="headerlink" title="提交更新"></a>提交更新</h3><p>如果更新了主仓库中的内容，需要提交更新，可以按照下列步骤：</p>
+<ol>
+<li>先Fork一份到个人仓库下</li>
+<li>本地修改代码后，提交到个人仓库</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m "代码修改"</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<ol>
+<li>提交Merge</li>
+</ol>
+<h3 id="子仓库删除"><a href="#子仓库删除" class="headerlink" title="子仓库删除"></a>子仓库删除</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git rm --cached &#123;子仓库名&#125;</div><div class="line">rm -rf &#123;子仓库名&#125;</div><div class="line">rm .gitmodules</div><div class="line"></div><div class="line">vim .git/config 删除配置项中子模块相关条目</div></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>添加子仓库并指定分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git submodule add -b dev [URL]</div></pre></td></tr></table></figure>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="https://zhuanlan.zhihu.com/p/100214931" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/100214931</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/12/05/git子仓库使用/">展开全文 >></a>
     </p>
     
 
@@ -561,6 +1105,134 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2020/10/13/述职有感/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-docker笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2020/09/10/docker笔记/" target="_blank">docker笔记</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2020/09/10/docker笔记/" class="archive-article-date">
+        <time datetime="2020-09-10T12:32:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h2><ol>
+<li>先从dockerhub 中获取镜像内容</li>
+<li>运行镜像，查看镜像中已有环境是否满足需求<h4 id="镜像管理"><a href="#镜像管理" class="headerlink" title="镜像管理"></a>镜像管理</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker pull ubuntu</div><div class="line">docker images</div><div class="line">docker search xxx</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="启动停止杀死-删除容器"><a href="#启动停止杀死-删除容器" class="headerlink" title="启动停止杀死,删除容器"></a>启动停止杀死,删除容器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker start &lt;container-id&gt;</div><div class="line">docker stop &lt;container-id&gt;</div><div class="line">docker restart &lt;container-id&gt;</div><div class="line">docker kill &lt;container-id&gt;(需要先停止才能杀死)</div><div class="line">docker rm &lt;container-id&gt;</div></pre></td></tr></table></figure>
+<h4 id="宿主机内容挂载-amp-端口映射"><a href="#宿主机内容挂载-amp-端口映射" class="headerlink" title="宿主机内容挂载&amp;端口映射"></a>宿主机内容挂载&amp;端口映射</h4><p>内容挂载：相当于在容器中访问宿主机中文件<br>端口映射：访问宿主机上9888端口相当于访问容器9999端口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -dit -p 9888:9999 -v &lt;absolute-path&gt;:/home/test ufoym/deepo:pytorch-py27-cu90 /bin/bash</div></pre></td></tr></table></figure>
+<h4 id="列出所有容器id"><a href="#列出所有容器id" class="headerlink" title="列出所有容器id"></a>列出所有容器id</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps -aq</div></pre></td></tr></table></figure>
+<h4 id="进入后台运行的容器"><a href="#进入后台运行的容器" class="headerlink" title="进入后台运行的容器"></a>进入后台运行的容器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker exec -it &lt;container-id&gt; /bin/bash</div><div class="line"></div><div class="line">或者</div><div class="line">docker attach &lt;container-id&gt;</div></pre></td></tr></table></figure>
+<h2 id="镜像保存与迁移"><a href="#镜像保存与迁移" class="headerlink" title="镜像保存与迁移"></a>镜像保存与迁移</h2><h4 id="将正在运行的容器打包成镜像"><a href="#将正在运行的容器打包成镜像" class="headerlink" title="将正在运行的容器打包成镜像"></a>将正在运行的容器打包成镜像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 会覆盖同名镜像</div><div class="line">docker commit -m "commit_info" -a "author_name" &lt;container-id&gt; &lt;image-id&gt;:tag</div><div class="line"></div><div class="line">docker commit 661e737faf25 explain:0.2</div><div class="line"></div><div class="line"><span class="meta">#</span> 保存镜像到本地</div><div class="line">docker save -o &lt;tar_filename&gt; &lt;image-id&gt;:tag</div><div class="line"></div><div class="line"><span class="meta">#</span> 载入本地镜像</div><div class="line">docker load --input centos_nginx.tar</div></pre></td></tr></table></figure>
+<h4 id="也可以通过dockerfile的形式自由迁移镜像"><a href="#也可以通过dockerfile的形式自由迁移镜像" class="headerlink" title="也可以通过dockerfile的形式自由迁移镜像"></a>也可以通过dockerfile的形式自由迁移镜像</h4><p>dockerfile示例<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">ARG IMAGE_TAG=0.97</div><div class="line"></div><div class="line">FROM &lt;path&gt;:$&#123;IMAGE_TAG&#125;</div><div class="line"></div><div class="line"><span class="meta">#</span> apt-get 安装所需软件</div><div class="line">RUN apt-get --yes update &amp;&amp; \</div><div class="line">    apt-get --yes install --no-install-recommends \</div><div class="line">        vim git ssh zip wget tmux lrzsz &amp;&amp; \</div><div class="line">    apt-get clean &amp;&amp; \</div><div class="line">    rm -rf /var/lib/apt/lists/*</div><div class="line"></div><div class="line"><span class="meta">#</span> 安装 redis 5.0.5</div><div class="line">RUN cd /usr/local/ &amp;&amp; \</div><div class="line">    wget http://download.redis.io/releases/redis-5.0.5.tar.gz &amp;&amp; \</div><div class="line">    tar xzf redis-5.0.5.tar.gz &amp;&amp; \</div><div class="line">    cd redis-5.0.5 &amp;&amp; \</div><div class="line">    make</div><div class="line">ENV PATH='/usr/local/redis-5.0.5/src':$PATH</div><div class="line"></div><div class="line"><span class="meta">#</span> pip 安装必需的库</div><div class="line">RUN /usr/local/bin/python -m pip install --upgrade pip -i https://pypi.tuna.tsinghua.edu.cn/simple &amp;&amp; \</div><div class="line">    pip install jupyterlab -i https://pypi.tuna.tsinghua.edu.cn/simple</div><div class="line"></div><div class="line">RUN pip install --no-cache-dir \</div><div class="line">        Polygon3==3.0.8 \</div><div class="line">        timeout_decorator==0.4.1</div><div class="line"></div><div class="line"><span class="meta">#</span> 设置所需的环境变量</div><div class="line">ENV POD_NAME='pod'</div><div class="line">ENV NODE_NAME='node'</div><div class="line"></div><div class="line"><span class="meta">#</span> 设置默认的工作目录</div><div class="line">WORKDIR /</div></pre></td></tr></table></figure></p>
+<p>随后在Dockerfile 指定目录下执行，其中 . 表示目录路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker build -t &lt;image-name&gt;:&lt;tag-name&gt; .</div></pre></td></tr></table></figure>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h4 id="docker中文乱码解决"><a href="#docker中文乱码解决" class="headerlink" title="docker中文乱码解决"></a>docker中文乱码解决</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">locale -a查看容器所有语言环境</div><div class="line">修改/etc/profile文件</div><div class="line">添加 export LANG=C.UTF-8</div><div class="line">source /etc/profile</div><div class="line"></div><div class="line">或者在制作dockerfile中添加</div><div class="line">ENV LANG=C.UTF-8</div></pre></td></tr></table></figure>
+<h4 id="docker部署tf-serving"><a href="#docker部署tf-serving" class="headerlink" title="docker部署tf-serving"></a>docker部署tf-serving</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> 在docker容器里启动tensorflow serving，把8501(rest)端口映射出来</div><div class="line">-e 设置环境变量</div><div class="line">docker run -t --rm -p 8501:8501 \</div><div class="line">    -v "$TESTDATA/saved_model_half_plus_two_cpu:/models/half_plus_two" \</div><div class="line">    -e MODEL_NAME=half_plus_two \</div><div class="line">    tensorflow/serving &amp;</div></pre></td></tr></table></figure>
+<h4 id="docker-ADD和COPY"><a href="#docker-ADD和COPY" class="headerlink" title="docker ADD和COPY"></a>docker ADD和COPY</h4><p>参考链接：<a href="https://www.cnblogs.com/sparkdev/p/9573248.html" target="_blank" rel="external">https://www.cnblogs.com/sparkdev/p/9573248.html</a> </p>
+<p><a href="https://yeasy.gitbook.io/docker_practice/image/dockerfile/entrypoint" target="_blank" rel="external">https://yeasy.gitbook.io/docker_practice/image/dockerfile/entrypoint</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># 在容器中 checkredis.py 文件就是被复制到了 WORKDIR /app 目录下</div><div class="line">WORKDIR /app</div><div class="line">COPY checkredis.py .</div><div class="line"></div><div class="line">COPY check* /testdir/           # 拷贝所有 check 开头的文件</div><div class="line">COPY check?.log /testdir/       # ? 是单个字符的占位符，比如匹配文件 check1.log</div><div class="line"></div><div class="line"># COPY 和 ADD 命令具有相同的特点：只复制目录中的内容而不包含目录自身。</div><div class="line">WORKDIR /app</div><div class="line">COPY nickdir ./nickdir</div></pre></td></tr></table></figure>
+<p>ADD 命令还可以解压压缩文件并把它们添加到镜像中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">WORKDIR /app</div><div class="line">ADD nickdir.tar.gz .</div></pre></td></tr></table></figure>
+<p>在使用 COPY 和 ADD 命令时，我们可以通过一些技巧来加速镜像的 build 过程。比如把那些最不容易发生变化的文件的拷贝操作放在较低的镜像层中，这样在重新 build 镜像时就会使用前面 build 产生的缓存。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">WORKDIR /app</div><div class="line">COPY myhc.py .</div><div class="line">COPY check* ./</div></pre></td></tr></table></figure>
+<h3 id="MakeFile-构建docker"><a href="#MakeFile-构建docker" class="headerlink" title="MakeFile 构建docker"></a>MakeFile 构建docker</h3><p>MakeFile可以与Docker-compose结合使用</p>
+<p>Docker Compose Compose 简介 Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，您可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。</p>
+<p>如果你还不了解 YML 文件配置，可以先阅读 YAML 入门教程。</p>
+<p>Compose 使用的三个步骤：</p>
+<p>1.使用 Dockerfile 定义应用程序的环境。</p>
+<p>2.使用 docker-compose.yml 定义构成应用程序的服务，这样它们可以在隔离环境中一起运行。</p>
+<p>3.最后，执行 docker-compose up 命令来启动并运行整个应用程序。</p>
+<p><a href="https://www.runoob.com/docker/docker-compose.html" target="_blank" rel="external">https://www.runoob.com/docker/docker-compose.html</a></p>
+<p>示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="attr">version:</span> <span class="string">'3'</span></div><div class="line"><span class="attr">services:</span></div><div class="line">  <span class="string">&lt;contrainer-name&gt;:</span></div><div class="line"><span class="attr">    image:</span> <span class="string">''</span></div><div class="line"><span class="attr">    ports:</span></div><div class="line"><span class="bullet">      -</span> <span class="number">8003</span><span class="string">:8000</span></div><div class="line"><span class="attr">    tty:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    privileged:</span> <span class="literal">true</span></div><div class="line"><span class="attr">    runtime:</span> <span class="string">nvidia</span></div><div class="line"><span class="attr">    environment:</span></div><div class="line"><span class="attr">      ENV_DEBUG:</span> <span class="string">DEBUG</span></div><div class="line"><span class="attr">      PYTHONUNBUFFERED:</span> <span class="number">1</span></div><div class="line"><span class="attr">      PROCESS_NUMBER:</span> <span class="number">1</span></div><div class="line"><span class="attr">      NVIDIA_VISIBLE_DEVICES:</span> <span class="string">all</span></div><div class="line"><span class="attr">      ENV_SL:</span> <span class="string">""</span></div><div class="line"><span class="attr">      ENV_BATCH_SIZE:</span> <span class="number">64</span></div><div class="line"><span class="attr">      ENV_API_PRIOR_TASK_RESP:</span> <span class="string">""</span></div><div class="line"><span class="attr">      ENV_MQ_CONSUMER_NUM:</span> <span class="number">0</span></div><div class="line"><span class="attr">      ENV_GPU:</span> <span class="number">0</span></div><div class="line"><span class="comment">#    volumes:</span></div><div class="line"><span class="comment">#      - ""</span></div></pre></td></tr></table></figure>
+<p>在当前目录创建一个叫做Makefile的文件。</p>
+<h4 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h4><p>简单的变量赋值，比如声明name</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">name=ryan</div></pre></td></tr></table></figure>
+<h4 id="声明规则Rule"><a href="#声明规则Rule" class="headerlink" title="声明规则Rule"></a>声明规则Rule</h4><p>Makefile文件由一系列规则（rules）构成。每条规则的形式如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;target&gt; : &lt;prerequisites&gt; </div><div class="line">[tab]  &lt;commands&gt;</div></pre></td></tr></table></figure>
+<p>Docker构建用的指令 我常用的Makefile如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">NAME = ryan/airflow</div><div class="line">VERSION = 1.10.4</div><div class="line"></div><div class="line">.PHONY: build start push</div><div class="line"></div><div class="line">build:  build-version</div><div class="line"></div><div class="line">build-version:</div><div class="line">        docker build -t $&#123;NAME&#125;:$&#123;VERSION&#125;  .</div><div class="line"></div><div class="line">tag-latest:</div><div class="line">        docker tag $&#123;NAME&#125;:$&#123;VERSION&#125; $&#123;NAME&#125;:latest</div><div class="line"></div><div class="line">start:</div><div class="line">        docker run -it --rm $&#123;NAME&#125;:$&#123;VERSION&#125; /bin/bash</div><div class="line"></div><div class="line">push:   build-version tag-latest</div><div class="line">        docker push $&#123;NAME&#125;:$&#123;VERSION&#125;; docker push $&#123;NAME&#125;:latest</div></pre></td></tr></table></figure>
+<p>构建一个版本的镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make build</div></pre></td></tr></table></figure>
+<p>构建完毕，运行一下镜像，看看内容是否正确</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make start</div></pre></td></tr></table></figure>
+<p>最后推送到docker仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make push</div></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">技术工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/09/10/docker笔记/">展开全文 >></a>
     </p>
     
 
@@ -3457,23 +4129,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3481,15 +4141,23 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">WEB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">技术工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3497,7 +4165,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3505,7 +4177,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
               </li>
             
             <div class="clearfix"></div>
