@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://lxsyz.github.io/2020/12/05/git子仓库使用/index.html">
 <meta property="og:site_name" content="Amanda">
 <meta property="og:description" content="使用说明子仓库使用说明克隆仓库下列操作会克隆下主仓库和子仓库代码 1git clone --recursive [库名] 拉取子仓库代码更新所有子仓库代码 1git submodule foreach git pull 提交更新如果更新了主仓库中的内容，需要提交更新，可以按照下列步骤：  先Fork一份到个人仓库下 本地修改代码后，提交到个人仓库  123git add .git commit -">
-<meta property="og:updated_time" content="2021-04-15T07:02:53.696Z">
+<meta property="og:updated_time" content="2021-04-21T02:07:33.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git子仓库使用">
 <meta name="twitter:description" content="使用说明子仓库使用说明克隆仓库下列操作会克隆下主仓库和子仓库代码 1git clone --recursive [库名] 拉取子仓库代码更新所有子仓库代码 1git submodule foreach git pull 提交更新如果更新了主仓库中的内容，需要提交更新，可以按照下列步骤：  先Fork一份到个人仓库下 本地修改代码后，提交到个人仓库  123git add .git commit -">
@@ -218,6 +218,7 @@
 <h3 id="子仓库删除"><a href="#子仓库删除" class="headerlink" title="子仓库删除"></a>子仓库删除</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git rm --cached &#123;子仓库名&#125;</div><div class="line">rm -rf &#123;子仓库名&#125;</div><div class="line">rm .gitmodules</div><div class="line"></div><div class="line">vim .git/config 删除配置项中子模块相关条目</div></pre></td></tr></table></figure>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>添加子仓库并指定分支：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git submodule add -b dev [URL]</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">新建本地分支与远程分支关联</div><div class="line">git branch –set-upstream 本地新建分支名 origin/远程分支名</div><div class="line">例如：</div><div class="line">git branch –set-upstream dev origin/dev</div><div class="line">git branch --set-upstream-to=origin/dev dev</div></pre></td></tr></table></figure>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="https://zhuanlan.zhihu.com/p/100214931" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/100214931</a></p>
 
     
@@ -486,11 +487,23 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">技术工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,35 +515,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">技术工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">软技能</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,11 +523,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
               </li>
             
             <div class="clearfix"></div>

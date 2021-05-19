@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://lxsyz.github.io/2020/12/05/Pytorch/index.html">
 <meta property="og:site_name" content="Amanda">
 <meta property="og:description" content="数据加载 12dl_train = DataLoader(TensorDataset(torch.tensor(x_train).float(),torch.tensor(y_train).float()),shuffle = True, batch_size = 8)dl_valid = DataLoader(TensorDataset(torch.tensor(x_test).float(),">
-<meta property="og:updated_time" content="2021-04-15T07:02:18.656Z">
+<meta property="og:updated_time" content="2021-04-25T02:39:41.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pytorch">
 <meta name="twitter:description" content="数据加载 12dl_train = DataLoader(TensorDataset(torch.tensor(x_train).float(),torch.tensor(y_train).float()),shuffle = True, batch_size = 8)dl_valid = DataLoader(TensorDataset(torch.tensor(x_test).float(),">
@@ -224,7 +224,11 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x.transpose(<span class="number">0</span>,<span class="number">1</span>)     <span class="string">'shape→[3,2] '</span>  </div><div class="line">x.transpose(<span class="number">1</span>,<span class="number">0</span>)     <span class="string">'shape→[3,2] '</span>  </div><div class="line">y.transpose(<span class="number">0</span>,<span class="number">1</span>)     <span class="string">'shape→[3,2,4]'</span> </div><div class="line">y.transpose(<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>)  <span class="string">'error，操作不了多维'</span></div></pre></td></tr></table></figure>
 <p><code>对于permute</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x.permute(<span class="number">0</span>,<span class="number">1</span>)     <span class="string">'shape→[2,3]'</span></div><div class="line">x.permute(<span class="number">1</span>,<span class="number">0</span>)     <span class="string">'shape→[3,2], 注意返回的shape不同于x.transpose(1,0) '</span></div><div class="line">y.permute(<span class="number">0</span>,<span class="number">1</span>)     <span class="string">"error 没有传入所有维度数"</span></div><div class="line">y.permute(<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>)  <span class="string">'shape→[3,2,4]'</span></div></pre></td></tr></table></figure>
-<p>tensor会不连续</p>
+<p>tensor会不连续,需要做continugous操作</p>
+<h4 id="torch-unsqueeze-和-torch-squeeze"><a href="#torch-unsqueeze-和-torch-squeeze" class="headerlink" title="torch.unsqueeze() 和 torch.squeeze()"></a><code>torch.unsqueeze() 和 torch.squeeze()</code></h4><p>去除或者增加维度为1的数据</p>
+<h4 id="index-select"><a href="#index-select" class="headerlink" title="index_select"></a><code>index_select</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> torch</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>t = torch.arange(<span class="number">24</span>).reshape(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(t)</div><div class="line">tensor([[[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</div><div class="line">         [ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>],</div><div class="line">         [ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]],</div><div class="line"></div><div class="line">        [[<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>],</div><div class="line">         [<span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>],</div><div class="line">         [<span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>]]])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>index = torch.tensor([<span class="number">1</span>, <span class="number">2</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>print(index)</div><div class="line">tensor([<span class="number">1</span>, <span class="number">2</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>data1 = t.index_select(<span class="number">1</span>, index)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>data1</div><div class="line">tensor([[[ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>],</div><div class="line">         [ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]],</div><div class="line"></div><div class="line">        [[<span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>],</div><div class="line">         [<span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>]]])</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>index = torch.tensor([<span class="number">0</span>, <span class="number">2</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>data1 = t.index_select(<span class="number">1</span>, index)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>data1</div><div class="line">tensor([[[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</div><div class="line">         [ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]],</div><div class="line"></div><div class="line">        [[<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>],</div><div class="line">         [<span class="number">20</span>, <span class="number">21</span>, <span class="number">22</span>, <span class="number">23</span>]]])</div></pre></td></tr></table></figure>
+<h4 id="scatter"><a href="#scatter" class="headerlink" title="scatter_"></a><code>scatter_</code></h4><p>按列填充</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>z = torch.zeros(<span class="number">2</span>, <span class="number">4</span>).scatter_(<span class="number">1</span>, torch.LongTensor([[<span class="number">2</span>], [<span class="number">3</span>]]), <span class="number">1.23</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>z</div><div class="line"></div><div class="line"> <span class="number">0.0000</span>  <span class="number">0.0000</span>  <span class="number">1.2300</span>  <span class="number">0.0000</span></div><div class="line"> <span class="number">0.0000</span>  <span class="number">0.0000</span>  <span class="number">0.0000</span>  <span class="number">1.2300</span></div></pre></td></tr></table></figure>
 <p><a href="https://www.cntofu.com/book/169/docs/1.0/notes_cuda.md" target="_blank" rel="external">https://www.cntofu.com/book/169/docs/1.0/notes_cuda.md</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">cuda = torch.device(<span class="string">'cuda'</span>)     <span class="comment"># Default CUDA device</span></div><div class="line">cuda0 = torch.device(<span class="string">'cuda:0'</span>)</div><div class="line">cuda2 = torch.device(<span class="string">'cuda:2'</span>)  <span class="comment"># GPU 2 (these are 0-indexed)</span></div><div class="line"></div><div class="line">x = torch.tensor([<span class="number">1.</span>, <span class="number">2.</span>], device=cuda0)</div><div class="line"><span class="comment"># x.device is device(type='cuda', index=0)</span></div><div class="line">y = torch.tensor([<span class="number">1.</span>, <span class="number">2.</span>]).cuda()</div><div class="line"><span class="comment"># y.device is device(type='cuda', index=0)</span></div><div class="line"></div><div class="line"><span class="keyword">with</span> torch.cuda.device(<span class="number">1</span>):</div><div class="line">    <span class="comment"># allocates a tensor on GPU 1</span></div><div class="line">    a = torch.tensor([<span class="number">1.</span>, <span class="number">2.</span>], device=cuda)</div><div class="line"></div><div class="line">    <span class="comment"># transfers a tensor from CPU to GPU 1</span></div><div class="line">    b = torch.tensor([<span class="number">1.</span>, <span class="number">2.</span>]).cuda()</div><div class="line">    <span class="comment"># a.device and b.device are device(type='cuda', index=1)</span></div><div class="line"></div><div class="line">    <span class="comment"># You can also use ``Tensor.to`` to transfer a tensor:</span></div><div class="line">    b2 = torch.tensor([<span class="number">1.</span>, <span class="number">2.</span>]).to(device=cuda)</div><div class="line">    <span class="comment"># b.device and b2.device are device(type='cuda', index=1)</span></div><div class="line"></div><div class="line">    c = a + b</div><div class="line">    <span class="comment"># c.device is device(type='cuda', index=1)</span></div><div class="line"></div><div class="line">    z = x + y</div><div class="line">    <span class="comment"># z.device is device(type='cuda', index=0)</span></div><div class="line"></div><div class="line">    <span class="comment"># even within a context, you can specify the device</span></div><div class="line">    <span class="comment"># (or give a GPU index to the .cuda call)</span></div><div class="line">    d = torch.randn(<span class="number">2</span>, device=cuda2)</div><div class="line">    e = torch.randn(<span class="number">2</span>).to(cuda2)</div><div class="line">    f = torch.randn(<span class="number">2</span>).cuda(cuda2)</div><div class="line">    <span class="comment"># d.device, e.device, and f.device are all device(type='cuda', index=2)</span></div></pre></td></tr></table></figure>
 <p>当源自固定（页面锁定）内存时，主机到 GPU 副本的速度要快得多。CPU tensor 和存储器公开一种 <a href="https://www.cntofu.com/book/169/docs/tensors.html#torch.Tensor.pin_memory" target="_blank" rel="external"><code>pin_memory()</code></a> 方法，该方法返回对象的副本，数据放在固定区域中。</p>
@@ -497,11 +501,23 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">技术工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,35 +529,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">技术工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">NLP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">软技能</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,11 +537,27 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">二分查找</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">软技能</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">资料汇总</a>
               </li>
             
             <div class="clearfix"></div>
